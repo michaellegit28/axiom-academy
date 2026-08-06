@@ -1,0 +1,10 @@
+title: Axiom Academy
+description: A free, university-standard self-study library — Medicine, Physics, Science, Deep Learning.
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+theme: null
+plugins: []
+exclude:
+  - README.md

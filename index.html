@@ -1,198 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Axiom Academy — Medicine, Physics, Science & Deep Learning</title>
+---
+layout: default
+title: Medicine, Physics, Science & Deep Learning
+---
 <style>
-  :root{
-    --navy-deep:#050d1f;
-    --navy:#0a1e42;
-    --navy-light:#12305e;
-    --gold:#d4af37;
-    --gold-bright:#f0cf5f;
-    --white:#f4f6fb;
-    --grey:#9fb0cc;
-    --serif: 'Georgia', 'Iowan Old Style', serif;
-    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--navy-deep);
-    color:var(--white);
-    font-family:var(--sans);
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-  a{color:inherit;text-decoration:none;}
-
-  /* ---------- NAV ---------- */
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; justify-content:space-between; align-items:center;
-    padding:22px 6%;
-    background:rgba(5,13,31,0.75);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(212,175,55,0.15);
-  }
-  .logo{font-family:var(--serif); font-size:1.3rem; letter-spacing:0.5px; font-weight:700;}
-  .logo span{color:var(--gold);}
-  .nav-links{display:flex; gap:32px; font-size:0.92rem; color:var(--grey);}
-  .nav-links a:hover{color:var(--gold-bright);}
-  .toggle-dark{
-    border:1px solid var(--gold); border-radius:20px; padding:6px 14px;
-    font-size:0.85rem; cursor:pointer; background:transparent; color:var(--gold);
-    transition:all 0.3s;
-  }
-  .toggle-dark:hover{background:var(--gold); color:var(--navy-deep);}
-
-  /* ---------- HERO ---------- */
-  .hero{
-    min-height:100vh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center;
-    padding:140px 6% 80px;
-    position:relative;
-    background:
-      radial-gradient(ellipse at top, rgba(212,175,55,0.08), transparent 60%),
-      linear-gradient(180deg, var(--navy-deep), var(--navy) 60%, var(--navy-deep));
-  }
-  .eyebrow{
-    color:var(--gold); letter-spacing:3px; font-size:0.78rem; text-transform:uppercase;
-    margin-bottom:22px; opacity:0; animation:fadeUp 0.8s ease forwards;
-  }
-  .hero h1{
-    font-family:var(--serif); font-weight:700;
-    font-size:clamp(2.4rem, 6vw, 4.6rem); line-height:1.08;
-    max-width:900px; margin-bottom:24px;
-    opacity:0; animation:fadeUp 0.9s ease 0.15s forwards;
-  }
-  .hero h1 em{font-style:italic; color:var(--gold-bright);}
-  .hero p.sub{
-    max-width:620px; color:var(--grey); font-size:1.08rem;
-    opacity:0; animation:fadeUp 0.9s ease 0.3s forwards;
-    margin-bottom:40px;
-  }
-  .hero-portraits{
-    display:flex; gap:60px; align-items:center; margin-bottom:48px;
-    opacity:0; animation:fadeUp 1s ease 0.45s forwards;
-  }
-  .portrait{
-    width:130px; height:130px; border-radius:50%;
-    object-fit:cover; border:2px solid var(--gold);
-    box-shadow:0 0 30px rgba(212,175,55,0.25);
-    transition:transform 0.4s ease;
-  }
-  .portrait:hover{transform:translateY(-8px) scale(1.05);}
-  .portrait-label{font-size:0.75rem; color:var(--grey); margin-top:10px; letter-spacing:1px; text-transform:uppercase;}
-  .portrait-wrap{display:flex; flex-direction:column; align-items:center;}
-
-  .cta-row{display:flex; gap:18px; flex-wrap:wrap; justify-content:center;
-    opacity:0; animation:fadeUp 1s ease 0.6s forwards;}
-  .btn{
-    padding:16px 34px; border-radius:6px; font-weight:600; font-size:0.95rem;
-    letter-spacing:0.3px; transition:all 0.3s ease; display:inline-block;
-  }
-  .btn-primary{background:var(--gold); color:var(--navy-deep);}
-  .btn-primary:hover{background:var(--gold-bright); transform:translateY(-3px); box-shadow:0 10px 24px rgba(212,175,55,0.3);}
-  .btn-outline{border:1px solid var(--grey); color:var(--white);}
-  .btn-outline:hover{border-color:var(--gold); color:var(--gold-bright); transform:translateY(-3px);}
-
-  @keyframes fadeUp{ from{opacity:0; transform:translateY(24px);} to{opacity:1; transform:translateY(0);} }
-
-  /* ---------- SCROLL REVEAL ---------- */
-  .reveal{opacity:0; transform:translateY(40px); transition:opacity 0.8s ease, transform 0.8s ease;}
-  .reveal.visible{opacity:1; transform:translateY(0);}
-
-  /* ---------- SECTION SHELL ---------- */
-  section{padding:100px 6%;}
-  .section-tag{color:var(--gold); font-size:0.78rem; letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;}
-  .section-title{font-family:var(--serif); font-size:clamp(1.8rem,4vw,2.6rem); max-width:700px; margin-bottom:20px;}
-  .section-intro{color:var(--grey); max-width:640px; margin-bottom:56px;}
-
-  /* ---------- CURRICULUM ---------- */
-  .vol-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px;}
-  .vol-card{
-    background:var(--navy); border:1px solid rgba(212,175,55,0.12);
-    border-radius:10px; padding:28px; transition:all 0.35s ease; position:relative; overflow:hidden;
-  }
-  .vol-card::before{
-    content:''; position:absolute; top:0; left:0; width:4px; height:100%;
-    background:var(--gold); transform:scaleY(0); transform-origin:top; transition:transform 0.35s ease;
-  }
-  .vol-card:hover{transform:translateY(-6px); background:var(--navy-light); box-shadow:0 16px 32px rgba(0,0,0,0.35);}
-  .vol-card:hover::before{transform:scaleY(1);}
-  .vol-num{color:var(--gold); font-family:var(--serif); font-size:0.85rem; letter-spacing:1px; margin-bottom:8px;}
-  .vol-title{font-size:1.15rem; font-weight:600; margin-bottom:10px;}
-  .vol-meta{color:var(--grey); font-size:0.85rem;}
-
-  /* ---------- FEATURES ---------- */
-  .feat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px;}
-  .feat-card{text-align:center; padding:32px 20px; border-radius:10px; background:var(--navy);
-    border:1px solid rgba(212,175,55,0.1); transition:transform 0.3s ease;}
-  .feat-card:hover{transform:translateY(-5px);}
-  .feat-icon{font-size:2rem; margin-bottom:14px;}
-  .feat-title{font-weight:600; margin-bottom:6px;}
-  .feat-desc{color:var(--grey); font-size:0.88rem;}
-
-  /* ---------- INSTRUCTOR ---------- */
-  .instructor{
-    display:flex; gap:60px; align-items:center; flex-wrap:wrap;
-    background:linear-gradient(135deg, var(--navy), var(--navy-deep));
-    border-radius:16px; padding:60px; border:1px solid rgba(212,175,55,0.15);
-  }
-  .instructor img{
-    width:220px; height:220px; border-radius:14px; object-fit:cover;
-    border:2px solid var(--gold); box-shadow:0 20px 40px rgba(0,0,0,0.4);
-  }
-  .instructor-text{flex:1; min-width:280px;}
-  .instructor-name{font-family:var(--serif); font-size:1.9rem; margin-bottom:6px;}
-  .instructor-role{color:var(--gold); font-size:0.9rem; margin-bottom:20px; letter-spacing:0.5px;}
-  .instructor-text p{color:var(--grey); margin-bottom:16px; max-width:560px;}
-  .credit{font-size:0.8rem; color:var(--grey); font-style:italic; margin-top:20px;}
-
-  /* ---------- FAQ ---------- */
-  .faq-item{
-    border-bottom:1px solid rgba(212,175,55,0.15); padding:24px 0; cursor:pointer;
-  }
-  .faq-q{display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:1.05rem;}
-  .faq-q .plus{color:var(--gold); font-size:1.4rem; transition:transform 0.3s ease;}
-  .faq-item.open .plus{transform:rotate(45deg);}
-  .faq-a{max-height:0; overflow:hidden; transition:max-height 0.4s ease;}
-  .faq-item.open .faq-a{max-height:200px; margin-top:14px;}
-  .faq-a p{color:var(--grey);}
-
-  /* ---------- FOOTER CTA ---------- */
-  .final-cta{text-align:center; padding:120px 6%; background:radial-gradient(ellipse at center, rgba(212,175,55,0.07), transparent 70%);}
-  .final-cta h2{font-family:var(--serif); font-size:clamp(2rem,5vw,3rem); margin-bottom:20px;}
-  .final-cta p{color:var(--grey); max-width:520px; margin:0 auto 36px;}
-
-  footer{
-    text-align:center; padding:40px 6% 60px; color:var(--grey); font-size:0.85rem;
-    border-top:1px solid rgba(212,175,55,0.1);
-  }
-  footer .quote{font-family:var(--serif); font-style:italic; color:var(--gold-bright); margin-bottom:14px; font-size:1rem;}
+.hero{min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:140px 6% 80px; position:relative;
+  background: radial-gradient(ellipse at top, rgba(212,175,55,0.08), transparent 60%), linear-gradient(180deg, var(--navy-deep), var(--navy) 60%, var(--navy-deep));}
+.eyebrow{color:var(--gold); letter-spacing:3px; font-size:0.78rem; text-transform:uppercase; margin-bottom:22px;}
+.hero h1{font-family:var(--serif); font-weight:700; font-size:clamp(2.4rem, 6vw, 4.6rem); line-height:1.08; max-width:900px; margin-bottom:24px;}
+.hero h1 em{font-style:italic; color:var(--gold-bright);}
+.hero p.sub{max-width:620px; color:var(--grey); font-size:1.08rem; margin:0 auto 40px;}
+.hero-portraits{display:flex; gap:60px; align-items:center; justify-content:center; margin-bottom:48px;}
+.portrait{width:130px; height:130px; border-radius:50%; object-fit:cover; border:2px solid var(--gold); box-shadow:0 0 30px rgba(212,175,55,0.25); transition:transform 0.4s ease;}
+.portrait:hover{transform:translateY(-8px) scale(1.05);}
+.portrait-label{font-size:0.75rem; color:var(--grey); margin-top:10px; letter-spacing:1px; text-transform:uppercase;}
+.portrait-wrap{display:flex; flex-direction:column; align-items:center;}
+.cta-row{display:flex; gap:18px; flex-wrap:wrap; justify-content:center;}
+.feat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px;}
+.feat-card{text-align:center; padding:32px 20px; border-radius:10px; background:var(--navy); border:1px solid rgba(212,175,55,0.1); transition:transform 0.3s ease;}
+.feat-card:hover{transform:translateY(-5px);}
+.feat-icon{font-size:2rem; margin-bottom:14px;}
+.feat-title{font-weight:600; margin-bottom:6px;}
+.feat-desc{color:var(--grey); font-size:0.88rem;}
+.instructor{display:flex; gap:60px; align-items:center; flex-wrap:wrap; background:linear-gradient(135deg, var(--navy), var(--navy-deep)); border-radius:16px; padding:60px; border:1px solid rgba(212,175,55,0.15);}
+.instructor img{width:220px; height:220px; border-radius:14px; object-fit:cover; border:2px solid var(--gold); box-shadow:0 20px 40px rgba(0,0,0,0.4);}
+.instructor-text{flex:1; min-width:280px;}
+.instructor-name{font-family:var(--serif); font-size:1.9rem; margin-bottom:6px;}
+.instructor-role{color:var(--gold); font-size:0.9rem; margin-bottom:20px; letter-spacing:0.5px;}
+.instructor-text p{color:var(--grey); margin-bottom:16px; max-width:560px;}
+.credit{font-size:0.8rem; color:var(--grey); font-style:italic; margin-top:20px;}
+.final-cta{text-align:center; padding:120px 6%; background:radial-gradient(ellipse at center, rgba(212,175,55,0.07), transparent 70%);}
+.final-cta h2{font-family:var(--serif); font-size:clamp(2rem,5vw,3rem); margin-bottom:20px;}
+.final-cta p{color:var(--grey); max-width:520px; margin:0 auto 36px;}
 </style>
-</head>
-<body>
-
-<nav>
-  <div class="logo">Axiom <span>Academy</span></div>
-  <div class="nav-links">
-    <a href="#curriculum">Curriculum</a>
-    <a href="#features">Features</a>
-    <a href="#instructor">About</a>
-    <a href="#faq">FAQ</a>
-  </div>
-  <button class="toggle-dark" id="darkToggle">☾ Dark</button>
-</nav>
 
 <section class="hero">
   <div class="eyebrow">100% Free · Medicine · Physics · Science · Deep Learning</div>
   <h1>Learn the Way <em>Newton</em> and <em>Einstein</em> Actually Thought.</h1>
-  <p class="sub">A free, university-standard library built subject by subject — starting with Physics, expanding into Medicine, Chemistry, Biology, and beyond. Built for the self-learner who wants to reason like a scientist, not just memorize one.</p>
-
+  <p class="sub">A free, university-standard library built subject by subject — starting with Physics, expanding into Medicine, Chemistry, Biology, and beyond.</p>
   <div class="hero-portraits">
     <div class="portrait-wrap">
       <img class="portrait" src="https://commons.wikimedia.org/wiki/Special:FilePath/Portrait_of_Sir_Isaac_Newton,_1689.jpg" alt="Isaac Newton">
@@ -203,7 +47,6 @@
       <div class="portrait-label">Albert Einstein</div>
     </div>
   </div>
-
   <div class="cta-row">
     <a href="#curriculum" class="btn btn-primary">Explore the Curriculum</a>
     <a href="#instructor" class="btn btn-outline">Meet the Compiler</a>
@@ -211,113 +54,44 @@
 </section>
 
 <section id="curriculum">
-  <div class="section-tag reveal">Subject One: Physics</div>
-  <h2 class="section-title reveal">17 Volumes. One Continuous Argument.</h2>
-  <p class="section-intro reveal">From problem-solving methodology to the frontiers of cosmology — each volume builds on the last, the way a real physics education does. Medicine, Chemistry, and Biology follow the same structure as they're added.</p>
-
+  <div class="section-tag reveal visible">Subject One: Physics</div>
+  <h2 class="section-title reveal visible">17 Volumes. One Continuous Argument.</h2>
+  <p class="section-intro reveal visible">Each volume builds on the last. Medicine, Chemistry, and Biology follow the same structure as they're added.</p>
   <div class="vol-grid">
-    <div class="vol-card reveal"><div class="vol-num">Vol. 00</div><div class="vol-title">Learning Like a Physicist</div><div class="vol-meta">Problem-solving, dimensional analysis, estimation · 6 chapters</div></div>
-    <div class="vol-card reveal"><div class="vol-num">Vol. 01</div><div class="vol-title">Mathematics for Physics</div><div class="vol-meta">Calculus, linear algebra, ODEs, tensors · 12 chapters</div></div>
-    <div class="vol-card reveal"><div class="vol-num">Vol. 02</div><div class="vol-title">Classical Mechanics</div><div class="vol-meta">Newtonian, Lagrangian, Hamiltonian mechanics · 14 chapters</div></div>
-    <div class="vol-card reveal"><div class="vol-num">Vol. 03</div><div class="vol-title">Oscillations & Waves</div><div class="vol-meta">Harmonic motion, wave equations, Fourier optics · 10 chapters</div></div>
-    <div class="vol-card reveal"><div class="vol-num">Vol. 08</div><div class="vol-title">Modern Physics: Relativity</div><div class="vol-meta">Special & general relativity, spacetime · 10 chapters</div></div>
-    <div class="vol-card reveal"><div class="vol-num">Vol. 09</div><div class="vol-title">Quantum Physics</div><div class="vol-meta">Wave mechanics, Schrödinger equation, QM formalism · 14 chapters</div></div>
-    <div class="vol-card reveal"><div class="vol-num">Vol. 14</div><div class="vol-title">Cosmology</div><div class="vol-meta">Big Bang, dark matter, inflation, CMB · 8 chapters</div></div>
-    <div class="vol-card reveal"><div class="vol-num">Vol. 16</div><div class="vol-title">Medical Physics</div><div class="vol-meta">Radiation, imaging, therapy · 10 chapters</div></div>
+    <a class="vol-card reveal visible" href="{{ '/physics/vol0/ch1/' | relative_url }}"><div class="vol-num">Vol. 00</div><div class="vol-title">Learning Like a Physicist</div><div class="vol-meta">Problem-solving, dimensional analysis, estimation · 6 chapters</div></a>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 01</div><div class="vol-title">Mathematics for Physics</div><div class="vol-meta">Calculus, linear algebra, ODEs, tensors · 12 chapters</div></div>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 02</div><div class="vol-title">Classical Mechanics</div><div class="vol-meta">Newtonian, Lagrangian, Hamiltonian mechanics · 14 chapters</div></div>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 08</div><div class="vol-title">Modern Physics: Relativity</div><div class="vol-meta">Special & general relativity, spacetime · 10 chapters</div></div>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 09</div><div class="vol-title">Quantum Physics</div><div class="vol-meta">Wave mechanics, Schrödinger equation · 14 chapters</div></div>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 14</div><div class="vol-title">Cosmology</div><div class="vol-meta">Big Bang, dark matter, inflation, CMB · 8 chapters</div></div>
   </div>
 </section>
 
 <section id="features">
-  <div class="section-tag reveal">Built for Real Study</div>
-  <h2 class="section-title reveal">Not Just a PDF. A Study System.</h2>
-  <p class="section-intro reveal">Every feature exists to make deep study sustainable over years, not weeks.</p>
-
+  <div class="section-tag reveal visible">Built for Real Study</div>
+  <h2 class="section-title reveal visible">Not Just a PDF. A Study System.</h2>
   <div class="feat-grid">
-    <div class="feat-card reveal"><div class="feat-icon">📚</div><div class="feat-title">Textbooks</div><div class="feat-desc">All 17 volumes, organized and cross-linked</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">📈</div><div class="feat-title">Progress Tracking</div><div class="feat-desc">See exactly how far you've come</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">📝</div><div class="feat-title">Notes</div><div class="feat-desc">Annotate directly on any page</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">❓</div><div class="feat-title">Quizzes</div><div class="feat-desc">Tiered practice, easy to challenge-level</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">🧠</div><div class="feat-title">Flashcards</div><div class="feat-desc">Spaced repetition for key concepts</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">🔍</div><div class="feat-title">Full-Text Search</div><div class="feat-desc">Find any concept across all volumes</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">🌙</div><div class="feat-title">Dark Mode</div><div class="feat-desc">Built dark-first for long study sessions</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">📱</div><div class="feat-title">Any Device</div><div class="feat-desc">Phone, tablet, or desktop — same experience</div></div>
+    <div class="feat-card reveal visible"><div class="feat-icon">📚</div><div class="feat-title">Textbooks</div><div class="feat-desc">All volumes, organized and cross-linked</div></div>
+    <div class="feat-card reveal visible"><div class="feat-icon">🔍</div><div class="feat-title">Full-Text Search</div><div class="feat-desc">Coming as content scales</div></div>
+    <div class="feat-card reveal visible"><div class="feat-icon">🌙</div><div class="feat-title">Dark Mode</div><div class="feat-desc">Built dark-first for long sessions</div></div>
+    <div class="feat-card reveal visible"><div class="feat-icon">📱</div><div class="feat-title">Any Device</div><div class="feat-desc">Phone, tablet, or desktop</div></div>
   </div>
 </section>
 
 <section id="instructor">
-  <div class="instructor reveal">
-    <img src="images/michael.jpg" alt="Michael Fortune">
+  <div class="instructor reveal visible">
+    <img src="{{ '/assets/images/michael.jpg' | relative_url }}" alt="Michael Fortune">
     <div class="instructor-text">
       <div class="instructor-name">Michael Fortune</div>
       <div class="instructor-role">Compiler & Lead Learner</div>
-      <p>Building this series from the ground up — not because the material already existed somewhere convenient, but because deep understanding, structured the right way, is the foundation for the goal ahead: medicine, and eventually neurosurgery.</p>
-      <p>Every volume here is studied before it's taught. This isn't a course built by an expert looking down — it's a rigorous path built by someone walking it in real time.</p>
+      <p>Building this series from the ground up — because deep understanding, structured the right way, is the foundation for the goal ahead: medicine, and eventually neurosurgery.</p>
       <div class="credit">Compiled by Professor Henry & Michael Fortune</div>
     </div>
   </div>
 </section>
 
-<section id="faq">
-  <div class="section-tag reveal">Questions</div>
-  <h2 class="section-title reveal">Answered Before You Ask.</h2>
-
-  <div class="faq-list">
-    <div class="faq-item reveal">
-      <div class="faq-q"><span>Is this really 100% free?</span><span class="plus">+</span></div>
-      <div class="faq-a"><p>Yes. Free hosting, free content, no account required to read. No hidden paywall later.</p></div>
-    </div>
-    <div class="faq-item reveal">
-      <div class="faq-q"><span>Do I need calculus before starting?</span><span class="plus">+</span></div>
-      <div class="faq-a"><p>No — Volume 0 and Volume 1 build the mathematical foundation from the ground up before physics begins.</p></div>
-    </div>
-    <div class="faq-item reveal">
-      <div class="faq-q"><span>How long does the full series take?</span><span class="plus">+</span></div>
-      <div class="faq-a"><p>Roughly 4–5 years at 2 hours a day — comparable to an actual physics degree, because that's genuinely the scope.</p></div>
-    </div>
-    <div class="faq-item reveal">
-      <div class="faq-q"><span>Can I jump to a later volume?</span><span class="plus">+</span></div>
-      <div class="faq-a"><p>Each volume lists its prerequisites. You can skip ahead, but concepts build deliberately on earlier ones.</p></div>
-    </div>
-  </div>
-</section>
-
 <section class="final-cta">
-  <h2 class="reveal">Think Like a Scientist. Starting With Volume 0.</h2>
-  <p class="reveal">No signup wall. No cost. Just the material, structured properly.</p>
-  <a href="#curriculum" class="btn btn-primary reveal">Start Reading</a>
+  <h2 class="reveal visible">Think Like a Scientist. Starting With Volume 0.</h2>
+  <p class="reveal visible">No signup wall. No cost. Just the material, structured properly.</p>
+  <a href="{{ '/physics/vol0/ch1/' | relative_url }}" class="btn btn-primary reveal visible">Start Reading</a>
 </section>
-
-<footer>
-  <div class="quote">"The important thing is not to stop questioning. Curiosity has its own reason for existing." — Albert Einstein</div>
-  <div>© 2026 Axiom Academy · Compiled by Professor Henry & Michael Fortune</div>
-</footer>
-
-<script>
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
-  }, {threshold:0.12});
-  revealEls.forEach(el=>observer.observe(el));
-
-  // FAQ accordion
-  document.querySelectorAll('.faq-item').forEach(item=>{
-    item.querySelector('.faq-q').addEventListener('click', ()=>{
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-      if(!wasOpen) item.classList.add('open');
-    });
-  });
-
-  // Dark toggle (site is dark by default; this is a placeholder light-mode swap)
-  const darkToggle = document.getElementById('darkToggle');
-  let isDark = true;
-  darkToggle.addEventListener('click', ()=>{
-    isDark = !isDark;
-    document.documentElement.style.filter = isDark ? 'none' : 'invert(1) hue-rotate(180deg)';
-    darkToggle.textContent = isDark ? '☾ Dark' : '☀ Light';
-  });
-</script>
-
-</body>
-</html>

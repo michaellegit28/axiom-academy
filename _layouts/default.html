@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if page.title %}{{ page.title }} — {% endif %}Axiom Academy</title>
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+{% if page.math %}
+<script>
+  window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+{% endif %}
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="{{ '/' | relative_url }}">Axiom <span>Academy</span></a></div>
+  <div class="nav-links">
+    <a href="{{ '/#curriculum' | relative_url }}">Curriculum</a>
+    <a href="{{ '/#features' | relative_url }}">Features</a>
+    <a href="{{ '/#instructor' | relative_url }}">About</a>
+  </div>
+</nav>
+
+{{ content }}
+
+<footer>
+  <div class="quote">"The important thing is not to stop questioning. Curiosity has its own reason for existing." — Albert Einstein</div>
+  <div>© 2026 Axiom Academy · Compiled by Professor Henry & Michael Fortune</div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
