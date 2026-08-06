@@ -21,9 +21,22 @@ title: Medicine, Physics, Science & Deep Learning
 .feat-icon{font-size:2rem; margin-bottom:14px;}
 .feat-title{font-weight:600; margin-bottom:6px;}
 .feat-desc{color:var(--grey); font-size:0.88rem;}
-.instructor{display:flex; gap:60px; align-items:center; flex-wrap:wrap; background:linear-gradient(135deg, var(--navy), var(--navy-deep)); border-radius:16px; padding:60px; border:1px solid rgba(212,175,55,0.15);}
-.instructor img{width:220px; height:220px; border-radius:14px; object-fit:cover; border:2px solid var(--gold); box-shadow:0 20px 40px rgba(0,0,0,0.4);}
-.instructor-text{flex:1; min-width:280px;}
+
+.about-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:50px; align-items:start;}
+.about-lead{color:#dce3f0; font-size:1.08rem; margin-bottom:18px;}
+.about-lead strong{color:var(--gold-bright);}
+.progress-card{background:var(--navy); border:1px solid rgba(212,175,55,0.15); border-radius:12px; padding:32px;}
+.progress-label{color:var(--gold); font-size:0.78rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;}
+.progress-bar-track{background:var(--navy-light); border-radius:20px; height:10px; overflow:hidden; margin-bottom:10px;}
+.progress-bar-fill{background:linear-gradient(90deg, var(--gold), var(--gold-bright)); height:100%; width:1%;}
+.progress-text{color:var(--grey); font-size:0.85rem;}
+.about-values{display:flex; flex-direction:column; gap:16px; margin-top:28px;}
+.about-value{display:flex; gap:14px; align-items:flex-start;}
+.about-value .dot{color:var(--gold); font-size:1.2rem; line-height:1.4;}
+.about-value-text strong{display:block; margin-bottom:2px;}
+.about-value-text span{color:var(--grey); font-size:0.9rem;}
+
+.instructor{background:linear-gradient(135deg, var(--navy), var(--navy-deep)); border-radius:16px; padding:60px; border:1px solid rgba(212,175,55,0.15); max-width:640px;}
 .instructor-name{font-family:var(--serif); font-size:1.9rem; margin-bottom:6px;}
 .instructor-role{color:var(--gold); font-size:0.9rem; margin-bottom:20px; letter-spacing:0.5px;}
 .instructor-text p{color:var(--grey); margin-bottom:16px; max-width:560px;}
@@ -31,6 +44,7 @@ title: Medicine, Physics, Science & Deep Learning
 .final-cta{text-align:center; padding:120px 6%; background:radial-gradient(ellipse at center, rgba(212,175,55,0.07), transparent 70%);}
 .final-cta h2{font-family:var(--serif); font-size:clamp(2rem,5vw,3rem); margin-bottom:20px;}
 .final-cta p{color:var(--grey); max-width:520px; margin:0 auto 36px;}
+@media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
 </style>
 
 <section class="hero">
@@ -53,17 +67,39 @@ title: Medicine, Physics, Science & Deep Learning
   </div>
 </section>
 
+<section id="about">
+  <div class="section-tag reveal visible">About the Project</div>
+  <h2 class="section-title reveal visible">Why Axiom Academy Exists</h2>
+  <div class="about-grid">
+    <div>
+      <p class="about-lead reveal visible">Most free science content online is either <strong>too shallow</strong> to build real understanding, or <strong>too scattered</strong> across a hundred different sources to study from consistently. Axiom Academy is an attempt to fix that — one continuous, self-contained curriculum, written the way a real university course is structured, and given away for free.</p>
+      <p class="about-lead reveal visible">It starts with Physics because physics is the discipline that teaches you <em>how to reason</em> — dimensional thinking, estimation, model-building — skills that carry directly into Medicine, Chemistry, and every other subject this library will eventually cover.</p>
+      <div class="about-values reveal visible">
+        <div class="about-value"><span class="dot">●</span><div class="about-value-text"><strong>Built in the open</strong><span>Every chapter is published as it's written — no waiting for a "finished" version that never comes.</span></div></div>
+        <div class="about-value"><span class="dot">●</span><div class="about-value-text"><strong>Depth over speed</strong><span>Each chapter follows a full template: intuition, math, derivation, misconceptions, problems.</span></div></div>
+        <div class="about-value"><span class="dot">●</span><div class="about-value-text"><strong>Free, permanently</strong><span>No paywall, no account wall, no ads. That's a structural choice, not a promotional one.</span></div></div>
+      </div>
+    </div>
+    <div class="progress-card reveal visible">
+      <div class="progress-label">Current Progress</div>
+      <div class="progress-bar-track"><div class="progress-bar-fill"></div></div>
+      <div class="progress-text">1 of ~166 planned chapters live</div>
+      <div class="progress-text" style="margin-top:14px;">Currently writing: <strong style="color:var(--gold-bright);">Volume 0 — Learning Like a Physicist</strong></div>
+    </div>
+  </div>
+</section>
+
 <section id="curriculum">
   <div class="section-tag reveal visible">Subject One: Physics</div>
   <h2 class="section-title reveal visible">17 Volumes. One Continuous Argument.</h2>
   <p class="section-intro reveal visible">Each volume builds on the last. Medicine, Chemistry, and Biology follow the same structure as they're added.</p>
   <div class="vol-grid">
     <a class="vol-card reveal visible" href="{{ '/physics/vol0/ch1/' | relative_url }}"><div class="vol-num">Vol. 00</div><div class="vol-title">Learning Like a Physicist</div><div class="vol-meta">Problem-solving, dimensional analysis, estimation · 6 chapters</div></a>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 01</div><div class="vol-title">Mathematics for Physics</div><div class="vol-meta">Calculus, linear algebra, ODEs, tensors · 12 chapters</div></div>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 02</div><div class="vol-title">Classical Mechanics</div><div class="vol-meta">Newtonian, Lagrangian, Hamiltonian mechanics · 14 chapters</div></div>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 08</div><div class="vol-title">Modern Physics: Relativity</div><div class="vol-meta">Special & general relativity, spacetime · 10 chapters</div></div>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 09</div><div class="vol-title">Quantum Physics</div><div class="vol-meta">Wave mechanics, Schrödinger equation · 14 chapters</div></div>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 14</div><div class="vol-title">Cosmology</div><div class="vol-meta">Big Bang, dark matter, inflation, CMB · 8 chapters</div></div>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 01</div><div class="vol-title">Mathematics for Physics</div><div class="vol-meta">Calculus, linear algebra, ODEs, tensors · Coming soon</div></div>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 02</div><div class="vol-title">Classical Mechanics</div><div class="vol-meta">Newtonian, Lagrangian, Hamiltonian mechanics · Coming soon</div></div>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 08</div><div class="vol-title">Modern Physics: Relativity</div><div class="vol-meta">Special & general relativity, spacetime · Coming soon</div></div>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 09</div><div class="vol-title">Quantum Physics</div><div class="vol-meta">Wave mechanics, Schrödinger equation · Coming soon</div></div>
+    <div class="vol-card reveal visible"><div class="vol-num">Vol. 14</div><div class="vol-title">Cosmology</div><div class="vol-meta">Big Bang, dark matter, inflation, CMB · Coming soon</div></div>
   </div>
 </section>
 
@@ -72,7 +108,6 @@ title: Medicine, Physics, Science & Deep Learning
   <h2 class="section-title reveal visible">Not Just a PDF. A Study System.</h2>
   <div class="feat-grid">
     <div class="feat-card reveal visible"><div class="feat-icon">📚</div><div class="feat-title">Textbooks</div><div class="feat-desc">All volumes, organized and cross-linked</div></div>
-    <div class="feat-card reveal visible"><div class="feat-icon">🔍</div><div class="feat-title">Full-Text Search</div><div class="feat-desc">Coming as content scales</div></div>
     <div class="feat-card reveal visible"><div class="feat-icon">🌙</div><div class="feat-title">Dark Mode</div><div class="feat-desc">Built dark-first for long sessions</div></div>
     <div class="feat-card reveal visible"><div class="feat-icon">📱</div><div class="feat-title">Any Device</div><div class="feat-desc">Phone, tablet, or desktop</div></div>
   </div>
@@ -80,11 +115,11 @@ title: Medicine, Physics, Science & Deep Learning
 
 <section id="instructor">
   <div class="instructor reveal visible">
-    <img src="{{ '/assets/images/michael.jpg' | relative_url }}" alt="Michael Fortune">
     <div class="instructor-text">
       <div class="instructor-name">Michael Fortune</div>
       <div class="instructor-role">Compiler & Lead Learner</div>
       <p>Building this series from the ground up — because deep understanding, structured the right way, is the foundation for the goal ahead: medicine, and eventually neurosurgery.</p>
+      <p>Every volume here is studied before it's taught. This isn't a course built by an expert looking down — it's a rigorous path built by someone walking it in real time.</p>
       <div class="credit">Compiled by Professor Henry & Michael Fortune</div>
     </div>
   </div>
