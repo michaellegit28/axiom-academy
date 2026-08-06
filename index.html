@@ -1,132 +1,186 @@
 ---
-layout: default
-title: Medicine, Physics, Science & Deep Learning
+layout: chapter
+title: "The Physicist's Method — Structured Problem-Solving and Model Building"
+volume: "Volume 0: Learning Like a Physicist"
+chapter_number: 2
+permalink: /physics/vol0/ch2/
+prev_url: /physics/vol0/ch1/
+next_url: /physics/vol0/ch3/
 ---
-<style>
-.hero{min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:140px 6% 80px; position:relative;
-  background: radial-gradient(ellipse at top, rgba(212,175,55,0.08), transparent 60%), linear-gradient(180deg, var(--navy-deep), var(--navy) 60%, var(--navy-deep));}
-.eyebrow{color:var(--gold); letter-spacing:3px; font-size:0.78rem; text-transform:uppercase; margin-bottom:22px;}
-.hero h1{font-family:var(--serif); font-weight:700; font-size:clamp(2.4rem, 6vw, 4.6rem); line-height:1.08; max-width:900px; margin-bottom:24px;}
-.hero h1 em{font-style:italic; color:var(--gold-bright);}
-.hero p.sub{max-width:620px; color:var(--grey); font-size:1.08rem; margin:0 auto 40px;}
-.hero-portraits{display:flex; gap:60px; align-items:center; justify-content:center; margin-bottom:48px;}
-.portrait{width:130px; height:130px; border-radius:50%; object-fit:cover; border:2px solid var(--gold); box-shadow:0 0 30px rgba(212,175,55,0.25); transition:transform 0.4s ease;}
-.portrait:hover{transform:translateY(-8px) scale(1.05);}
-.portrait-label{font-size:0.75rem; color:var(--grey); margin-top:10px; letter-spacing:1px; text-transform:uppercase;}
-.portrait-wrap{display:flex; flex-direction:column; align-items:center;}
-.cta-row{display:flex; gap:18px; flex-wrap:wrap; justify-content:center;}
-.feat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px;}
-.feat-card{text-align:center; padding:32px 20px; border-radius:10px; background:var(--navy); border:1px solid rgba(212,175,55,0.1); transition:transform 0.3s ease;}
-.feat-card:hover{transform:translateY(-5px);}
-.feat-icon{font-size:2rem; margin-bottom:14px;}
-.feat-title{font-weight:600; margin-bottom:6px;}
-.feat-desc{color:var(--grey); font-size:0.88rem;}
 
-.about-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:50px; align-items:start;}
-.about-lead{color:#dce3f0; font-size:1.08rem; margin-bottom:18px;}
-.about-lead strong{color:var(--gold-bright);}
-.progress-card{background:var(--navy); border:1px solid rgba(212,175,55,0.15); border-radius:12px; padding:32px;}
-.progress-label{color:var(--gold); font-size:0.78rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;}
-.progress-bar-track{background:var(--navy-light); border-radius:20px; height:10px; overflow:hidden; margin-bottom:10px;}
-.progress-bar-fill{background:linear-gradient(90deg, var(--gold), var(--gold-bright)); height:100%; width:1%;}
-.progress-text{color:var(--grey); font-size:0.85rem;}
-.about-values{display:flex; flex-direction:column; gap:16px; margin-top:28px;}
-.about-value{display:flex; gap:14px; align-items:flex-start;}
-.about-value .dot{color:var(--gold); font-size:1.2rem; line-height:1.4;}
-.about-value-text strong{display:block; margin-bottom:2px;}
-.about-value-text span{color:var(--grey); font-size:0.9rem;}
+## 🎯 Learning Objectives
 
-.instructor{background:linear-gradient(135deg, var(--navy), var(--navy-deep)); border-radius:16px; padding:60px; border:1px solid rgba(212,175,55,0.15); max-width:640px;}
-.instructor-name{font-family:var(--serif); font-size:1.9rem; margin-bottom:6px;}
-.instructor-role{color:var(--gold); font-size:0.9rem; margin-bottom:20px; letter-spacing:0.5px;}
-.instructor-text p{color:var(--grey); margin-bottom:16px; max-width:560px;}
-.credit{font-size:0.8rem; color:var(--grey); font-style:italic; margin-top:20px;}
-.final-cta{text-align:center; padding:120px 6%; background:radial-gradient(ellipse at center, rgba(212,175,55,0.07), transparent 70%);}
-.final-cta h2{font-family:var(--serif); font-size:clamp(2rem,5vw,3rem); margin-bottom:20px;}
-.final-cta p{color:var(--grey); max-width:520px; margin:0 auto 36px;}
-@media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
-</style>
+By the end of this chapter, you will be able to:
+- Translate a real-world situation into a solvable physical model
+- Identify and justify the assumptions underlying any physical argument
+- Use limiting cases to test the validity of a solution before accepting it
+- Apply the modeling cycle: observe → idealize → mathematize → solve → interpret → validate
+- Recognize when a problem is underdetermined, overdetermined, or ill-posed
+- Use scaling arguments to predict behavior without solving equations
 
-<section class="hero">
-  <div class="eyebrow">100% Free · Medicine · Physics · Science · Deep Learning</div>
-  <h1>Learn the Way <em>Newton</em> and <em>Einstein</em> Actually Thought.</h1>
-  <p class="sub">A free, university-standard library built subject by subject — starting with Physics, expanding into Medicine, Chemistry, Biology, and beyond.</p>
-  <div class="hero-portraits">
-    <div class="portrait-wrap">
-      <img class="portrait" src="https://commons.wikimedia.org/wiki/Special:FilePath/Portrait_of_Sir_Isaac_Newton,_1689.jpg" alt="Isaac Newton">
-      <div class="portrait-label">Isaac Newton</div>
-    </div>
-    <div class="portrait-wrap">
-      <img class="portrait" src="https://commons.wikimedia.org/wiki/Special:FilePath/Albert_Einstein_Head.jpg" alt="Albert Einstein">
-      <div class="portrait-label">Albert Einstein</div>
-    </div>
-  </div>
-  <div class="cta-row">
-    <a href="#curriculum" class="btn btn-primary">Explore the Curriculum</a>
-    <a href="#instructor" class="btn btn-outline">Meet the Compiler</a>
-  </div>
-</section>
+---
 
-<section id="about">
-  <div class="section-tag reveal visible">About the Project</div>
-  <h2 class="section-title reveal visible">Why Axiom Academy Exists</h2>
-  <div class="about-grid">
-    <div>
-      <p class="about-lead reveal visible">Most free science content online is either <strong>too shallow</strong> to build real understanding, or <strong>too scattered</strong> across a hundred different sources to study from consistently. Axiom Academy is an attempt to fix that — one continuous, self-contained curriculum, written the way a real university course is structured, and given away for free.</p>
-      <p class="about-lead reveal visible">It starts with Physics because physics is the discipline that teaches you <em>how to reason</em> — dimensional thinking, estimation, model-building — skills that carry directly into Medicine, Chemistry, and every other subject this library will eventually cover.</p>
-      <div class="about-values reveal visible">
-        <div class="about-value"><span class="dot">●</span><div class="about-value-text"><strong>Built in the open</strong><span>Every chapter is published as it's written — no waiting for a "finished" version that never comes.</span></div></div>
-        <div class="about-value"><span class="dot">●</span><div class="about-value-text"><strong>Depth over speed</strong><span>Each chapter follows a full template: intuition, math, derivation, misconceptions, problems.</span></div></div>
-        <div class="about-value"><span class="dot">●</span><div class="about-value-text"><strong>Free, permanently</strong><span>No paywall, no account wall, no ads. That's a structural choice, not a promotional one.</span></div></div>
-      </div>
-    </div>
-    <div class="progress-card reveal visible">
-      <div class="progress-label">Current Progress</div>
-      <div class="progress-bar-track"><div class="progress-bar-fill"></div></div>
-      <div class="progress-text">1 of ~166 planned chapters live</div>
-      <div class="progress-text" style="margin-top:14px;">Currently writing: <strong style="color:var(--gold-bright);">Volume 0 — Learning Like a Physicist</strong></div>
-    </div>
-  </div>
-</section>
+## 📜 Historical Background
 
-<section id="curriculum">
-  <div class="section-tag reveal visible">Subject One: Physics</div>
-  <h2 class="section-title reveal visible">17 Volumes. One Continuous Argument.</h2>
-  <p class="section-intro reveal visible">Each volume builds on the last. Medicine, Chemistry, and Biology follow the same structure as they're added.</p>
-  <div class="vol-grid">
-    <a class="vol-card reveal visible" href="{{ '/physics/vol0/ch1/' | relative_url }}"><div class="vol-num">Vol. 00</div><div class="vol-title">Learning Like a Physicist</div><div class="vol-meta">Problem-solving, dimensional analysis, estimation · 6 chapters</div></a>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 01</div><div class="vol-title">Mathematics for Physics</div><div class="vol-meta">Calculus, linear algebra, ODEs, tensors · Coming soon</div></div>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 02</div><div class="vol-title">Classical Mechanics</div><div class="vol-meta">Newtonian, Lagrangian, Hamiltonian mechanics · Coming soon</div></div>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 08</div><div class="vol-title">Modern Physics: Relativity</div><div class="vol-meta">Special & general relativity, spacetime · Coming soon</div></div>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 09</div><div class="vol-title">Quantum Physics</div><div class="vol-meta">Wave mechanics, Schrödinger equation · Coming soon</div></div>
-    <div class="vol-card reveal visible"><div class="vol-num">Vol. 14</div><div class="vol-title">Cosmology</div><div class="vol-meta">Big Bang, dark matter, inflation, CMB · Coming soon</div></div>
-  </div>
-</section>
+Galileo Galilei did not simply "discover" that all bodies fall at the same rate. He *constructed* an idealized world — one without air resistance — in which this truth could be seen clearly. By rolling balls down inclined planes, he "diluted" gravity into measurable slowness, systematically removing the complicating effects of friction and buoyancy. This was not cheating; it was the invention of the controlled physical model.
 
-<section id="features">
-  <div class="section-tag reveal visible">Built for Real Study</div>
-  <h2 class="section-title reveal visible">Not Just a PDF. A Study System.</h2>
-  <div class="feat-grid">
-    <div class="feat-card reveal visible"><div class="feat-icon">📚</div><div class="feat-title">Textbooks</div><div class="feat-desc">All volumes, organized and cross-linked</div></div>
-    <div class="feat-card reveal visible"><div class="feat-icon">🌙</div><div class="feat-title">Dark Mode</div><div class="feat-desc">Built dark-first for long sessions</div></div>
-    <div class="feat-card reveal visible"><div class="feat-icon">📱</div><div class="feat-title">Any Device</div><div class="feat-desc">Phone, tablet, or desktop</div></div>
-  </div>
-</section>
+Isaac Newton took this further. When he wrote that the Moon falls toward the Earth just as an apple does, he was making a staggering modeling leap: the same mathematical law governs both celestial and terrestrial motion, provided one idealizes both bodies as point masses. The model was deliberately wrong in detail (the Earth is not a point, the apple has size and air resistance), yet it captured the essential physics.
 
-<section id="instructor">
-  <div class="instructor reveal visible">
-    <div class="instructor-text">
-      <div class="instructor-name">Michael Fortune</div>
-      <div class="instructor-role">Compiler & Lead Learner</div>
-      <p>Building this series from the ground up — because deep understanding, structured the right way, is the foundation for the goal ahead: medicine, and eventually neurosurgery.</p>
-      <p>Every volume here is studied before it's taught. This isn't a course built by an expert looking down — it's a rigorous path built by someone walking it in real time.</p>
-      <div class="credit">Compiled by Professor Henry & Michael Fortune</div>
-    </div>
-  </div>
-</section>
+In the twentieth century, Richard Feynman became legendary not for the equations he derived but for the *way* he approached problems. He would refuse to look up standard solutions, insisting on rebuilding every argument from physical intuition. His "notebook method" — writing down everything he knew, drawing diagrams, testing limiting cases, and only then reaching for formalism — became a template for how physicists actually think.
 
-<section class="final-cta">
-  <h2 class="reveal visible">Think Like a Scientist. Starting With Volume 0.</h2>
-  <p class="reveal visible">No signup wall. No cost. Just the material, structured properly.</p>
-  <a href="{{ '/physics/vol0/ch1/' | relative_url }}" class="btn btn-primary reveal visible">Start Reading</a>
-</section>
+The lesson: physics is not a collection of solved problems. It is a discipline of constructing reliable simplifications.
+
+---
+
+## 1. Intuition
+
+When a physicist looks at a problem — say, a car skidding to a stop — they do not immediately reach for $F = ma$. They first ask: *What matters here?* Friction? Yes. Air resistance? Probably not at low speeds. The color of the car? Certainly not. The deformation of the tires? Maybe, if we're being precise, but not for a first estimate.
+
+This process of selective attention is called **model building**, and it is the single most important skill in physics. Every equation you will ever use was derived from a model, not from reality itself. Reality is too complex. The art lies in knowing what to keep and what to discard.
+
+> A physician diagnosing a patient does the same thing: they construct a differential diagnosis — a model of what diseases could produce the observed symptoms — and then test that model against further data. The physicist and the physician are both in the business of idealization.
+
+---
+
+## 2. Mathematical Formalism
+
+A **physical model** consists of three elements:
+
+1. **Objects and variables**: What are we tracking? (Position, velocity, temperature, pressure...)
+2. **Governing principles**: What laws apply? (Conservation of energy, Newton's laws, thermodynamic constraints...)
+3. **Assumptions and approximations**: What have we deliberately simplified? (Neglecting air resistance, treating a rope as massless, assuming constant temperature...)
+
+The **modeling cycle** can be written as:
+
+$$ \text{Reality} \xrightarrow{\text{idealize}} \text{Model} \xrightarrow{\text{mathematize}} \text{Equations} \xrightarrow{\text{solve}} \text{Solution} \xrightarrow{\text{interpret}} \text{Prediction} \xrightarrow{\text{validate}} \text{Reality} $$
+
+If the prediction fails validation, we do not abandon physics — we refine the model.
+
+### The Hierarchy of Approximation
+
+| Level | What we assume | Example |
+|-------|---------------|---------|
+| Zeroth-order | Only the dominant effect matters | A thrown ball moves in a parabola |
+| First-order | Add the largest correction | Include air resistance for a feather |
+| Exact (rare) | No approximations | Numerical simulation with all forces |
+
+Most of physics lives at zeroth and first order. The physicist's confidence comes from knowing *which* level is appropriate for a given question.
+
+---
+
+## 3. Derivations: Scaling and Limiting Cases
+
+### Scaling Arguments
+
+Suppose we want to know how the maximum height $h$ of a projectile depends on its launch speed $v$ and gravity $g$, without solving the full equations. We know from dimensional analysis (Chapter 1) that:
+
+$$ h \sim \frac{v^2}{g} $$
+
+The symbol $\sim$ means "scales as" — it ignores dimensionless constants. This tells us that doubling the launch speed quadruples the height. We derived this without integrating $dv/dt = -g$.
+
+### Limiting Cases as Diagnostic Tools
+
+Before accepting any derived formula, a physicist subjects it to **limiting case analysis**:
+
+1. **Does it reduce to a known result in a simple limit?**
+2. **Do the dimensions match?** (Chapter 1)
+3. **Does it behave reasonably at extreme values?**
+
+**Example**: The period of a simple pendulum of length $\ell$ at amplitude $\theta_0$ is:
+
+$$ T = 2\pi \sqrt{\frac{\ell}{g}} \left( 1 + \frac{1}{16}\theta_0^2 + \cdots \right) $$
+
+Check the limits:
+- As $\theta_0 \to 0$, we recover $T = 2\pi\sqrt{\ell/g}$. ✓
+- If $\ell \to 0$, then $T \to 0$. A mass on a zero-length string doesn't oscillate. ✓
+- If $g \to \infty$, then $T \to 0$. Stronger gravity restores equilibrium faster. ✓
+
+If any limit fails, the formula is wrong — guaranteed.
+
+---
+
+## 4. Experiments
+
+### Galileo's Inclined Plane (ca. 1604)
+
+Galileo could not measure free fall directly — it was too fast. Instead, he built a wooden ramp, grooved to guide a bronze ball, and measured the time to roll various distances using a water clock. By making the angle shallow, he "slowed down" gravity.
+
+His data showed that $d \propto t^2$, regardless of the ball's mass. This was a *model validation*: the idealized law of uniform acceleration matched the real behavior once friction was minimized, not eliminated.
+
+### The Method of Successive Approximations
+
+In modern experimental physics, models are tested by systematically removing approximations:
+
+- **Cavendish's measurement of $G$** (1798) treated the torsion balance as a simple harmonic oscillator — a model. Corrections for the finite size of the masses came later.
+- **Millikan's oil-drop experiment** (1909) initially ignored Brownian motion. When discrepancies appeared, the model was refined.
+
+---
+
+## 🧠 Think Like a Physicist
+
+- **"What would happen if...?"** This is the most powerful question in physics. What if mass doubled? What if gravity vanished? What if the temperature were absolute zero? These limiting cases expose the bones of a problem.
+- **Draw the diagram before you write the equation.** Feynman filled notebooks with sketches. If you cannot draw it, you do not understand it.
+- **When stuck, solve a simpler version first.** If a general potential $U(x)$ is intractable, try $U(x) = \frac{1}{2}kx^2$ (harmonic). Solve that, then perturb.
+- **Newton's verification habit:** After deriving a result, Newton would calculate the same quantity using an entirely different method. If the answers agreed, his confidence grew. If not, he found the error.
+
+---
+
+## 🩺 Medicine Connection
+
+Medical diagnosis is model-building in real time. A patient presents with fever, fatigue, and joint pain. The physician constructs a differential diagnosis — an ordered list of models (malaria, dengue, rheumatoid arthritis, leukemia) ranked by prior probability and fit to symptoms. Each test (blood count, imaging, culture) is an experiment designed to discriminate between models.
+
+In **radiation therapy planning**, physicists build detailed models of how radiation dose deposits in tissue. The "beam model" makes approximations: the patient is treated as water-equivalent, organs are assigned uniform densities, scatter is handled with simplified kernels. The treatment is planned on the model, delivered on the patient, and verified with portal imaging — a perfect example of the modeling cycle.
+
+---
+
+## 💡 Interesting Facts
+
+- The most accurate physical model ever constructed is **quantum electrodynamics (QED)**, which predicts the electron's magnetic moment to 12 decimal places. Yet it is built on a series of approximations — Feynman diagrams are literally a perturbation expansion.
+- When NASA's Mars Climate Orbiter crashed in 1999, the failure was a **modeling error**: one team used metric units, another used imperial. The spacecraft thought it was farther from Mars than it was. A simple dimensional check (Chapter 1) would have prevented a $327 million loss.
+- Physicists often solve problems in **"spherical cow"** approximation first — treating a cow as a sphere to estimate its surface area or heat loss. The joke is real: the first model is always absurdly simple. The skill is knowing what the simplification preserves and what it destroys.
+
+---
+
+## ⚠️ Common Misconceptions
+
+**Misconception:** "A model with assumptions is wrong, so it's useless."
+
+**Why it seems plausible:** We are taught to seek "the right answer" in school. An approximation feels like a failure.
+
+**Correction:** All models are wrong; some models are useful. The Earth's orbit is not perfectly elliptical (perturbations from Jupiter, relativistic corrections, solar oblateness...), yet Kepler's elliptical model sends spacecraft to other planets. The question is never "Is this model true?" but "Does this model capture the effect I care about to the precision I need?"
+
+**Diagnostic question:** If I tell you air resistance is negligible for a falling stone but not for a falling feather, is that "being inconsistent"? (Answer: No — the model must match the question. Both objects fall; the question of *how fast* determines which effects to include.)
+
+---
+
+## 📝 Practice Questions
+
+**Level 1 — Foundational**
+
+1. A student models a swinging child on a playground swing as a simple pendulum. List three assumptions this model makes, and state whether each is likely valid.
+2. Check the limiting case $v \to 0$ for the projectile range formula $R = \frac{v^2 \sin 2\theta}{g}$. Does it behave as expected?
+
+**Level 2 — Intermediate**
+
+3. A doctor models blood flow through an artery as laminar flow in a cylindrical pipe (Poiseuille flow). What physical features of real blood and real arteries does this model ignore? For what clinical questions would these simplifications be acceptable, and for which would they be dangerous?
+4. Use a scaling argument (not a full derivation) to predict how the time of free fall from height $h$ scales with $h$ and $g$.
+
+**Level 3 — Advanced**
+
+5. The drag force on a sphere moving through a fluid is $F_d = 6\pi\eta r v$ (Stokes' law, low speed) or $F_d = \frac{1}{2}\rho v^2 C_d A$ (turbulent, high speed). A raindrop falls from a cloud. Construct a modeling strategy: which regime applies first? How do you decide when to switch models? What happens in the limit of very small droplets?
+6. A patient receives a drug that decays exponentially in the bloodstream: $C(t) = C_0 e^{-t/\tau}$. A physician wants to know when to administer the next dose to maintain concentration above a threshold $C_{\min}$. Build the model: what are the variables, assumptions, and governing principles? What limiting cases should be checked?
+
+**Level 4 — Challenge Problems 🎓**
+
+7. **Galileo's Ramp, Generalized:** Galileo showed $d \propto t^2$ for constant acceleration. Suppose you do not know whether acceleration is constant. Design an experiment using only a ramp, a ball, and a ruler that could *test* whether $a$ is constant, without assuming the kinematic equations. (Hint: think about ratios of distances in equal time intervals.)
+8. **The Fermi Model of the Atomic Bomb:** In 1945, Fermi estimated the yield of the Trinity test by dropping small pieces of paper and measuring how far the blast wave displaced them. Reconstruct his model: what physical quantities did he relate? What assumptions did he make about the blast wave? Estimate the yield yourself, given that the papers moved approximately 2.5 meters.
+
+---
+
+## 🔍 Chapter Summary
+
+- Physics proceeds by **model building**: simplifying reality to capture essential behavior.
+- The **modeling cycle** is: observe → idealize → mathematize → solve → interpret → validate.
+- **Limiting cases** and **scaling arguments** are diagnostic tools that expose errors and reveal structure without full calculation.
+- **Approximations are not failures** — they are deliberate choices whose validity depends on the question being asked.
+- Every equation in physics comes from a model. Understanding the model is as important as manipulating the equation.
