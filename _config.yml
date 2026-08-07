@@ -5,6 +5,39 @@ kramdown:
   input: GFM
   math_engine: mathjax
 theme: null
-plugins: []
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+collections:
+  chapters:
+    output: true
+    permalink: /read/:subject/:path/
+  quizzes:
+    output: true
+    permalink: /quiz/:exam/:subject/:path/
+  flashcards:
+    output: true
+    permalink: /flash/:subject/:path/
+  past_questions:
+    output: false
+defaults:
+  - scope:
+      path: ""
+      type: "chapters"
+    values:
+      layout: chapter
+      sidebar: true
+  - scope:
+      path: ""
+      type: "quizzes"
+    values:
+      layout: quiz
+  - scope:
+      path: ""
+      type: "flashcards"
+    values:
+      layout: flash
+permalink: /:path/
 exclude:
   - README.md
