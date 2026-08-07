@@ -1,0 +1,160 @@
+subjects:
+  - name: Physics Masterclass
+    id: physics
+    sets:
+      - name: Foundations
+        roman: I
+        subtitle: "Methodology & Mathematics · ~930 pages · 2 volumes"
+        volumes:
+          - num: "00"
+            title: "Learning Like a Physicist"
+            meta: "Problem-solving, dimensional analysis, estimation, Fermi problems, scientific reasoning."
+            status: live
+            chapters:
+              - num: 1
+                title: "Dimensional Analysis & Estimation"
+                url: /physics/vol0/ch1/
+              - num: 2
+                title: "Structured Problem-Solving"
+                url: /physics/vol0/ch2/
+              - num: 3
+                title: "Hypotheses, Evidence & Uncertainty"
+                url: /physics/vol0/ch3/
+              - num: 4
+                title: "Fermi Problems"
+                url: /physics/vol0/ch4/
+              - num: 5
+                title: "Graphs & Functional Thinking"
+                url: /physics/vol0/ch5/
+              - num: 6
+                title: "The Complete Toolkit"
+                url: /physics/vol0/ch6/
+          - num: "01"
+            title: "Mathematics for Physics"
+            meta: "Calculus, linear algebra, ODEs, tensors · Coming soon"
+            status: soon
+            chapters: []
+      - name: Classical Physics
+        roman: II
+        subtitle: "Mechanics, Waves, Thermo, E&M, Optics · ~3,220 pages · 6 volumes"
+        volumes:
+          - num: "02"
+            title: "Classical Mechanics"
+            meta: "Newtonian, Lagrangian, Hamiltonian mechanics · Coming soon"
+            status: soon
+            chapters: []
+          - num: "03"
+            title: "Oscillations and Waves"
+            meta: "Harmonic motion, coupled oscillators, wave equations · Coming soon"
+            status: soon
+            chapters: []
+          - num: "04"
+            title: "Thermodynamics"
+            meta: "Laws of thermodynamics, entropy, statistical mechanics · Coming soon"
+            status: soon
+            chapters: []
+          - num: "05"
+            title: "Electricity"
+            meta: "Electrostatics, electric fields, potentials · Coming soon"
+            status: soon
+            chapters: []
+          - num: "06"
+            title: "Magnetism"
+            meta: "Magnetostatics, Ampère's law, Maxwell's equations · Coming soon"
+            status: soon
+            chapters: []
+          - num: "07"
+            title: "Light and Optics"
+            meta: "Geometric optics, wave optics, interference · Coming soon"
+            status: soon
+            chapters: []
+      - name: Modern Physics
+        roman: III
+        subtitle: "Relativity, Quantum, Atomic, Nuclear, Particle · ~2,560 pages · 5 volumes"
+        volumes:
+          - num: "08"
+            title: "Modern Physics: Relativity"
+            meta: "Special & general relativity, spacetime · Coming soon"
+            status: soon
+            chapters: []
+          - num: "09"
+            title: "Quantum Physics"
+            meta: "Wave mechanics, Schrödinger equation · Coming soon"
+            status: soon
+            chapters: []
+          - num: "10"
+            title: "Atomic Physics"
+            meta: "Hydrogen atom, angular momentum, spin · Coming soon"
+            status: soon
+            chapters: []
+          - num: "11"
+            title: "Nuclear Physics"
+            meta: "Nuclear structure, radioactivity, fission, fusion · Coming soon"
+            status: soon
+            chapters: []
+          - num: "12"
+            title: "Particle Physics"
+            meta: "Standard Model, quarks/leptons, Feynman diagrams · Coming soon"
+            status: soon
+            chapters: []
+      - name: Cosmic & Applied
+        roman: IV
+        subtitle: "Astrophysics, Cosmology, Frontiers, Medical · ~1,700 pages · 4 volumes"
+        volumes:
+          - num: "13"
+            title: "Astrophysics"
+            meta: "Stellar structure, evolution, compact objects · Coming soon"
+            status: soon
+            chapters: []
+          - num: "14"
+            title: "Cosmology"
+            meta: "Big Bang, dark matter, inflation, CMB · Coming soon"
+            status: soon
+            chapters: []
+          - num: "15"
+            title: "Frontiers of Physics"
+            meta: "Quantum gravity, string theory, quantum information · Coming soon"
+            status: soon
+            chapters: []
+          - num: "16"
+            title: "Medical Physics"
+            meta: "Radiation physics, imaging, radiation therapy · Coming soon"
+            status: soon
+            chapters: []
+
+  - name: WAEC Prep
+    id: waec
+    sets:
+      - name: Physics
+        roman: I
+        subtitle: "WASSCE Physics · Theory & Objectives"
+        volumes:
+          - num: "1"
+            title: "WAEC Physics"
+            meta: "Measurements, mechanics, heat, waves, electricity, modern physics."
+            status: live
+            chapters:
+              - num: 1
+                title: "Measurements & Units"
+                url: /waec/physics/ch1/
+
+  - name: JAMB Prep
+    id: jamb
+    sets:
+      - name: Physics
+        roman: I
+        subtitle: "UTME Physics · Multiple Choice"
+        volumes:
+          - num: "1"
+            title: "JAMB Physics"
+            meta: "Measurements, motion, forces, energy, waves, electricity, modern physics."
+            status: live
+            chapters:
+              - num: 1
+                title: "Measurements, Motion & Forces"
+                url: /jamb/physics/ch1/
+
+stats:
+  live: 8
+  planned: 166
+  current: "Volume 0 — Learning Like a Physicist"
