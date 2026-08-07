@@ -1,42 +1,97 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% if page.title %}{{ page.title }} — {% endif %}Axiom Academy</title>
-<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-{% if page.math %}
-<script>
-  window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
-{% endif %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} — {% endif %}Axiom Academy</title>
+  <meta name="description" content="A free, university-standard self-study library covering Physics, Medicine, and Science.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10; --bg-elevated: #12141a; --bg-card: #1a1d26;
+      --text-primary: #e8e9ec; --text-secondary: #9ca3af; --text-muted: #6b7280;
+      --accent: #60a5fa; --accent-dim: #3b82f6; --border: #2a2e3a;
+      --navy-deep: #0a0c14; --navy: #11131f; --navy-light: #1a1e2e;
+      --gold: #d4af37; --gold-bright: #f0c94e; --grey: #8b92a8;
+      --serif: 'Playfair Display', Georgia, serif;
+      --radius: 12px; --radius-sm: 8px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg); color: var(--text-primary);
+      line-height: 1.65; -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.8; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(11,12,16,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    nav .logo { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.3px; color: var(--text-primary); }
+    nav .logo span { color: var(--gold); }
+    nav .nav-links { display: flex; gap: 28px; font-size: 0.9rem; }
+    nav .nav-links a { color: var(--text-secondary); font-weight: 500; }
+    nav .nav-links a:hover { color: var(--text-primary); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
+      border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;
+    }
+    .btn-primary { background: var(--gold); color: var(--navy-deep); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.25); opacity: 1; }
+    .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+    .btn-outline:hover { background: rgba(212,175,55,0.08); opacity: 1; }
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--gold); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 400; margin-bottom: 16px;
+    }
+    .section-intro { color: var(--text-secondary); font-size: 1.05rem; max-width: 640px; margin-bottom: 32px; }
+    footer {
+      text-align: center; padding: 48px 24px; border-top: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.85rem;
+    }
+    footer blockquote {
+      font-family: var(--serif); font-style: italic; font-size: 1.1rem;
+      color: var(--text-secondary); max-width: 520px; margin: 0 auto 16px;
+    }
+    @media (max-width: 640px) { nav .nav-links { display: none; } }
+  </style>
+  {% if page.math %}
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  {% endif %}
 </head>
 <body>
-
-<nav>
-  <div class="logo"><a href="{{ '/' | relative_url }}">Axiom <span>Academy</span></a></div>
-  <div class="nav-links">
-    <a href="{{ '/#curriculum' | relative_url }}">Curriculum</a>
-    <a href="{{ '/#features' | relative_url }}">Features</a>
-    <a href="{{ '/#instructor' | relative_url }}">About</a>
-  </div>
-</nav>
-
-{{ content }}
-
-<footer>
-  <div class="quote">"The important thing is not to stop questioning. Curiosity has its own reason for existing." — Albert Einstein</div>
-  <div>© 2026 Axiom Academy · Compiled by Professor Henry & Michael Fortune</div>
-</footer>
-
-<script>
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
-  }, {threshold:0.12});
-  revealEls.forEach(el=>observer.observe(el));
-</script>
-
+  <nav>
+    <div class="nav-inner">
+      <a href="{{ '/' | relative_url }}" class="logo">Axiom <span>Academy</span></a>
+      <div class="nav-links">
+        <a href="{{ '/' | relative_url }}#about">About</a>
+        <a href="{{ '/' | relative_url }}#curriculum">Curriculum</a>
+        <a href="{{ '/' | relative_url }}#instructor">Author</a>
+      </div>
+    </div>
+  </nav>
+  {{ content }}
+  <footer>
+    <blockquote>"The important thing is not to stop questioning. Curiosity has its own reason for existing." — Albert Einstein</blockquote>
+    <p>© 2026 Axiom Academy · Compiled by Professor Henry & Michael Fortune</p>
+  </footer>
 </body>
 </html>
