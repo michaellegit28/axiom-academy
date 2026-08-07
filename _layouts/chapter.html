@@ -6,7 +6,7 @@
   <title>{{ page.title }} — {{ page.volume }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swa[...]" rel="stylesheet">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
@@ -539,12 +539,12 @@
       </div>
       <div class="nav-links">
         {% if page.prev_url %}
-        <a href="{{ page.prev_url }}" class="nav-prev">
+        <a href="{{ page.prev_url | relative_url }}" class="nav-prev">
           <span class="nav-arrow">←</span> Previous
         </a>
         {% endif %}
         {% if page.next_url %}
-        <a href="{{ page.next_url }}" class="nav-next">
+        <a href="{{ page.next_url | relative_url }}" class="nav-next">
           Next <span class="nav-arrow">→</span>
         </a>
         {% endif %}
@@ -568,7 +568,7 @@
       {% if page.prev_url %}
       <div class="footer-link">
         <span>← Previous Chapter</span>
-        <a href="{{ page.prev_url }}">Back</a>
+        <a href="{{ page.prev_url | relative_url }}">Back</a>
       </div>
       {% else %}
       <div></div>
@@ -577,7 +577,7 @@
       {% if page.next_url %}
       <div class="footer-link" style="text-align: right;">
         <span>Next Chapter →</span>
-        <a href="{{ page.next_url }}">Continue</a>
+        <a href="{{ page.next_url | relative_url }}">Continue</a>
       </div>
       {% else %}
       <div></div>
