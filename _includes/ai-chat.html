@@ -1,12 +1,14 @@
-<!-- ai-chat.html - lightweight free AI chat include
+<!-- ai-chat.html - server-backed AI chat include
 
-This is a minimal, free "AI" chat widget that works without any external API key.
-It includes:
- - A small chat UI that appears on the page (bottom-right)
- - A local fallback assistant that replies using simple keyword rules
- - Clear comments showing where to plug in a real AI API (OpenAI / Hugging Face)
+This version calls a server endpoint at /api/ai-infer for richer AI replies.
+It still falls back to the local rule-based assistant if the server is not configured or the request fails.
 
-To connect a real model, replace sendMessageToAssistant() with a fetch() to your preferred inference endpoint.
+How to enable real AI:
+ - Deploy the included serverless stub (api/ai-infer/index.js) to your hosting platform (Vercel, Netlify Functions, Cloud Run, etc.).
+ - Set OPENAI_API_KEY (or another provider key) in your environment/secret store.
+ - The client will POST { prompt } to /api/ai-infer and display the reply returned as { reply }.
+
+Security note: never put secret keys in client-side code. Always call AI provider from a server-side endpoint.
 -->
 <style>
   /* Simple widget styling matching dark site theme */
@@ -67,7 +69,7 @@ To connect a real model, replace sendMessageToAssistant() with a fetch() to your
     } else { if (el) el.remove(); }
   }
 
-  // Basic local assistant (free) — rule-based/canned replies
+  // Basic local assistant (free fallback)
   function localAssistantReply(text){
     const t = text.trim().toLowerCase();
     if (!t) return "Say something so I can help — try: 'flashcards', 'quiz', 'waec', 'jamb', or 'site help'";
@@ -77,16 +79,30 @@ To connect a real model, replace sendMessageToAssistant() with a fetch() to your
     if (t.includes('physics') || t.includes('motion') || t.includes('forces')) return "Physics help: which topic? For measurements and motion see the first chapters under Physics Masterclass. Ask a specific question like 'what is Newton's second law?'";
     if (t.includes('site') || t.includes('help')) return "Site help: Use the top navigation to jump to Study and Subjects. If an interactive element fails, try reloading or open the Study page directly at /study/.";
     if (t.includes('hi') || t.includes('hello') || t.includes('hey')) return "Hi — I'm Axiom AI. Ask me about flashcards, quizzes, past questions, or the site. I'm a simple free assistant. To connect a smarter AI, follow the instructions in _includes/ai-chat.html.";
-    // fallback generic guidance
     return "I can help with study tools (flashcards, quizzes, past questions) and basic site navigation. If you need a longer explanation, ask a specific question like 'Explain kinetic energy formula'.";
   }
 
-  // sendMessageToAssistant: currently uses localAssistantReply (free).
-  // Replace this function with a fetch() to an external AI inference API if you want more advanced replies.
+  // sendMessageToAssistant: server-backed by default. Falls back to localAssistantReply on error.
   async function sendMessageToAssistant(message){
-    // Simulate thinking / async delay for UX
-    await new Promise(r => setTimeout(r, 650));
-    return localAssistantReply(message);
+    // Try server endpoint first
+    try {
+      const resp = await fetch('/api/ai-infer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: message })
+      });
+      if (!resp.ok) {
+        // If server not configured, fall back to local assistant
+        console.warn('AI server responded with', resp.status);
+        return localAssistantReply(message);
+      }
+      const payload = await resp.json();
+      if (payload && payload.reply) return payload.reply;
+      return localAssistantReply(message);
+    } catch (err) {
+      console.warn('AI server request failed, using local fallback', err);
+      return localAssistantReply(message);
+    }
   }
 
   async function handleSend(){
@@ -106,8 +122,6 @@ To connect a real model, replace sendMessageToAssistant() with a fetch() to your
   send.addEventListener('click', handleSend);
   input.addEventListener('keydown', function(e){ if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); handleSend(); } });
 
-  // Add a small welcome message once the widget is opened
-  widget.addEventListener('transitionend', function(){ /* no-op */ });
   // show a welcome bubble on first load (collapsed toggle visible)
   if (!localStorage.getItem('axiom_ai_seen')){
     appendMessage('Hi — click the AI button to open Axiom AI and ask about study tools or site help.', 'bot');
