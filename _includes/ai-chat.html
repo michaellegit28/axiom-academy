@@ -1,44 +1,18 @@
-<!-- ai-chat.html - server-backed AI chat include
-
-This version calls a server endpoint at /api/ai-infer for richer AI replies.
-It still falls back to the local rule-based assistant if the server is not configured or the request fails.
-
-How to enable real AI:
- - Deploy the included serverless stub (api/ai-infer/index.js) to your hosting platform (Vercel, Netlify Functions, Cloud Run, etc.).
- - Set OPENAI_API_KEY (or another provider key) in your environment/secret store.
- - The client will POST { prompt } to /api/ai-infer and display the reply returned as { reply }.
-
-Security note: never put secret keys in client-side code. Always call AI provider from a server-side endpoint.
--->
+<!-- Enhanced AI Chat — Context-Aware Study Assistant -->
 <style>
-  /* Simple widget styling matching dark site theme */
-  .ai-chat-widget { position: fixed; right: 18px; bottom: 18px; width: 340px; max-width: calc(100% - 36px); background: #0f1114; border: 1px solid #2a2e3a; border-radius: 12px; box-shadow: 0 12px 32px rgba(2,6,23,0.6); color: #e8e9ec; font-family: 'Inter', system-ui, -apple-system, sans-serif; z-index: 1200; }
-  .ai-chat-header { display:flex; align-items:center; gap:10px; padding:10px 12px; border-bottom:1px solid #222633; }
-  .ai-chat-title { font-weight:600; font-size:0.95rem; }
-  .ai-chat-close { margin-left:auto; background:transparent;border:none;color:#9ca3af;cursor:pointer;padding:6px;border-radius:6px }
-  .ai-chat-body { max-height:340px; overflow:auto; padding:12px; display:flex; flex-direction:column; gap:10px; }
-  .ai-chat-msg { padding:10px 12px; border-radius:10px; max-width:82%; line-height:1.35; }
-  .ai-chat-msg.user { background:#1a1d26; margin-left:auto; color:#e8e9ec; }
-  .ai-chat-msg.bot { background:#121417; color:#dcdfe3; }
-  .ai-chat-input { display:flex; gap:8px; padding:10px; border-top:1px solid #222633; }
-  .ai-chat-input textarea { flex:1; min-height:44px; max-height:120px; resize:none; padding:8px 10px; border-radius:8px; border:1px solid #2a2e3a; background:#0b0c10; color:inherit; }
-  .ai-chat-input button { background:#d4af37; border:none; color:#0b0c10; padding:10px 12px; border-radius:8px; font-weight:600; cursor:pointer; }
-  .ai-typing { font-style:italic; color:#9ca3af; font-size:0.9rem; }
-  .ai-toggle-btn { position:fixed; right:18px; bottom:18px; width:56px; height:56px; border-radius:50%; background:linear-gradient(180deg,#d4af37,#f0c94e); border:none; box-shadow:0 8px 24px rgba(212,175,55,0.23); color:#071018; font-weight:700; z-index:1199; cursor:pointer }
-  @media (max-width:480px) { .ai-chat-widget { right:12px; left:12px; width:auto; } .ai-toggle-btn { right:12px; bottom:12px; } }
+  .ai-chat-widget { /* styles inherited from app.scss */ }
 </style>
 
-<!-- Toggle button (visible when widget is closed) -->
 <button id="ai-toggle" class="ai-toggle-btn" aria-label="Open Axiom AI">AI</button>
 
 <div id="ai-chat" class="ai-chat-widget" style="display:none;" role="region" aria-label="Axiom AI chat">
   <div class="ai-chat-header">
-    <div class="ai-chat-title">Axiom AI — Study Assistant</div>
+    <div class="ai-chat-title">🤖 Axiom AI</div>
     <button id="ai-close" class="ai-chat-close" aria-label="Close">✕</button>
   </div>
   <div id="ai-body" class="ai-chat-body" aria-live="polite"></div>
   <div class="ai-chat-input">
-    <textarea id="ai-input" placeholder="Ask me about flashcards, quizzes, past questions, or the site..." aria-label="Message"></textarea>
+    <textarea id="ai-input" placeholder="Ask about this chapter, get a hint, or review a concept..." aria-label="Message"></textarea>
     <button id="ai-send">Send</button>
   </div>
 </div>
@@ -52,79 +26,105 @@ Security note: never put secret keys in client-side code. Always call AI provide
   const input = document.getElementById('ai-input');
   const send = document.getElementById('ai-send');
 
-  function openWidget(){ widget.style.display='block'; toggle.style.display='none'; input.focus(); }
-  function closeWidget(){ widget.style.display='none'; toggle.style.display='inline-block'; }
+  function openWidget(){ widget.style.display='flex'; toggle.style.display='none'; input.focus(); }
+  function closeWidget(){ widget.style.display='none'; toggle.style.display='flex'; }
   toggle.addEventListener('click', openWidget);
   closeBtn.addEventListener('click', closeWidget);
 
   function appendMessage(text, who){
-    const d = document.createElement('div'); d.className = 'ai-chat-msg ' + (who==='user' ? 'user' : 'bot');
-    d.textContent = text; body.appendChild(d); body.scrollTop = body.scrollHeight;
+    const d = document.createElement('div'); 
+    d.className = 'ai-chat-msg ' + (who==='user' ? 'user' : 'bot');
+    d.innerHTML = text; 
+    body.appendChild(d); 
+    body.scrollTop = body.scrollHeight;
   }
 
   function setTyping(on){
     let el = document.getElementById('ai-typing');
     if (on){
-      if (!el){ el = document.createElement('div'); el.id='ai-typing'; el.className='ai-typing'; el.textContent='Axiom AI is thinking...'; body.appendChild(el); body.scrollTop = body.scrollHeight; }
-    } else { if (el) el.remove(); }
-  }
-
-  // Basic local assistant (free fallback)
-  function localAssistantReply(text){
-    const t = text.trim().toLowerCase();
-    if (!t) return "Say something so I can help — try: 'flashcards', 'quiz', 'waec', 'jamb', or 'site help'";
-    if (t.includes('flash') || t.includes('flashcard')) return "Flashcards: open the Study Tools section (Study → Flashcards). Tip: use the Shuffle button to randomize cards and press the card to flip it.";
-    if (t.includes('quiz')) return "Quizzes: go to Study → Mock Quizzes. You can answer multiple-choice quizzes and view explanations after each question.";
-    if (t.includes('waec') || t.includes('past') || t.includes('pq')) return "Past Questions: See the 'Past Questions' tool in Study Tools. Select WAEC or JAMB filters to view exam-specific questions and explanations.";
-    if (t.includes('physics') || t.includes('motion') || t.includes('forces')) return "Physics help: which topic? For measurements and motion see the first chapters under Physics Masterclass. Ask a specific question like 'what is Newton's second law?'";
-    if (t.includes('site') || t.includes('help')) return "Site help: Use the top navigation to jump to Study and Subjects. If an interactive element fails, try reloading or open the Study page directly at /study/.";
-    if (t.includes('hi') || t.includes('hello') || t.includes('hey')) return "Hi — I'm Axiom AI. Ask me about flashcards, quizzes, past questions, or the site. I'm a simple free assistant. To connect a smarter AI, follow the instructions in _includes/ai-chat.html.";
-    return "I can help with study tools (flashcards, quizzes, past questions) and basic site navigation. If you need a longer explanation, ask a specific question like 'Explain kinetic energy formula'.";
-  }
-
-  // sendMessageToAssistant: server-backed by default. Falls back to localAssistantReply on error.
-  async function sendMessageToAssistant(message){
-    // Try server endpoint first
-    try {
-      const resp = await fetch('/api/ai-infer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: message })
-      });
-      if (!resp.ok) {
-        // If server not configured, fall back to local assistant
-        console.warn('AI server responded with', resp.status);
-        return localAssistantReply(message);
+      if (!el){ 
+        el = document.createElement('div'); 
+        el.id='ai-typing'; 
+        el.className='ai-typing'; 
+        el.textContent='Axiom AI is thinking...'; 
+        body.appendChild(el); 
+        body.scrollTop = body.scrollHeight; 
       }
-      const payload = await resp.json();
-      if (payload && payload.reply) return payload.reply;
-      return localAssistantReply(message);
-    } catch (err) {
-      console.warn('AI server request failed, using local fallback', err);
-      return localAssistantReply(message);
+    } else { 
+      if (el) el.remove(); 
     }
+  }
+
+  // Get page context for AI
+  function getContext(){
+    const page = document.body.dataset.page || 'unknown';
+    const title = document.querySelector('h1')?.textContent || '';
+    const topic = document.querySelector('[data-topic]')?.dataset.topic || '';
+    return { page, title, topic, url: window.location.pathname };
+  }
+
+  // Local fallback responses
+  function localReply(text, context){
+    const t = text.trim().toLowerCase();
+    if (!t) return "Ask me anything about physics, this chapter, or your study plan.";
+    if (t.includes('hint')) return "💡 **Hint:** Break the problem into smaller parts. What quantities are given? What are you solving for? Check your units first.";
+    if (t.includes('explain') && context.topic) return "I'd love to explain **" + context.topic + "**! The key idea is to start with the physical picture before writing equations. Would you like the intuition or the derivation?";
+    if (t.includes('formula') || t.includes('equation')) return "Here are the key formulas for this topic. Remember: every symbol has a physical meaning. Don't just memorize — derive when you can.";
+    if (t.includes('weak') || t.includes('struggle')) return "Based on your quiz history, I recommend reviewing the fundamentals first, then doing 5 practice questions. Shall I generate a focused drill?";
+    if (t.includes('jamb') || t.includes('exam')) return "For JAMB, focus on speed + accuracy. Each question averages 1 minute. Master the shortcuts in dimensional analysis — they save precious seconds.";
+    if (t.includes('hello') || t.includes('hi')) return "Hello! I'm Axiom AI. I know what you're reading and how you've been performing. Ask me for hints, explanations, or study advice.";
+    return "That's a great question. To give you the best answer, I need to connect to my knowledge base. For now, try rephrasing or ask about a specific concept from this chapter.";
   }
 
   async function handleSend(){
     const text = input.value.trim();
-    if (!text) return; input.value=''; appendMessage(text, 'user'); setTyping(true);
+    if (!text) return; 
+    input.value=''; 
+    appendMessage(text, 'user'); 
+    setTyping(true);
+    
+    const context = getContext();
+    
+    // Try server first
     try {
-      const reply = await sendMessageToAssistant(text);
-      setTyping(false);
-      appendMessage(reply, 'bot');
+      const resp = await fetch('/api/ai-infer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          prompt: text, 
+          context: context,
+          userId: window.AxiomApp?.user?.uid || 'anonymous'
+        })
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        setTyping(false);
+        appendMessage(data.reply, 'bot');
+        return;
+      }
     } catch (err) {
-      setTyping(false);
-      appendMessage('Sorry — there was an error generating a reply. Try again later.', 'bot');
-      console.error('AI chat error', err);
+      console.log('Server unavailable, using local AI');
     }
+    
+    // Fallback
+    setTimeout(() => {
+      setTyping(false);
+      appendMessage(localReply(text, context), 'bot');
+    }, 600);
   }
 
   send.addEventListener('click', handleSend);
-  input.addEventListener('keydown', function(e){ if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); handleSend(); } });
+  input.addEventListener('keydown', function(e){ 
+    if (e.key === 'Enter' && !e.shiftKey){ 
+      e.preventDefault(); 
+      handleSend(); 
+    } 
+  });
 
-  // show a welcome bubble on first load (collapsed toggle visible)
+  // Welcome message
   if (!localStorage.getItem('axiom_ai_seen')){
-    appendMessage('Hi — click the AI button to open Axiom AI and ask about study tools or site help.', 'bot');
+    const ctx = getContext();
+    appendMessage('👋 Hi! I\'m <strong>Axiom AI</strong>. I can explain concepts, give hints without spoiling answers, or analyze your weak topics. What would you like to work on?', 'bot');
     localStorage.setItem('axiom_ai_seen', '1');
   }
 })();
