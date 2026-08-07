@@ -1,25 +1,590 @@
----
-layout: default
-math: true
----
-<div class="chapter-wrap">
-  <div class="chapter-breadcrumb reveal visible">
-    <a href="{{ '/' | relative_url }}">Axiom Academy</a> ·
-    <a href="{{ '/#curriculum' | relative_url }}">Physics</a> ·
-    {{ page.volume }}
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} — {{ page.volume }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <style>
+    /* ============================================
+       PREMIUM PDF DARK THEME — JEKYLL LAYOUT
+       Inspired by LaTeX memoir + MIT OCW aesthetics
+       ============================================ */
 
-  <div class="chapter-header reveal visible">
-    <div class="chapter-eyebrow">{{ page.volume }} · Chapter {{ page.chapter_number }}</div>
-    <h1 class="chapter-title">{{ page.title }}</h1>
-  </div>
+    :root {
+      --bg-primary: #0f1117;
+      --bg-secondary: #161922;
+      --bg-tertiary: #1e212b;
+      --bg-card: #1a1d26;
+      --text-primary: #e8e6e3;
+      --text-secondary: #b0aba4;
+      --text-muted: #7a756d;
+      --accent-gold: #c9a84c;
+      --accent-gold-dim: #9a7f3a;
+      --accent-crimson: #c75b5b;
+      --accent-teal: #5ba8a0;
+      --accent-blue: #6b8db5;
+      --border-subtle: #2a2d38;
+      --border-medium: #363a48;
+      --font-serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --max-content: 780px;
+      --page-margin: clamp(1.5rem, 5vw, 4rem);
+    }
 
-  <div class="chapter-body reveal visible">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 17px;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-serif);
+      line-height: 1.72;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* --- Page Structure --- */
+    .page-wrapper {
+      max-width: var(--max-content);
+      margin: 0 auto;
+      padding: 0 var(--page-margin);
+    }
+
+    /* --- Top Navigation Bar --- */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 17, 23, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.9rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .top-nav-inner {
+      max-width: var(--max-content);
+      margin: 0 auto;
+      padding: 0 var(--page-margin);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .top-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .top-nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    .nav-volume {
+      color: var(--accent-gold-dim);
+    }
+
+    .nav-chapter-num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: var(--bg-tertiary);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-prev, .nav-next {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-arrow {
+      font-size: 1.1em;
+      line-height: 1;
+    }
+
+    /* --- Chapter Header --- */
+    .chapter-header {
+      padding: 2rem 0 3.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 3.5rem;
+    }
+
+    .volume-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-gold-dim);
+      margin-bottom: 1.2rem;
+    }
+
+    .chapter-number {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .chapter-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    /* --- Learning Objectives Box --- */
+    .objectives-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-medium);
+      border-left: 4px solid var(--accent-gold);
+      border-radius: 0 8px 8px 0;
+      padding: 1.8rem 2rem;
+      margin: 3rem 0;
+    }
+
+    .objectives-box h2 {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 1.2rem;
+      border: none;
+      padding: 0;
+    }
+
+    .objectives-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .objectives-box li {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 0.7rem;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .objectives-box li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent-gold-dim);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    /* --- Section Headings --- */
+    h2 {
+      font-family: var(--font-sans);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 3.5rem 0 1.3rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-subtle);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    h3 {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 2.5rem 0 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    h4 {
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin: 2rem 0 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* --- Paragraphs & Text --- */
+    p {
+      margin-bottom: 1.3rem;
+      text-align: justify;
+      hyphens: auto;
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+
+    /* --- Blockquotes (Historical / Think Like) --- */
+    blockquote {
+      margin: 2.2rem 0;
+      padding: 1.5rem 2rem;
+      background: var(--bg-secondary);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    blockquote p:last-child {
+      margin-bottom: 0;
+    }
+
+    blockquote em, blockquote i {
+      font-style: normal;
+      color: var(--text-primary);
+    }
+
+    /* --- Special Boxes --- */
+    .info-box {
+      margin: 2.5rem 0;
+      padding: 1.6rem 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-medium);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .info-box::before {
+      content: attr(data-icon);
+      position: absolute;
+      top: -0.7rem;
+      left: 1.5rem;
+      background: var(--bg-primary);
+      padding: 0 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .info-box h3 {
+      margin-top: 0;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .info-box.think { border-color: var(--accent-teal); }
+    .info-box.think h3 { color: var(--accent-teal); }
+    .info-box.think::before { content: "🧠"; }
+
+    .info-box.medicine { border-color: var(--accent-crimson); }
+    .info-box.medicine h3 { color: var(--accent-crimson); }
+    .info-box.medicine::before { content: "🩺"; }
+
+    .info-box.warning { border-color: #c9a84c; }
+    .info-box.warning h3 { color: var(--accent-gold); }
+    .info-box.warning::before { content: "⚠️"; }
+
+    .info-box.summary { border-color: var(--accent-blue); }
+    .info-box.summary h3 { color: var(--accent-blue); }
+    .info-box.summary::before { content: "🔍"; }
+
+    .info-box p {
+      text-align: left;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* --- Math / Equations --- */
+    .math-display {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      overflow-x: auto;
+    }
+
+    .math-display mjx-container {
+      justify-content: center !important;
+    }
+
+    /* Inline math color fix */
+    mjx-container { color: var(--text-primary) !important; }
+
+    /* --- Lists --- */
+    ul, ol {
+      margin: 1.2rem 0;
+      padding-left: 2rem;
+    }
+
+    li {
+      margin-bottom: 0.6rem;
+    }
+
+    li::marker {
+      color: var(--accent-gold-dim);
+    }
+
+    /* --- Practice Questions --- */
+    .practice-section ol {
+      counter-reset: practice;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .practice-section li {
+      counter-increment: practice;
+      position: relative;
+      padding-left: 3.5rem;
+      margin-bottom: 1.5rem;
+      padding-top: 0.2rem;
+      min-height: 2rem;
+    }
+
+    .practice-section li::before {
+      content: counter(practice);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.2rem;
+      height: 2.2rem;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-medium);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+
+    .level-badge {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .level-1 { background: rgba(91, 168, 160, 0.15); color: var(--accent-teal); }
+    .level-2 { background: rgba(107, 141, 181, 0.15); color: var(--accent-blue); }
+    .level-3 { background: rgba(201, 168, 76, 0.15); color: var(--accent-gold); }
+    .level-4 { background: rgba(199, 91, 91, 0.15); color: var(--accent-crimson); }
+
+    /* --- Horizontal Rules --- */
+    hr {
+      border: none;
+      height: 1px;
+      background: var(--border-subtle);
+      margin: 3rem 0;
+    }
+
+    /* --- Strong / Emphasis --- */
+    strong {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    em {
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    /* --- Links --- */
+    a {
+      color: var(--accent-gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    a:hover {
+      border-bottom-color: var(--accent-gold);
+    }
+
+    /* --- Footer Navigation --- */
+    .chapter-footer {
+      margin-top: 5rem;
+      padding: 2rem 0 4rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+    }
+
+    .footer-link {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .footer-link span {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .footer-link a {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .footer-link a:hover {
+      color: var(--accent-gold);
+    }
+
+    /* --- Scrollbar --- */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-medium);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+
+    /* --- Print Styles --- */
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+      }
+      .top-nav { display: none; }
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 640px) {
+      html { font-size: 15px; }
+      .top-nav-inner {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+      .objectives-box { padding: 1.4rem 1.5rem; }
+      blockquote { padding: 1.2rem 1.5rem; }
+      .info-box { padding: 1.4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation -->
+  <nav class="top-nav">
+    <div class="top-nav-inner">
+      <div>
+        <span class="nav-volume">{{ page.volume }}</span>
+        <span style="margin: 0 0.6rem; color: var(--border-medium);">|</span>
+        <span class="nav-chapter-num">Ch. {{ page.chapter_number }}</span>
+      </div>
+      <div class="nav-links">
+        {% if page.prev_url %}
+        <a href="{{ page.prev_url }}" class="nav-prev">
+          <span class="nav-arrow">←</span> Previous
+        </a>
+        {% endif %}
+        {% if page.next_url %}
+        <a href="{{ page.next_url }}" class="nav-next">
+          Next <span class="nav-arrow">→</span>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="page-wrapper">
+
+    <header class="chapter-header">
+      <div class="volume-label">{{ page.volume }}</div>
+      <div class="chapter-number">Chapter {{ page.chapter_number }}</div>
+      <h1 class="chapter-title">{{ page.title }}</h1>
+    </header>
+
     {{ content }}
-  </div>
 
-  <div class="chapter-nav">
-    {% if page.prev_url %}<a href="{{ page.prev_url | relative_url }}">← Previous</a>{% else %}<span></span>{% endif %}
-    {% if page.next_url %}<a href="{{ page.next_url | relative_url }}">Next →</a>{% endif %}
-  </div>
-</div>
+    <!-- Footer Navigation -->
+    <footer class="chapter-footer">
+      {% if page.prev_url %}
+      <div class="footer-link">
+        <span>← Previous Chapter</span>
+        <a href="{{ page.prev_url }}">Back</a>
+      </div>
+      {% else %}
+      <div></div>
+      {% endif %}
+
+      {% if page.next_url %}
+      <div class="footer-link" style="text-align: right;">
+        <span>Next Chapter →</span>
+        <a href="{{ page.next_url }}">Continue</a>
+      </div>
+      {% else %}
+      <div></div>
+      {% endif %}
+    </footer>
+
+  </main>
+
+</body>
+  </html>
