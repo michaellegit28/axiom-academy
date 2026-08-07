@@ -1,0 +1,28 @@
+---
+layout: app
+title: Quizzes
+permalink: /quiz/
+---
+
+<div class="study-track-header">
+  <h1>Practice Quizzes</h1>
+  <p>Select your exam track to start practicing.</p>
+</div>
+
+<div class="track-selector" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+  <a href="{{ '/quiz/jamb/' | relative_url }}" class="track-card jamb">
+    <div class="track-icon">🧪</div>
+    <h3>JAMB Quizzes</h3>
+    <p>Objective questions only. Timed drills.</p>
+  </a>
+  <a href="{{ '/quiz/waec/' | relative_url }}" class="track-card waec">
+    <div class="track-icon">📝</div>
+    <h3>WAEC Quizzes</h3>
+    <p>Theory + Objective. Full exam simulation.</p>
+  </a>
+  <a href="{{ '/quiz/masterclass/' | relative_url }}" class="track-card masterclass">
+    <div class="track-icon">⚛️</div>
+    <h3>Masterclass</h3>
+    <p>Brainstorming theories + objectives.</p>
+  </a>
+</div>
