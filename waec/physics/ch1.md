@@ -55,7 +55,9 @@ A vernier caliper measures to **0.01 cm** (0.1 mm) precision.
 
 **Example:** Main scale reads 2.3 cm. The 4th vernier division coincides with a main scale division.
 
-$$ 	ext{Reading} = 2.3\,	ext{cm} + (4 	imes 0.01\,	ext{cm}) = 2.34\,	ext{cm} $$
+$$
+\text{Reading} = 2.3\,\text{cm} + (4 \times 0.01\,\text{cm}) = 2.34\,\text{cm}
+$$
 
 ### Micrometer Screw Gauge
 
@@ -65,7 +67,9 @@ A micrometer measures to **0.01 mm** (0.001 cm) precision.
 
 **Example:** Sleeve shows 5.5 mm. Thimble shows 28 divisions.
 
-$$ 	ext{Reading} = 5.5\,	ext{mm} + (28 	imes 0.01\,	ext{mm}) = 5.78\,	ext{mm} $$
+$$
+\text{Reading} = 5.5\,\text{mm} + (28 \times 0.01\,\text{mm}) = 5.78\,\text{mm}
+$$
 
 > **Common error:** Forgetting to check for zero error. If the micrometer reads 0.03 mm when closed, subtract this from all measurements.
 
@@ -82,7 +86,7 @@ $$ 	ext{Reading} = 5.5\,	ext{mm} + (28 	imes 0.01\,	ext{mm}) = 5.78\,	ext{mm} $$
 
 **For multiplication/division:** The result has the same number of sig figs as the least precise measurement.
 
-**Example:** $2.5 	imes 3.42 = 8.6$ (not 8.55), because 2.5 has only 2 sig figs.
+**Example:** $2.5 \times 3.42 = 8.6$ (not 8.55), because 2.5 has only 2 sig figs.
 
 ---
 
@@ -100,15 +104,15 @@ $$ 	ext{Reading} = 5.5\,	ext{mm} + (28 	imes 0.01\,	ext{mm}) = 5.78\,	ext{mm} $$
 
 **Absolute error** = |measured value − true value| (or half the range for repeated readings)
 
-**Percentage error** = $rac{	ext{absolute error}}{	ext{measured value}} 	imes 100\%$
+**Percentage error** = $\displaystyle \frac{\text{absolute error}}{\text{measured value}} \times 100\%$
 
 **Example:** Five readings of a length: 2.34, 2.36, 2.35, 2.34, 2.36 cm.
 
-- Mean = $rac{2.34 + 2.36 + 2.35 + 2.34 + 2.36}{5} = 2.35$ cm
+- Mean = $\displaystyle \frac{2.34 + 2.36 + 2.35 + 2.34 + 2.36}{5} = 2.35$ cm
 - Range = 2.36 − 2.34 = 0.02 cm
-- Absolute error = $rac{0.02}{2} = 0.01$ cm
+- Absolute error = $\displaystyle \frac{0.02}{2} = 0.01$ cm
 - Result = $2.35 \pm 0.01$ cm
-- Percentage error = $rac{0.01}{2.35} 	imes 100\% = 0.43\%$
+- Percentage error = $\displaystyle \frac{0.01}{2.35} \times 100\% = 0.43\%$
 
 ---
 
@@ -118,7 +122,10 @@ Use **dimensional analysis** — multiply by conversion factors written as fract
 
 **Example:** Convert 72 km/h to m/s.
 
-$$ 72\,rac{	ext{km}}{	ext{h}} 	imes rac{1000\,	ext{m}}{1\,	ext{km}} 	imes rac{1\,	ext{h}}{3600\,	ext{s}} = rac{72 	imes 1000}{3600}\,rac{	ext{m}}{	ext{s}} = 20\,	ext{m/s} $$
+$$
+72\,\frac{\text{km}}{\text{h}} \times \frac{1000\,\text{m}}{1\,\text{km}} \times \frac{1\,\text{h}}{3600\,\text{s}}
+= \frac{72 \times 1000}{3600}\,\frac{\text{m}}{\text{s}} = 20\,\text{m/s}
+$$
 
 > **WAEC Shortcut:** km/h → m/s: divide by 3.6. m/s → km/h: multiply by 3.6.
 
@@ -166,6 +173,6 @@ $$ 72\,rac{	ext{km}}{	ext{h}} 	imes rac{1000\,	ext{m}}{1\,	ext{km}} 	imes rac
 
 ## ✅ Answers
 
-8. **C** (Mass)
-9. **B** (0.01 mm)
+8. **C** (Mass)  
+9. **B** (0.01 mm)  
 10. **B** (3 — the trailing zero after the decimal is significant)
