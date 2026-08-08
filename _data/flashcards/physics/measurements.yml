@@ -13,13 +13,13 @@ cards:
 
   - id: fc-measure-003
     front: "Use dimensional analysis to show that the period of a simple pendulum cannot depend on its mass."
-    back: "Guess: $T = k \cdot L^a m^b g^c$<br><br>$[T] = [L]^a [M]^b [LT^{-2}]^c$<br><br>Matching M: $0 = b$<br><br>Therefore mass drops out."
+    back: 'Guess: $T = k \cdot L^a m^b g^c$<br><br>$[T] = [L]^a [M]^b [LT^{-2}]^c$<br><br>Matching M: $0 = b$<br><br>Therefore mass drops out.'
     topic: measurements
     difficulty: hard
 
   - id: fc-kin-001
     front: "State the five kinematic equations for motion with constant acceleration."
-    back: "1. $v = u + at$<br>2. $s = \frac{u+v}{2}t$<br>3. $s = ut + \frac{1}{2}at^2$<br>4. $v^2 = u^2 + 2as$<br>5. $s = vt - \frac{1}{2}at^2$"
+    back: '1. $v = u + at$<br>2. $s = \frac{u+v}{2}t$<br>3. $s = ut + \frac{1}{2}at^2$<br>4. $v^2 = u^2 + 2as$<br>5. $s = vt - \frac{1}{2}at^2$'
     topic: kinematics
     difficulty: easy
 
@@ -37,13 +37,13 @@ cards:
 
   - id: fc-dyn-002
     front: "Explain the concept of impulse and its relationship to momentum."
-    back: "<strong>Impulse</strong> = $F \Delta t = \Delta p$<br><br>Impulse equals change in momentum. A large force over a short time (e.g., cricket bat) produces the same impulse as a small force over a long time."
+    back: '<strong>Impulse</strong> = $F \Delta t = \Delta p$<br><br>Impulse equals change in momentum. A large force over a short time (e.g., cricket bat) produces the same impulse as a small force over a long time.'
     topic: dynamics
     difficulty: medium
 
   - id: fc-energy-001
     front: "State the Work-Energy Theorem."
-    back: "The net work done on an object equals its change in kinetic energy:<br><br>$$W_{net} = \Delta KE = \frac{1}{2}mv^2 - \frac{1}{2}mu^2$$"
+    back: 'The net work done on an object equals its change in kinetic energy:<br><br>$$W_{net} = \Delta KE = \frac{1}{2}mv^2 - \frac{1}{2}mu^2$$'
     topic: work_energy
     difficulty: medium
 
@@ -55,6 +55,6 @@ cards:
 
   - id: fc-circ-001
     front: "Derive the expression for centripetal acceleration."
-    back: "For uniform circular motion, velocity changes direction but not magnitude.<br><br>$$a = \frac{v^2}{r} = \omega^2 r$$<br><br>Direction: always toward the center of the circle."
+    back: 'For uniform circular motion, velocity changes direction but not magnitude.<br><br>$$a = \frac{v^2}{r} = \omega^2 r$$<br><br>Direction: always toward the center of the circle.'
     topic: circular_motion
     difficulty: hard
