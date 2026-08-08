@@ -1,0 +1,60 @@
+cards:
+  - id: fc-measure-001
+    front: "Define the SI base units for Length, Mass, and Time."
+    back: "<strong>Length:</strong> metre (m)<br><strong>Mass:</strong> kilogram (kg)<br><strong>Time:</strong> second (s)<br><br>These are three of the seven SI base units."
+    topic: measurements
+    difficulty: easy
+
+  - id: fc-measure-002
+    front: "What is dimensional analysis and why is it useful?"
+    back: "Dimensional analysis checks that equations are consistent in their physical dimensions (M, L, T).<br><br>It can also derive the <em>functional form</em> of physical laws without solving differential equations."
+    topic: measurements
+    difficulty: medium
+
+  - id: fc-measure-003
+    front: "Use dimensional analysis to show that the period of a simple pendulum cannot depend on its mass."
+    back: "Guess: $T = k \cdot L^a m^b g^c$<br><br>$[T] = [L]^a [M]^b [LT^{-2}]^c$<br><br>Matching M: $0 = b$<br><br>Therefore mass drops out."
+    topic: measurements
+    difficulty: hard
+
+  - id: fc-kin-001
+    front: "State the five kinematic equations for motion with constant acceleration."
+    back: "1. $v = u + at$<br>2. $s = \frac{u+v}{2}t$<br>3. $s = ut + \frac{1}{2}at^2$<br>4. $v^2 = u^2 + 2as$<br>5. $s = vt - \frac{1}{2}at^2$"
+    topic: kinematics
+    difficulty: easy
+
+  - id: fc-kin-002
+    front: "What is the difference between speed and velocity?"
+    back: "<strong>Speed</strong> is a scalar — magnitude only.<br><br><strong>Velocity</strong> is a vector — magnitude + direction.<br><br>Example: 5 m/s is speed. 5 m/s north is velocity."
+    topic: kinematics
+    difficulty: easy
+
+  - id: fc-dyn-001
+    front: "State Newton's Three Laws of Motion."
+    back: "<strong>First:</strong> A body remains at rest or in uniform motion unless acted upon by a force.<br><br><strong>Second:</strong> $F = ma$ — force equals rate of change of momentum.<br><br><strong>Third:</strong> To every action there is an equal and opposite reaction."
+    topic: dynamics
+    difficulty: easy
+
+  - id: fc-dyn-002
+    front: "Explain the concept of impulse and its relationship to momentum."
+    back: "<strong>Impulse</strong> = $F \Delta t = \Delta p$<br><br>Impulse equals change in momentum. A large force over a short time (e.g., cricket bat) produces the same impulse as a small force over a long time."
+    topic: dynamics
+    difficulty: medium
+
+  - id: fc-energy-001
+    front: "State the Work-Energy Theorem."
+    back: "The net work done on an object equals its change in kinetic energy:<br><br>$$W_{net} = \Delta KE = \frac{1}{2}mv^2 - \frac{1}{2}mu^2$$"
+    topic: work_energy
+    difficulty: medium
+
+  - id: fc-energy-002
+    front: "What is the condition for mechanical energy to be conserved?"
+    back: "Mechanical energy ($KE + PE$) is conserved when <strong>only conservative forces</strong> do work.<br><br>Non-conservative forces (friction, air resistance) convert mechanical energy to heat."
+    topic: work_energy
+    difficulty: medium
+
+  - id: fc-circ-001
+    front: "Derive the expression for centripetal acceleration."
+    back: "For uniform circular motion, velocity changes direction but not magnitude.<br><br>$$a = \frac{v^2}{r} = \omega^2 r$$<br><br>Direction: always toward the center of the circle."
+    topic: circular_motion
+    difficulty: hard

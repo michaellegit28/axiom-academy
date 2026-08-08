@@ -1,0 +1,66 @@
+# JAMB Physics Syllabus — Topic Structure
+# Used for quiz organization and cross-referencing
+
+- id: measurements
+  name: Measurements and Units
+  chapters:
+    - vol0_ch1
+    - vol0_ch2
+  difficulty: easy
+
+- id: mechanics
+  name: Mechanics
+  subtopics:
+    - id: kinematics
+      name: Kinematics
+      chapters:
+        - vol2_ch1
+        - vol2_ch2
+    - id: dynamics
+      name: Dynamics
+      chapters:
+        - vol2_ch3
+        - vol2_ch4
+    - id: circular_motion
+      name: Circular Motion
+      chapters:
+        - vol2_ch5
+    - id: gravitation
+      name: Gravitation
+      chapters:
+        - vol2_ch6
+
+- id: thermal_physics
+  name: Thermal Physics
+  chapters:
+    - vol4_ch1
+    - vol4_ch2
+    - vol4_ch3
+
+- id: waves
+  name: Waves
+  chapters:
+    - vol3_ch1
+    - vol3_ch2
+    - vol3_ch3
+
+- id: optics
+  name: Optics
+  chapters:
+    - vol7_ch1
+    - vol7_ch2
+
+- id: electricity
+  name: Electricity
+  chapters:
+    - vol5_ch1
+    - vol5_ch2
+    - vol5_ch3
+    - vol6_ch1
+
+- id: modern_physics
+  name: Modern Physics
+  chapters:
+    - vol8_ch1
+    - vol9_ch1
+    - vol10_ch1

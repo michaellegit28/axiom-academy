@@ -1,5 +1,7 @@
 title: Axiom Academy
 description: A free, university-standard self-study library — Medicine, Physics, Science, Deep Learning.
+baseurl: "/axiom-academy"
+url: "https://michaellegit28.github.io"
 markdown: kramdown
 kramdown:
   input: GFM
@@ -9,6 +11,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-relative-links
 collections:
   chapters:
     output: true
@@ -41,3 +44,17 @@ defaults:
 permalink: /:path/
 exclude:
   - README.md
+  - README-Phase2.md
+  - README-Phase4.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - "*.zip"
+  - firestore.rules
+firebase:
+  apiKey: "YOUR_FIREBASE_API_KEY"
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com"
+  projectId: "YOUR_PROJECT_ID"
+  storageBucket: "YOUR_PROJECT_ID.appspot.com"
+  messagingSenderId: "YOUR_SENDER_ID"
+  appId: "YOUR_APP_ID"

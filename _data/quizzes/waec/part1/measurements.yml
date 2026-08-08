@@ -1,0 +1,50 @@
+questions:
+  - id: waec-part1-001
+    type: objective
+    question: "Which of the following is a vector quantity?"
+    options:
+      - "A. Mass"
+      - "B. Time"
+      - "C. Velocity"
+      - "D. Temperature"
+    correct: 2
+    explanation: "Velocity has both magnitude and direction, making it a vector. Mass, time, and temperature are scalars."
+    topic: measurements
+    year: 2021
+    difficulty: easy
+
+  - id: waec-part1-002
+    type: theory
+    question: |
+      (a) Distinguish between scalar and vector quantities. Give two examples of each.
+
+      (b) A body of mass 5 kg is acted upon by two forces: 10 N east and 15 N north. 
+      Calculate the magnitude and direction of the resultant force.
+    mark_scheme: |
+      (a) Scalar — magnitude only [1 mark]. Examples: mass, speed, time, distance [1 mark for any 2].
+          Vector — magnitude and direction [1 mark]. Examples: velocity, force, displacement, acceleration [1 mark for any 2].
+
+      (b) Resultant = √(10² + 15²) = √325 = 18.03 N [2 marks].
+          Direction: tan θ = 15/10 = 1.5, θ = 56.3° north of east [2 marks].
+    topic: measurements
+    year: 2022
+    difficulty: medium
+
+  - id: waec-part1-003
+    type: theory
+    question: |
+      Explain, with the aid of a labeled diagram, how you would determine the acceleration 
+      due to gravity using a simple pendulum.
+    mark_scheme: |
+      Diagram: Simple pendulum with bob, string, clamp stand, protractor [2 marks].
+      Procedure: 
+      - Measure length L from pivot to center of bob [1 mark]
+      - Displace bob through small angle (< 10°) [1 mark]
+      - Time 20 oscillations and find period T [1 mark]
+      - Repeat for different lengths [1 mark]
+      - Plot T² vs L, gradient = 4π²/g [2 marks]
+      - Calculate g from gradient [1 mark]
+      Precaution: Small angle, measure to center of bob, avoid conical swing [1 mark].
+    topic: measurements
+    year: 2020
+    difficulty: hard

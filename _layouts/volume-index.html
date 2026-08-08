@@ -1,0 +1,85 @@
+---
+layout: app
+---
+
+<div class="volume-index-wrapper">
+
+  <header class="volume-index-header">
+    <div class="volume-label">Physics Masterclass</div>
+    <h1 class="volume-title">{{ page.volume_title }}</h1>
+    <p class="volume-desc">{{ page.description }}</p>
+
+    <div class="volume-progress">
+      <div class="volume-progress-bar">
+        <div class="volume-progress-fill" id="vol-progress-fill" style="width:0%"></div>
+      </div>
+      <span class="volume-progress-text" id="vol-progress-text">0% complete</span>
+    </div>
+  </header>
+
+  <div class="chapter-list">
+    {% for ch in page.chapters %}
+    <a href="{{ ch.url | relative_url }}" class="chapter-row" data-chapter="{{ ch.id }}">
+      <div class="chapter-row-num">{{ ch.number }}</div>
+      <div class="chapter-row-info">
+        <div class="chapter-row-title">{{ ch.title }}</div>
+        <div class="chapter-row-meta">
+          <span>{{ ch.read_time }} min</span>
+          {% if ch.topics %}
+          <span>· {{ ch.topics | join: ', ' }}</span>
+          {% endif %}
+        </div>
+      </div>
+      <div class="chapter-row-status" id="status-{{ ch.id }}">
+        <span class="status-dot"></span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div class="volume-footer-nav">
+    {% if page.prev_volume %}
+    <a href="{{ page.prev_volume | relative_url }}" class="chapter-nav-link prev">
+      <span class="nav-label">← Previous Volume</span>
+      <span class="nav-title">{{ page.prev_volume_title }}</span>
+    </a>
+    {% else %}
+    <div></div>
+    {% endif %}
+
+    {% if page.next_volume %}
+    <a href="{{ page.next_volume | relative_url }}" class="chapter-nav-link next">
+      <span class="nav-label">Next Volume →</span>
+      <span class="nav-title">{{ page.next_volume_title }}</span>
+    </a>
+    {% else %}
+    <div></div>
+    {% endif %}
+  </div>
+
+</div>
+
+<script>
+// Mark completed chapters from localStorage/Firestore
+(function(){
+  const progress = JSON.parse(localStorage.getItem('axiom_progress') || '{}');
+  document.querySelectorAll('.chapter-row').forEach(row => {
+    const chId = row.dataset.chapter;
+    const statusEl = document.getElementById('status-' + chId);
+    if (progress[chId] && progress[chId].percent >= 90) {
+      row.classList.add('completed');
+      if (statusEl) statusEl.innerHTML = '✓';
+    } else if (progress[chId] && progress[chId].percent > 0) {
+      row.classList.add('in-progress');
+      if (statusEl) statusEl.innerHTML = '<span class="status-dot active"></span>';
+    }
+  });
+
+  // Calculate volume progress
+  const rows = document.querySelectorAll('.chapter-row');
+  const completed = document.querySelectorAll('.chapter-row.completed').length;
+  const pct = Math.round((completed / rows.length) * 100);
+  document.getElementById('vol-progress-fill').style.width = pct + '%';
+  document.getElementById('vol-progress-text').textContent = pct + '% complete';
+})();
+</script>

@@ -1,0 +1,64 @@
+---
+layout: flash
+title: "Kinematics"
+deck_id: physics_kinematics
+subject: physics
+topic: kinematics
+cards:
+  - id: fc-kin-001
+    front: "What is the kinematic equation for displacement under constant acceleration when initial velocity is zero?"
+    back: "$$s = \frac{1}{2}at^2$$"
+    difficulty: easy
+
+  - id: fc-kin-002
+    front: "State the five kinematic equations for motion with constant acceleration."
+    back: |
+      1. $v = u + at$
+      2. $s = ut + \frac{1}{2}at^2$
+      3. $v^2 = u^2 + 2as$
+      4. $s = \frac{(u+v)}{2}t$
+      5. $s = vt - \frac{1}{2}at^2$
+    difficulty: medium
+
+  - id: fc-kin-003
+    front: "Derive the relationship $v^2 = u^2 + 2as$ from first principles."
+    back: "Start with $v = u + at$ and $s = ut + \frac{1}{2}at^2$. Eliminate $t$ by substituting $t = \frac{v-u}{a}$ into the displacement equation and simplify."
+    difficulty: hard
+
+  - id: fc-kin-004
+    front: "What does the slope of a velocity-time graph represent?"
+    back: "**Acceleration**. The area under the curve represents **displacement**."
+    difficulty: easy
+
+  - id: fc-kin-005
+    front: "A ball is thrown vertically upward with speed $v$. What is its acceleration at the highest point?"
+    back: "$g$ downward ($9.8\,\text{m/s}^2$). At the highest point, velocity is momentarily zero, but acceleration due to gravity still acts downward."
+    difficulty: medium
+
+  - id: fc-kin-006
+    front: "For projectile motion, why is the horizontal component of velocity constant?"
+    back: "Because there is no horizontal acceleration (ignoring air resistance). Only gravity acts vertically."
+    difficulty: medium
+
+  - id: fc-kin-007
+    front: "What is the time of flight for a projectile launched from ground level and landing at the same height?"
+    back: "$$T = \frac{2u \sin\theta}{g}$$ where $u$ is initial speed and $\theta$ is launch angle above horizontal."
+    difficulty: medium
+
+  - id: fc-kin-008
+    front: "Define average velocity and instantaneous velocity. How do they differ?"
+    back: |
+      **Average velocity**: $\bar{v} = \frac{\Delta s}{\Delta t}$ over a finite interval.
+      **Instantaneous velocity**: $v = \lim_{\Delta t \to 0} \frac{\Delta s}{\Delta t} = \frac{ds}{dt}$ at a single point in time.
+    difficulty: easy
+
+  - id: fc-kin-009
+    front: "Two balls are dropped from the same height, one second apart. Does the distance between them increase, decrease, or stay constant?"
+    back: "**Increases**. Both accelerate at $g$, but the first ball always has a greater velocity, so it covers more distance each second."
+    difficulty: hard
+
+  - id: fc-kin-010
+    front: "What is relative velocity? Write the formula for the velocity of object A relative to object B."
+    back: "$$\vec{v}_{AB} = \vec{v}_A - \vec{v}_B$$ It is the velocity of A as measured by an observer moving with B."
+    difficulty: medium
+---

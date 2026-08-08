@@ -1,0 +1,28 @@
+<!-- Firebase SDK (ES Modules CDN) -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAWUw3K4yyR7ScsWzKWKayU4ZpS1iqRqmU",
+    authDomain: "axiom-academy-c0166.firebaseapp.com",
+    projectId: "axiom-academy-c0166",
+    storageBucket: "axiom-academy-c0166.firebasestorage.app",
+    messagingSenderId: "854033269091",
+    appId: "1:854033269091:web:29ea82efad5553510f9356",
+    measurementId: "G-4TEJRTX7E8"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  window.firebaseApp = app;
+  window.firebaseAuth = getAuth(app);
+  window.firebaseDb = getFirestore(app);
+
+  // Auto anonymous sign-in
+  onAuthStateChanged(window.firebaseAuth, (user) => {
+    if (!user) {
+      signInAnonymously(window.firebaseAuth).catch(console.error);
+    }
+  });
+</script>

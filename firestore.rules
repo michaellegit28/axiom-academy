@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User data: profile, progress, quiz_scores, weak_topics, study_track, flashcard_progress, analytics
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+      match /{document=**} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Public content catalog
+    match /content/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Quiz metadata (read-only)
+    match /quizzes/{quizId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+  }
+}

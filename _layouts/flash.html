@@ -1,0 +1,95 @@
+---
+layout: app-shell
+---
+
+<div class="flash-container" data-deck="{{ page.deck_id }}" data-subject="{{ page.subject | default: 'physics' }}">
+  <header class="flash-header">
+    <div class="flash-meta">
+      <span class="flash-subject">{{ page.subject | default: 'Physics' }}</span>
+      <h1>{{ page.title }}</h1>
+      <p class="flash-topic">{{ page.topic | default: page.title }}</p>
+    </div>
+    <div class="flash-stats-bar">
+      <div class="stat-pill">
+        <span class="stat-value stat-due">0</span>
+        <span class="stat-label">Due</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-value stat-known">0</span>
+        <span class="stat-label">Known</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-value stat-total">0</span>
+        <span class="stat-label">Total</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="flash-scene">
+    <div class="flash-card">
+      <div class="flash-card-face front">
+        <div class="card-front-content">Loading cards...</div>
+        <div class="card-hint">Tap or press Space to flip</div>
+      </div>
+      <div class="flash-card-face back">
+        <div class="card-back-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flash-controls" style="display:none;">
+    <button class="btn-rating again" data-quality="0">
+      <span class="label">Again</span>
+      <span class="key">1</span>
+    </button>
+    <button class="btn-rating hard" data-quality="1">
+      <span class="label">Hard</span>
+      <span class="key">2</span>
+    </button>
+    <button class="btn-rating good" data-quality="2">
+      <span class="label">Good</span>
+      <span class="key">3</span>
+    </button>
+    <button class="btn-rating easy" data-quality="3">
+      <span class="label">Easy</span>
+      <span class="key">4</span>
+    </button>
+  </div>
+
+  <div class="flash-empty" style="display:none;">
+    <div class="empty-emoji">🎉</div>
+    <h2>Deck Complete</h2>
+    <p>No cards due for review. Great work!</p>
+    <a href="{{ site.baseurl }}/flash/" class="btn-primary">Browse Decks</a>
+  </div>
+</div>
+
+<script type="module">
+  import { FlashcardDeck, FlashcardUI } from "{{ site.baseurl }}/assets/js/flashcards.js";
+
+  const container = document.querySelector('.flash-container');
+  const deckId = container.dataset.deck;
+  const subject = container.dataset.subject;
+
+  // Card data injected by Jekyll
+  const cardsData = {{ page.cards | jsonify }};
+
+  async function init() {
+    const deck = new FlashcardDeck(deckId, subject);
+    await deck.ready();
+    await deck.loadCards(cardsData);
+
+    const ui = new FlashcardUI('.flash-container', deck);
+    ui.start();
+
+    // Re-render MathJax on card change
+    const observer = new MutationObserver(() => {
+      if (window.MathJax) {
+        window.MathJax.typesetPromise?.([container]).catch(() => {});
+      }
+    });
+    observer.observe(container.querySelector('.flash-card'), { subtree: true, childList: true });
+  }
+
+  init().catch(console.error);
+</script>
