@@ -12,7 +12,7 @@
 
   <script>
     window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\\\(', '\\\\)']], displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']] },
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
       svg: { fontCache: 'global' }
     };
   </script>
@@ -45,7 +45,7 @@
   </div>
 
   {% include auth-modal.html %}
-  {% include ai-chat-enhanced.html %}
+  {% include ai-chat.html %}
 
   <script type="module" src="{{ site.baseurl }}/assets/js/auth.js"></script>
   <script type="module" src="{{ site.baseurl }}/assets/js/app-shell.js"></script>
