@@ -7,7 +7,7 @@ topic: kinematics
 cards:
   - id: fc-kin-001
     front: "What is the kinematic equation for displacement under constant acceleration when initial velocity is zero?"
-    back: "$$s = \\frac{1}{2}at^2$$"
+    back: "$$s = \frac{1}{2}at^2$$"
     difficulty: easy
 
   - id: fc-kin-002
@@ -22,7 +22,7 @@ cards:
 
   - id: fc-kin-003
     front: "Derive the relationship $v^2 = u^2 + 2as$ from first principles."
-    back: "Start with $v = u + at$ and $s = ut + \\frac{1}{2}at^2$. Eliminate $t$ by substituting $t = \\frac{v-u}{a}$ into the displacement equation and simplify."
+    back: "Start with $v = u + at$ and $s = ut + \frac{1}{2}at^2$. Eliminate $t$ by substituting $t = \frac{v-u}{a}$ into the displacement equation and simplify."
     difficulty: hard
 
   - id: fc-kin-004
@@ -32,7 +32,8 @@ cards:
 
   - id: fc-kin-005
     front: "A ball is thrown vertically upward with speed $v$. What is its acceleration at the highest point?"
-    back: "$g$ downward ($9.8\\,\\text{m/s}^2$). At the highest point, velocity is momentarily zero, but acceleration due to gravity still acts downward."
+    back: |
+      $g$ downward ($9.8\,\text{m/s}^2$). At the highest point, velocity is momentarily zero, but acceleration due to gravity still acts downward.
     difficulty: medium
 
   - id: fc-kin-006
@@ -42,7 +43,7 @@ cards:
 
   - id: fc-kin-007
     front: "What is the time of flight for a projectile launched from ground level and landing at the same height?"
-    back: "$$T = \\frac{2u \\sin\\theta}{g}$$ where $u$ is initial speed and $\\theta$ is launch angle above horizontal."
+    back: "$$T = \frac{2u \sin\theta}{g}$$ where $u$ is initial speed and $\theta$ is launch angle above horizontal."
     difficulty: medium
 
   - id: fc-kin-008
@@ -59,6 +60,6 @@ cards:
 
   - id: fc-kin-010
     front: "What is relative velocity? Write the formula for the velocity of object A relative to object B."
-    back: "$$\\vec{v}_{AB} = \\vec{v}_A - \\vec{v}_B$$ It is the velocity of A as measured by an observer moving with B."
+    back: "$$\vec{v}_{AB} = \vec{v}_A - \vec{v}_B$$ It is the velocity of A as measured by an observer moving with B."
     difficulty: medium
 ---
