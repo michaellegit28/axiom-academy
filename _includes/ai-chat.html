@@ -1,8 +1,4 @@
-<!-- Enhanced AI Chat — Context-Aware Study Assistant -->
-<style>
-  .ai-chat-widget { /* styles inherited from app.scss */ }
-</style>
-
+<!-- Axiom AI — client-side study assistant, powered by WebLLM (runs in-browser, offline-capable, no server) -->
 <button id="ai-toggle" class="ai-toggle-btn" aria-label="Open Axiom AI">AI</button>
 
 <div id="ai-chat" class="ai-chat-widget" style="display:none;" role="region" aria-label="Axiom AI chat">
@@ -10,6 +6,12 @@
     <div class="ai-chat-title">🤖 Axiom AI</div>
     <button id="ai-close" class="ai-chat-close" aria-label="Close">✕</button>
   </div>
+
+  <div id="ai-progress" class="ai-progress" style="display:none;">
+    <div class="ai-progress-bar"><div id="ai-progress-fill" class="ai-progress-fill"></div></div>
+    <div id="ai-progress-text" class="ai-progress-text">Loading Axiom AI…</div>
+  </div>
+
   <div id="ai-body" class="ai-chat-body" aria-live="polite"></div>
   <div class="ai-chat-input">
     <textarea id="ai-input" placeholder="Ask about this chapter, get a hint, or review a concept..." aria-label="Message"></textarea>
@@ -17,115 +19,148 @@
   </div>
 </div>
 
-<script>
-(function(){
+<script type="module">
+  import { isWebGPUSupported, loadEngine, streamReply } from '{{ site.baseurl }}/assets/js/webllm-engine.js';
+
   const toggle = document.getElementById('ai-toggle');
   const widget = document.getElementById('ai-chat');
   const closeBtn = document.getElementById('ai-close');
   const body = document.getElementById('ai-body');
   const input = document.getElementById('ai-input');
   const send = document.getElementById('ai-send');
+  const progress = document.getElementById('ai-progress');
+  const progressFill = document.getElementById('ai-progress-fill');
+  const progressText = document.getElementById('ai-progress-text');
 
-  function openWidget(){ widget.style.display='flex'; toggle.style.display='none'; input.focus(); }
-  function closeWidget(){ widget.style.display='none'; toggle.style.display='flex'; }
+  let engineReady = false;
+  let engineFailed = false;
+  let loadStarted = false;
+  const history = [];
+
+  function openWidget() { widget.style.display = 'flex'; toggle.style.display = 'none'; input.focus(); ensureEngine(); }
+  function closeWidget() { widget.style.display = 'none'; toggle.style.display = 'flex'; }
   toggle.addEventListener('click', openWidget);
   closeBtn.addEventListener('click', closeWidget);
 
-  function appendMessage(text, who){
-    const d = document.createElement('div'); 
-    d.className = 'ai-chat-msg ' + (who==='user' ? 'user' : 'bot');
-    d.innerHTML = text; 
-    body.appendChild(d); 
+  function appendMessage(text, who) {
+    const d = document.createElement('div');
+    d.className = 'ai-chat-msg ' + (who === 'user' ? 'user' : 'bot');
+    d.innerHTML = text;
+    body.appendChild(d);
     body.scrollTop = body.scrollHeight;
+    return d;
   }
 
-  function setTyping(on){
+  function setTyping(on) {
     let el = document.getElementById('ai-typing');
-    if (on){
-      if (!el){ 
-        el = document.createElement('div'); 
-        el.id='ai-typing'; 
-        el.className='ai-typing'; 
-        el.textContent='Axiom AI is thinking...'; 
-        body.appendChild(el); 
-        body.scrollTop = body.scrollHeight; 
+    if (on) {
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'ai-typing';
+        el.className = 'ai-typing';
+        el.textContent = 'Axiom AI is thinking...';
+        body.appendChild(el);
+        body.scrollTop = body.scrollHeight;
       }
-    } else { 
-      if (el) el.remove(); 
+    } else if (el) {
+      el.remove();
     }
   }
 
-  // Get page context for AI
-  function getContext(){
+  function getContext() {
     const page = document.body.dataset.page || 'unknown';
     const title = document.querySelector('h1')?.textContent || '';
     const topic = document.querySelector('[data-topic]')?.dataset.topic || '';
     return { page, title, topic, url: window.location.pathname };
   }
 
-  // Local fallback responses
-  function localReply(text, context){
+  function systemPrompt(context) {
+    return "You are Axiom AI, a friendly physics tutor inside Axiom Academy, a free study site for Nigerian JAMB/WAEC students. " +
+      "The student is currently on: " + (context.title || context.page) + (context.topic ? (" (topic: " + context.topic + ")") : "") + ". " +
+      "Give short, clear, encouraging answers. Prefer hints and guiding questions over full solutions unless the student explicitly asks you to explain or solve. " +
+      "Use plain language before equations. Keep replies under 120 words unless asked for more detail.";
+  }
+
+  function localReply(text, context) {
     const t = text.trim().toLowerCase();
     if (!t) return "Ask me anything about physics, this chapter, or your study plan.";
     if (t.includes('hint')) return "💡 **Hint:** Break the problem into smaller parts. What quantities are given? What are you solving for? Check your units first.";
     if (t.includes('explain') && context.topic) return "I'd love to explain **" + context.topic + "**! The key idea is to start with the physical picture before writing equations. Would you like the intuition or the derivation?";
     if (t.includes('formula') || t.includes('equation')) return "Here are the key formulas for this topic. Remember: every symbol has a physical meaning. Don't just memorize — derive when you can.";
-    if (t.includes('weak') || t.includes('struggle')) return "Based on your quiz history, I recommend reviewing the fundamentals first, then doing 5 practice questions. Shall I generate a focused drill?";
     if (t.includes('jamb') || t.includes('exam')) return "For JAMB, focus on speed + accuracy. Each question averages 1 minute. Master the shortcuts in dimensional analysis — they save precious seconds.";
-    if (t.includes('hello') || t.includes('hi')) return "Hello! I'm Axiom AI. I know what you're reading and how you've been performing. Ask me for hints, explanations, or study advice.";
-    return "That's a great question. To give you the best answer, I need to connect to my knowledge base. For now, try rephrasing or ask about a specific concept from this chapter.";
+    if (t.includes('weak') || t.includes('struggle')) return "Based on your quiz history, review the fundamentals first, then do 5 practice questions. Want a focused drill?";
+    if (t.includes('hello') || t.includes('hi')) return "Hello! I'm Axiom AI. Ask me for hints, explanations, or study advice.";
+    return "That's a great question — try rephrasing it, or ask about a specific concept from this chapter.";
   }
 
-  async function handleSend(){
-    const text = input.value.trim();
-    if (!text) return; 
-    input.value=''; 
-    appendMessage(text, 'user'); 
-    setTyping(true);
-    
-    const context = getContext();
-    
-    // Try server first
-    try {
-      const resp = await fetch('/api/ai-infer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          prompt: text, 
-          context: context,
-          userId: window.AxiomApp?.user?.uid || 'anonymous'
-        })
-      });
-      if (resp.ok) {
-        const data = await resp.json();
-        setTyping(false);
-        appendMessage(data.reply, 'bot');
-        return;
-      }
-    } catch (err) {
-      console.log('Server unavailable, using local AI');
+  async function ensureEngine() {
+    if (engineReady || engineFailed || loadStarted) return;
+    if (!isWebGPUSupported()) {
+      engineFailed = true;
+      appendMessage("⚡ Your browser/device doesn't support in-browser AI yet — I'll use quick built-in tips instead. For the full AI tutor, try a recent Chrome on desktop or Android.", 'bot');
+      return;
     }
-    
-    // Fallback
+    loadStarted = true;
+    progress.style.display = 'block';
+    try {
+      await loadEngine((report) => {
+        const pct = Math.round((report.progress || 0) * 100);
+        progressFill.style.width = pct + '%';
+        progressText.textContent = (report.text || 'Loading Axiom AI…') + (pct ? ' (' + pct + '%)' : '');
+      });
+      engineReady = true;
+      progress.style.display = 'none';
+    } catch (err) {
+      console.error('WebLLM load failed, falling back to local tips:', err);
+      engineFailed = true;
+      progress.style.display = 'none';
+      appendMessage("⚡ Couldn't load the full AI model on this device — switching to quick built-in tips.", 'bot');
+    }
+  }
+
+  async function handleSend() {
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    appendMessage(text, 'user');
+    const context = getContext();
+
+    if (engineReady) {
+      const msgEl = appendMessage('', 'bot');
+      history.push({ role: 'user', content: text });
+      const messages = [{ role: 'system', content: systemPrompt(context) }, ...history.slice(-8)];
+      try {
+        const full = await streamReply(messages, (partial) => {
+          msgEl.innerHTML = partial;
+          body.scrollTop = body.scrollHeight;
+        });
+        history.push({ role: 'assistant', content: full });
+      } catch (err) {
+        console.error('WebLLM inference error:', err);
+        msgEl.innerHTML = localReply(text, context);
+      }
+      return;
+    }
+
+    // Model still loading (or unsupported) — don't make the student wait, use instant local tips.
+    setTyping(true);
     setTimeout(() => {
       setTyping(false);
       appendMessage(localReply(text, context), 'bot');
-    }, 600);
+    }, 400);
   }
 
   send.addEventListener('click', handleSend);
-  input.addEventListener('keydown', function(e){ 
-    if (e.key === 'Enter' && !e.shiftKey){ 
-      e.preventDefault(); 
-      handleSend(); 
-    } 
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
   });
 
   // Welcome message
-  if (!localStorage.getItem('axiom_ai_seen')){
-    const ctx = getContext();
-    appendMessage('👋 Hi! I\'m <strong>Axiom AI</strong>. I can explain concepts, give hints without spoiling answers, or analyze your weak topics. What would you like to work on?', 'bot');
+  if (!localStorage.getItem('axiom_ai_seen')) {
+    appendMessage('👋 Hi! I\'m <strong>Axiom AI</strong>, running fully in your browser. I can explain concepts, give hints without spoiling answers, or analyze your weak topics. What would you like to work on?', 'bot');
     localStorage.setItem('axiom_ai_seen', '1');
   }
-})();
 </script>
