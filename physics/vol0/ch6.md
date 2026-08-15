@@ -1,11 +1,12 @@
 ---
 layout: chapter
 title: "Synthesis — The Complete Problem-Solving Toolkit"
-volume: "Volume 0: Learning Like a Physicist"
+volume: 0
+volume_title: "Volume 0: Learning Like a Physicist"
 chapter_number: 6
-permalink: /physics/vol0/ch6/
-prev_url: /physics/vol0/ch5/
-next_url: /physics/vol1/ch1/
+permalink: /read/physics/vol0/ch6/
+prev_chapter: /read/physics/vol0/ch5/
+prev_chapter_title: "Graphs, Proportionality, and Functional Thinking"
 ---
 
 ## 🎯 Learning Objectives
@@ -96,7 +97,9 @@ What does the number mean? Is it large or small compared to relevant scales? Doe
 
 **Step 5 — Derive:**
 
-$$ rac{C}{C_0} = e^{-\lambda t} \quad \Rightarrow \quad t = -rac{1}{\lambda} \ln \left( rac{C}{C_0} ight) = rac{t_{1/2}}{\ln 2} \ln \left( rac{C_0}{C} ight) $$
+$$ rac{C}{C_0} = e^{-\lambda t} \quad \Rightarrow \quad t = -rac{1}{\lambda} \ln \left( rac{C}{C_0} 
+ight) = rac{t_{1/2}}{\ln 2} \ln \left( rac{C_0}{C} 
+ight) $$
 
 **Step 6 — Limiting check:** If $C/C_0 = 0.5$, then $t = t_{1/2}$. ✓ If $C/C_0 	o 1$, then $t 	o 0$. ✓
 
@@ -185,7 +188,8 @@ No single test is definitive. The physician's skill is combining imperfect infor
 
 5. **The Complete Diagnostic Problem:** A 55-year-old male smoker presents with chest pain. The pre-test probability of MI is 15%. The ECG is non-specific (LR$^+ = 2.0$). Troponin is mildly elevated (LR$^+ = 5.0$). Using Bayesian updating, calculate the post-test probability of MI after each test. At what probability threshold would you recommend thrombolysis? (Typical threshold: $> 2\%$ for treatment, given risks.)
 
-6. A raindrop falls from a cloud at height $h = 2$ km. Model its motion including gravity and air drag ($F_d = rac{1}{2} ho v^2 C_d A$). Use dimensional analysis to estimate terminal velocity. Then derive the velocity as a function of time. Check that $v(t) 	o v_{	ext{terminal}}$ as $t 	o \infty$.
+6. A raindrop falls from a cloud at height $h = 2$ km. Model its motion including gravity and air drag ($F_d = rac{1}{2} 
+ho v^2 C_d A$). Use dimensional analysis to estimate terminal velocity. Then derive the velocity as a function of time. Check that $v(t) 	o v_{	ext{terminal}}$ as $t 	o \infty$.
 
 **Level 4 — Challenge Problems 🎓**
 

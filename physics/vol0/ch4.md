@@ -1,11 +1,14 @@
 ---
 layout: chapter
 title: "Fermi Problems — Chained Estimation and Bounding the Unknown"
-volume: "Volume 0: Learning Like a Physicist"
+volume: 0
+volume_title: "Volume 0: Learning Like a Physicist"
 chapter_number: 4
-permalink: /physics/vol0/ch4/
-prev_url: /physics/vol0/ch3/
-next_url: /physics/vol0/ch5/
+permalink: /read/physics/vol0/ch4/
+prev_chapter: /read/physics/vol0/ch3/
+prev_chapter_title: "How Physicists Reason — Hypotheses, Evidence, and Uncertainty"
+next_chapter: /read/physics/vol0/ch5/
+next_chapter_title: "Graphs, Proportionality, and Functional Thinking"
 ---
 
 ## 🎯 Learning Objectives

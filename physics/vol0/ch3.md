@@ -1,11 +1,14 @@
 ---
 layout: chapter
 title: "How Physicists Reason — Hypotheses, Evidence, and Uncertainty"
-volume: "Volume 0: Learning Like a Physicist"
+volume: 0
+volume_title: "Volume 0: Learning Like a Physicist"
 chapter_number: 3
-permalink: /physics/vol0/ch3/
-prev_url: /physics/vol0/ch2/
-next_url: /physics/vol0/ch4/
+permalink: /read/physics/vol0/ch3/
+prev_chapter: /read/physics/vol0/ch2/
+prev_chapter_title: "The Physicist's Method — Structured Problem-Solving and Model Building"
+next_chapter: /read/physics/vol0/ch4/
+next_chapter_title: "Fermi Problems — Chained Estimation and Bounding the Unknown"
 ---
 
 ## 🎯 Learning Objectives

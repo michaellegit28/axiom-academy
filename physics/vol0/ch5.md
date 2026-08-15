@@ -1,11 +1,14 @@
 ---
 layout: chapter
 title: "Graphs, Proportionality, and Functional Thinking"
-volume: "Volume 0: Learning Like a Physicist"
+volume: 0
+volume_title: "Volume 0: Learning Like a Physicist"
 chapter_number: 5
-permalink: /physics/vol0/ch5/
-prev_url: /physics/vol0/ch4/
-next_url: /physics/vol0/ch6/
+permalink: /read/physics/vol0/ch5/
+prev_chapter: /read/physics/vol0/ch4/
+prev_chapter_title: "Fermi Problems — Chained Estimation and Bounding the Unknown"
+next_chapter: /read/physics/vol0/ch6/
+next_chapter_title: "Synthesis — The Complete Problem-Solving Toolkit"
 ---
 
 ## 🎯 Learning Objectives
@@ -79,7 +82,9 @@ This is a straight line on a log–log plot:
 
 If $a \propto b$ and $b \propto c$, then $a \propto c$. More generally:
 
-$$ a \propto b^m c^n \quad \Rightarrow \quad rac{a_1}{a_2} = \left( rac{b_1}{b_2} ight)^m \left( rac{c_1}{c_2} ight)^n $$
+$$ a \propto b^m c^n \quad \Rightarrow \quad rac{a_1}{a_2} = \left( rac{b_1}{b_2} 
+ight)^m \left( rac{c_1}{c_2} 
+ight)^n $$
 
 This allows prediction without knowing the proportionality constant.
 

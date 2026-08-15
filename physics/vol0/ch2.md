@@ -1,11 +1,14 @@
 ---
 layout: chapter
 title: "The Physicist's Method — Structured Problem-Solving and Model Building"
-volume: "Volume 0: Learning Like a Physicist"
+volume: 0
+volume_title: "Volume 0: Learning Like a Physicist"
 chapter_number: 2
-permalink: /physics/vol0/ch2/
-prev_url: /physics/vol0/ch1/
-next_url: /physics/vol0/ch3/
+permalink: /read/physics/vol0/ch2/
+prev_chapter: /read/physics/vol0/ch1/
+prev_chapter_title: "The Physicist's Toolkit — Dimensional Analysis and Estimation"
+next_chapter: /read/physics/vol0/ch3/
+next_chapter_title: "How Physicists Reason — Hypotheses, Evidence, and Uncertainty"
 ---
 
 ## 🎯 Learning Objectives

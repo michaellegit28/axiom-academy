@@ -1,10 +1,12 @@
 ---
 layout: chapter
 title: "The Physicist's Toolkit — Dimensional Analysis and Estimation"
-volume: "Volume 0: Learning Like a Physicist"
+volume: 0
+volume_title: "Volume 0: Learning Like a Physicist"
 chapter_number: 1
-permalink: /physics/vol0/ch1/
-next_url: /physics/vol0/ch2/
+permalink: /read/physics/vol0/ch1/
+next_chapter: /read/physics/vol0/ch2/
+next_chapter_title: "The Physicist's Method — Structured Problem-Solving and Model Building"
 ---
 
 ## 🎯 Learning Objectives
