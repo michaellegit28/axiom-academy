@@ -100,6 +100,19 @@ export class ProgressTracker {
 
     if (!this.cache.quiz_scores) this.cache.quiz_scores = {};
     this.cache.quiz_scores[key] = entry;
+
+    // Append to chronological quiz history (for analytics table)
+    if (!this.cache.quiz_history) this.cache.quiz_history = [];
+    this.cache.quiz_history.push({
+      exam, subject, topic, score, total, accuracy,
+      timeSpentSeconds,
+      date: Date.now()
+    });
+    // Cap history to last 200 attempts to keep localStorage lean
+    if (this.cache.quiz_history.length > 200) {
+      this.cache.quiz_history = this.cache.quiz_history.slice(-200);
+    }
+
     setLocalProgress(this.cache);
 
     // Compute weak topics immediately
@@ -189,6 +202,13 @@ export class ProgressTracker {
     if (type === "quiz") a.totalQuizzesTaken += 1;
     if (type === "flashcard") a.totalCardsReviewed += 1;
     if (type === "chapter") a.chaptersRead += 1;
+
+    // Track minutes per calendar day (for the weekly activity chart)
+    if (durationMinutes > 0) {
+      if (!this.cache.daily_activity) this.cache.daily_activity = {};
+      const dayKey = new Date().toDateString();
+      this.cache.daily_activity[dayKey] = (this.cache.daily_activity[dayKey] || 0) + durationMinutes;
+    }
 
     setLocalProgress(this.cache);
     this._queueSync("analytics", "summary", a);
@@ -305,6 +325,57 @@ export class ProgressTracker {
       avgAccuracy,
       weakTopics: this.getWeakTopics()
     };
+  }
+
+  // ---- Analytics Page Helpers ----
+  getQuizHistory(limit = 20) {
+    const history = this.cache.quiz_history || [];
+    return history.slice(-limit).reverse();
+  }
+
+  getWeeklyActivity() {
+    const daily = this.cache.daily_activity || {};
+    const labels = [];
+    const minutes = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const key = d.toDateString();
+      labels.push(d.toLocaleDateString(undefined, { weekday: "short" }));
+      minutes.push(Math.round(daily[key] || 0));
+    }
+    return { labels, minutes };
+  }
+
+  getTopicBreakdown() {
+    const scores = this.cache.quiz_scores || {};
+    const topics = {};
+
+    Object.values(scores).forEach(entry => {
+      const topic = entry.topic;
+      if (!topics[topic]) topics[topic] = { total: 0, correct: 0, attempts: 0 };
+      topics[topic].total += entry.total;
+      topics[topic].correct += entry.score;
+      topics[topic].attempts += 1;
+    });
+
+    return Object.entries(topics).map(([topic, d]) => ({
+      topic,
+      accuracy: Math.round((d.correct / d.total) * 100),
+      attempts: d.attempts
+    })).sort((a, b) => a.accuracy - b.accuracy);
+  }
+
+  getRecommendedActions() {
+    const breakdown = this.getTopicBreakdown();
+    const weak = breakdown.filter(t => t.accuracy < 50).slice(0, 3);
+    if (weak.length === 0) {
+      return [{ text: "Take a new quiz to keep building your mastery profile.", href: "/quiz/" }];
+    }
+    return weak.map(t => ({
+      text: `Practice ${t.topic.replace(/_/g, " ")} — currently ${t.accuracy}% accuracy`,
+      href: `/quiz/jamb/physics/${t.topic}/`
+    }));
   }
 }
 
