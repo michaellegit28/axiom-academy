@@ -12,45 +12,33 @@
 
   <script>
     window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      tex: { inlineMath: [['$', '$'], ['\(', '\)']], displayMath: [['$$', '$$'], ['\[', '\]']] },
       svg: { fontCache: 'global' }
     };
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/app.scss">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/flashcards.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/profile.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/phase5.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/phase6.css">
 
   {% include pwa-meta.html %}
   {% include firebase-init.html %}
 </head>
 <body>
-  <div id="app">
-    <header class="app-header">
-      <a href="{{ site.baseurl }}/" class="logo">Axiom</a>
-      <div class="header-actions">
-        <button id="auth-btn" class="btn-ghost">Sign In</button>
-      </div>
-    </header>
+  {% include nav.html %}
 
-    {% include offline-banner.html %}
+  {% include offline-banner.html %}
 
-    <main id="app-content">
-      {{ content }}
-    </main>
-
-    {% include bottom-nav.html %}
-  </div>
+  <main id="app-content">
+    {{ content }}
+  </main>
 
   {% include auth-modal.html %}
   {% include ai-chat.html %}
 
   <script type="module" src="{{ site.baseurl }}/assets/js/auth.js"></script>
   <script type="module" src="{{ site.baseurl }}/assets/js/app-shell.js"></script>
-  <script type="module" src="{{ site.baseurl }}/assets/js/pwa.js"></script>
-  <script type="module" src="{{ site.baseurl }}/assets/js/transitions.js"></script>
-  <script type="module" src="{{ site.baseurl }}/assets/js/gestures.js"></script>
 </body>
 </html>

@@ -3,39 +3,9 @@
    ============================================ */
 
 :root {
-  --bg-primary: #0f1117;
-  --bg-secondary: #161922;
-  --bg-tertiary: #1e212b;
-  --bg-card: #1a1d26;
-  --bg-elevated: #222633;
-
-  --text-primary: #e8e6e3;
-  --text-secondary: #b0aba4;
-  --text-muted: #7a756d;
-
-  --accent-masterclass: #c9a84c;
-  --accent-jamb: #5ba8a0;
-  --accent-waec: #6b8db5;
-  --accent-medicine: #c75b5b;
-  --accent-success: #5ba86b;
-  --accent-warning: #d4a017;
-
-  --border-subtle: #2a2d38;
-  --border-medium: #363a48;
-
-  --font-serif: 'Crimson Pro', Georgia, serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
   --radius-xl: 20px;
-
   --shadow-card: 0 4px 16px rgba(0,0,0,0.3);
   --shadow-elevated: 0 8px 32px rgba(0,0,0,0.4);
-
-  --nav-height: 64px;
   --bottom-nav-height: 72px;
 }
 
