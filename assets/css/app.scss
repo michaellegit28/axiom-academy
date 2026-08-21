@@ -131,7 +131,7 @@ body {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(12, 14, 20, 0.92);
+  background: var(--bg-card);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
   height: var(--nav-height);
@@ -231,9 +231,15 @@ body {
 .mobile-tab.active svg { opacity: 1; }
 
 @media (max-width: 768px) {
-  .app-nav { display: none; }
+  .app-nav { display: block; }
+  .nav-brand-text { display: none; }
+  .nav-tabs { display: none; }
+  .nav-inner { padding: 0 var(--page-margin); gap: 8px; }
+  .nav-domain-btn span:first-of-type { display: none; }
+  .nav-domain-btn { padding: 8px; }
+  .nav-domain-menu { left: 0; right: auto; }
   .mobile-nav { display: flex; }
-  .app-container { padding: 1rem var(--page-margin) calc(var(--mobile-nav-height) + 1rem); }
+  .app-container { padding: calc(var(--nav-height) + 1rem) var(--page-margin) calc(var(--mobile-nav-height) + 1rem); }
 }
 @media (min-width: 769px) {
   .mobile-nav { display: none !important; }
