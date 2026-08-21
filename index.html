@@ -40,3 +40,28 @@ permalink: /
     </div>
   </a>
 </div>
+
+<div class="home-dashboard" id="home-dashboard" style="display:none;">
+  <div class="dashboard-section" id="continue-learning-section" style="display:none;">
+    <h2>Continue Learning</h2>
+    <div class="continue-cards" id="continue-cards"></div>
+  </div>
+
+  <div class="dashboard-section" id="todays-learning-section" style="display:none;">
+    <h2>Your Learning Snapshot</h2>
+    <div class="stat-pills-row" id="snapshot-stats"></div>
+  </div>
+
+  <div class="dashboard-section" id="recommended-section" style="display:none;">
+    <h2>Recommended for You</h2>
+    <div class="recommended-cards" id="recommended-cards"></div>
+  </div>
+
+  <div class="dashboard-section" id="recent-activity-section" style="display:none;">
+    <h2>Recent Activity</h2>
+    <ul class="recent-activity-list" id="recent-activity-list"></ul>
+  </div>
+</div>
+
+<script>window.AXIOM_BASEURL = "{{ site.baseurl }}";</script>
+<script src="{{ '/assets/js/home-dashboard.js' | relative_url }}"></script>
