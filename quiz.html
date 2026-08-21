@@ -6,23 +6,72 @@ permalink: /quiz/
 
 <div class="study-track-header">
   <h1>Practice Quizzes</h1>
-  <p>Select your exam track to start practicing.</p>
+  <p id="quiz-hub-subtitle">Select your exam track to start practicing.</p>
 </div>
 
-<div class="track-selector" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-  <a href="{{ '/quiz/jamb/' | relative_url }}" class="track-card jamb">
-    <div class="track-icon">🧪</div>
-    <h3>JAMB Quizzes</h3>
-    <p>Objective questions only. Timed drills.</p>
-  </a>
-  <a href="{{ '/quiz/waec/' | relative_url }}" class="track-card waec">
-    <div class="track-icon">📝</div>
-    <h3>WAEC Quizzes</h3>
-    <p>Theory + Objective. Full exam simulation.</p>
-  </a>
-  <a href="{{ '/quiz/masterclass/' | relative_url }}" class="track-card masterclass">
-    <div class="track-icon">⚛️</div>
-    <h3>Masterclass</h3>
-    <p>Brainstorming theories + objectives.</p>
-  </a>
+<!-- High School: JAMB + WAEC -->
+<div class="quiz-domain-panel" id="quiz-panel-high-school">
+  <div class="track-selector" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+    <a href="{{ '/quiz/jamb/' | relative_url }}" class="track-card jamb">
+      <div class="track-icon">🧪</div>
+      <h3>JAMB Quizzes</h3>
+      <p>Objective questions only. Timed drills.</p>
+    </a>
+    <a href="{{ '/quiz/waec/' | relative_url }}" class="track-card waec">
+      <div class="track-icon">📝</div>
+      <h3>WAEC Quizzes</h3>
+      <p>Theory + Objective. Full exam simulation.</p>
+    </a>
+  </div>
 </div>
+
+<!-- University: no quiz content yet -->
+<div class="quiz-domain-panel" id="quiz-panel-university" style="display:none;">
+  <div class="track-selector" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+    <a href="#" class="track-card jamb" style="opacity:.55;pointer-events:none;">
+      <div class="track-icon">🧪</div>
+      <h3>University Quizzes</h3>
+      <p>Course-aligned objective and structured questions.</p>
+      <div class="track-meta"><span>🚧 Coming Soon</span></div>
+    </a>
+    <a href="{{ '/read/physics/vol0/' | relative_url }}" class="track-card masterclass">
+      <div class="track-icon">📖</div>
+      <h3>Complete Physics Masterpiece</h3>
+      <p>Test yourself with the built-in chapter review questions in the meantime.</p>
+      <div class="track-meta"><span>✅ Available Now</span></div>
+    </a>
+  </div>
+</div>
+
+<!-- Extras: Masterclass has no dedicated quiz bank yet -->
+<div class="quiz-domain-panel" id="quiz-panel-extras" style="display:none;">
+  <div class="track-selector" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+    <a href="{{ '/read/physics/vol0/' | relative_url }}" class="track-card masterclass">
+      <div class="track-icon">📖</div>
+      <h3>Complete Physics Masterpiece</h3>
+      <p>A dedicated Masterclass quiz bank is on the roadmap. For now, review through the chapters directly.</p>
+      <div class="track-meta"><span>✅ Reading Available</span></div>
+    </a>
+  </div>
+</div>
+
+<script>
+(function () {
+  var domain = localStorage.getItem('axiom-domain') || 'High School';
+  var panels = {
+    'University': document.getElementById('quiz-panel-university'),
+    'High School': document.getElementById('quiz-panel-high-school'),
+    'Extras': document.getElementById('quiz-panel-extras')
+  };
+  var subtitles = {
+    'University': 'University quiz tracks are being built \u2014 here\'s what\'s available right now.',
+    'High School': 'Select your exam track to start practicing.',
+    'Extras': 'Masterclass quizzes are on the roadmap \u2014 here\'s what\'s available right now.'
+  };
+  Object.keys(panels).forEach(function (key) {
+    if (panels[key]) panels[key].style.display = (key === domain) ? 'block' : 'none';
+  });
+  var subtitleEl = document.getElementById('quiz-hub-subtitle');
+  if (subtitleEl && subtitles[domain]) subtitleEl.textContent = subtitles[domain];
+})();
+</script>

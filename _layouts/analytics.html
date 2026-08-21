@@ -7,7 +7,8 @@ layout: app-shell
 
   <header class="analytics-header">
     <h1>Score Analytics</h1>
-    <p class="analytics-subhead">Your mastery, activity, and recommended next steps.</p>
+    <p class="analytics-subhead" id="analytics-subhead">Your mastery, activity, and recommended next steps.</p>
+    <span class="analytics-domain-badge" id="analytics-domain-badge"></span>
   </header>
 
   <!-- Overall Mastery -->
@@ -27,7 +28,7 @@ layout: app-shell
 
   <!-- Weekly Activity Chart -->
   <section class="analytics-section">
-    <h2>Weekly Activity</h2>
+    <h2>Weekly Activity <span class="section-note">(all study time)</span></h2>
     <div class="chart-card">
       <canvas id="weekly-activity-chart" height="220"></canvas>
     </div>
@@ -88,12 +89,58 @@ layout: app-shell
     return m > 0 ? `${m}m ${s}s` : `${s}s`;
   }
 
+  const DOMAIN_EXAMS = {
+    'University': ['university'],
+    'High School': ['jamb', 'waec'],
+    'Extras': ['masterclass']
+  };
+  const DOMAIN_LABELS = {
+    'University': 'University',
+    'High School': 'High School (JAMB \u00b7 WAEC)',
+    'Extras': 'Extras (Masterclass)'
+  };
+
+  function getCurrentDomain() {
+    return localStorage.getItem('axiom-domain') || 'High School';
+  }
+
+  function filterByDomain(cache, allowedExams) {
+    const scores = {};
+    Object.entries(cache.quiz_scores || {}).forEach(([key, entry]) => {
+      if (allowedExams.includes(entry.exam)) scores[key] = entry;
+    });
+    const history = (cache.quiz_history || []).filter(h => allowedExams.includes(h.exam));
+    return { scores, history };
+  }
+
+  function computeDomainTopicBreakdown(scores) {
+    const topics = {};
+    Object.values(scores).forEach(entry => {
+      if (!topics[entry.topic]) topics[entry.topic] = { total: 0, correct: 0 };
+      topics[entry.topic].total += entry.total;
+      topics[entry.topic].correct += entry.score;
+    });
+    return Object.entries(topics).map(([topic, d]) => ({
+      topic, accuracy: d.total > 0 ? Math.round((d.correct / d.total) * 100) : 0
+    }));
+  }
+
   async function renderAnalytics() {
     await axiomAuth.whenReady();
     const summary = progressTracker.getProfileSummary();
 
-    // Mastery ring
-    const percent = summary.avgAccuracy;
+    const domain = getCurrentDomain();
+    const badge = document.getElementById('analytics-domain-badge');
+    if (badge) badge.textContent = DOMAIN_LABELS[domain] || domain;
+
+    const allowedExams = DOMAIN_EXAMS[domain] || DOMAIN_EXAMS['High School'];
+    const cache = progressTracker.cache || {};
+    const { scores: domainScores, history: domainHistory } = filterByDomain(cache, allowedExams);
+
+    // Mastery ring (domain-filtered)
+    let totalCorrect = 0, totalQuestions = 0;
+    Object.values(domainScores).forEach(e => { totalCorrect += e.score; totalQuestions += e.total; });
+    const percent = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
     const circumference = 2 * Math.PI * 50;
     const offset = circumference - (percent / 100) * circumference;
     document.getElementById('an-mastery-ring-fill').style.strokeDashoffset = offset;
@@ -124,8 +171,8 @@ layout: app-shell
       }
     });
 
-    // Topic breakdown
-    const breakdown = progressTracker.getTopicBreakdown();
+    // Topic breakdown (domain-filtered)
+    const breakdown = computeDomainTopicBreakdown(domainScores);
     const breakdownEl = document.getElementById('topic-breakdown-list');
     if (breakdown.length > 0) {
       breakdownEl.innerHTML = breakdown.map(t => {
@@ -141,8 +188,8 @@ layout: app-shell
       }).join('');
     }
 
-    // Quiz history table
-    const history = progressTracker.getQuizHistory(20);
+    // Quiz history table (domain-filtered)
+    const history = domainHistory.slice(-20).reverse();
     const historyBody = document.getElementById('quiz-history-body');
     if (history.length > 0) {
       historyBody.innerHTML = history.map(h => `

@@ -1593,3 +1593,20 @@ mjx-container { color: var(--text-primary) !important; }
 .recent-activity-icon { font-size: 1.1rem; }
 .recent-activity-text { flex: 1; color: var(--text-primary); }
 .recent-activity-time { color: var(--text-muted); font-size: 0.78rem; white-space: nowrap; }
+
+
+/* ============================================================
+   ANALYTICS DOMAIN BADGE + QUIZ HUB PANELS
+   ============================================================ */
+.analytics-domain-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 4px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.section-note { font-size: 0.75rem; font-weight: 400; color: var(--text-muted); }
