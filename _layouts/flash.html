@@ -3,6 +3,14 @@ layout: app-shell
 ---
 
 <div class="flash-container" data-deck="{{ page.deck_id }}" data-subject="{{ page.subject | default: 'physics' }}">
+  <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+    <a href="{{ '/high-school/' | relative_url }}">High School</a>
+    <span class="crumb-sep">/</span>
+    <a href="{{ '/flash/' | relative_url }}">Flashcards</a>
+    <span class="crumb-sep">/</span>
+    <span class="crumb-current">{{ page.title }}</span>
+  </nav>
+
   <header class="flash-header">
     <div class="flash-meta">
       <span class="flash-subject">{{ page.subject | default: 'Physics' }}</span>

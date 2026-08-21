@@ -1493,3 +1493,28 @@ mjx-container { color: var(--text-primary) !important; }
 
 .section-block { margin-top: 2.5rem; }
 .section-block h2 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 1rem; }
+
+
+/* ============================================================
+   BREADCRUMB TRAIL
+   ============================================================ */
+.breadcrumb-trail {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.breadcrumb-trail a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.breadcrumb-trail a:hover {
+  color: var(--accent-masterclass);
+  text-decoration: underline;
+}
+.breadcrumb-trail .crumb-sep { color: var(--text-muted); }
+.breadcrumb-trail .crumb-current { color: var(--text-primary); font-weight: 600; }

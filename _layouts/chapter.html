@@ -10,6 +10,16 @@ layout: app
     <div class="reading-progress-bar" id="reading-progress"></div>
   </div>
 
+  <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+    <a href="{{ '/extras/' | relative_url }}">Extras</a>
+    <span class="crumb-sep">/</span>
+    <a href="{{ '/read/physics/vol0/' | relative_url }}">Complete Physics Masterpiece</a>
+    <span class="crumb-sep">/</span>
+    <a href="{{ '/read/physics/vol' | append: page.volume | append: '/' | relative_url }}">{{ page.volume_title | default: page.volume }}</a>
+    <span class="crumb-sep">/</span>
+    <span class="crumb-current">{{ page.title }}</span>
+  </nav>
+
   <!-- Chapter Header -->
   <header class="chapter-header">
     <div class="volume-label">{{ page.volume_title | default: page.volume }}</div>

@@ -4,6 +4,14 @@ layout: app
 
 <div class="quiz-wrapper" data-exam="{{ page.exam }}" data-subject="{{ page.subject }}" data-topic="{{ page.topic }}">
 
+  <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+    <a href="{{ '/high-school/' | relative_url }}">High School</a>
+    <span class="crumb-sep">/</span>
+    <a href="{{ '/quiz/' | append: page.exam | append: '/' | relative_url }}">{{ page.exam | upcase }}</a>
+    <span class="crumb-sep">/</span>
+    <span class="crumb-current">{{ page.topic | replace: '_', ' ' | capitalize }}</span>
+  </nav>
+
   <!-- Quiz Header -->
   <header class="quiz-header">
     <div class="quiz-meta">

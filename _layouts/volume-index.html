@@ -4,8 +4,14 @@ layout: app
 
 <div class="volume-index-wrapper">
 
+  <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+    <a href="{{ '/extras/' | relative_url }}">Extras</a>
+    <span class="crumb-sep">/</span>
+    <span class="crumb-current">{{ page.volume_title }}</span>
+  </nav>
+
   <header class="volume-index-header">
-    <div class="volume-label">Physics Masterclass</div>
+    <div class="volume-label">Complete Physics Masterpiece</div>
     <h1 class="volume-title">{{ page.volume_title }}</h1>
     <p class="volume-desc">{{ page.description }}</p>
 
