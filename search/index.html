@@ -1,0 +1,79 @@
+---
+layout: app
+title: Search
+permalink: /search/
+---
+
+<div class="landing-hero" style="text-align:left;">
+  <h1>Search Axiom</h1>
+  <p>Find chapters, quizzes, and flashcards across every domain.</p>
+</div>
+
+<div class="search-box-wrap">
+  <input type="text" id="search-input" class="search-input" placeholder="Search topics, chapters, quizzes..." autofocus>
+</div>
+
+<div id="search-results"></div>
+<div id="search-empty" class="search-empty">Type at least 2 characters to search.</div>
+
+<script>
+(function () {
+  var index = [];
+  var input = document.getElementById('search-input');
+  var resultsEl = document.getElementById('search-results');
+  var emptyEl = document.getElementById('search-empty');
+
+  fetch('{{ "/assets/data/search-index.json" | relative_url }}')
+    .then(function (r) { return r.json(); })
+    .then(function (data) { index = data || []; })
+    .catch(function () { index = []; });
+
+  var DOMAIN_ICONS = { 'University': '\uD83C\uDF93', 'High School': '\uD83C\uDFEB', 'Extras': '\u2728' };
+  var TYPE_ICONS = { 'Chapter': '\uD83D\uDCD6', 'Quiz': '\uD83E\uDDEA', 'Flashcards': '\uD83C\uDFB4' };
+
+  function render(query) {
+    if (!query || query.length < 2) {
+      resultsEl.innerHTML = '';
+      emptyEl.style.display = 'block';
+      emptyEl.textContent = 'Type at least 2 characters to search.';
+      return;
+    }
+    emptyEl.style.display = 'none';
+
+    var q = query.toLowerCase();
+    var matches = index.filter(function (item) {
+      return item.title.toLowerCase().indexOf(q) !== -1 || (item.subject || '').toLowerCase().indexOf(q) !== -1;
+    });
+
+    if (matches.length === 0) {
+      emptyEl.style.display = 'block';
+      emptyEl.textContent = 'No results for "' + query + '".';
+      resultsEl.innerHTML = '';
+      return;
+    }
+
+    var grouped = {};
+    matches.forEach(function (m) {
+      if (!grouped[m.domain]) grouped[m.domain] = [];
+      grouped[m.domain].push(m);
+    });
+
+    var html = '';
+    Object.keys(grouped).forEach(function (domain) {
+      html += '<div class="search-group">';
+      html += '<h2 class="search-group-title">' + (DOMAIN_ICONS[domain] || '') + ' ' + domain + '</h2>';
+      html += '<div class="search-result-list">';
+      grouped[domain].forEach(function (item) {
+        html += '<a href="' + item.url + '" class="search-result-item">' +
+          '<span class="search-result-icon">' + (TYPE_ICONS[item.type] || '\uD83D\uDCC4') + '</span>' +
+          '<span class="search-result-text"><b>' + item.title + '</b><small>' + item.subject + ' \u00b7 ' + item.type + '</small></span>' +
+          '</a>';
+      });
+      html += '</div></div>';
+    });
+    resultsEl.innerHTML = html;
+  }
+
+  input.addEventListener('input', function () { render(this.value.trim()); });
+})();
+</script>

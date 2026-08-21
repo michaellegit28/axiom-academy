@@ -1,0 +1,36 @@
+---
+---
+[
+{%- assign first = true -%}
+{%- for p in site.pages -%}
+  {%- if p.layout == 'chapter' or p.layout == 'quiz' or p.layout == 'flash' -%}
+    {%- assign domain = 'High School' -%}
+    {%- assign ptype = 'Chapter' -%}
+    {%- assign subj = 'Physics' -%}
+    {%- if p.layout == 'chapter' -%}
+      {%- assign ptype = 'Chapter' -%}
+      {%- if p.url contains '/physics/vol' -%}
+        {%- assign domain = 'Extras' -%}
+        {%- assign subj = 'Complete Physics Masterpiece' -%}
+      {%- elsif p.url contains '/jamb/' -%}
+        {%- assign domain = 'High School' -%}
+        {%- assign subj = 'JAMB Physics' -%}
+      {%- elsif p.url contains '/waec/' -%}
+        {%- assign domain = 'High School' -%}
+        {%- assign subj = 'WAEC Physics' -%}
+      {%- endif -%}
+    {%- elsif p.layout == 'quiz' -%}
+      {%- assign ptype = 'Quiz' -%}
+      {%- assign domain = 'High School' -%}
+      {%- assign subj = p.exam | upcase -%}
+    {%- elsif p.layout == 'flash' -%}
+      {%- assign ptype = 'Flashcards' -%}
+      {%- assign domain = 'High School' -%}
+      {%- assign subj = 'Flashcards' -%}
+    {%- endif -%}
+    {%- unless first -%},{%- endunless -%}
+    {%- assign first = false -%}
+    {"title": {{ p.title | default: p.name | jsonify }}, "domain": {{ domain | jsonify }}, "type": {{ ptype | jsonify }}, "subject": {{ subj | jsonify }}, "url": {{ p.url | jsonify }}}
+  {%- endif -%}
+{%- endfor -%}
+]
