@@ -4,42 +4,49 @@ title: Axiom Academy
 permalink: /
 ---
 
-<div class="landing-hero">
-  <h1>Master Physics.<br>Ace Your Exams.</h1>
-  <p>Choose your learning path — University, High School, or Extras — and Axiom keeps you right where you left off.</p>
-</div>
+<section class="landing-hero axiom-hero" aria-labelledby="axiom-home-title">
+  <div class="axiom-kicker">A free place to learn well</div>
+  <h1 id="axiom-home-title">Learn with structure.<br><em>Understand with depth.</em></h1>
+  <p>University courses, high-school preparation, and advanced resources — organized around the way you actually learn.</p>
+</section>
 
-<div class="track-selector">
-  <a href="{{ '/university/' | relative_url }}" class="track-card jamb">
-    <div class="track-icon">🎓</div>
-    <h3>University</h3>
-    <p>Undergraduate-level courses plus exam prep — quizzes, exams, and flashcards for university physics.</p>
-    <div class="track-meta">
-      <span>📚 Courses</span>
-      <span>🧪 Exam Prep</span>
-    </div>
+<nav class="axiom-domains" aria-label="Choose your learning domain">
+  <a href="{{ '/university/' | relative_url }}" class="axiom-domain-card university">
+    <span class="axiom-domain-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5L3 9.5Z"/><path d="M6 12.5V16c3 2 9 2 12 0v-3.5M21 10v5"/><path d="M12 14v5"/></svg>
+    </span>
+    <span>
+      <h2>University</h2>
+      <p>Coursework, deeper understanding, and university-level study.</p>
+      <span class="axiom-domain-meta"><span>Courses</span><span>Exam prep</span></span>
+    </span>
+    <span class="axiom-domain-arrow" aria-hidden="true">→</span>
   </a>
 
-  <a href="{{ '/high-school/' | relative_url }}" class="track-card waec">
-    <div class="track-icon">🏫</div>
-    <h3>High School</h3>
-    <p>JAMB, WAEC, and international equivalents. Objective drills and theory practice, organized by exam board.</p>
-    <div class="track-meta">
-      <span>🇳🇬 JAMB · WAEC</span>
-      <span>🌍 International</span>
-    </div>
+  <a href="{{ '/high-school/' | relative_url }}" class="axiom-domain-card high-school">
+    <span class="axiom-domain-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V6.5L12 3l8 3.5V21"/><path d="M8 21v-5h8v5M8 9h.01M12 9h.01M16 9h.01M8 12h.01M12 12h.01M16 12h.01"/></svg>
+    </span>
+    <span>
+      <h2>High School</h2>
+      <p>Build strong foundations, then prepare for the exams that matter.</p>
+      <span class="axiom-domain-meta"><span>JAMB</span><span>WAEC</span><span>International</span></span>
+    </span>
+    <span class="axiom-domain-arrow" aria-hidden="true">→</span>
   </a>
 
-  <a href="{{ '/extras/' | relative_url }}" class="track-card masterclass">
-    <div class="track-icon">✨</div>
-    <h3>Extras</h3>
-    <p>The Complete Physics Masterpiece and other advanced, enrichment resources beyond the standard curriculum.</p>
-    <div class="track-meta">
-      <span>📖 Masterpiece</span>
-      <span>🔬 Deep Dives</span>
-    </div>
+  <a href="{{ '/extras/' | relative_url }}" class="axiom-domain-card extras">
+    <span class="axiom-domain-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.4 5.6L19 10l-5.6 1.4L12 17l-1.4-5.6L5 10l5.6-1.4L12 3Z"/><path d="m19 16 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/></svg>
+    </span>
+    <span>
+      <h2>Extras</h2>
+      <p>Advanced resources for going beyond the standard curriculum.</p>
+      <span class="axiom-domain-meta"><span>Masterpiece</span><span>Deep dives</span></span>
+    </span>
+    <span class="axiom-domain-arrow" aria-hidden="true">→</span>
   </a>
-</div>
+</nav>
 
 <div class="home-dashboard" id="home-dashboard" style="display:none;">
   <div class="dashboard-section" id="continue-learning-section" style="display:none;">
