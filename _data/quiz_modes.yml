@@ -1,0 +1,126 @@
+# Assessment-first Quiz model.
+# Quiz is not a copy of the Study navigation tree.
+# All modes ultimately resolve to real question metadata.
+
+version: 1
+
+domain: high-school
+
+modes:
+  - id: exam-practice
+    name: Exam Practice
+    description: Practice questions mapped to a specific exam and subject.
+    requires:
+      - exam_id
+      - subject_id
+    optional:
+      - topic_ids
+      - difficulty
+      - question_count
+      - timed
+    selection: filtered-question-bank
+
+  - id: topic-practice
+    name: Topic Practice
+    description: Focused practice for one or more canonical Study topics.
+    requires:
+      - subject_id
+      - topic_ids
+    optional:
+      - exam_id
+      - difficulty
+      - question_count
+      - timed
+    selection: filtered-question-bank
+
+  - id: weak-areas
+    name: Weak Areas
+    description: Automatically selects questions from topics where the learner needs practice.
+    requires:
+      - subject_id
+    optional:
+      - exam_id
+      - question_count
+      - timed
+    selection: mastery-driven
+
+  - id: mixed-practice
+    name: Mixed Practice
+    description: Samples multiple topics within a subject instead of staying on one topic.
+    requires:
+      - subject_id
+    optional:
+      - exam_id
+      - difficulty
+      - question_count
+      - timed
+    selection: balanced-topic-sampling
+
+  - id: timed-drill
+    name: Timed Drill
+    description: Short, time-bounded practice for exam-speed training.
+    requires:
+      - exam_id
+      - subject_id
+    optional:
+      - topic_ids
+      - question_count
+      - difficulty
+    selection: timed-filtered-question-bank
+
+  - id: revision
+    name: Revision
+    description: Questions drawn from recently studied or previously assessed material.
+    requires:
+      - subject_id
+    optional:
+      - exam_id
+      - topic_ids
+      - question_count
+      - timed
+    selection: recent-activity
+
+selection_contract:
+  question_fields:
+    - id
+    - exam_id
+    - subject_id
+    - topic_ids
+    - difficulty
+    - type
+    - status
+  never_fabricate_questions: true
+  only_status_live: true
+
+question_taxonomy:
+  required:
+    - exam_id
+    - subject_id
+    - topic_ids
+  recommended:
+    - skill_ids
+    - difficulty
+    - year
+  note: A question can test multiple canonical topics and multiple skills.
+
+skill_model:
+  id_format: lowercase-hyphen-separated
+  relationship: questions-to-skills
+  purpose: Track fine-grained ability beneath topic-level mastery.
+  examples:
+    - identify-forces
+    - draw-free-body-diagram
+    - apply-newtons-second-law
+    - resolve-forces
+    - solve-multi-step-problem
+
+future_adaptive_contract:
+  inputs:
+    - topic_mastery
+    - skill_mastery
+    - recent_attempts
+    - recent_reading
+  outputs:
+    - question_ids
+    - reason
+    - recommended_content_id
