@@ -1,0 +1,66 @@
+# Canonical High School Study taxonomy.
+# Stable IDs are referenced by content front matter and UI; display names may change.
+# Exam mappings are intentionally separate from Study taxonomy.
+
+version: 1
+
+domain: high-school
+
+departments:
+  - id: sciences
+    name: Sciences
+    description: Physics, Chemistry, Biology and related science subjects.
+    subjects:
+      - id: physics
+        name: Physics
+        description: Mechanics, waves, electricity, fields and modern physics.
+        topics:
+          - id: mechanics
+            name: Mechanics
+            description: Motion, forces, energy, momentum and related principles.
+            subtopics:
+              - id: measurements-and-units
+                name: Measurements & Units
+              - id: motion-in-one-dimension
+                name: Motion in One Dimension
+              - id: forces-and-newtons-laws
+                name: Forces & Newton's Laws
+              - id: work-energy-and-power
+                name: Work, Energy & Power
+              - id: momentum-and-collisions
+                name: Momentum & Collisions
+          - id: waves
+            name: Waves
+            description: Wave motion, sound, light and wave phenomena.
+            subtopics:
+              - id: wave-motion
+                name: Wave Motion
+              - id: sound
+                name: Sound
+              - id: light
+                name: Light
+          - id: electricity
+            name: Electricity
+            description: Current electricity, circuits and electromagnetic effects.
+            subtopics:
+              - id: current-electricity
+                name: Current Electricity
+              - id: electric-circuits
+                name: Electric Circuits
+              - id: electromagnetism
+                name: Electromagnetism
+
+  - id: commercial
+    name: Commercial
+    description: Commerce, accounting, economics and related subjects.
+    subjects: []
+
+  - id: arts
+    name: Arts
+    description: Arts and humanities subjects.
+    subjects: []
+
+  - id: technology
+    name: Technology
+    description: Computing, technical and applied subjects.
+    subjects: []
