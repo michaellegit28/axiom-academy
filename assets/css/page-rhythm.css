@@ -1,0 +1,42 @@
+/* Compact learning-page rhythm — keeps the workspace visible above the fold. */
+.page-content-start {
+  padding-top: 1rem;
+  margin-bottom: .85rem;
+}
+
+.page-content-start .section-heading {
+  margin-bottom: 0;
+}
+
+.page-content-start .section-heading h2 {
+  margin-top: .15rem;
+  font-size: clamp(1.35rem, 4vw, 1.8rem);
+  line-height: 1.1;
+}
+
+.page-content-start .section-note {
+  white-space: nowrap;
+}
+
+.page-content-start + .track-selector {
+  margin-top: 0;
+}
+
+@media (max-width: 560px) {
+  .page-content-start {
+    padding-top: .75rem;
+    margin-bottom: .7rem;
+  }
+
+  .page-content-start .section-heading {
+    gap: .15rem;
+  }
+
+  .page-content-start .section-heading h2 {
+    font-size: 1.35rem;
+  }
+
+  .page-content-start .section-note {
+    white-space: normal;
+  }
+}
