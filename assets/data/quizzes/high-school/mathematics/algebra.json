@@ -1,0 +1,19 @@
+{
+  "exam": "high-school",
+  "subject": "mathematics",
+  "topic": "algebra",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Solve: x + 5 = 12",
+      "options": ["5", "7", "12", "17"],
+      "answer": "7"
+    },
+    {
+      "id": 2,
+      "question": "What is the value of 3x when x = 4?",
+      "options": ["7", "12", "16", "34"],
+      "answer": "12"
+    }
+  ]
+}
