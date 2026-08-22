@@ -4,15 +4,10 @@ title: High School Study
 permalink: /high-school/
 ---
 
-<div class="landing-hero">
-  <h1>High School Study</h1>
-  <p>Build strong subject foundations by department, then move into focused topics and subtopics at your own pace.</p>
-</div>
-
-<section class="section-block" aria-labelledby="study-departments-heading">
+<section class="section-block page-content-start" aria-labelledby="study-departments-heading">
   <div class="section-heading">
     <div>
-      <span class="eyebrow">Study</span>
+      <span class="eyebrow">High School · Study</span>
       <h2 id="study-departments-heading">Choose a department</h2>
     </div>
     <span class="section-note">Department → Subject → Topic → Subtopic</span>
