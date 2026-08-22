@@ -1,0 +1,15 @@
+- id: waec-math-2023-algebra-001
+  exam: waec
+  year: 2023
+  subject: Mathematics
+  topic: Algebra
+  difficulty: medium
+  type: multiple_choice
+  question: "Sample question placeholder"
+  options:
+    A: "Option A"
+    B: "Option B"
+    C: "Option C"
+    D: "Option D"
+  answer: A
+  explanation: "Explanation will be added with approved question content."
