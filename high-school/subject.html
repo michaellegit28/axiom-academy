@@ -25,27 +25,58 @@ import { getHighSchoolStudyDepartment } from "{{ '/assets/js/learning-taxonomy.j
 
 const params = new URLSearchParams(window.location.search);
 const departmentId = params.get('department');
+const subjectId = params.get('subject');
 const department = getHighSchoolStudyDepartment(departmentId);
 const list = document.getElementById('subject-list');
 const title = document.getElementById('subject-title');
 const label = document.getElementById('department-label');
 const description = document.getElementById('subject-description');
 
+function pretty(value) {
+  return value.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function getRealSubjectContent(subject) {
+  return [...document.querySelectorAll('[data-high-school-content]')]
+    .filter(node => node.dataset.subject === subject);
+}
+
 if (!department) {
   title.textContent = 'Choose a department';
   description.textContent = 'Return to High School Study and choose a department to continue.';
   list.innerHTML = '<a class="btn btn-primary" href="{{ \'/high-school/\' | relative_url }}">Back to High School Study</a>';
+} else if (subjectId && department.subjects.includes(subjectId)) {
+  label.textContent = department.name;
+  title.textContent = pretty(subjectId);
+  description.textContent = 'Only published curriculum content is shown here.';
+
+  const content = getRealSubjectContent(subjectId);
+  if (content.length) {
+    content.forEach(node => list.appendChild(node.cloneNode(true)));
+  } else {
+    const empty = document.createElement('div');
+    empty.className = 'track-card';
+    empty.innerHTML = `<div class="track-icon">📖</div><h3>Curriculum coming next</h3><p>No published topics exist for ${pretty(subjectId)} yet. We won't display fabricated content.</p>`;
+    list.appendChild(empty);
+  }
 } else {
   label.textContent = department.name;
   title.textContent = `${department.name} Subjects`;
-  description.textContent = 'Choose a subject. Topic and subtopic pages will appear as real curriculum content is added.';
+  description.textContent = 'Choose a subject. Only real curriculum content will be surfaced.';
 
   department.subjects.forEach(subject => {
     const card = document.createElement('a');
     card.className = 'track-card study-subject';
     card.href = `{{ '/high-school/subject/' | relative_url }}?department=${encodeURIComponent(department.id)}&subject=${encodeURIComponent(subject)}`;
-    card.innerHTML = `<div class="track-icon">📖</div><h3>${subject.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</h3><p>Open the subject pathway and explore available topics.</p><div class="track-meta"><span>Topic → Subtopic</span></div>`;
+    card.innerHTML = `<div class="track-icon">📖</div><h3>${pretty(subject)}</h3><p>Open the subject pathway and explore published topics.</p><div class="track-meta"><span>Topic → Subtopic</span></div>`;
     list.appendChild(card);
   });
 }
 </script>
+
+<div hidden aria-hidden="true">
+  {% assign hs_pages = site.pages | where_exp: "item", "item.high_school_subject" %}
+  {% for item in hs_pages %}
+  <a data-high-school-content data-subject="{{ item.high_school_subject }}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+  {% endfor %}
+</div>
