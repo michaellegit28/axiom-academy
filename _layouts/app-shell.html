@@ -40,9 +40,5 @@
   {% include ai-chat.html %}
   <script type="module" src="{{ site.baseurl }}/assets/js/auth.js"></script>
   <script type="module" src="{{ site.baseurl }}/assets/js/app-shell.js"></script>
-  <script type="module">
-    import { initStudyRouting } from "{{ '/assets/js/axiom-study-routing.js' | relative_url }}";
-    document.addEventListener('DOMContentLoaded', initStudyRouting);
-  </script>
 </body>
 </html>
