@@ -1,0 +1,16 @@
+[
+{% for item in site.data.content_index %}
+  {
+    "contentId": {{ item.contentId | jsonify }},
+    "contentType": {{ item.contentType | jsonify }},
+    "domain": {{ item.domain | jsonify }},
+    "title": {{ item.title | jsonify }},
+    "url": {{ item.url | relative_url | jsonify }},
+    "subject": {{ item.subject | jsonify }},
+    "department": {{ item.department | jsonify }},
+    "exam": {{ item.exam | jsonify }},
+    "topic": {{ item.topic | jsonify }},
+    "subtopic": {{ item.subtopic | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
