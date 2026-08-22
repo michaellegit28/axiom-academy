@@ -23,6 +23,7 @@
   {% endif %}
 </head>
 <body class="page-{{ page.title | slugify }}">
+  <script>window.AXIOM_BASE_URL={{ site.baseurl | jsonify }};</script>
   {% include nav.html %}
 
   {{ content }}
