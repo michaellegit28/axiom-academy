@@ -19,11 +19,11 @@ layout: app-shell
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script type="module">
   import { progressTracker } from "{{ site.baseurl }}/assets/js/progress.js";
-  import { getState, subscribe } from "{{ site.baseurl }}/assets/js/axiom-state.js";
+  import { getState, setActivity, subscribe } from "{{ site.baseurl }}/assets/js/axiom-state.js";
 
   const DOMAIN_LABELS = {
     university: 'University',
-    'high-school': 'High School (JAMB · WAEC)',
+    'high-school': 'High School',
     extras: 'Extras'
   };
   const formatTopic = slug => String(slug || '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -60,6 +60,7 @@ layout: app-shell
     document.getElementById('recommend-list').innerHTML = actions.map(a=>`<li><a href="{{ site.baseurl }}${a.href}">${a.text} →</a></li>`).join('');
   }
 
+  setActivity('progress');
   renderAnalytics();
   subscribe(renderAnalytics);
 </script>
