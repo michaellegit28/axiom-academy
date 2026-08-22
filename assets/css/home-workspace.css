@@ -1,82 +1,26 @@
-/* Axiom Home — application workspace layer */
-.axiom-home-intro { max-width:900px; margin:0 auto; padding:clamp(1.35rem,4vw,2.4rem) 0 1rem; }
-.axiom-home-intro .axiom-kicker { margin-bottom:.65rem; }
-.axiom-home-intro h1 { margin:0; font-family:var(--font-serif); font-size:clamp(2rem,7vw,3.35rem); line-height:1.02; letter-spacing:-.03em; }
-.axiom-home-intro p { max-width:58ch; margin:.65rem 0 0; color:var(--axiom-muted); line-height:1.6; }
-.axiom-home-intro.is-workspace { display:none; }
-.home-dashboard { max-width:900px; margin:1.5rem auto 0; }
-.dashboard-welcome { display:flex; align-items:end; justify-content:space-between; gap:1.5rem; padding:0 0 1.25rem; border-bottom:1px solid var(--axiom-line); }
-.dashboard-welcome h2 { margin:.35rem 0 .2rem; font-family:var(--font-serif); font-size:clamp(1.7rem,5vw,2.45rem); line-height:1; letter-spacing:-.025em; }
-.dashboard-welcome p { margin:0; color:var(--axiom-muted); font-size:.9rem; }
-.dashboard-study-link { flex:0 0 auto; display:inline-flex; align-items:center; gap:.5rem; padding:.62rem .8rem; border:1px solid var(--axiom-line); border-radius:var(--axiom-radius-control); color:var(--axiom-ink); background:var(--axiom-surface); text-decoration:none; font-size:.75rem; font-weight:650; }
-.dashboard-study-link:hover { border-color:var(--axiom-gold); color:var(--axiom-blue); }
-.dashboard-section { margin-top:1.75rem; }
-.dashboard-section h2 { margin:0; }
-.section-heading { margin-bottom:.65rem; }
-.continue-cards { display:grid; gap:.7rem; }
-.continue-card { display:block; padding:1rem; border:1px solid var(--axiom-line); border-radius:14px; background:var(--axiom-surface); color:inherit; text-decoration:none; box-shadow:0 5px 18px rgba(23,32,51,.035); }
-.continue-card:hover { border-color:var(--axiom-gold); }
-.continue-card-top,.continue-card-bottom { display:flex; justify-content:space-between; gap:1rem; align-items:center; }
-.continue-card-subject { color:var(--axiom-ink); font-size:.82rem; font-weight:650; }
-.continue-card-time,.continue-card-bottom { color:var(--axiom-muted); font-size:.68rem; }
-.continue-card-progress-bar { height:5px; margin:.75rem 0 .55rem; overflow:hidden; border-radius:99px; background:var(--axiom-line); }
-.continue-card-progress-fill { height:100%; border-radius:inherit; background:var(--axiom-blue); }
-.continue-card-cta { color:var(--axiom-gold); font-weight:700; }
-.stat-pills-row { display:grid; grid-template-columns:repeat(4,1fr); gap:.65rem; }
-.stat-pill { min-width:0; padding:.85rem; border:1px solid var(--axiom-line); border-radius:14px; background:var(--axiom-surface); }
-.stat-pill-value { display:block; color:var(--axiom-ink); font:700 1.25rem var(--font-sans); }
-.stat-pill-label { display:block; margin-top:.2rem; color:var(--axiom-muted); font-size:.66rem; line-height:1.3; }
-.recommended-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:.65rem; }
-.recommended-card { display:flex; align-items:center; gap:.7rem; min-width:0; padding:.8rem; border:1px solid var(--axiom-line); border-radius:14px; background:var(--axiom-surface); color:inherit; text-decoration:none; }
-.recommended-card:hover { border-color:var(--axiom-gold); }
-.recommended-icon { width:32px; height:32px; flex:0 0 auto; display:grid; place-items:center; border-radius:9px; background:var(--axiom-gold-soft); color:var(--axiom-gold); font-weight:700; }
-.recommended-title { color:var(--axiom-ink); font-size:.8rem; font-weight:650; }
-.recommended-sub { margin-top:.15rem; color:var(--axiom-muted); font-size:.65rem; }
-.recent-activity-list { margin:0; padding:0; list-style:none; border:1px solid var(--axiom-line); border-radius:14px; overflow:hidden; background:var(--axiom-surface); }
-.recent-activity-item { display:grid; grid-template-columns:30px 1fr auto; gap:.7rem; align-items:center; padding:.72rem .8rem; border-top:1px solid var(--axiom-line); }
-.recent-activity-item:first-child { border-top:0; }
-.recent-activity-icon { width:28px; height:28px; display:grid; place-items:center; border:1px solid var(--axiom-line); border-radius:8px; color:var(--axiom-blue); font-size:.62rem; font-weight:700; }
-.recent-activity-text { color:var(--axiom-muted); font-size:.73rem; }
-.recent-activity-text b { color:var(--axiom-ink); }
-.recent-activity-time { color:var(--axiom-muted); font-size:.65rem; white-space:nowrap; }
-.axiom-domains { margin-bottom:2rem; }
-.axiom-domains-heading { display:flex; align-items:end; justify-content:space-between; gap:1.5rem; margin-bottom:.85rem; }
-.axiom-domains-heading h2 { margin:.3rem 0 0; font-family:var(--font-serif); font-size:1.65rem; letter-spacing:-.02em; }
-.axiom-domains-heading p { max-width:42ch; margin:0; color:var(--axiom-muted); font-size:.72rem; line-height:1.5; text-align:right; }
-.axiom-mission { max-width:900px; margin:2.5rem auto 0; padding:1.35rem 0 0; border-top:1px solid var(--axiom-line); }
-.axiom-mission-heading { display:flex; align-items:end; justify-content:space-between; gap:1.5rem; margin-bottom:1rem; }
-.axiom-mission-heading h2 { max-width:24ch; margin:.3rem 0 0; font-family:var(--font-serif); font-size:clamp(1.35rem,3vw,1.85rem); line-height:1.08; letter-spacing:-.02em; }
-.axiom-mission-heading p { max-width:38ch; margin:0; color:var(--axiom-muted); font-size:.75rem; line-height:1.5; text-align:right; }
-.axiom-mission-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; }
-.axiom-mission-card { padding:1rem; border:1px solid var(--axiom-line); border-radius:14px; background:var(--axiom-surface); }
-.axiom-mission-label { display:inline-block; margin-bottom:.55rem; color:var(--axiom-gold); font-size:.62rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
-.axiom-mission-card h3 { margin:0; color:var(--axiom-ink); font-family:var(--font-serif); font-size:1rem; line-height:1.3; }
-.axiom-mission-card p { margin:.55rem 0 0; color:var(--axiom-muted); font-size:.72rem; line-height:1.55; }
-.page-axiom-academy footer { max-width:900px; margin:2.5rem auto 0; padding:1.5rem 0 calc(var(--mobile-nav-height, 72px) + 1.5rem); border-top:1px solid var(--axiom-line); }
-.page-axiom-academy footer blockquote { max-width:58ch; margin:0 0 .5rem; color:var(--axiom-muted); font-family:var(--font-serif); font-size:.95rem; line-height:1.5; }
-.page-axiom-academy footer p { margin:0; color:var(--axiom-muted); font-size:.65rem; }
-@media (min-width:769px) {
-  .axiom-home-intro,.home-dashboard,.axiom-domains,.axiom-mission,.page-axiom-academy footer { width:calc(100% - 2 * var(--page-margin, 24px)); }
-  .axiom-domains { grid-template-columns:repeat(3,1fr); }
-  .axiom-domains-heading { grid-column:1/-1; }
-}
-@media (max-width:560px) {
-  .axiom-home-intro { padding-top:1rem; }
-  .dashboard-welcome { align-items:flex-start; flex-direction:column; gap:.8rem; }
-  .dashboard-study-link { width:100%; justify-content:space-between; }
-  .stat-pills-row { grid-template-columns:repeat(2,1fr); }
-  .recommended-cards { grid-template-columns:1fr; }
-  .axiom-domains-heading,.axiom-mission-heading { align-items:flex-start; flex-direction:column; gap:.4rem; }
-  .axiom-domains-heading p,.axiom-mission-heading p { text-align:left; }
-  .axiom-domains { margin-top:1.5rem; }
-  .axiom-mission { margin-top:2rem; }
-  .axiom-mission-grid { grid-template-columns:1fr; }
-  .page-axiom-academy footer { margin-top:2rem; padding-top:1.25rem; }
-}
-@media (max-width:380px) {
-  .home-dashboard { margin-top:1rem; }
-  .stat-pill { padding:.7rem; }
-  .stat-pill-value { font-size:1.1rem; }
-  .recent-activity-item { grid-template-columns:28px 1fr; }
-  .recent-activity-time { grid-column:2; }
-}
+/* Axiom Home — canonical student command center */
+.axiom-home-intro,.home-dashboard,.axiom-domains,.axiom-mission,.page-axiom-academy footer{width:calc(100% - 2 * var(--page-margin,24px));max-width:1180px;margin-left:auto;margin-right:auto}
+.axiom-home-intro{padding:1.15rem 0 .85rem}
+.axiom-home-intro .axiom-kicker{margin-bottom:.45rem}
+.axiom-home-intro h1{margin:0;font-family:var(--font-serif);font-size:clamp(2rem,5vw,3rem);line-height:1.04;letter-spacing:-.03em}
+.axiom-home-intro p{max-width:62ch;margin:.55rem 0 0;color:var(--axiom-muted);line-height:1.5}
+.axiom-home-intro.is-workspace{display:none}
+.home-dashboard{margin-top:1rem}
+.dashboard-welcome{display:flex;align-items:end;justify-content:space-between;gap:1.5rem;padding:0 0 1rem;border-bottom:1px solid var(--axiom-line)}
+.dashboard-welcome h2{margin:.3rem 0 .15rem;font-family:var(--font-serif);font-size:clamp(1.65rem,4vw,2.25rem);line-height:1.05;letter-spacing:-.025em}
+.dashboard-welcome p{margin:0;color:var(--axiom-muted);font-size:.9rem}
+.dashboard-study-link{flex:0 0 auto;display:inline-flex;align-items:center;gap:.5rem;padding:.62rem .8rem;border:1px solid var(--axiom-line);border-radius:var(--axiom-radius-control);color:var(--axiom-ink);background:var(--axiom-surface);text-decoration:none;font-size:.75rem;font-weight:650}
+.dashboard-study-link:hover{border-color:var(--axiom-gold);color:var(--axiom-blue)}
+.dashboard-section{margin-top:1.35rem}.dashboard-section h2{margin:0}.section-heading{margin-bottom:.6rem}.continue-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.7rem}
+.continue-card{display:block;padding:1rem;border:1px solid var(--axiom-line);border-radius:14px;background:var(--axiom-surface);color:inherit;text-decoration:none;box-shadow:0 5px 18px rgba(23,32,51,.035)}
+.continue-card:hover{border-color:var(--axiom-gold)}
+.continue-card-top,.continue-card-bottom{display:flex;justify-content:space-between;gap:1rem;align-items:center}.continue-card-subject{color:var(--axiom-ink);font-size:.82rem;font-weight:650}.continue-card-time,.continue-card-bottom{color:var(--axiom-muted);font-size:.68rem}.continue-card-progress-bar{height:5px;margin:.75rem 0 .55rem;overflow:hidden;border-radius:99px;background:var(--axiom-line)}.continue-card-progress-fill{height:100%;border-radius:inherit;background:var(--axiom-blue)}.continue-card-cta{color:var(--axiom-gold);font-weight:700}
+.stat-pills-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem}.stat-pill{min-width:0;padding:.85rem;border:1px solid var(--axiom-line);border-radius:14px;background:var(--axiom-surface)}.stat-pill-value{display:block;color:var(--axiom-ink);font:700 1.25rem var(--font-sans)}.stat-pill-label{display:block;margin-top:.2rem;color:var(--axiom-muted);font-size:.66rem;line-height:1.3}
+.recommended-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.65rem}.recommended-card{display:flex;align-items:center;gap:.7rem;min-width:0;padding:.8rem;border:1px solid var(--axiom-line);border-radius:14px;background:var(--axiom-surface);color:inherit;text-decoration:none}.recommended-card:hover{border-color:var(--axiom-gold)}.recommended-icon{width:32px;height:32px;flex:0 0 auto;display:grid;place-items:center;border-radius:9px;background:var(--axiom-gold-soft);color:var(--axiom-gold);font-weight:700}.recommended-title{color:var(--axiom-ink);font-size:.8rem;font-weight:650}.recommended-sub{margin-top:.15rem;color:var(--axiom-muted);font-size:.65rem}
+.recent-activity-list{margin:0;padding:0;list-style:none;border:1px solid var(--axiom-line);border-radius:14px;overflow:hidden;background:var(--axiom-surface)}.recent-activity-item{display:grid;grid-template-columns:30px 1fr auto;gap:.7rem;align-items:center;padding:.72rem .8rem;border-top:1px solid var(--axiom-line)}.recent-activity-item:first-child{border-top:0}.recent-activity-icon{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--axiom-line);border-radius:8px;color:var(--axiom-blue);font-size:.62rem;font-weight:700}.recent-activity-text{color:var(--axiom-muted);font-size:.73rem}.recent-activity-text b{color:var(--axiom-ink)}.recent-activity-time{color:var(--axiom-muted);font-size:.65rem;white-space:nowrap}
+.axiom-domains{margin-top:1.8rem;margin-bottom:1.75rem}.axiom-domains-heading{display:flex;align-items:end;justify-content:space-between;gap:1.5rem;margin-bottom:.75rem}.axiom-domains-heading h2{margin:.25rem 0 0;font-family:var(--font-serif);font-size:1.55rem;letter-spacing:-.02em}.axiom-domains-heading p{max-width:48ch;margin:0;color:var(--axiom-muted);font-size:.72rem;line-height:1.5;text-align:right}
+.axiom-domain-card{min-height:150px}
+.axiom-mission{margin-top:2rem;padding:1.25rem 0 0;border-top:1px solid var(--axiom-line)}.axiom-mission-heading{display:flex;align-items:end;justify-content:space-between;gap:1.5rem;margin-bottom:.9rem}.axiom-mission-heading h2{max-width:28ch;margin:.25rem 0 0;font-family:var(--font-serif);font-size:clamp(1.3rem,3vw,1.75rem);line-height:1.08;letter-spacing:-.02em}.axiom-mission-heading p{max-width:40ch;margin:0;color:var(--axiom-muted);font-size:.75rem;line-height:1.5;text-align:right}.axiom-mission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.axiom-mission-card{padding:1rem;border:1px solid var(--axiom-line);border-radius:14px;background:var(--axiom-surface)}.axiom-mission-label{display:inline-block;margin-bottom:.5rem;color:var(--axiom-gold);font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.axiom-mission-card h3{margin:0;color:var(--axiom-ink);font-family:var(--font-serif);font-size:1rem;line-height:1.3}.axiom-mission-card p{margin:.5rem 0 0;color:var(--axiom-muted);font-size:.72rem;line-height:1.55}
+.page-axiom-academy footer{margin-top:2.25rem;padding:1.35rem 0 calc(var(--mobile-nav-height,72px) + 1.35rem);border-top:1px solid var(--axiom-line)}.page-axiom-academy footer blockquote{max-width:58ch;margin:0 0 .5rem;color:var(--axiom-muted);font-family:var(--font-serif);font-size:.95rem;line-height:1.5}.page-axiom-academy footer p{margin:0;color:var(--axiom-muted);font-size:.65rem}
+@media (max-width:760px){.dashboard-welcome{align-items:flex-start;flex-direction:column;gap:.75rem}.dashboard-study-link{width:100%;justify-content:space-between}.stat-pills-row{grid-template-columns:repeat(2,minmax(0,1fr))}.axiom-domains-heading,.axiom-mission-heading{align-items:flex-start;flex-direction:column;gap:.4rem}.axiom-domains-heading p,.axiom-mission-heading p{text-align:left}.axiom-mission-grid{grid-template-columns:1fr}}
+@media (max-width:420px){.axiom-home-intro{padding-top:.85rem}.axiom-home-intro h1{font-size:2rem}.home-dashboard{margin-top:.8rem}.stat-pill{padding:.7rem}.stat-pill-value{font-size:1.1rem}.recent-activity-item{grid-template-columns:28px 1fr}.recent-activity-time{grid-column:2}.axiom-domain-card{min-height:0}}
