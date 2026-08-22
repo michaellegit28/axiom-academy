@@ -1,0 +1,236 @@
+---
+---
+
+/* ============================================================
+   AXIOM ACADEMY — PREMIUM VISUAL FOUNDATION
+   Phase C: restrained academic palette, editorial hierarchy,
+   refined cards, and mobile-first composition.
+   ============================================================ */
+
+:root {
+  --axiom-paper: #f7f5ef;
+  --axiom-surface: #ffffff;
+  --axiom-surface-soft: #f1f3f6;
+  --axiom-ink: #172033;
+  --axiom-muted: #687387;
+  --axiom-blue: #244a73;
+  --axiom-blue-soft: #e8eef5;
+  --axiom-gold: #b8862d;
+  --axiom-gold-soft: #f4ead4;
+  --axiom-line: #dfe4ea;
+  --axiom-dark: #0b1018;
+  --axiom-dark-surface: #111824;
+  --axiom-dark-elevated: #17202d;
+  --axiom-dark-ink: #f2f4f7;
+  --axiom-dark-muted: #a6afbd;
+  --axiom-dark-line: #283342;
+  --axiom-radius-card: 18px;
+  --axiom-radius-control: 10px;
+}
+
+[data-theme="dark"] {
+  --axiom-surface: var(--axiom-dark-surface);
+  --axiom-surface-soft: var(--axiom-dark-elevated);
+  --axiom-ink: var(--axiom-dark-ink);
+  --axiom-muted: var(--axiom-dark-muted);
+  --axiom-blue: #7ea6cc;
+  --axiom-blue-soft: #1b2a3b;
+  --axiom-gold: #d4aa55;
+  --axiom-gold-soft: #302719;
+  --axiom-line: var(--axiom-dark-line);
+}
+
+body {
+  background: var(--axiom-paper);
+  color: var(--axiom-ink);
+}
+
+[data-theme="dark"] body {
+  background: var(--axiom-dark);
+}
+
+/* Editorial hero */
+.landing-hero.axiom-hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+  text-align: left;
+}
+
+.axiom-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-bottom: 1rem;
+  color: var(--axiom-gold);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.axiom-kicker::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+}
+
+.axiom-hero h1 {
+  max-width: 700px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.55rem, 9vw, 5rem);
+  font-weight: 600;
+  line-height: .98;
+  letter-spacing: -.035em;
+}
+
+.axiom-hero h1 em {
+  color: var(--axiom-blue);
+  font-style: normal;
+}
+
+.axiom-hero p {
+  max-width: 650px;
+  margin: 1.35rem 0 0;
+  color: var(--axiom-muted);
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  line-height: 1.7;
+}
+
+/* Domain gateways */
+.axiom-domains {
+  display: grid;
+  gap: 14px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.axiom-domain-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr 28px;
+  align-items: center;
+  gap: 16px;
+  min-height: 138px;
+  padding: 22px;
+  color: var(--axiom-ink);
+  background: var(--axiom-surface);
+  border: 1px solid var(--axiom-line);
+  border-radius: var(--axiom-radius-card);
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(23,32,51,.045);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.axiom-domain-card:hover,
+.axiom-domain-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--axiom-gold);
+  box-shadow: 0 14px 34px rgba(23,32,51,.09);
+}
+
+.axiom-domain-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  color: var(--axiom-blue);
+  background: var(--axiom-blue-soft);
+  border-radius: 14px;
+}
+
+.axiom-domain-icon svg { width: 25px; height: 25px; }
+
+.axiom-domain-card.extras .axiom-domain-icon {
+  color: var(--axiom-gold);
+  background: var(--axiom-gold-soft);
+}
+
+.axiom-domain-card h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -.015em;
+}
+
+.axiom-domain-card p {
+  margin: .35rem 0 0;
+  color: var(--axiom-muted);
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+.axiom-domain-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: .65rem;
+}
+
+.axiom-domain-meta span {
+  padding: 4px 8px;
+  color: var(--axiom-muted);
+  background: var(--axiom-surface-soft);
+  border-radius: 999px;
+  font-size: .68rem;
+  font-weight: 600;
+}
+
+.axiom-domain-arrow {
+  color: var(--axiom-muted);
+  font-size: 1.15rem;
+  transition: transform .2s ease, color .2s ease;
+}
+
+.axiom-domain-card:hover .axiom-domain-arrow {
+  color: var(--axiom-gold);
+  transform: translateX(3px);
+}
+
+/* Existing dashboard sections inherit the new rhythm. */
+.home-dashboard { max-width: 900px; margin: 3rem auto 0; }
+.dashboard-section { margin-top: 2.5rem; }
+.dashboard-section h2 {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  letter-spacing: -.02em;
+}
+
+/* Refined mobile navigation */
+.mobile-nav {
+  background: color-mix(in srgb, var(--axiom-surface) 94%, transparent);
+  border-top-color: var(--axiom-line);
+  box-shadow: 0 -8px 28px rgba(15,25,40,.07);
+}
+
+.mobile-tab.active { color: var(--axiom-gold); }
+
+/* Refined controls and domain selector */
+.nav-domain-btn,
+.nav-search-btn,
+.nav-theme-btn {
+  border-radius: var(--axiom-radius-control);
+}
+
+/* Make broad legacy cards calmer without changing their content architecture. */
+.track-card {
+  border-radius: var(--axiom-radius-card);
+  box-shadow: 0 8px 24px rgba(23,32,51,.045);
+}
+
+@media (min-width: 769px) {
+  .axiom-domains { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .axiom-domain-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 250px; padding: 26px; }
+  .axiom-domain-arrow { margin-top: auto; }
+  .axiom-domain-card p { max-width: 28ch; }
+}
+
+@media (max-width: 480px) {
+  .landing-hero.axiom-hero { padding-top: 2rem; }
+  .axiom-hero h1 { font-size: clamp(2.4rem, 13vw, 3.5rem); }
+  .axiom-domain-card { grid-template-columns: 42px 1fr 18px; gap: 12px; min-height: 126px; padding: 18px; }
+  .axiom-domain-icon { width: 42px; height: 42px; border-radius: 12px; }
+  .axiom-domain-icon svg { width: 22px; height: 22px; }
+}
