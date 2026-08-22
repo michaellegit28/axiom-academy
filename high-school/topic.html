@@ -1,0 +1,44 @@
+---
+layout: app-shell
+title: Topic Hub
+permalink: /high-school/topic/
+---
+
+<section class="section-block page-content-start" aria-labelledby="topic-title">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">High School · Study</span>
+      <h1 id="topic-title">Topic Hub</h1>
+      <p id="topic-description">Learn, practise, and track your progress for this topic.</p>
+    </div>
+    <span class="section-note">Learn → Practice → Improve</span>
+  </div>
+
+  <div class="track-selector">
+    <article class="track-card">
+      <div class="track-icon" aria-hidden="true">📚</div>
+      <h2>Lessons</h2>
+      <p>Published explanations, examples, and learning resources will appear here.</p>
+    </article>
+
+    <article class="track-card">
+      <div class="track-icon" aria-hidden="true">🧪</div>
+      <h2>Practice</h2>
+      <p>Topic quizzes and revision materials will connect here.</p>
+    </article>
+
+    <article class="track-card">
+      <div class="track-icon" aria-hidden="true">📈</div>
+      <h2>Progress</h2>
+      <p>Your learning progress will be tracked here when the progress system is connected.</p>
+    </article>
+  </div>
+</section>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const topic = params.get('topic');
+if (topic) {
+  document.getElementById('topic-title').textContent = topic.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+</script>
