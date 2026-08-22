@@ -55,23 +55,34 @@ permalink: /quiz/
   </div>
 </div>
 
-<script>
+<script type="module">
+import { getState, setActivity, subscribe } from "{{ '/assets/js/axiom-state.js' | relative_url }}";
+
 (function () {
-  var domain = localStorage.getItem('axiom-domain') || 'High School';
   var panels = {
-    'University': document.getElementById('quiz-panel-university'),
-    'High School': document.getElementById('quiz-panel-high-school'),
-    'Extras': document.getElementById('quiz-panel-extras')
+    university: document.getElementById('quiz-panel-university'),
+    'high-school': document.getElementById('quiz-panel-high-school'),
+    extras: document.getElementById('quiz-panel-extras')
   };
   var subtitles = {
-    'University': 'University quiz tracks are being built \u2014 here\'s what\'s available right now.',
-    'High School': 'Select your exam track to start practicing.',
-    'Extras': 'Masterclass quizzes are on the roadmap \u2014 here\'s what\'s available right now.'
+    university: 'University quiz tracks are being built — here\'s what\'s available right now.',
+    'high-school': 'Select your exam track to start practicing.',
+    extras: 'Masterclass quizzes are on the roadmap — here\'s what\'s available right now.'
   };
-  Object.keys(panels).forEach(function (key) {
-    if (panels[key]) panels[key].style.display = (key === domain) ? 'block' : 'none';
+
+  function render(state) {
+    var domain = panels[state.domain] ? state.domain : 'high-school';
+    Object.keys(panels).forEach(function (key) {
+      if (panels[key]) panels[key].style.display = key === domain ? 'block' : 'none';
+    });
+    var subtitleEl = document.getElementById('quiz-hub-subtitle');
+    if (subtitleEl) subtitleEl.textContent = subtitles[domain];
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    setActivity('quiz');
+    render(getState());
+    subscribe(render);
   });
-  var subtitleEl = document.getElementById('quiz-hub-subtitle');
-  if (subtitleEl && subtitles[domain]) subtitleEl.textContent = subtitles[domain];
 })();
 </script>
