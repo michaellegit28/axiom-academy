@@ -1,0 +1,44 @@
+name: Build Jekyll site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build --trace
+
+      - name: Verify generated content index
+        run: |
+          test -f _site/content-index.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('_site/content-index.json').read_text())
+          assert isinstance(data, list), 'content-index.json must be a JSON array'
+          for item in data:
+              assert item.get('contentId'), 'indexed item missing contentId'
+              assert item.get('domain'), 'indexed item missing domain'
+              assert item.get('contentType'), 'indexed item missing contentType'
+              assert item.get('title'), 'indexed item missing title'
+              assert item.get('url'), 'indexed item missing url'
+          print(f'Validated {len(data)} indexed content items.')
+          PY
