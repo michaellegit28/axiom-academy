@@ -2,15 +2,15 @@
 ---
 
 /* ============================================================
-   AXIOM ACADEMY — PREMIUM VISUAL FOUNDATION
-   Phase C: restrained academic palette, editorial hierarchy,
-   refined cards, and mobile-first composition.
+   AXIOM ACADEMY — PREMIUM VISUAL SYSTEM
+   Single source of truth for Home, Study, Quiz and Progress.
    ============================================================ */
 
 :root {
   --axiom-paper: #f7f5ef;
   --axiom-surface: #ffffff;
   --axiom-surface-soft: #f1f3f6;
+  --axiom-elevated: #fbfcfe;
   --axiom-ink: #172033;
   --axiom-muted: #687387;
   --axiom-blue: #244a73;
@@ -31,6 +31,7 @@
 [data-theme="dark"] {
   --axiom-surface: var(--axiom-dark-surface);
   --axiom-surface-soft: var(--axiom-dark-elevated);
+  --axiom-elevated: var(--axiom-dark-elevated);
   --axiom-ink: var(--axiom-dark-ink);
   --axiom-muted: var(--axiom-dark-muted);
   --axiom-blue: #7ea6cc;
@@ -40,197 +41,136 @@
   --axiom-line: var(--axiom-dark-line);
 }
 
-body {
-  background: var(--axiom-paper);
-  color: var(--axiom-ink);
-}
+body { background: var(--axiom-paper); color: var(--axiom-ink); }
+[data-theme="dark"] body { background: var(--axiom-dark); }
 
-[data-theme="dark"] body {
-  background: var(--axiom-dark);
-}
-
-/* Editorial hero */
+/* Homepage */
 .landing-hero.axiom-hero {
   max-width: 760px;
   margin: 0 auto;
   padding: clamp(2.5rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem);
   text-align: left;
 }
+.axiom-kicker { display:inline-flex; align-items:center; gap:.55rem; margin-bottom:1rem; color:var(--axiom-gold); font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.axiom-kicker::before { content:''; width:22px; height:1px; background:currentColor; }
+.axiom-hero h1 { max-width:700px; margin:0; font-family:var(--font-serif); font-size:clamp(2.55rem,9vw,5rem); font-weight:600; line-height:.98; letter-spacing:-.035em; }
+.axiom-hero h1 em { color:var(--axiom-blue); font-style:normal; }
+.axiom-hero p { max-width:650px; margin:1.35rem 0 0; color:var(--axiom-muted); font-size:clamp(1rem,2vw,1.18rem); line-height:1.7; }
+.axiom-domains { display:grid; gap:14px; max-width:900px; margin:0 auto; }
+.axiom-domain-card { position:relative; display:grid; grid-template-columns:48px 1fr 28px; align-items:center; gap:16px; min-height:138px; padding:22px; color:var(--axiom-ink); background:var(--axiom-surface); border:1px solid var(--axiom-line); border-radius:var(--axiom-radius-card); text-decoration:none; box-shadow:0 8px 24px rgba(23,32,51,.045); transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+.axiom-domain-card:hover,.axiom-domain-card:focus-visible { transform:translateY(-2px); border-color:var(--axiom-gold); box-shadow:0 14px 34px rgba(23,32,51,.09); }
+.axiom-domain-icon { width:48px; height:48px; display:grid; place-items:center; color:var(--axiom-blue); background:var(--axiom-blue-soft); border-radius:14px; }
+.axiom-domain-icon svg { width:25px; height:25px; }
+.axiom-domain-card.extras .axiom-domain-icon { color:var(--axiom-gold); background:var(--axiom-gold-soft); }
+.axiom-domain-card h2 { margin:0; font-size:1.15rem; font-weight:700; letter-spacing:-.015em; }
+.axiom-domain-card p { margin:.35rem 0 0; color:var(--axiom-muted); font-size:.9rem; line-height:1.5; }
+.axiom-domain-meta { display:flex; flex-wrap:wrap; gap:7px; margin-top:.65rem; }
+.axiom-domain-meta span { padding:4px 8px; color:var(--axiom-muted); background:var(--axiom-surface-soft); border-radius:999px; font-size:.68rem; font-weight:600; }
+.axiom-domain-arrow { color:var(--axiom-muted); font-size:1.15rem; transition:transform .2s ease,color .2s ease; }
+.axiom-domain-card:hover .axiom-domain-arrow { color:var(--axiom-gold); transform:translateX(3px); }
 
-.axiom-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: .55rem;
-  margin-bottom: 1rem;
-  color: var(--axiom-gold);
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+/* Shared page rhythm */
+.home-dashboard { max-width:900px; margin:3rem auto 0; }
+.dashboard-section { margin-top:2.5rem; }
+.dashboard-section h2,.section-heading h2 { font-family:var(--font-serif); letter-spacing:-.02em; }
+.landing-hero:not(.axiom-hero) { max-width:900px; margin:0 auto; padding:clamp(1.5rem,5vw,3.5rem) 0 2rem; }
+.landing-hero:not(.axiom-hero) h1 { font-family:var(--font-serif); font-size:clamp(2.2rem,7vw,3.8rem); line-height:1.02; letter-spacing:-.03em; color:var(--axiom-ink); }
+.landing-hero:not(.axiom-hero) p { max-width:65ch; color:var(--axiom-muted); font-size:1rem; margin-top:.7rem; }
+.section-block { max-width:900px; margin:0 auto 1.5rem; }
+.section-heading { display:flex; justify-content:space-between; gap:1rem; align-items:end; margin-bottom:.75rem; }
+.eyebrow { color:var(--axiom-gold); font-size:.66rem; font-weight:750; text-transform:uppercase; letter-spacing:.12em; }
+.section-note { color:var(--axiom-muted); font-size:.68rem; }
+
+/* Study */
+.track-selector { display:grid; gap:.7rem; }
+.track-card { display:block; padding:1rem 1.05rem; background:var(--axiom-surface); border:1px solid var(--axiom-line); border-radius:var(--axiom-radius-card); text-decoration:none; color:inherit; transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; box-shadow:0 8px 24px rgba(23,32,51,.045); }
+.track-card:hover { transform:translateY(-2px); border-color:color-mix(in srgb,var(--axiom-gold) 45%,var(--axiom-line)); box-shadow:0 12px 28px rgba(23,32,51,.07); }
+.track-icon { width:38px; height:38px; display:grid; place-items:center; border:1px solid var(--axiom-line); border-radius:10px; background:var(--axiom-elevated); font-size:1rem; margin-bottom:.75rem; }
+.track-card h3 { color:var(--axiom-ink); font-size:.95rem; margin-bottom:.25rem; }
+.track-card p { color:var(--axiom-muted); font-size:.76rem; }
+.track-meta { display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.7rem; }
+.track-meta span { padding:.25rem .5rem; border:1px solid var(--axiom-line); border-radius:999px; color:var(--axiom-muted); font-size:.62rem; }
+.study-exam-note { padding:1.1rem 0; border-top:1px solid var(--axiom-line); border-bottom:1px solid var(--axiom-line); }
+.study-exam-note p { color:var(--axiom-muted); font-size:.82rem; max-width:70ch; margin-bottom:.8rem; }
+.btn-primary { background:var(--axiom-blue)!important; border-color:var(--axiom-blue)!important; }
+.study-track-header,.analytics-header { max-width:760px; margin:0 auto 2rem; padding:clamp(1.5rem,4vw,2.5rem) 0 1.5rem; border-bottom:1px solid var(--axiom-line); }
+.study-track-header h1,.analytics-header h1 { font-family:var(--font-serif); font-size:clamp(2rem,6vw,3.15rem); line-height:1.05; letter-spacing:-.025em; color:var(--axiom-ink); margin-bottom:.65rem; }
+.study-track-header p,.analytics-subhead { color:var(--axiom-muted); max-width:62ch; }
+.daily-mission,.progress-section,.analytics-section,.mastery-section { max-width:760px; margin:0 auto 1rem; padding:clamp(1rem,3vw,1.35rem); background:var(--axiom-surface); border:1px solid var(--axiom-line); border-radius:16px; box-shadow:0 8px 24px rgba(23,32,51,.05); }
+.daily-mission h3,.progress-section h3,.analytics-section h2,.mastery-section h2 { font-size:1rem; margin-bottom:.9rem; color:var(--axiom-ink); }
+.mission-list { list-style:none; padding:0; margin:0; }
+.mission-item { display:flex; align-items:center; gap:.8rem; min-height:52px; padding:.7rem 0; border-top:1px solid var(--axiom-line); color:var(--axiom-muted); }
+.mission-item:first-child { border-top:0; }
+.mission-check { width:20px; height:20px; border:1.5px solid var(--axiom-line); border-radius:50%; flex:0 0 auto; }
+.streak-badge,.analytics-domain-badge { display:inline-flex; margin-top:.7rem; padding:.35rem .65rem; border:1px solid var(--axiom-gold); border-radius:999px; color:var(--axiom-gold); font-size:.72rem; font-weight:700; }
+
+/* Quiz */
+.topic-browser { max-width:760px; margin:0 auto; display:grid; gap:1rem; }
+.topic-category { padding:clamp(1rem,3vw,1.25rem); background:var(--axiom-surface); border:1px solid var(--axiom-line); border-radius:16px; box-shadow:0 8px 24px rgba(23,32,51,.04); }
+.topic-category h3 { margin-bottom:.65rem; color:var(--axiom-ink); font-size:.92rem; }
+.topic-list { display:grid; gap:.45rem; }
+.topic-item { display:grid; grid-template-columns:38px 1fr auto; gap:.75rem; align-items:center; padding:.75rem; border:1px solid transparent; border-radius:11px; text-decoration:none; color:inherit; transition:.18s ease; }
+.topic-item:hover { background:var(--axiom-elevated); border-color:var(--axiom-line); transform:translateY(-1px); }
+.topic-item-icon { width:38px; height:38px; display:grid; place-items:center; border:1px solid var(--axiom-line); border-radius:10px; }
+.topic-item-title { color:var(--axiom-ink); font-size:.88rem; font-weight:650; }
+.topic-item-meta { margin-top:.12rem; color:var(--axiom-muted); font-size:.72rem; line-height:1.4; }
+.topic-item-score { color:var(--axiom-muted); font:500 .72rem var(--font-mono); }
+
+/* Progress */
+.analytics-container { max-width:820px; margin:0 auto; padding:calc(var(--nav-height) + 1.25rem) var(--page-margin) 3rem; }
+.analytics-back { display:inline-flex; margin-bottom:1rem; color:var(--axiom-muted); text-decoration:none; font-size:.78rem; }
+.mastery-section { display:grid; grid-template-columns:1fr auto; align-items:center; }
+.mastery-ring-container { position:relative; width:124px; height:124px; }
+.mastery-ring { width:100%; height:100%; transform:rotate(-90deg); }
+.mastery-ring .ring-bg { fill:none; stroke:var(--axiom-line); stroke-width:8; }
+.mastery-ring .ring-fill { fill:none; stroke:var(--axiom-gold); stroke-width:8; stroke-linecap:round; }
+.mastery-text { position:absolute; inset:0; display:grid; place-content:center; text-align:center; }
+.mastery-percent { font:700 1.35rem var(--font-sans); color:var(--axiom-ink); }
+.mastery-label { font-size:.62rem; color:var(--axiom-muted); }
+.chart-card,.table-wrap { border:1px solid var(--axiom-line); border-radius:12px; background:var(--axiom-elevated); }
+.chart-card { padding:.8rem; }
+.table-wrap { overflow-x:auto; }
+.quiz-history-table { width:100%; border-collapse:collapse; min-width:520px; }
+.quiz-history-table th,.quiz-history-table td { padding:.72rem .8rem; text-align:left; border-bottom:1px solid var(--axiom-line); font-size:.76rem; }
+.quiz-history-table th { color:var(--axiom-muted); font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; }
+.quiz-history-table td { color:var(--axiom-ink); }
+.topic-breakdown-list { display:grid; gap:.7rem; }
+.topic-breakdown-row { display:grid; grid-template-columns:minmax(100px,1fr) 2fr auto; gap:.7rem; align-items:center; }
+.topic-breakdown-name { color:var(--axiom-ink); font-size:.75rem; }
+.topic-breakdown-bar-track { height:7px; background:var(--axiom-line); border-radius:99px; overflow:hidden; }
+.topic-breakdown-bar-fill { height:100%; background:var(--axiom-gold); border-radius:inherit; }
+.topic-breakdown-pct { font:600 .7rem var(--font-mono); color:var(--axiom-muted); }
+.topics-empty,.table-empty { color:var(--axiom-muted); font-size:.8rem; }
+.recommend-list a { color:var(--axiom-blue); text-decoration:none; font-size:.82rem; }
+
+/* Navigation */
+.mobile-nav { background:var(--axiom-surface); border-top-color:var(--axiom-line); box-shadow:0 -8px 28px rgba(15,25,40,.07); }
+.mobile-tab.active { color:var(--axiom-gold); }
+.nav-domain-btn,.nav-search-btn,.nav-theme-btn { border-radius:var(--axiom-radius-control); }
+
+@media (min-width:769px) {
+  .axiom-domains { grid-template-columns:repeat(3,1fr); gap:16px; }
+  .axiom-domain-card { display:flex; flex-direction:column; align-items:flex-start; min-height:250px; padding:26px; }
+  .axiom-domain-arrow { margin-top:auto; }
+  .axiom-domain-card p { max-width:28ch; }
 }
-
-.axiom-kicker::before {
-  content: '';
-  width: 22px;
-  height: 1px;
-  background: currentColor;
+@media (min-width:900px) {
+  .track-selector { grid-template-columns:repeat(3,1fr); }
+  .topic-browser { grid-template-columns:1fr 1fr; max-width:900px; }
+  .study-track-header { max-width:900px; }
 }
-
-.axiom-hero h1 {
-  max-width: 700px;
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(2.55rem, 9vw, 5rem);
-  font-weight: 600;
-  line-height: .98;
-  letter-spacing: -.035em;
+@media (max-width:560px) {
+  .section-heading { align-items:start; flex-direction:column; gap:.3rem; }
+  .mastery-section { grid-template-columns:1fr; gap:1rem; }
+  .mastery-ring-container { margin:0 auto; }
+  .topic-breakdown-row { grid-template-columns:1fr auto; }
+  .topic-breakdown-bar-track { grid-column:1/-1; grid-row:2; }
+  .topic-breakdown-pct { grid-column:2; grid-row:1; }
 }
-
-.axiom-hero h1 em {
-  color: var(--axiom-blue);
-  font-style: normal;
-}
-
-.axiom-hero p {
-  max-width: 650px;
-  margin: 1.35rem 0 0;
-  color: var(--axiom-muted);
-  font-size: clamp(1rem, 2vw, 1.18rem);
-  line-height: 1.7;
-}
-
-/* Domain gateways */
-.axiom-domains {
-  display: grid;
-  gap: 14px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.axiom-domain-card {
-  position: relative;
-  display: grid;
-  grid-template-columns: 48px 1fr 28px;
-  align-items: center;
-  gap: 16px;
-  min-height: 138px;
-  padding: 22px;
-  color: var(--axiom-ink);
-  background: var(--axiom-surface);
-  border: 1px solid var(--axiom-line);
-  border-radius: var(--axiom-radius-card);
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(23,32,51,.045);
-  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-}
-
-.axiom-domain-card:hover,
-.axiom-domain-card:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--axiom-gold);
-  box-shadow: 0 14px 34px rgba(23,32,51,.09);
-}
-
-.axiom-domain-icon {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  color: var(--axiom-blue);
-  background: var(--axiom-blue-soft);
-  border-radius: 14px;
-}
-
-.axiom-domain-icon svg { width: 25px; height: 25px; }
-
-.axiom-domain-card.extras .axiom-domain-icon {
-  color: var(--axiom-gold);
-  background: var(--axiom-gold-soft);
-}
-
-.axiom-domain-card h2 {
-  margin: 0;
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -.015em;
-}
-
-.axiom-domain-card p {
-  margin: .35rem 0 0;
-  color: var(--axiom-muted);
-  font-size: .9rem;
-  line-height: 1.5;
-}
-
-.axiom-domain-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: .65rem;
-}
-
-.axiom-domain-meta span {
-  padding: 4px 8px;
-  color: var(--axiom-muted);
-  background: var(--axiom-surface-soft);
-  border-radius: 999px;
-  font-size: .68rem;
-  font-weight: 600;
-}
-
-.axiom-domain-arrow {
-  color: var(--axiom-muted);
-  font-size: 1.15rem;
-  transition: transform .2s ease, color .2s ease;
-}
-
-.axiom-domain-card:hover .axiom-domain-arrow {
-  color: var(--axiom-gold);
-  transform: translateX(3px);
-}
-
-/* Existing dashboard sections inherit the new rhythm. */
-.home-dashboard { max-width: 900px; margin: 3rem auto 0; }
-.dashboard-section { margin-top: 2.5rem; }
-.dashboard-section h2 {
-  font-family: var(--font-serif);
-  font-size: 1.55rem;
-  letter-spacing: -.02em;
-}
-
-/* Refined mobile navigation */
-.mobile-nav {
-  background: color-mix(in srgb, var(--axiom-surface) 94%, transparent);
-  border-top-color: var(--axiom-line);
-  box-shadow: 0 -8px 28px rgba(15,25,40,.07);
-}
-
-.mobile-tab.active { color: var(--axiom-gold); }
-
-/* Refined controls and domain selector */
-.nav-domain-btn,
-.nav-search-btn,
-.nav-theme-btn {
-  border-radius: var(--axiom-radius-control);
-}
-
-/* Make broad legacy cards calmer without changing their content architecture. */
-.track-card {
-  border-radius: var(--axiom-radius-card);
-  box-shadow: 0 8px 24px rgba(23,32,51,.045);
-}
-
-@media (min-width: 769px) {
-  .axiom-domains { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .axiom-domain-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 250px; padding: 26px; }
-  .axiom-domain-arrow { margin-top: auto; }
-  .axiom-domain-card p { max-width: 28ch; }
-}
-
-@media (max-width: 480px) {
-  .landing-hero.axiom-hero { padding-top: 2rem; }
-  .axiom-hero h1 { font-size: clamp(2.4rem, 13vw, 3.5rem); }
-  .axiom-domain-card { grid-template-columns: 42px 1fr 18px; gap: 12px; min-height: 126px; padding: 18px; }
-  .axiom-domain-icon { width: 42px; height: 42px; border-radius: 12px; }
-  .axiom-domain-icon svg { width: 22px; height: 22px; }
+@media (max-width:480px) {
+  .landing-hero.axiom-hero { padding-top:2rem; }
+  .axiom-hero h1 { font-size:clamp(2.4rem,13vw,3.5rem); }
+  .axiom-domain-card { grid-template-columns:42px 1fr 18px; gap:12px; min-height:126px; padding:18px; }
+  .axiom-domain-icon { width:42px; height:42px; border-radius:12px; }
+  .axiom-domain-icon svg { width:22px; height:22px; }
 }
