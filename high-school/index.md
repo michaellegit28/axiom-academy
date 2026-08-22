@@ -20,7 +20,7 @@ permalink: /high-school/
 
   <div class="track-selector" id="high-school-study-departments">
     {% for department in site.data.learning_taxonomy.high_school.study.departments %}
-    <a href="{{ '/high-school/' | relative_url }}#{{ department.id }}" class="track-card study-department" data-department="{{ department.id }}">
+    <a href="{{ '/high-school/subject/' | relative_url }}?department={{ department.id }}" class="track-card study-department" data-department="{{ department.id }}">
       <div class="track-icon">
         {% case department.id %}
           {% when 'sciences' %}🔬
