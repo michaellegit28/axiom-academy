@@ -39,14 +39,24 @@
 .recent-activity-text { color:var(--axiom-muted); font-size:.73rem; }
 .recent-activity-text b { color:var(--axiom-ink); }
 .recent-activity-time { color:var(--axiom-muted); font-size:.65rem; white-space:nowrap; }
+.axiom-domains { margin-bottom:2rem; }
 .axiom-domains-heading { display:flex; align-items:end; justify-content:space-between; gap:1.5rem; margin-bottom:.85rem; }
 .axiom-domains-heading h2 { margin:.3rem 0 0; font-family:var(--font-serif); font-size:1.65rem; letter-spacing:-.02em; }
 .axiom-domains-heading p { max-width:42ch; margin:0; color:var(--axiom-muted); font-size:.72rem; line-height:1.5; text-align:right; }
+.axiom-mission { max-width:900px; margin:2.5rem auto 0; padding:1.35rem 0 0; border-top:1px solid var(--axiom-line); }
+.axiom-mission-heading { display:flex; align-items:end; justify-content:space-between; gap:1.5rem; margin-bottom:1rem; }
+.axiom-mission-heading h2 { max-width:24ch; margin:.3rem 0 0; font-family:var(--font-serif); font-size:clamp(1.35rem,3vw,1.85rem); line-height:1.08; letter-spacing:-.02em; }
+.axiom-mission-heading p { max-width:38ch; margin:0; color:var(--axiom-muted); font-size:.75rem; line-height:1.5; text-align:right; }
+.axiom-mission-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; }
+.axiom-mission-card { padding:1rem; border:1px solid var(--axiom-line); border-radius:14px; background:var(--axiom-surface); }
+.axiom-mission-label { display:inline-block; margin-bottom:.55rem; color:var(--axiom-gold); font-size:.62rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+.axiom-mission-card h3 { margin:0; color:var(--axiom-ink); font-family:var(--font-serif); font-size:1rem; line-height:1.3; }
+.axiom-mission-card p { margin:.55rem 0 0; color:var(--axiom-muted); font-size:.72rem; line-height:1.55; }
 .page-axiom-academy footer { max-width:900px; margin:2.5rem auto 0; padding:1.5rem 0 calc(var(--mobile-nav-height, 72px) + 1.5rem); border-top:1px solid var(--axiom-line); }
 .page-axiom-academy footer blockquote { max-width:58ch; margin:0 0 .5rem; color:var(--axiom-muted); font-family:var(--font-serif); font-size:.95rem; line-height:1.5; }
 .page-axiom-academy footer p { margin:0; color:var(--axiom-muted); font-size:.65rem; }
 @media (min-width:769px) {
-  .axiom-home-intro,.home-dashboard,.axiom-domains,.page-axiom-academy footer { width:calc(100% - 2 * var(--page-margin, 24px)); }
+  .axiom-home-intro,.home-dashboard,.axiom-domains,.axiom-mission,.page-axiom-academy footer { width:calc(100% - 2 * var(--page-margin, 24px)); }
   .axiom-domains { grid-template-columns:repeat(3,1fr); }
   .axiom-domains-heading { grid-column:1/-1; }
 }
@@ -56,9 +66,11 @@
   .dashboard-study-link { width:100%; justify-content:space-between; }
   .stat-pills-row { grid-template-columns:repeat(2,1fr); }
   .recommended-cards { grid-template-columns:1fr; }
-  .axiom-domains-heading { align-items:flex-start; flex-direction:column; gap:.4rem; }
-  .axiom-domains-heading p { text-align:left; }
-  .axiom-domains { margin-top:2rem; }
+  .axiom-domains-heading,.axiom-mission-heading { align-items:flex-start; flex-direction:column; gap:.4rem; }
+  .axiom-domains-heading p,.axiom-mission-heading p { text-align:left; }
+  .axiom-domains { margin-top:1.5rem; }
+  .axiom-mission { margin-top:2rem; }
+  .axiom-mission-grid { grid-template-columns:1fr; }
   .page-axiom-academy footer { margin-top:2rem; padding-top:1.25rem; }
 }
 @media (max-width:380px) {
