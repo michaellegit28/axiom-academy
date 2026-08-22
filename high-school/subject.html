@@ -9,11 +9,10 @@ permalink: /high-school/subject/
     <div>
       <span class="eyebrow" id="department-label">High School · Study</span>
       <h1 id="subject-title">Choose a subject</h1>
-      <p id="subject-description">Select a department from High School Study, then choose a subject to explore published topics.</p>
+      <p id="subject-description">Select a department, then choose a subject to explore its curriculum.</p>
     </div>
     <span class="section-note">Subject → Topic → Subtopic</span>
   </div>
-
   <div class="track-selector" id="subject-list"></div>
 </section>
 
@@ -29,69 +28,26 @@ const label = document.getElementById('department-label');
 const description = document.getElementById('subject-description');
 const subjectUrl = "{{ '/high-school/subject/' | relative_url }}";
 const studyUrl = "{{ '/high-school/' | relative_url }}";
-
-function pretty(value) {
-  return value.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-}
-
-function getRealSubjectContent(subject) {
-  return [...document.querySelectorAll('[data-high-school-content]')]
-    .filter(node => node.dataset.subject === subject);
-}
-
+function pretty(value) { return value.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); }
 function subjectCard(subject) {
   const card = document.createElement('a');
   card.className = 'track-card study-subject';
   card.href = `${subjectUrl}?department=${encodeURIComponent(department.id)}&subject=${encodeURIComponent(subject)}`;
-  card.innerHTML = `
-    <div class="track-icon" aria-hidden="true">📖</div>
-    <h2>${pretty(subject)}</h2>
-    <p>Open the subject pathway and explore published topics.</p>
-    <div class="track-meta"><span>Topic → Subtopic</span></div>
-  `;
+  card.innerHTML = `<div class="track-icon" aria-hidden="true">📖</div><h2>${pretty(subject)}</h2><p>Explore the published curriculum, study material, and practice.</p><div class="track-meta"><span>Topic → Subtopic</span></div>`;
   return card;
 }
-
 if (!department) {
-  label.textContent = 'High School · Study';
-  title.textContent = 'Choose a department';
-  description.textContent = 'Return to High School Study and choose a department to continue.';
-  const back = document.createElement('a');
-  back.className = 'btn btn-primary';
-  back.href = studyUrl;
-  back.textContent = 'Back to High School Study';
-  list.appendChild(back);
+  label.textContent = 'High School · Study'; title.textContent = 'Choose a department'; description.textContent = 'Return to High School Study and choose a department to continue.';
+  const back = document.createElement('a'); back.className = 'btn btn-primary'; back.href = studyUrl; back.textContent = 'Back to High School Study'; list.appendChild(back);
 } else if (subjectId && department.subjects.includes(subjectId)) {
-  label.textContent = `${department.name} · Study`;
-  title.textContent = pretty(subjectId);
-  description.textContent = 'Only published curriculum content is shown here.';
-
-  const content = getRealSubjectContent(subjectId);
-  if (content.length) {
-    content.forEach(node => list.appendChild(node.cloneNode(true)));
-  } else {
-    const empty = document.createElement('div');
-    empty.className = 'track-card';
-    empty.innerHTML = `<div class="track-icon" aria-hidden="true">📖</div><h2>Curriculum coming next</h2><p>No published topics exist for ${pretty(subjectId)} yet. We won't display fabricated content.</p>`;
-    list.appendChild(empty);
-  }
-
-  const back = document.createElement('a');
-  back.className = 'btn btn-secondary';
-  back.href = `${subjectUrl}?department=${encodeURIComponent(department.id)}`;
-  back.textContent = `Back to ${department.name}`;
-  list.appendChild(back);
+  label.textContent = `${department.name} · Study`; title.textContent = pretty(subjectId); description.textContent = 'Choose a curriculum topic to begin studying.';
+  fetch("{{ '/content-index.json' | relative_url }}").then(r => r.ok ? r.json() : []).then(items => {
+    const subjectItems = items.filter(item => item.domain === 'high-school' && (item.subject === subjectId || item.highSchoolSubject === subjectId || item.contentId?.startsWith(`hs-${subjectId}-`)));
+    if (subjectItems.length) subjectItems.forEach(item => { const card = document.createElement('a'); card.className='track-card study-subject'; card.href=item.url; card.innerHTML=`<div class="track-icon" aria-hidden="true">📚</div><h2>${item.title}</h2><p>Open this curriculum topic and study the material.</p><div class="track-meta"><span>Study</span></div>`; list.appendChild(card); });
+    else { const empty=document.createElement('div'); empty.className='track-card'; empty.innerHTML=`<div class="track-icon" aria-hidden="true">📖</div><h2>Curriculum coming next</h2><p>No published topics exist for ${pretty(subjectId)} yet.</p>`; list.appendChild(empty); }
+  }).catch(() => { const empty=document.createElement('div'); empty.className='track-card'; empty.innerHTML='<div class="track-icon" aria-hidden="true">⚠️</div><h2>Curriculum unavailable</h2><p>The curriculum index could not be loaded.</p>'; list.appendChild(empty); });
+  const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=`${subjectUrl}?department=${encodeURIComponent(department.id)}`; back.textContent=`Back to ${department.name}`; list.appendChild(back);
 } else {
-  label.textContent = `${department.name} · Study`;
-  title.textContent = `${department.name} Subjects`;
-  description.textContent = 'Choose a subject. Only real curriculum content will be surfaced.';
-  department.subjects.forEach(subject => list.appendChild(subjectCard(subject)));
+  label.textContent=`${department.name} · Study`; title.textContent=`${department.name} Subjects`; description.textContent='Choose a subject. Published curriculum will appear inside it.'; department.subjects.forEach(subject => list.appendChild(subjectCard(subject)));
 }
 </script>
-
-<div hidden aria-hidden="true">
-  {% assign hs_pages = site.pages | where_exp: "item", "item.high_school_subject" %}
-  {% for item in hs_pages %}
-  <a data-high-school-content data-subject="{{ item.high_school_subject }}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-  {% endfor %}
-</div>
