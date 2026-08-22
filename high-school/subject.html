@@ -1,36 +1,34 @@
 ---
 layout: app
+title: High School Study
 permalink: /high-school/subject/
 ---
 
-<div class="landing-hero">
-  <p class="eyebrow" id="department-label">High School Study</p>
-  <h1 id="subject-title">Subject</h1>
-  <p id="subject-description">Choose a subject to begin studying.</p>
-</div>
-
-<section class="section-block" aria-labelledby="subjects-heading">
+<section class="section-block page-content-start" aria-labelledby="subject-title">
   <div class="section-heading">
     <div>
-      <span class="eyebrow">Study pathway</span>
-      <h2 id="subjects-heading">Subjects</h2>
+      <span class="eyebrow" id="department-label">High School · Study</span>
+      <h1 id="subject-title">Choose a subject</h1>
+      <p id="subject-description">Select a department from High School Study, then choose a subject to explore published topics.</p>
     </div>
-    <span class="section-note">Topic → Subtopic</span>
+    <span class="section-note">Subject → Topic → Subtopic</span>
   </div>
+
   <div class="track-selector" id="subject-list"></div>
 </section>
 
-<script type="module">
-import { getHighSchoolStudyDepartment } from "{{ '/assets/js/learning-taxonomy.js' | relative_url }}";
-
+<script>
+const studyDepartments = {{ site.data.learning_taxonomy.high_school.study.departments | jsonify }};
 const params = new URLSearchParams(window.location.search);
 const departmentId = params.get('department');
 const subjectId = params.get('subject');
-const department = getHighSchoolStudyDepartment(departmentId);
+const department = studyDepartments.find(item => item.id === departmentId);
 const list = document.getElementById('subject-list');
 const title = document.getElementById('subject-title');
 const label = document.getElementById('department-label');
 const description = document.getElementById('subject-description');
+const subjectUrl = "{{ '/high-school/subject/' | relative_url }}";
+const studyUrl = "{{ '/high-school/' | relative_url }}";
 
 function pretty(value) {
   return value.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
@@ -41,12 +39,30 @@ function getRealSubjectContent(subject) {
     .filter(node => node.dataset.subject === subject);
 }
 
+function subjectCard(subject) {
+  const card = document.createElement('a');
+  card.className = 'track-card study-subject';
+  card.href = `${subjectUrl}?department=${encodeURIComponent(department.id)}&subject=${encodeURIComponent(subject)}`;
+  card.innerHTML = `
+    <div class="track-icon" aria-hidden="true">📖</div>
+    <h2>${pretty(subject)}</h2>
+    <p>Open the subject pathway and explore published topics.</p>
+    <div class="track-meta"><span>Topic → Subtopic</span></div>
+  `;
+  return card;
+}
+
 if (!department) {
+  label.textContent = 'High School · Study';
   title.textContent = 'Choose a department';
   description.textContent = 'Return to High School Study and choose a department to continue.';
-  list.innerHTML = '<a class="btn btn-primary" href="{{ \'/high-school/\' | relative_url }}">Back to High School Study</a>';
+  const back = document.createElement('a');
+  back.className = 'btn btn-primary';
+  back.href = studyUrl;
+  back.textContent = 'Back to High School Study';
+  list.appendChild(back);
 } else if (subjectId && department.subjects.includes(subjectId)) {
-  label.textContent = department.name;
+  label.textContent = `${department.name} · Study`;
   title.textContent = pretty(subjectId);
   description.textContent = 'Only published curriculum content is shown here.';
 
@@ -56,21 +72,20 @@ if (!department) {
   } else {
     const empty = document.createElement('div');
     empty.className = 'track-card';
-    empty.innerHTML = `<div class="track-icon">📖</div><h3>Curriculum coming next</h3><p>No published topics exist for ${pretty(subjectId)} yet. We won't display fabricated content.</p>`;
+    empty.innerHTML = `<div class="track-icon" aria-hidden="true">📖</div><h2>Curriculum coming next</h2><p>No published topics exist for ${pretty(subjectId)} yet. We won't display fabricated content.</p>`;
     list.appendChild(empty);
   }
+
+  const back = document.createElement('a');
+  back.className = 'btn btn-secondary';
+  back.href = `${subjectUrl}?department=${encodeURIComponent(department.id)}`;
+  back.textContent = `Back to ${department.name}`;
+  list.appendChild(back);
 } else {
-  label.textContent = department.name;
+  label.textContent = `${department.name} · Study`;
   title.textContent = `${department.name} Subjects`;
   description.textContent = 'Choose a subject. Only real curriculum content will be surfaced.';
-
-  department.subjects.forEach(subject => {
-    const card = document.createElement('a');
-    card.className = 'track-card study-subject';
-    card.href = `{{ '/high-school/subject/' | relative_url }}?department=${encodeURIComponent(department.id)}&subject=${encodeURIComponent(subject)}`;
-    card.innerHTML = `<div class="track-icon">📖</div><h3>${pretty(subject)}</h3><p>Open the subject pathway and explore published topics.</p><div class="track-meta"><span>Topic → Subtopic</span></div>`;
-    list.appendChild(card);
-  });
+  department.subjects.forEach(subject => list.appendChild(subjectCard(subject)));
 }
 </script>
 
