@@ -38,32 +38,11 @@ permalink: /high-school/
   </div>
 </section>
 
-<section class="section-block study-exam-note" aria-labelledby="exam-prep-heading">
-  <div class="section-heading">
-    <div>
-      <span class="eyebrow">Assessment</span>
-      <h2 id="exam-prep-heading">Preparing for an exam?</h2>
-    </div>
+<section class="section-block study-next-step" aria-labelledby="study-next-heading">
+  <div>
+    <span class="eyebrow">Need exam preparation?</span>
+    <h2 id="study-next-heading">Keep Study and Quiz separate</h2>
+    <p>Study is organised by academic department. When you are ready to practise for an examination, use Quiz to choose JAMB / UTME, WAEC, or a future international examination track.</p>
   </div>
-  <p>Exam preparation is separate from Study. Use Quiz to choose JAMB / UTME, WAEC, or future international examination tracks.</p>
   <a href="{{ '/quiz/' | relative_url }}" class="btn btn-primary">Go to Quiz</a>
-</section>
-
-<section class="section-block">
-  <div class="section-heading">
-    <div>
-      <span class="eyebrow">Quick revision</span>
-      <h2>Flashcards</h2>
-    </div>
-  </div>
-  <div class="track-selector">
-    <a href="{{ '/flash/jamb/' | relative_url }}" class="track-card jamb">
-      <div class="track-icon">🎴</div>
-      <h3>JAMB Flashcards</h3>
-    </a>
-    <a href="{{ '/flash/waec/' | relative_url }}" class="track-card waec">
-      <div class="track-icon">🎴</div>
-      <h3>WAEC Flashcards</h3>
-    </a>
-  </div>
 </section>
