@@ -1,10 +1,13 @@
-/** Axiom Academy — Phase B study routing */
+/** Axiom Academy — study routing */
 import { getState, setActivity, subscribe } from "./axiom-state.js";
 
+// GitHub Pages serves the app from /axiom-academy, not from the domain root.
+// Keep the routing base in sync with Jekyll's configured baseurl.
+const base = (window.AXIOM_BASE_URL || "").replace(/\/$/, "");
 const routes = Object.freeze({
-  university: "/university/",
-  "high-school": "/high-school/",
-  extras: "/extras/"
+  university: `${base}/university/`,
+  "high-school": `${base}/high-school/`,
+  extras: `${base}/extras/`
 });
 
 function currentStudyRoute() {
