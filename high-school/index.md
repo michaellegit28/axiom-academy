@@ -1,47 +1,66 @@
 ---
 layout: app
-title: High School — JAMB, WAEC & International
+title: High School Study
 permalink: /high-school/
 ---
 
 <div class="landing-hero">
-  <h1>High School Exam Prep</h1>
-  <p>Pick your exam board. Objective drills, theory practice, and flashcards — all mapped to the real syllabus.</p>
+  <h1>High School Study</h1>
+  <p>Build strong subject foundations by department, then move into focused topics and subtopics at your own pace.</p>
 </div>
 
-<div class="track-selector">
-  <a href="{{ '/quiz/jamb/' | relative_url }}" class="track-card jamb">
-    <div class="track-icon">🧪</div>
-    <h3>JAMB</h3>
-    <p>Objective-only questions aligned to the UTME syllabus. Timed drills with instant feedback.</p>
-    <div class="track-meta">
-      <span>🇳🇬 UTME Aligned</span>
-      <span>⏱️ Timed Drills</span>
+<section class="section-block" aria-labelledby="study-departments-heading">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">Study</span>
+      <h2 id="study-departments-heading">Choose a department</h2>
     </div>
-  </a>
+    <span class="section-note">Department → Subject → Topic → Subtopic</span>
+  </div>
 
-  <a href="{{ '/quiz/waec/' | relative_url }}" class="track-card waec">
-    <div class="track-icon">📝</div>
-    <h3>WAEC</h3>
-    <p>Theory + Objective questions mapped to the SSCE syllabus. Master both paper types.</p>
-    <div class="track-meta">
-      <span>📋 SSCE Aligned</span>
-      <span>✍️ Theory + OBJ</span>
+  <div class="track-selector" id="high-school-study-departments">
+    {% for department in site.data.learning_taxonomy.high_school.study.departments %}
+    <a href="{{ '/high-school/' | relative_url }}#{{ department.id }}" class="track-card study-department" data-department="{{ department.id }}">
+      <div class="track-icon">
+        {% case department.id %}
+          {% when 'sciences' %}🔬
+          {% when 'mathematics' %}📐
+          {% when 'languages' %}📚
+          {% when 'social-sciences' %}🌍
+          {% when 'arts-humanities' %}🎨
+          {% else %}📖
+        {% endcase %}
+      </div>
+      <h3>{{ department.name }}</h3>
+      <p>Explore subjects, then progress through topics and subtopics.</p>
+      <div class="track-meta">
+        {% for subject in department.subjects %}
+        <span>{{ subject | replace: '-', ' ' | capitalize }}</span>
+        {% endfor %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-block study-exam-note" aria-labelledby="exam-prep-heading">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">Assessment</span>
+      <h2 id="exam-prep-heading">Preparing for an exam?</h2>
     </div>
-  </a>
+  </div>
+  <p>Exam preparation is separate from Study. Use Quiz to choose JAMB / UTME, WAEC, or future international examination tracks.</p>
+  <a href="{{ '/quiz/' | relative_url }}" class="btn btn-primary">Go to Quiz</a>
+</section>
 
-  <a href="#" class="track-card" style="opacity:.55;pointer-events:none;">
-    <div class="track-icon">🌍</div>
-    <h3>International (Coming Soon)</h3>
-    <p>WASSCE for other countries, IGCSE, and more — on the roadmap.</p>
-    <div class="track-meta">
-      <span>🚧 In Progress</span>
+<section class="section-block">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">Quick revision</span>
+      <h2>Flashcards</h2>
     </div>
-  </a>
-</div>
-
-<div class="section-block">
-  <h2>Or jump straight to Flashcards</h2>
+  </div>
   <div class="track-selector">
     <a href="{{ '/flash/jamb/' | relative_url }}" class="track-card jamb">
       <div class="track-icon">🎴</div>
@@ -52,4 +71,4 @@ permalink: /high-school/
       <h3>WAEC Flashcards</h3>
     </a>
   </div>
-</div>
+</section>
