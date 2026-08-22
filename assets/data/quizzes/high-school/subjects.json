@@ -1,0 +1,15 @@
+{
+  "level": "high-school",
+  "subjects": [
+    "mathematics",
+    "english",
+    "physics",
+    "chemistry",
+    "biology",
+    "economics",
+    "geography",
+    "government",
+    "accounting",
+    "computer-science"
+  ]
+}
