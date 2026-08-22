@@ -1,0 +1,51 @@
+---
+layout: app
+permalink: /high-school/subject/
+---
+
+<div class="landing-hero">
+  <p class="eyebrow" id="department-label">High School Study</p>
+  <h1 id="subject-title">Subject</h1>
+  <p id="subject-description">Choose a subject to begin studying.</p>
+</div>
+
+<section class="section-block" aria-labelledby="subjects-heading">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">Study pathway</span>
+      <h2 id="subjects-heading">Subjects</h2>
+    </div>
+    <span class="section-note">Topic → Subtopic</span>
+  </div>
+  <div class="track-selector" id="subject-list"></div>
+</section>
+
+<script type="module">
+import { getHighSchoolStudyDepartment } from "{{ '/assets/js/learning-taxonomy.js' | relative_url }}";
+
+const params = new URLSearchParams(window.location.search);
+const departmentId = params.get('department');
+const department = getHighSchoolStudyDepartment(departmentId);
+const list = document.getElementById('subject-list');
+const title = document.getElementById('subject-title');
+const label = document.getElementById('department-label');
+const description = document.getElementById('subject-description');
+
+if (!department) {
+  title.textContent = 'Choose a department';
+  description.textContent = 'Return to High School Study and choose a department to continue.';
+  list.innerHTML = '<a class="btn btn-primary" href="{{ \'/high-school/\' | relative_url }}">Back to High School Study</a>';
+} else {
+  label.textContent = department.name;
+  title.textContent = `${department.name} Subjects`;
+  description.textContent = 'Choose a subject. Topic and subtopic pages will appear as real curriculum content is added.';
+
+  department.subjects.forEach(subject => {
+    const card = document.createElement('a');
+    card.className = 'track-card study-subject';
+    card.href = `{{ '/high-school/subject/' | relative_url }}?department=${encodeURIComponent(department.id)}&subject=${encodeURIComponent(subject)}`;
+    card.innerHTML = `<div class="track-icon">📖</div><h3>${subject.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</h3><p>Open the subject pathway and explore available topics.</p><div class="track-meta"><span>Topic → Subtopic</span></div>`;
+    list.appendChild(card);
+  });
+}
+</script>
