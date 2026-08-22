@@ -1,0 +1,15 @@
+# Axiom learning resource registry
+# Shared model for lessons, chapters, quizzes, and future flashcards.
+# Content should reference real resources only; empty lists mean not yet available.
+
+resources:
+  - id: example-resource
+    type: lesson
+    domain: high_school
+    subject: physics
+    topic: null
+    title: Example resource
+    status: planned
+    related:
+      quizzes: []
+      flashcards: []
