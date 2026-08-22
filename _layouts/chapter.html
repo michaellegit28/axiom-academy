@@ -1,12 +1,9 @@
 ---
-layout: app
+layout: app-shell
 ---
 
-<!-- Chapter Reading Layout -->
-<div class="chapter-wrapper">
-
-  <!-- Reading Progress Bar -->
-  <div class="reading-progress-container">
+<div class="chapter-wrapper axiom-reader">
+  <div class="reading-progress-container" aria-hidden="true">
     <div class="reading-progress-bar" id="reading-progress"></div>
   </div>
 
@@ -20,139 +17,99 @@ layout: app
     <span class="crumb-current">{{ page.title }}</span>
   </nav>
 
-  <!-- Chapter Header -->
   <header class="chapter-header">
     <div class="volume-label">{{ page.volume_title | default: page.volume }}</div>
     <div class="chapter-meta">
       <span class="chapter-number">Chapter {{ page.chapter_number }}</span>
-      {% if page.estimated_read_time %}
-      <span class="read-time">{{ page.estimated_read_time }} min read</span>
-      {% endif %}
+      {% if page.estimated_read_time %}<span class="read-time">{{ page.estimated_read_time }} min read</span>{% endif %}
     </div>
     <h1 class="chapter-title">{{ page.title }}</h1>
 
-    <!-- Topic Tags -->
     {% if page.topics %}
-    <div class="topic-tags">
-      {% for topic in page.topics %}
-      <span class="topic-tag">{{ topic | replace: '_', ' ' | capitalize }}</span>
-      {% endfor %}
+    <div class="topic-tags" aria-label="Topics">
+      {% for topic in page.topics %}<span class="topic-tag">{{ topic | replace: '_', ' ' | capitalize }}</span>{% endfor %}
     </div>
     {% endif %}
 
-    <!-- Action Bar -->
-    <div class="chapter-actions">
-      <button class="action-btn" id="btn-bookmark" title="Bookmark">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
-        <span>Bookmark</span>
-      </button>
-      <button class="action-btn" id="btn-font-size" title="Font Size">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
-        <span>Size</span>
-      </button>
-      <button class="action-btn" id="btn-theme" title="Toggle Theme">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <span>Theme</span>
-      </button>
+    <div class="chapter-actions" aria-label="Reading controls">
+      <button class="action-btn" id="btn-bookmark" type="button" title="Bookmark this chapter">Bookmark</button>
+      <button class="action-btn" id="btn-font-size" type="button" title="Change reading size">Text size</button>
     </div>
   </header>
 
-  <!-- Chapter Content -->
-  <article class="chapter-content" id="chapter-content">
-    {{ content }}
-  </article>
+  <article class="chapter-content" id="chapter-content">{{ content }}</article>
 
-  <!-- Chapter Footer Navigation -->
-  <nav class="chapter-footer-nav">
+  <nav class="chapter-footer-nav" aria-label="Chapter navigation">
     {% if page.prev_chapter %}
     <a href="{{ page.prev_chapter | relative_url }}" class="chapter-nav-link prev">
       <span class="nav-label">← Previous Chapter</span>
       <span class="nav-title">{{ page.prev_chapter_title | default: 'Previous' }}</span>
     </a>
-    {% else %}
-    <div></div>
-    {% endif %}
+    {% else %}<div></div>{% endif %}
 
-    <a href="{{ '/read/physics/vol' | append: page.volume | append: '/' | relative_url }}" class="volume-index-link">
-      Vol {{ page.volume }} Index
-    </a>
+    <a href="{{ '/read/physics/vol' | append: page.volume | append: '/' | relative_url }}" class="volume-index-link">Vol {{ page.volume }} Index</a>
 
     {% if page.next_chapter %}
     <a href="{{ page.next_chapter | relative_url }}" class="chapter-nav-link next">
       <span class="nav-label">Next Chapter →</span>
       <span class="nav-title">{{ page.next_chapter_title | default: 'Next' }}</span>
     </a>
-    {% else %}
-    <div></div>
-    {% endif %}
+    {% else %}<div></div>{% endif %}
   </nav>
 
-  <!-- Related Quizzes -->
-  {% if page.quiz_available %}
-  <div class="related-section">
-    <h3>Practice What You Learned</h3>
+  {% if page.quiz_available or page.flashcard_available %}
+  <section class="related-section" aria-labelledby="practice-heading">
+    <h2 id="practice-heading">Practice what you learned</h2>
     <div class="related-cards">
       {% if page.jamb_alignment %}
       <a href="{{ '/quiz/jamb/' | append: page.jamb_alignment[0] | relative_url }}" class="related-card jamb">
-        <div class="related-icon">🧪</div>
-        <div class="related-info">
-          <div class="related-title">JAMB Quiz</div>
-          <div class="related-desc">Objective questions on this topic</div>
-        </div>
+        <div class="related-icon">🧪</div><div class="related-info"><div class="related-title">JAMB Quiz</div><div class="related-desc">Objective questions on this topic</div></div>
       </a>
       {% endif %}
-      {% if page.flashcard_available %}
+      {% if page.flashcard_available and page.topics %}
       <a href="{{ '/flash/physics/' | append: page.topics[0] | relative_url }}" class="related-card flash">
-        <div class="related-icon">🎴</div>
-        <div class="related-info">
-          <div class="related-title">Flashcards</div>
-          <div class="related-desc">Review key concepts</div>
-        </div>
+        <div class="related-icon">🎴</div><div class="related-info"><div class="related-title">Flashcards</div><div class="related-desc">Review key concepts</div></div>
       </a>
       {% endif %}
     </div>
-  </div>
+  </section>
   {% endif %}
-
 </div>
 
 <script>
-// Reading Progress
-document.addEventListener('scroll', function() {
+(function () {
   const content = document.getElementById('chapter-content');
+  const progress = document.getElementById('reading-progress');
+  const bookmarkBtn = document.getElementById('btn-bookmark');
+  const fontBtn = document.getElementById('btn-font-size');
   if (!content) return;
-  const rect = content.getBoundingClientRect();
-  const total = content.offsetHeight - window.innerHeight;
-  const scrolled = -rect.top;
-  const pct = Math.max(0, Math.min(100, (scrolled / total) * 100));
-  document.getElementById('reading-progress').style.width = pct + '%';
 
-  // Save progress to Firestore if user is logged in
-  if (window.AxiomApp && window.AxiomApp.user) {
-    const chapterId = 'vol{{ page.volume }}_ch{{ page.chapter_number }}';
-    window.AxiomApp.saveProgress(chapterId, Math.round(pct));
-  }
-});
-
-// Bookmark
-const bookmarkBtn = document.getElementById('btn-bookmark');
-if (bookmarkBtn) {
-  bookmarkBtn.addEventListener('click', function() {
-    this.classList.toggle('active');
-    const isActive = this.classList.contains('active');
-    this.querySelector('span').textContent = isActive ? 'Saved' : 'Bookmark';
-
-    if (window.AxiomApp && window.AxiomApp.user) {
-      window.AxiomApp.saveBookmark('{{ page.url }}', isActive);
+  let lastSaved = -1;
+  function updateProgress() {
+    const total = Math.max(1, content.offsetHeight - window.innerHeight);
+    const pct = Math.max(0, Math.min(100, ((-content.getBoundingClientRect().top) / total) * 100));
+    if (progress) progress.style.width = pct + '%';
+    const rounded = Math.round(pct);
+    if (rounded !== lastSaved && rounded % 5 === 0 && window.AxiomApp && window.AxiomApp.user) {
+      lastSaved = rounded;
+      window.AxiomApp.saveProgress('vol{{ page.volume }}_ch{{ page.chapter_number }}', rounded);
     }
-  });
-}
+  }
+  document.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
 
-// Font Size Toggle
-let fontSizeLevel = 1;
-const fontSizes = ['0.9rem', '1.05rem', '1.2rem'];
-document.getElementById('btn-font-size')?.addEventListener('click', function() {
-  fontSizeLevel = (fontSizeLevel + 1) % fontSizes.length;
-  document.documentElement.style.fontSize = fontSizes[fontSizeLevel];
-});
+  if (bookmarkBtn) bookmarkBtn.addEventListener('click', function () {
+    this.classList.toggle('active');
+    const saved = this.classList.contains('active');
+    this.textContent = saved ? 'Saved' : 'Bookmark';
+    if (window.AxiomApp && window.AxiomApp.user) window.AxiomApp.saveBookmark('{{ page.url }}', saved);
+  });
+
+  let level = 1;
+  const sizes = ['0.96rem', '1rem', '1.08rem'];
+  if (fontBtn) fontBtn.addEventListener('click', function () {
+    level = (level + 1) % sizes.length;
+    content.style.fontSize = sizes[level];
+  });
+})();
 </script>
