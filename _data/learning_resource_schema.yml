@@ -1,0 +1,30 @@
+# Axiom Academy learning resource contract
+# Shared model for lessons, chapters, quizzes and AI context.
+
+resource:
+  identity:
+    id: "unique-resource-id"
+    title: "Resource title"
+    domain: "university | high-school | extras"
+    activity: "study | quiz | progress"
+    subject: "subject-id"
+    topic: "topic-id"
+
+  learning:
+    type: "chapter | lesson | quiz | flashcards"
+    difficulty: "beginner | intermediate | advanced"
+    estimated_time_minutes: 0
+    prerequisites: []
+
+  relationships:
+    related_lessons: []
+    related_quizzes: []
+    related_flashcards: []
+
+  tracking:
+    bookmarkable: true
+    progress_trackable: true
+
+# Principle:
+# Content should be authored once and connected to learning activities.
+# Study, Quiz, AI and Progress should consume the same resource identity.
