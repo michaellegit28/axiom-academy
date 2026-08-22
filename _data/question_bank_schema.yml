@@ -1,0 +1,19 @@
+# Axiom Question Bank Schema
+# Supports WAEC, JAMB, NECO and Axiom practice questions
+
+question:
+  id: unique_identifier
+  exam: waec|jamb|neco|axiom
+  year: examination_year
+  subject: subject_name
+  topic: topic_name
+  difficulty: easy|medium|hard
+  type: multiple_choice
+  question: question_text
+  options:
+    - A
+    - B
+    - C
+    - D
+  answer: correct_option
+  explanation: solution_explanation
