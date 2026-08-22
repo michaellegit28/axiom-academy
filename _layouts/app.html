@@ -25,6 +25,10 @@
   {{ content }}
 
   {% include ai-chat.html %}
+  <script type="module">
+    import { initStudyRouting } from "{{ '/assets/js/axiom-study-routing.js' | relative_url }}";
+    document.addEventListener('DOMContentLoaded', initStudyRouting);
+  </script>
 
   <footer>
     <blockquote>"The important thing is not to stop questioning. Curiosity has its own reason for existing." — Albert Einstein</blockquote>
