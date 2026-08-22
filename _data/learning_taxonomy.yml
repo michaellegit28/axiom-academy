@@ -1,0 +1,54 @@
+# Axiom Academy learning taxonomy
+# Study and assessment intentionally use different hierarchies.
+
+high_school:
+  study:
+    label: "High School Study"
+    hierarchy: "Department → Subject → Topic → Subtopic"
+    departments:
+      - id: sciences
+        name: "Sciences"
+        subjects: [physics, chemistry, biology]
+      - id: mathematics
+        name: "Mathematics"
+        subjects: [mathematics]
+      - id: languages
+        name: "Languages"
+        subjects: [english]
+      - id: social-sciences
+        name: "Social Sciences"
+        subjects: [economics, geography, government]
+      - id: arts-humanities
+        name: "Arts & Humanities"
+        subjects: [literature, history, religious-studies]
+  quiz:
+    label: "High School Exams"
+    hierarchy: "Exam → Subject → Topic → Subtopic"
+    exams:
+      - id: jamb
+        name: "JAMB / UTME"
+        status: live
+      - id: waec
+        name: "WAEC"
+        status: live
+      - id: international
+        name: "International"
+        status: roadmap
+        exams: [igcse, other]
+
+university:
+  study:
+    label: "University Study"
+    hierarchy: "Faculty → Department → Programme → Course → Module → Topic"
+  quiz:
+    label: "University Assessment"
+    hierarchy: "Course → Module → Topic"
+    status: roadmap
+
+extras:
+  study:
+    label: "Extras"
+    hierarchy: "Collection → Volume → Chapter → Topic"
+  quiz:
+    label: "Extras Assessment"
+    hierarchy: "Collection → Volume → Topic"
