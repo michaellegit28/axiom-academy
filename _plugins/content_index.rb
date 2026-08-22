@@ -2,6 +2,8 @@
 # GitHub Pages-compatible: uses only core Ruby/Jekyll APIs.
 # Exposes metadata-driven chapters, quizzes and flashcards as site.data.content_index.
 
+require "json"
+
 Jekyll::Hooks.register :site, :post_read do |site|
   entries = []
 
@@ -37,4 +39,10 @@ Jekyll::Hooks.register :site, :post_read do |site|
   site.data["content_index"] = entries.sort_by do |entry|
     [entry["domain"], entry["contentType"], entry["title"]]
   end
+end
+
+# Write the generated index into _site so CI can validate and the frontend can consume it.
+Jekyll::Hooks.register :site, :post_write do |site|
+  output_path = File.join(site.dest, "content-index.json")
+  File.write(output_path, JSON.pretty_generate(site.data["content_index"] || []))
 end
