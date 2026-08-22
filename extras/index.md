@@ -4,9 +4,14 @@ title: Extras — Complete Physics Masterpiece &amp; More
 permalink: /extras/
 ---
 
-<div class="landing-hero">
-  <h1>Extras</h1>
-  <p>Advanced and enrichment resources beyond the standard curriculum — for the student who wants to go deeper.</p>
+<div class="section-block page-content-start">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">Extras</span>
+      <h2>Go deeper</h2>
+    </div>
+    <span class="section-note">Beyond the standard curriculum</span>
+  </div>
 </div>
 
 <div class="track-selector">
