@@ -1,23 +1,27 @@
 # Axiom Academy — build-time content index
-# Exposes metadata-driven chapters, quizzes and flashcards to Liquid as site.content_index.
+# GitHub Pages-compatible: uses only core Ruby/Jekyll APIs.
+# Exposes metadata-driven chapters, quizzes and flashcards as site.data.content_index.
 
 Jekyll::Hooks.register :site, :post_read do |site|
   entries = []
 
-  {
-    "chapters" => site.collections["chapters"],
-    "quizzes" => site.collections["quizzes"],
-    "flashcards" => site.collections["flashcards"]
-  }.each do |type, collection|
-    next unless collection
+  site.collections.each do |collection_name, collection|
+    next unless %w[chapters quizzes flashcards].include?(collection_name)
 
     collection.docs.each do |doc|
       data = doc.data
       next unless data["domain"] && data["contentId"]
 
+      content_type = data["contentType"]
+      content_type = {
+        "chapters" => "chapter",
+        "quizzes" => "quiz",
+        "flashcards" => "flashcard"
+      }[collection_name] unless content_type && !content_type.to_s.empty?
+
       entries << {
         "contentId" => data["contentId"].to_s,
-        "contentType" => data["contentType"].to_s.empty? ? type.singularize : data["contentType"].to_s,
+        "contentType" => content_type.to_s,
         "domain" => data["domain"].to_s,
         "title" => data["title"].to_s,
         "url" => doc.url.to_s,
@@ -30,5 +34,7 @@ Jekyll::Hooks.register :site, :post_read do |site|
     end
   end
 
-  site.data["content_index"] = entries.sort_by { |entry| [entry["domain"], entry["contentType"], entry["title"]] }
+  site.data["content_index"] = entries.sort_by do |entry|
+    [entry["domain"], entry["contentType"], entry["title"]]
+  end
 end
