@@ -1,0 +1,22 @@
+/* Canonical application shell rhythm. The fixed toolbar must never cover page content. */
+#app-content {
+  padding-top: 58px;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  #app-content {
+    padding-top: 54px;
+  }
+}
+
+/* page-rhythm owns the inner spacing; the shell owns only the toolbar offset. */
+#app-content > .page-content-start {
+  padding-top: .9rem;
+}
+
+@media (max-width: 768px) {
+  #app-content > .page-content-start {
+    padding-top: .8rem;
+  }
+}

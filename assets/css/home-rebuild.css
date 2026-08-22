@@ -1,0 +1,75 @@
+/* Axiom Home rebuild: compact workspace hierarchy, not a marketing hero. */
+.page-axiom-academy .axiom-home-intro {
+  padding: 1rem 0 .7rem;
+}
+
+.page-axiom-academy .axiom-home-intro .axiom-kicker {
+  margin-bottom: .35rem;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--axiom-muted);
+}
+
+.page-axiom-academy .axiom-home-intro h1 {
+  font-size: clamp(1.65rem, 4vw, 2.35rem);
+}
+
+.page-axiom-academy .axiom-home-intro p {
+  margin-top: .4rem;
+  font-size: .8rem;
+  line-height: 1.5;
+}
+
+.page-axiom-academy .axiom-domains {
+  margin-top: 0;
+}
+
+.page-axiom-academy .axiom-domains-heading {
+  margin-bottom: .75rem;
+}
+
+.page-axiom-academy .axiom-domains-heading h2 {
+  font-size: 1.45rem;
+}
+
+.page-axiom-academy .axiom-domains-heading p {
+  font-size: .68rem;
+}
+
+@media (min-width: 769px) {
+  .page-axiom-academy .axiom-domains {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .7rem;
+  }
+
+  .page-axiom-academy .axiom-domains-heading {
+    grid-column: 1 / -1;
+  }
+}
+
+.page-axiom-academy .axiom-domain-card {
+  min-height: 150px;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.page-axiom-academy .axiom-domain-card:hover {
+  transform: translateY(-1px);
+}
+
+.page-axiom-academy .axiom-mission {
+  margin-top: 2rem;
+  opacity: .9;
+}
+
+@media (max-width: 560px) {
+  .page-axiom-academy .axiom-home-intro {
+    padding-top: .8rem;
+  }
+
+  .page-axiom-academy .axiom-domains {
+    margin-top: .75rem;
+  }
+}
