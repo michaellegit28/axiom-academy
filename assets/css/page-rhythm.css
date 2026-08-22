@@ -1,7 +1,8 @@
-/* Compact learning-page rhythm — keeps the workspace visible above the fold. */
+/* Compact learning-page rhythm — the workspace starts immediately below the app toolbar. */
 .page-content-start {
-  padding-top: 1rem;
-  margin-bottom: .85rem;
+  max-width: 900px;
+  margin: 0 auto .85rem;
+  padding: calc(58px + .9rem) var(--page-margin) 0;
 }
 
 .page-content-start .section-heading {
@@ -10,6 +11,7 @@
 
 .page-content-start .section-heading h2 {
   margin-top: .15rem;
+  font-family: var(--font-serif);
   font-size: clamp(1.35rem, 4vw, 1.8rem);
   line-height: 1.1;
 }
@@ -19,12 +21,24 @@
 }
 
 .page-content-start + .track-selector {
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+}
+
+.page-content-start + .track-selector .track-card:first-child {
   margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .page-content-start {
+    padding-top: calc(54px + .8rem);
+  }
 }
 
 @media (max-width: 560px) {
   .page-content-start {
-    padding-top: .75rem;
+    padding-left: var(--page-margin);
+    padding-right: var(--page-margin);
     margin-bottom: .7rem;
   }
 
