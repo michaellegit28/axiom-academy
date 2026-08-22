@@ -4,9 +4,14 @@ title: University — Courses & Exam Prep
 permalink: /university/
 ---
 
-<div class="landing-hero">
-  <h1>University Physics</h1>
-  <p>Undergraduate coursework and exam prep in one place. Quiz yourself, drill flashcards, and work through course material.</p>
+<div class="section-block page-content-start">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">University · Study</span>
+      <h2>Learn at university level</h2>
+    </div>
+    <span class="section-note">Coursework + exam preparation</span>
+  </div>
 </div>
 
 <div class="track-selector">
