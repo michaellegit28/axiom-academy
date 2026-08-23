@@ -1,9 +1,10 @@
 /** Axiom Academy — shared learning taxonomy helpers */
 
 // Canonical V1 hierarchy: Department → Subject → Topic → Subtopic.
-// Mathematics is a subject under Sciences, matching the curriculum data.
+// Mathematics is its own High School department. Its subject is Mathematics.
 export const HIGH_SCHOOL_STUDY_DEPARTMENTS = Object.freeze([
-  { id: "sciences", name: "Sciences", subjects: ["mathematics", "physics", "chemistry", "biology"] },
+  { id: "mathematics", name: "Mathematics", subjects: ["mathematics"] },
+  { id: "sciences", name: "Sciences", subjects: ["physics", "chemistry", "biology"] },
   { id: "languages", name: "Languages", subjects: ["english"] },
   { id: "social-sciences", name: "Social Sciences", subjects: ["economics", "geography", "government"] },
   { id: "arts-humanities", name: "Arts & Humanities", subjects: ["literature", "history", "religious-studies"] },
