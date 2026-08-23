@@ -22,11 +22,12 @@ collections:
   flashcards:
     output: true
     permalink: /flash/:subject/:path/
-  studies:
+  study:
     output: true
     permalink: /:path/
   past_questions:
     output: false
+
 defaults:
   - scope:
       path: ""
@@ -46,7 +47,7 @@ defaults:
       layout: flash
   - scope:
       path: ""
-      type: "studies"
+      type: "study"
     values:
       layout: default
 permalink: /:path/
