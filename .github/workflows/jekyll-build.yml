@@ -1,4 +1,4 @@
-name: Build Jekyll site
+name: Build and Deploy Jekyll site
 
 on:
   push:
@@ -9,6 +9,12 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -49,3 +55,30 @@ jobs:
           grep -q 'high_school_curriculum' _site/high-school/subject/index.html
           grep -q 'Mathematics' _site/high-school/subject/index.html
           grep -q 'Algebra' _site/high-school/subject/index.html
+
+      - name: Verify Algebra study pages
+        run: |
+          test -f _site/high-school/mathematics/algebra/index.html
+          test -f _site/high-school/mathematics/algebra/introduction-to-algebra/index.html
+          test -f _site/high-school/mathematics/algebra/variables-and-constants/index.html
+          test -f _site/high-school/mathematics/algebra/algebraic-expressions/index.html
+          test -f _site/high-school/mathematics/algebra/simplifying-expressions/index.html
+          test -f _site/high-school/mathematics/algebra/linear-equations/index.html
+          test -f _site/high-school/mathematics/algebra/inequalities/index.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
