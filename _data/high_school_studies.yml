@@ -1,0 +1,14 @@
+version: 1
+domain: high-school
+subjects:
+  mathematics:
+    topics:
+      algebra:
+        study_path: /study/high-school/mathematics/algebra/
+        subtopics:
+          - introduction-to-algebra
+          - variables-and-constants
+          - algebraic-expressions
+          - simplifying-expressions
+          - linear-equations
+          - inequalities
