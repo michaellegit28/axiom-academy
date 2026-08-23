@@ -1,0 +1,81 @@
+# Standard High School Mathematics study lessons.
+# Study taxonomy follows _data/high_school_curriculum.yml.
+# Each lesson is designed for: Learn -> Worked example -> Key points -> Practice -> Review.
+
+subject: mathematics
+version: 1
+
+topics:
+  algebra:
+    - id: introduction-to-algebra
+      title: Introduction to Algebra
+      objective: Understand algebra as a language for representing unknown quantities and relationships.
+      sections:
+        - heading: Core idea
+          content: Algebra uses symbols, usually letters, to represent numbers or quantities that may be known or unknown.
+        - heading: Key points
+          bullets: ["A variable represents a value that can change or is unknown.", "A constant has a fixed value.", "An algebraic expression combines numbers, variables and operations."]
+        - heading: Worked example
+          content: If a notebook costs x dollars, three notebooks cost 3x dollars. If x = 4, then 3x = 12.
+        - heading: Review
+          questions: ["What is a variable?", "What is the difference between a constant and a variable?", "Write an expression for five more than x."]
+    - id: variables-and-constants
+      title: Variables & Constants
+      objective: Identify variables, constants, coefficients and terms in algebraic expressions.
+      sections:
+        - heading: Core idea
+          content: In 7x + 4, x is the variable, 7 is the coefficient of x, 4 is a constant, and 7x and 4 are terms.
+        - heading: Key points
+          bullets: ["A coefficient multiplies a variable.", "Terms are separated by addition or subtraction signs.", "Like terms have the same variable parts raised to the same powers."]
+        - heading: Worked example
+          content: In 5a - 3 + 2a, the like terms are 5a and 2a; -3 is a constant.
+        - heading: Review
+          questions: ["Identify the coefficient of y in -6y.", "How many terms are in 3x + 2y - 5?", "Which terms in 4a + 7 - 2a are like terms?"]
+    - id: algebraic-expressions
+      title: Algebraic Expressions
+      objective: Translate verbal statements into algebraic expressions and evaluate them.
+      sections:
+        - heading: Core idea
+          content: Words such as sum, difference, product and quotient describe algebraic operations.
+        - heading: Key points
+          bullets: ["Sum means addition.", "Difference means subtraction.", "Product means multiplication.", "Quotient means division."]
+        - heading: Worked example
+          content: The phrase twice a number plus 5 can be represented as 2x + 5. If x = 3, the value is 11.
+        - heading: Review
+          questions: ["Write an expression for three times n minus 2.", "Evaluate 4x + 1 when x = 6.", "Translate 'the sum of p and 9' into algebraic form."]
+    - id: simplifying-expressions
+      title: Simplifying Expressions
+      objective: Combine like terms and use the distributive property to simplify expressions.
+      sections:
+        - heading: Core idea
+          content: Simplification rewrites an expression in an equivalent, more compact form.
+        - heading: Key points
+          bullets: ["Only like terms can be combined.", "The distributive property is a(b + c) = ab + ac.", "Equivalent expressions have the same value for every allowed variable value."]
+        - heading: Worked example
+          content: 3x + 5 + 2x - 1 simplifies to 5x + 4 by combining like terms.
+        - heading: Review
+          questions: ["Simplify 7x - 2x + 3.", "Expand 4(x + 2).", "Simplify 2(3y - 1) + y."]
+    - id: linear-equations
+      title: Linear Equations
+      objective: Solve one-variable linear equations and check solutions.
+      sections:
+        - heading: Core idea
+          content: An equation states that two expressions are equal. Solving means finding values that make the statement true.
+        - heading: Key points
+          bullets: ["Perform the same operation on both sides.", "Undo operations in reverse order.", "Substitute the solution back into the original equation to check it."]
+        - heading: Worked example
+          content: For 2x + 3 = 11, subtract 3 to get 2x = 8, then divide by 2 to get x = 4. Checking gives 2(4) + 3 = 11.
+        - heading: Review
+          questions: ["Solve x + 7 = 12.", "Solve 3x = 21.", "Solve 4x - 5 = 15."]
+    - id: inequalities
+      title: Inequalities
+      objective: Solve and represent simple linear inequalities.
+      sections:
+        - heading: Core idea
+          content: Inequalities compare quantities using symbols such as <, >, <= and >=.
+        - heading: Key points
+          bullets: ["Adding or subtracting the same number preserves the inequality direction.", "Multiplying or dividing by a negative number reverses the inequality sign.", "Solutions can be represented on a number line."]
+        - heading: Worked example
+          content: From -2x > 6, dividing by -2 reverses the sign, giving x < -3.
+        - heading: Review
+          questions: ["Solve x + 4 > 9.", "Solve 2x <= 10.", "Solve -3x > 12."]
