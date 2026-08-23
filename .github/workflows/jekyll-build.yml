@@ -52,7 +52,7 @@ jobs:
       - name: Verify High School curriculum renderer inputs
         run: |
           test -f _site/high-school/subject/index.html
-          grep -q 'high_school_curriculum' _site/high-school/subject/index.html
+          grep -q 'curriculumDepartments' _site/high-school/subject/index.html
           grep -q 'Mathematics' _site/high-school/subject/index.html
           grep -q 'Algebra' _site/high-school/subject/index.html
 
