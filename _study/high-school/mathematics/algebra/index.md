@@ -4,6 +4,7 @@ layout: default
 subject: mathematics
 topic: algebra
 level: high-school
+permalink: /high-school/study/mathematics/algebra/
 ---
 # Algebra
 
@@ -21,12 +22,18 @@ Algebra lets us describe unknown quantities and general rules. A **variable** re
 ### Worked example
 For `3x + 5x - 2`, combine like terms: `8x - 2`.
 
+### Quick review
+Identify the variable, coefficient, constants and terms in a given expression.
+
 ## 2. Variables & Constants
 ### Study
 A variable such as `x` can represent an unknown or changing value. A constant such as `7` keeps the same value. In `4x + 7`, `4` is the coefficient of `x` and `7` is the constant.
 
 ### Worked example
 If `x = 3`, then `4x + 7 = 4(3) + 7 = 19`.
+
+### Quick review
+Distinguish variables, constants and coefficients before evaluating an expression.
 
 ## 3. Algebraic Expressions
 ### Study
@@ -35,12 +42,18 @@ Expressions do not contain an equality statement. Translate words into symbols c
 ### Worked example
 Evaluate `2a + 3b` when `a = 4` and `b = 2`: `8 + 6 = 14`.
 
+### Quick review
+Translate verbal descriptions into algebraic expressions and evaluate them when values are given.
+
 ## 4. Simplifying Expressions
 ### Study
 Simplification means rewriting an expression in an equivalent, simpler form. Combine like terms and use the distributive property when needed.
 
 ### Worked example
 `3(x + 4) + 2x = 3x + 12 + 2x = 5x + 12`.
+
+### Quick review
+Apply the distributive property first when needed, then combine like terms.
 
 ## 5. Linear Equations
 ### Study
@@ -52,6 +65,9 @@ An equation states that two expressions are equal. Solve by performing equivalen
 ### Check
 Substitute `x = 6`: `2(6) + 5 = 17`, so the solution is correct.
 
+### Quick review
+Keep both sides balanced and check the final solution by substitution.
+
 ## 6. Inequalities
 ### Study
 Inequalities compare quantities using `<`, `>`, `≤` or `≥`. Solve them like equations, but **reverse the inequality sign when multiplying or dividing by a negative number**.
@@ -59,9 +75,15 @@ Inequalities compare quantities using `<`, `>`, `≤` or `≥`. Solve them like 
 ### Worked example
 `-2x > 8` → `x < -4`.
 
-## Quick review
-1. Identify variables, coefficients and constants.
-2. Translate and evaluate expressions accurately.
-3. Combine like terms when simplifying.
-4. Keep both sides balanced when solving equations.
-5. Reverse an inequality when multiplying or dividing by a negative number.
+### Quick review
+Remember the sign reversal when multiplying or dividing an inequality by a negative number.
+
+## Study checklist
+- Understand variables, constants, coefficients and terms.
+- Translate and evaluate algebraic expressions accurately.
+- Simplify expressions using the distributive property and like terms.
+- Solve and check linear equations.
+- Solve inequalities and represent their solutions correctly.
+
+## Next step
+Use the Algebra practice section to test each subtopic, then return here to review any concept you missed.
