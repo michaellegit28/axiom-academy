@@ -1,0 +1,45 @@
+# Standard High School Mathematics study outlines for the remaining curriculum topics.
+# These are the topic-level study plans; detailed lessons follow the Algebra model.
+
+subject: mathematics
+version: 1
+
+topics:
+  geometry:
+    study_sections:
+      - Angles & Lines
+      - Triangles
+      - Quadrilaterals & Polygons
+      - Circles
+      - Area & Perimeter
+      - Coordinate Geometry
+    standard_lesson_pattern: [Learning objectives, Core concepts, Worked examples, Common mistakes, Practice, Review]
+  trigonometry:
+    study_sections:
+      - Trigonometric Ratios
+      - Right Triangles
+      - Angles of Elevation & Depression
+      - Sine & Cosine Rules
+      - Trigonometric Identities
+    standard_lesson_pattern: [Learning objectives, Core concepts, Worked examples, Common mistakes, Practice, Review]
+  statistics:
+    study_sections:
+      - Data Collection
+      - Tables & Charts
+      - Mean, Median & Mode
+      - Range & Variation
+      - Data Interpretation
+    standard_lesson_pattern: [Learning objectives, Core concepts, Worked examples, Common mistakes, Practice, Review]
+  probability:
+    study_sections:
+      - Probability Basics
+      - Sample Spaces
+      - Events
+      - Probability Rules
+    standard_lesson_pattern: [Learning objectives, Core concepts, Worked examples, Common mistakes, Practice, Review]
+  calculus-basics:
+    study_sections:
+      - Introduction to Limits
+      - Basic Differentiation
+      - Applications of Differentiation
+    standard_lesson_pattern: [Learning objectives, Core concepts, Worked examples, Common mistakes, Practice, Review]
