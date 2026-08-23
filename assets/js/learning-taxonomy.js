@@ -17,6 +17,10 @@ export const HIGH_SCHOOL_EXAMS = Object.freeze([
   { id: "international", name: "International", status: "roadmap" }
 ]);
 
+export function getHighSchoolStudyDepartments() {
+  return HIGH_SCHOOL_STUDY_DEPARTMENTS;
+}
+
 export function getHighSchoolStudyDepartment(id) {
   return HIGH_SCHOOL_STUDY_DEPARTMENTS.find(department => department.id === id) || null;
 }
@@ -36,6 +40,7 @@ export function isHighSchoolExamContent(content) {
 window.AxiomLearningTaxonomy = Object.freeze({
   HIGH_SCHOOL_STUDY_DEPARTMENTS,
   HIGH_SCHOOL_EXAMS,
+  getHighSchoolStudyDepartments,
   getHighSchoolStudyDepartment,
   getHighSchoolExam,
   isHighSchoolStudyContent,
