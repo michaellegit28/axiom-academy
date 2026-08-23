@@ -1,0 +1,89 @@
+# Standard High School Mathematics — Algebra study lessons
+# Each lesson is designed for Learn -> Worked Example -> Check Understanding -> Review.
+version: 1
+subject: mathematics
+topic: algebra
+lessons:
+  - id: introduction-to-algebra
+    title: Introduction to Algebra
+    objectives:
+      - Explain what algebra is and why variables are used.
+      - Distinguish numbers, variables, constants, terms and coefficients.
+    study:
+      - "Algebra uses symbols and letters to represent numbers and relationships."
+      - "A variable is a symbol whose value can change; a constant has a fixed value."
+      - "A term is a number, a variable, or a product of numbers and variables."
+    worked_example:
+      problem: "Identify the terms and coefficient in 5x + 3."
+      solution: "The terms are 5x and 3. The coefficient of x is 5."
+    review: "Remember: coefficient × variable forms a term."
+
+  - id: variables-and-constants
+    title: Variables & Constants
+    objectives:
+      - Identify variables and constants in algebraic statements.
+      - Substitute numerical values for variables.
+    study:
+      - "A variable can stand for an unknown or changing quantity."
+      - "A constant keeps the same value within an expression."
+      - "Substitution means replacing a variable with a stated value."
+    worked_example:
+      problem: "Find 3x + 2 when x = 4."
+      solution: "Substitute 4 for x: 3(4) + 2 = 12 + 2 = 14."
+    review: "Always use brackets when substituting a value into a product."
+
+  - id: algebraic-expressions
+    title: Algebraic Expressions
+    objectives:
+      - Read and write algebraic expressions.
+      - Identify terms, coefficients and constants.
+    study:
+      - "An expression combines numbers, variables and operations without an equals sign."
+      - "Like terms have the same variable parts and can be combined."
+      - "Unlike terms cannot be combined by simple addition or subtraction."
+    worked_example:
+      problem: "Identify the like terms in 4x + 7 + 3x - 2."
+      solution: "4x and 3x are like terms; 7 and -2 are also like terms."
+    review: "Combine like terms only; keep unlike terms separate."
+
+  - id: simplifying-expressions
+    title: Simplifying Expressions
+    objectives:
+      - Combine like terms correctly.
+      - Apply the distributive property.
+    study:
+      - "Simplifying means rewriting an expression in an equivalent, more compact form."
+      - "The distributive property states a(b + c) = ab + ac."
+      - "Collect like terms after expanding brackets when necessary."
+    worked_example:
+      problem: "Simplify 3(x + 2) + 2x."
+      solution: "Expand: 3x + 6 + 2x. Combine like terms: 5x + 6."
+    review: "Expand brackets carefully, then collect like terms."
+
+  - id: linear-equations
+    title: Linear Equations
+    objectives:
+      - Solve one-step and multi-step linear equations.
+      - Check a solution by substitution.
+    study:
+      - "An equation states that two expressions are equal."
+      - "Use inverse operations to isolate the unknown while preserving equality."
+      - "A valid solution makes both sides of the equation equal."
+    worked_example:
+      problem: "Solve 2x + 5 = 13."
+      solution: "Subtract 5: 2x = 8. Divide by 2: x = 4. Check: 2(4) + 5 = 13."
+    review: "Perform the same operation on both sides of an equation."
+
+  - id: inequalities
+    title: Inequalities
+    objectives:
+      - Interpret inequality symbols.
+      - Solve simple linear inequalities.
+    study:
+      - "The symbols <, >, ≤ and ≥ compare quantities."
+      - "Solve inequalities using the same operations used for equations."
+      - "When multiplying or dividing by a negative number, reverse the inequality sign."
+    worked_example:
+      problem: "Solve 2x + 1 < 7."
+      solution: "Subtract 1: 2x < 6. Divide by 2: x < 3."
+    review: "The inequality reverses when multiplying or dividing by a negative number."
