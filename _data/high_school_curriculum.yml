@@ -7,97 +7,51 @@ version: 1
 domain: high-school
 
 departments:
+  - id: mathematics
+    name: Mathematics
+    description: Algebra, geometry, trigonometry, statistics, probability and introductory calculus.
+    subjects:
+      - id: algebra
+        name: Algebra
+        description: Variables, expressions, equations, inequalities and algebraic relationships.
+        topics:
+          - id: introduction-to-algebra
+            name: Introduction to Algebra
+          - id: variables-and-constants
+            name: Variables & Constants
+          - id: algebraic-expressions
+            name: Algebraic Expressions
+          - id: simplifying-expressions
+            name: Simplifying Expressions
+          - id: linear-equations
+            name: Linear Equations
+          - id: inequalities
+            name: Inequalities
+      - id: geometry
+        name: Geometry
+        description: Shapes, angles, measurement, coordinate geometry and geometric relationships.
+        topics: []
+      - id: trigonometry
+        name: Trigonometry
+        description: Right-triangle relationships, trigonometric ratios, identities and applications.
+        topics: []
+      - id: statistics
+        name: Statistics
+        description: Data collection, presentation, averages, spread and interpretation.
+        topics: []
+      - id: probability
+        name: Probability
+        description: Events, outcomes, probability rules and basic probability models.
+        topics: []
+      - id: calculus-basics
+        name: Calculus Basics
+        description: Introductory limits, differentiation and applications.
+        topics: []
+
   - id: sciences
     name: Sciences
-    description: Mathematics and the core science subjects.
+    description: Physics and the core science subjects.
     subjects:
-      - id: mathematics
-        name: Mathematics
-        description: Algebra, geometry, trigonometry, statistics, probability and introductory calculus.
-        topics:
-          - id: algebra
-            name: Algebra
-            description: Variables, expressions, equations, inequalities and algebraic relationships.
-            subtopics:
-              - id: introduction-to-algebra
-                name: Introduction to Algebra
-              - id: variables-and-constants
-                name: Variables & Constants
-              - id: algebraic-expressions
-                name: Algebraic Expressions
-              - id: simplifying-expressions
-                name: Simplifying Expressions
-              - id: linear-equations
-                name: Linear Equations
-              - id: inequalities
-                name: Inequalities
-          - id: geometry
-            name: Geometry
-            description: Shapes, angles, measurement, coordinate geometry and geometric relationships.
-            subtopics:
-              - id: angles-and-lines
-                name: Angles & Lines
-              - id: triangles
-                name: Triangles
-              - id: quadrilaterals-and-polygons
-                name: Quadrilaterals & Polygons
-              - id: circles
-                name: Circles
-              - id: area-and-perimeter
-                name: Area & Perimeter
-              - id: coordinate-geometry
-                name: Coordinate Geometry
-          - id: trigonometry
-            name: Trigonometry
-            description: Right-triangle relationships, trigonometric ratios, identities and applications.
-            subtopics:
-              - id: trigonometric-ratios
-                name: Trigonometric Ratios
-              - id: right-triangles
-                name: Right Triangles
-              - id: angles-of-elevation-and-depression
-                name: Angles of Elevation & Depression
-              - id: sine-and-cosine-rules
-                name: Sine & Cosine Rules
-              - id: trigonometric-identities
-                name: Trigonometric Identities
-          - id: statistics
-            name: Statistics
-            description: Data collection, presentation, averages, spread and interpretation.
-            subtopics:
-              - id: data-collection
-                name: Data Collection
-              - id: tables-and-charts
-                name: Tables & Charts
-              - id: mean-median-and-mode
-                name: Mean, Median & Mode
-              - id: range-and-variation
-                name: Range & Variation
-              - id: data-interpretation
-                name: Data Interpretation
-          - id: probability
-            name: Probability
-            description: Events, outcomes, probability rules and basic probability models.
-            subtopics:
-              - id: probability-basics
-                name: Probability Basics
-              - id: sample-spaces
-                name: Sample Spaces
-              - id: events
-                name: Events
-              - id: probability-rules
-                name: Probability Rules
-          - id: calculus-basics
-            name: Calculus Basics
-            description: Introductory limits, differentiation and applications.
-            subtopics:
-              - id: introduction-to-limits
-                name: Introduction to Limits
-              - id: basic-differentiation
-                name: Basic Differentiation
-              - id: applications-of-differentiation
-                name: Applications of Differentiation
-
       - id: physics
         name: Physics
         description: Mechanics, waves, electricity, fields and modern physics.
