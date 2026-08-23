@@ -10,22 +10,16 @@ high_school_subject: mathematics
     <div>
       <span class="eyebrow">High School · Mathematics</span>
       <h1>Algebra</h1>
-      <p>Learn the language of variables, expressions, and equations.</p>
+      <p>Learn the language of variables, expressions, equations, and inequalities.</p>
     </div>
   </div>
 
   <div class="track-selector">
-    <article class="track-card">
+    <a class="track-card" href="{{ '/high-school/mathematics/algebra/study/' | relative_url }}">
       <h2>Study</h2>
-      <p>Introduction to variables, constants, algebraic expressions, simplification, and equations.</p>
-    </article>
-    <article class="track-card">
-      <h2>Practice</h2>
-      <p>Practice questions and exam preparation will appear here.</p>
-    </article>
-    <article class="track-card">
-      <h2>Flashcards</h2>
-      <p>Key definitions and revision cards will appear here.</p>
-    </article>
+      <p>Structured lessons covering the six Algebra subtopics, with explanations and worked examples.</p>
+    </a>
+    <article class="track-card"><h2>Practice</h2><p>Practice questions and exam preparation will appear here.</p></article>
+    <article class="track-card"><h2>Flashcards</h2><p>Key definitions and revision cards will appear here.</p></article>
   </div>
 </section>
