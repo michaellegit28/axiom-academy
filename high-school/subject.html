@@ -30,6 +30,7 @@ const label = document.getElementById('department-label');
 const description = document.getElementById('subject-description');
 const subjectUrl = "{{ '/high-school/subject/' | relative_url }}";
 const studyUrl = "{{ '/high-school/' | relative_url }}";
+const algebraStudyUrl = "{{ '/high-school/study/mathematics/algebra/' | relative_url }}";
 function pretty(value) { return String(value || '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); }
 function findCurriculumSubject(id) {
   for (const dept of (curriculumDepartments || [])) {
@@ -48,7 +49,7 @@ function subjectCard(subject) {
 function subtopicCard(topic, subtopic) {
   const card=document.createElement('a'); card.className='track-card study-subtopic';
   const isAlgebra = subjectId === 'mathematics' && topic.id === 'algebra';
-  card.href = isAlgebra ? `{{ '/high-school/mathematics/algebra/' | relative_url }}${subtopic.id}/` : '#';
+  card.href = isAlgebra ? `${algebraStudyUrl}${subtopic.id}/` : '#';
   if (!isAlgebra) card.setAttribute('aria-disabled','true');
   card.innerHTML=`<div class="track-icon" aria-hidden="true">📘</div><h2>${subtopic.name}</h2><p>${isAlgebra ? 'Study the concept, worked examples, and check-your-understanding questions.' : 'Study content is being prepared for this subtopic.'}</p><div class="track-meta"><span>${isAlgebra ? 'Study available' : 'Coming next'}</span></div>`;
   return card;
