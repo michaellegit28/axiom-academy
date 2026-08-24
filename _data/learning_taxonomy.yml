@@ -11,7 +11,7 @@ high_school:
         subjects: [physics, chemistry, biology]
       - id: mathematics
         name: "Mathematics"
-        subjects: [mathematics]
+        subjects: []
       - id: languages
         name: "Languages"
         subjects: [english]
