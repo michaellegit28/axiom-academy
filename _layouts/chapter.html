@@ -1,115 +1,34 @@
 ---
 layout: app-shell
 ---
-
 <div class="chapter-wrapper axiom-reader">
-  <div class="reading-progress-container" aria-hidden="true">
-    <div class="reading-progress-bar" id="reading-progress"></div>
-  </div>
-
+  <div class="reading-progress-container" aria-hidden="true"><div class="reading-progress-bar" id="reading-progress"></div></div>
+  {% if page.high_school_topic %}
   <nav class="breadcrumb-trail" aria-label="Breadcrumb">
-    <a href="{{ '/extras/' | relative_url }}">Extras</a>
-    <span class="crumb-sep">/</span>
-    <a href="{{ '/read/physics/vol0/' | relative_url }}">Complete Physics Masterpiece</a>
-    <span class="crumb-sep">/</span>
-    <a href="{{ '/read/physics/vol' | append: page.volume | append: '/' | relative_url }}">{{ page.volume_title | default: page.volume }}</a>
-    <span class="crumb-sep">/</span>
+    <a href="{{ '/high-school/study/' | relative_url }}">High School Study</a><span class="crumb-sep">/</span>
+    <a href="{{ '/high-school/mathematics/' | relative_url }}">Mathematics</a><span class="crumb-sep">/</span>
+    <a href="{{ '/high-school/mathematics/algebra/' | relative_url }}">Algebra</a><span class="crumb-sep">/</span>
     <span class="crumb-current">{{ page.title }}</span>
   </nav>
-
   <header class="chapter-header">
-    <div class="volume-label">{{ page.volume_title | default: page.volume }}</div>
-    <div class="chapter-meta">
-      <span class="chapter-number">Chapter {{ page.chapter_number }}</span>
-      {% if page.estimated_read_time %}<span class="read-time">{{ page.estimated_read_time }} min read</span>{% endif %}
-    </div>
+    <div class="volume-label">High School · Mathematics · Algebra</div>
+    <div class="chapter-meta"><span class="chapter-number">Study lesson</span>{% if page.estimated_read_time %}<span class="read-time">{{ page.estimated_read_time }} min read</span>{% endif %}</div>
     <h1 class="chapter-title">{{ page.title }}</h1>
-
-    {% if page.topics %}
-    <div class="topic-tags" aria-label="Topics">
-      {% for topic in page.topics %}<span class="topic-tag">{{ topic | replace: '_', ' ' | capitalize }}</span>{% endfor %}
-    </div>
-    {% endif %}
-
-    <div class="chapter-actions" aria-label="Reading controls">
-      <button class="action-btn" id="btn-bookmark" type="button" title="Bookmark this chapter">Bookmark</button>
-      <button class="action-btn" id="btn-font-size" type="button" title="Change reading size">Text size</button>
-    </div>
+    <div class="chapter-actions" aria-label="Reading controls"><button class="action-btn" id="btn-bookmark" type="button">Bookmark</button><button class="action-btn" id="btn-font-size" type="button">Text size</button></div>
   </header>
-
-  <article class="chapter-content" id="chapter-content">{{ content }}</article>
-
-  <nav class="chapter-footer-nav" aria-label="Chapter navigation">
-    {% if page.prev_chapter %}
-    <a href="{{ page.prev_chapter | relative_url }}" class="chapter-nav-link prev">
-      <span class="nav-label">← Previous Chapter</span>
-      <span class="nav-title">{{ page.prev_chapter_title | default: 'Previous' }}</span>
-    </a>
-    {% else %}<div></div>{% endif %}
-
-    <a href="{{ '/read/physics/vol' | append: page.volume | append: '/' | relative_url }}" class="volume-index-link">Vol {{ page.volume }} Index</a>
-
-    {% if page.next_chapter %}
-    <a href="{{ page.next_chapter | relative_url }}" class="chapter-nav-link next">
-      <span class="nav-label">Next Chapter →</span>
-      <span class="nav-title">{{ page.next_chapter_title | default: 'Next' }}</span>
-    </a>
-    {% else %}<div></div>{% endif %}
+  <div class="study-reader-grid"><aside class="study-toc content-card"><strong>On this page</strong><nav id="study-toc-list"></nav></aside><article class="chapter-content study-content" id="chapter-content">{{ content }}</article></div>
+  <nav class="chapter-footer-nav" aria-label="Lesson navigation">
+    {% if page.prev_lesson %}<a href="{{ page.prev_lesson | relative_url }}" class="chapter-nav-link prev"><span class="nav-label">← Previous lesson</span><span class="nav-title">{{ page.prev_lesson_title }}</span></a>{% else %}<div></div>{% endif %}
+    <a href="{{ '/high-school/mathematics/algebra/' | relative_url }}" class="volume-index-link">Algebra</a>
+    {% if page.next_lesson %}<a href="{{ page.next_lesson | relative_url }}" class="chapter-nav-link next"><span class="nav-label">Next lesson →</span><span class="nav-title">{{ page.next_lesson_title }}</span></a>{% else %}<div></div>{% endif %}
   </nav>
-
-  {% if page.quiz_available or page.flashcard_available %}
-  <section class="related-section" aria-labelledby="practice-heading">
-    <h2 id="practice-heading">Practice what you learned</h2>
-    <div class="related-cards">
-      {% if page.jamb_alignment %}
-      <a href="{{ '/quiz/jamb/' | append: page.jamb_alignment[0] | relative_url }}" class="related-card jamb">
-        <div class="related-icon">🧪</div><div class="related-info"><div class="related-title">JAMB Quiz</div><div class="related-desc">Objective questions on this topic</div></div>
-      </a>
-      {% endif %}
-      {% if page.flashcard_available and page.topics %}
-      <a href="{{ '/flash/physics/' | append: page.topics[0] | relative_url }}" class="related-card flash">
-        <div class="related-icon">🎴</div><div class="related-info"><div class="related-title">Flashcards</div><div class="related-desc">Review key concepts</div></div>
-      </a>
-      {% endif %}
-    </div>
-  </section>
+  {% else %}
+  <nav class="breadcrumb-trail" aria-label="Breadcrumb"><a href="{{ '/extras/' | relative_url }}">Extras</a><span class="crumb-sep">/</span><a href="{{ '/read/physics/vol0/' | relative_url }}">Complete Physics Masterpiece</a><span class="crumb-sep">/</span><a href="{{ '/read/physics/vol' | append: page.volume | append: '/' | relative_url }}">{{ page.volume_title | default: page.volume }}</a><span class="crumb-sep">/</span><span class="crumb-current">{{ page.title }}</span></nav>
+  <header class="chapter-header"><div class="volume-label">{{ page.volume_title | default: page.volume }}</div><div class="chapter-meta"><span class="chapter-number">Chapter {{ page.chapter_number }}</span>{% if page.estimated_read_time %}<span class="read-time">{{ page.estimated_read_time }} min read</span>{% endif %}</div><h1 class="chapter-title">{{ page.title }}</h1><div class="chapter-actions"><button class="action-btn" id="btn-bookmark" type="button">Bookmark</button><button class="action-btn" id="btn-font-size" type="button">Text size</button></div></header>
+  <article class="chapter-content" id="chapter-content">{{ content }}</article>
+  <nav class="chapter-footer-nav" aria-label="Chapter navigation">{% if page.prev_chapter %}<a href="{{ page.prev_chapter | relative_url }}" class="chapter-nav-link prev"><span class="nav-label">← Previous Chapter</span><span class="nav-title">{{ page.prev_chapter_title | default: 'Previous' }}</span></a>{% else %}<div></div>{% endif %}<a href="{{ '/read/physics/vol' | append: page.volume | append: '/' | relative_url }}" class="volume-index-link">Vol {{ page.volume }} Index</a>{% if page.next_chapter %}<a href="{{ page.next_chapter | relative_url }}" class="chapter-nav-link next"><span class="nav-label">Next Chapter →</span><span class="nav-title">{{ page.next_chapter_title | default: 'Next' }}</span></a>{% else %}<div></div>{% endif %}</nav>
   {% endif %}
 </div>
-
 <script>
-(function () {
-  const content = document.getElementById('chapter-content');
-  const progress = document.getElementById('reading-progress');
-  const bookmarkBtn = document.getElementById('btn-bookmark');
-  const fontBtn = document.getElementById('btn-font-size');
-  if (!content) return;
-
-  let lastSaved = -1;
-  function updateProgress() {
-    const total = Math.max(1, content.offsetHeight - window.innerHeight);
-    const pct = Math.max(0, Math.min(100, ((-content.getBoundingClientRect().top) / total) * 100));
-    if (progress) progress.style.width = pct + '%';
-    const rounded = Math.round(pct);
-    if (rounded !== lastSaved && rounded % 5 === 0 && window.AxiomApp && window.AxiomApp.user) {
-      lastSaved = rounded;
-      window.AxiomApp.saveProgress('vol{{ page.volume }}_ch{{ page.chapter_number }}', rounded);
-    }
-  }
-  document.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-
-  if (bookmarkBtn) bookmarkBtn.addEventListener('click', function () {
-    this.classList.toggle('active');
-    const saved = this.classList.contains('active');
-    this.textContent = saved ? 'Saved' : 'Bookmark';
-    if (window.AxiomApp && window.AxiomApp.user) window.AxiomApp.saveBookmark('{{ page.url }}', saved);
-  });
-
-  let level = 1;
-  const sizes = ['0.96rem', '1rem', '1.08rem'];
-  if (fontBtn) fontBtn.addEventListener('click', function () {
-    level = (level + 1) % sizes.length;
-    content.style.fontSize = sizes[level];
-  });
-})();
+(function(){const c=document.getElementById('chapter-content'),p=document.getElementById('reading-progress'),t=document.getElementById('study-toc-list');if(!c)return;if(t){c.querySelectorAll('h2').forEach((h,i)=>{h.id='section-'+(i+1);const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;a.className='toc-link';t.appendChild(a);});}function u(){const max=Math.max(1,c.scrollHeight-innerHeight);const pct=Math.max(0,Math.min(100,(-c.getBoundingClientRect().top/max)*100));if(p)p.style.width=pct+'%';}addEventListener('scroll',u,{passive:true});u();const b=document.getElementById('btn-bookmark');if(b)b.onclick=function(){this.classList.toggle('active');this.textContent=this.classList.contains('active')?'Saved':'Bookmark';if(window.AxiomApp&&window.AxiomApp.user)window.AxiomApp.saveBookmark('{{ page.url }}',this.classList.contains('active'));};const f=document.getElementById('btn-font-size'),s=['1rem','1.08rem','1.16rem'];let l=0;if(f)f.onclick=function(){l=(l+1)%s.length;c.style.fontSize=s[l];};})();
 </script>
