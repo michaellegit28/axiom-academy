@@ -4,14 +4,14 @@
 high_school:
   study:
     label: "High School Study"
-    hierarchy: "Department → Subject → Topic → Subtopic"
+    hierarchy: "Department → Topic → Subtopic"
     departments:
       - id: sciences
         name: "Sciences"
         subjects: [physics, chemistry, biology]
       - id: mathematics
         name: "Mathematics"
-        subjects: []
+        subjects: [algebra, geometry, trigonometry, statistics, probability, calculus-basics]
       - id: languages
         name: "Languages"
         subjects: [english]
