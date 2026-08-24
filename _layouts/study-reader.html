@@ -4,53 +4,30 @@ layout: app-shell
 <div class="study-reader" data-study-reader>
   <div class="study-reader-progress" aria-hidden="true"><div id="study-progress-bar"></div></div>
   <nav class="breadcrumb-trail" aria-label="Study breadcrumb">
-    <a href="{{ '/high-school/subject/?department=mathematics' | relative_url }}">Mathematics</a>
-    <span class="crumb-sep">/</span>
-    <a href="{{ '/high-school/subject/?department=mathematics&subject=algebra' | relative_url }}">Algebra</a>
-    <span class="crumb-sep">/</span>
-    <span class="crumb-current">{{ page.title }}</span>
+    <a href="{{ '/high-school/subject/?department=mathematics' | relative_url }}">Mathematics</a><span class="crumb-sep">/</span>
+    <a href="{{ '/high-school/subject/?department=mathematics&subject=algebra' | relative_url }}">Algebra</a><span class="crumb-sep">/</span><span class="crumb-current">{{ page.title }}</span>
   </nav>
-
   <header class="study-reader-header">
-    <span class="eyebrow">High School · Mathematics · Algebra</span>
-    <h1>{{ page.title }}</h1>
+    <span class="eyebrow">High School · Mathematics · Algebra</span><h1>{{ page.title }}</h1>
     {% if page.study_description %}<p>{{ page.study_description }}</p>{% endif %}
-    <div class="study-reader-actions">
-      <button type="button" class="action-btn" id="study-bookmark">Bookmark</button>
-      <button type="button" class="action-btn" id="study-text-size">Text size</button>
-    </div>
+    <div class="study-reader-actions"><button type="button" class="action-btn" id="study-bookmark">Bookmark</button><button type="button" class="action-btn" id="study-text-size">Text size</button></div>
   </header>
-
   <div class="study-reader-layout">
-    <aside class="study-reader-toc" aria-label="On this page">
-      <strong>On this page</strong>
-      <div id="study-toc"></div>
-    </aside>
-    <article class="study-reader-content" id="study-content">
-      {{ content }}
-    </article>
+    <aside class="study-reader-toc" aria-label="On this page"><strong>On this page</strong><div id="study-toc"></div></aside>
+    <article class="study-reader-content" id="study-content">{{ content }}</article>
   </div>
-
   <nav class="study-reader-footer" aria-label="Study navigation">
-    <a href="{{ '/high-school/subject/?department=mathematics&subject=algebra' | relative_url }}">← Back to Algebra</a>
+    {% if page.prev_study %}<a href="{{ page.prev_study | relative_url }}">← <small>Previous</small><strong>{{ page.prev_study_title }}</strong></a>{% else %}<span></span>{% endif %}
+    <a href="{{ '/high-school/subject/?department=mathematics&subject=algebra' | relative_url }}">Algebra</a>
+    {% if page.next_study %}<a href="{{ page.next_study | relative_url }}"><small>Next</small><strong>{{ page.next_study_title }}</strong> →</a>{% else %}<span></span>{% endif %}
   </nav>
 </div>
 <script>
 (function(){
-  const content=document.getElementById('study-content');
-  const bar=document.getElementById('study-progress-bar');
-  const toc=document.getElementById('study-toc');
-  if(!content) return;
-  const headings=[...content.querySelectorAll('h2,h3')];
-  headings.forEach((h,i)=>{
-    h.id=h.id||'study-section-'+(i+1);
-    const a=document.createElement('a'); a.href='#'+h.id; a.textContent=h.textContent; toc&&toc.appendChild(a);
-  });
-  function progress(){const max=Math.max(1,content.scrollHeight-window.innerHeight); const pct=Math.max(0,Math.min(100,(-content.getBoundingClientRect().top/max)*100)); if(bar) bar.style.width=pct+'%';}
-  addEventListener('scroll',progress,{passive:true}); progress();
-  const bookmark=document.getElementById('study-bookmark'); const key='axiom-study-bookmark:'+location.pathname;
-  if(localStorage.getItem(key)==='1'){bookmark.textContent='Saved';bookmark.classList.add('active');}
-  bookmark&&bookmark.addEventListener('click',()=>{const on=localStorage.getItem(key)!=='1'; localStorage.setItem(key,on?'1':'0'); bookmark.textContent=on?'Saved':'Bookmark'; bookmark.classList.toggle('active',on);});
-  const size=document.getElementById('study-text-size'); let level=0; const sizes=['1rem','1.08rem','1.16rem']; size&&size.addEventListener('click',()=>{level=(level+1)%sizes.length;content.style.fontSize=sizes[level];});
+  const content=document.getElementById('study-content'),bar=document.getElementById('study-progress-bar'),toc=document.getElementById('study-toc'); if(!content)return;
+  [...content.querySelectorAll('h2,h3')].forEach((h,i)=>{h.id=h.id||'study-section-'+(i+1);const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;toc&&toc.appendChild(a);});
+  function progress(){const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const pct=Math.max(0,Math.min(100,scrollY/max*100));if(bar)bar.style.width=pct+'%';localStorage.setItem('axiom-study-progress:'+location.pathname,Math.round(pct));} addEventListener('scroll',progress,{passive:true});progress();
+  const bookmark=document.getElementById('study-bookmark'),key='axiom-study-bookmark:'+location.pathname;if(localStorage.getItem(key)==='1'){bookmark.textContent='Saved';bookmark.classList.add('active');}bookmark&&bookmark.addEventListener('click',()=>{const on=localStorage.getItem(key)!=='1';localStorage.setItem(key,on?'1':'0');bookmark.textContent=on?'Saved':'Bookmark';bookmark.classList.toggle('active',on);});
+  const size=document.getElementById('study-text-size');let level=0;const sizes=['1rem','1.08rem','1.16rem'];size&&size.addEventListener('click',()=>{level=(level+1)%sizes.length;content.style.fontSize=sizes[level];});
 })();
 </script>
