@@ -11,7 +11,7 @@ permalink: /high-school/subject/
       <h1 id="subject-title">Choose a subject</h1>
       <p id="subject-description">Select a department, then choose a subject to explore its curriculum.</p>
     </div>
-    <span class="section-note">Subject → Topic → Subtopic</span>
+    <span class="section-note">Department → Topic → Subtopic</span>
   </div>
   <div class="track-selector" id="subject-list"></div>
 </section>
@@ -32,6 +32,9 @@ const subjectUrl = "{{ '/high-school/subject/' | relative_url }}";
 const studyUrl = "{{ '/high-school/' | relative_url }}";
 const algebraStudyUrl = "{{ '/high-school/study/mathematics/algebra/' | relative_url }}";
 function pretty(value) { return String(value || '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); }
+function findCurriculumDepartment(id) {
+  return (curriculumDepartments || []).find(item => item.id === id) || null;
+}
 function findCurriculumSubject(id) {
   for (const dept of (curriculumDepartments || [])) {
     const subject = (dept.subjects || []).find(item => item.id === id);
@@ -48,25 +51,27 @@ function subjectCard(subject) {
 }
 function subtopicCard(topic, subtopic) {
   const card=document.createElement('a'); card.className='track-card study-subtopic';
-  const isAlgebra = subjectId === 'mathematics' && topic.id === 'algebra';
-  card.href = isAlgebra ? `${algebraStudyUrl}${subtopic.id}/` : '#';
+  const isAlgebra = subjectId === 'algebra' && topic.id === 'introduction-to-algebra';
+  const studyPath = isAlgebra ? `${algebraStudyUrl}${subtopic.id}/` : '#';
+  card.href = studyPath;
   if (!isAlgebra) card.setAttribute('aria-disabled','true');
   card.innerHTML=`<div class="track-icon" aria-hidden="true">📘</div><h2>${subtopic.name}</h2><p>${isAlgebra ? 'Study the concept, worked examples, and check-your-understanding questions.' : 'Study content is being prepared for this subtopic.'}</p><div class="track-meta"><span>${isAlgebra ? 'Study available' : 'Coming next'}</span></div>`;
   return card;
 }
+const curriculumDepartment = department ? findCurriculumDepartment(department.id) : null;
 const curriculumSubject = subjectId ? findCurriculumSubject(subjectId) : null;
 if (!department) {
   label.textContent='High School · Study'; title.textContent='Choose a department'; description.textContent='Return to High School Study and choose a department to continue.';
   const back=document.createElement('a'); back.className='btn btn-primary'; back.href=studyUrl; back.textContent='Back to High School Study'; list.appendChild(back);
 } else if (subjectId && curriculumSubject) {
-  label.textContent=`${department.name} · Study`; title.textContent=pretty(subjectId);
+  label.textContent=`${department.name} · Study`; title.textContent=curriculumSubject.name || pretty(subjectId);
   const topics=curriculumSubject.topics || [];
   const selectedTopic=topics.find(item => item.id === topicId);
   if (selectedTopic) {
     title.textContent=selectedTopic.name;
     description.textContent='Choose a subtopic to begin the study lesson.';
     (selectedTopic.subtopics || []).forEach(subtopic => list.appendChild(subtopicCard(selectedTopic, subtopic)));
-    const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=`${subjectUrl}?department=${encodeURIComponent(department.id)}&subject=${encodeURIComponent(subjectId)}`; back.textContent=`Back to ${pretty(subjectId)}`; list.appendChild(back);
+    const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=`${subjectUrl}?department=${encodeURIComponent(department.id)}&subject=${encodeURIComponent(subjectId)}`; back.textContent=`Back to ${curriculumSubject.name || pretty(subjectId)}`; list.appendChild(back);
   } else {
     description.textContent=topics.length ? 'Choose a curriculum topic to begin studying.' : 'This subject is connected to the curriculum. Topic content is being populated next.';
     topics.forEach(topic => {
@@ -77,7 +82,14 @@ if (!department) {
     });
     const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=`${subjectUrl}?department=${encodeURIComponent(department.id)}`; back.textContent=`Back to ${department.name}`; list.appendChild(back);
   }
+} else if (department.subjects && department.subjects.length) {
+  label.textContent=`${department.name} · Study`; title.textContent=`${department.name} Subjects`; description.textContent='Choose a subject. Published curriculum will appear inside it.';
+  (department.subjects || []).forEach(subject => list.appendChild(subjectCard(subject)));
+} else if (curriculumDepartment) {
+  label.textContent=`${curriculumDepartment.name} · Study`; title.textContent=curriculumDepartment.name; description.textContent='Choose a topic to begin studying.';
+  (curriculumDepartment.subjects || []).forEach(subject => list.appendChild(subjectCard(subject)));
+  const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=studyUrl; back.textContent='Back to High School Study'; list.appendChild(back);
 } else {
-  label.textContent=`${department.name} · Study`; title.textContent=`${department.name} Subjects`; description.textContent='Choose a subject. Published curriculum will appear inside it.'; (department.subjects || []).forEach(subject => list.appendChild(subjectCard(subject)));
+  label.textContent=`${department.name} · Study`; title.textContent=department.name; description.textContent='Curriculum content is being connected.';
 }
 </script>
