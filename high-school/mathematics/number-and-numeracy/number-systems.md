@@ -5,194 +5,361 @@ permalink: /high-school/mathematics/number-and-numeracy/number-systems/
 high_school_subject: mathematics
 high_school_topic: number-and-numeracy
 high_school_subtopic: number-systems
-study_description: Understand how numbers are classified, represented, compared, and used throughout mathematics.
+study_description: A complete foundation in classifying, representing, comparing, and using the major number systems.
 next_study: /high-school/mathematics/number-and-numeracy/integers/
 next_study_title: Integers
 ---
 
 ## Overview
 
-A number system is a way of classifying and working with numbers according to their properties. Understanding number systems gives you the language needed for arithmetic, algebra, measurement, statistics, and later mathematics.
+A number system is a collection of numbers with shared properties and rules for representing and using them. Number systems form the foundation for arithmetic, algebra, geometry, statistics, measurement, and later mathematics.
 
 ## Learning objectives
 
 By the end of this lesson, you should be able to:
 
-- distinguish natural, whole, integer, rational, irrational, real, and complex numbers;
-- identify which number sets contain a given number;
-- use standard notation for common number systems;
-- compare real numbers on a number line;
-- explain why some numbers cannot be written as fractions.
+- define and distinguish the major number sets;
+- classify a number into every applicable set;
+- use standard number-set notation;
+- explain the nesting relationship among the sets;
+- represent and compare real numbers on a number line;
+- distinguish rational and irrational numbers;
+- recognise terminating and recurring decimals as rational;
+- use absolute value and distance;
+- describe key properties of the real-number system;
+- distinguish real and complex numbers.
 
-## 1. Natural numbers
+## 1. Natural, whole, and integer numbers
 
-Natural numbers are the counting numbers. In this course we use
+### Natural numbers
 
-$$\mathbb{N}=\{1,2,3,4,\ldots\}.$$
+In Axiom, natural numbers are the counting numbers:
 
-Some textbooks include zero in the natural numbers, so conventions should always be checked.
+$$\mathbb N=\{1,2,3,4,\ldots\}.$$
 
-## 2. Whole numbers
+Some textbooks include $0$ in $\mathbb N$, so check the convention being used.
+
+### Whole numbers
 
 Whole numbers are the non-negative integers:
 
-$$\mathbb{W}=\{0,1,2,3,4,\ldots\}.$$
+$$\mathbb W=\{0,1,2,3,4,\ldots\}.$$
 
-They include zero and positive counting numbers, but not negative numbers or fractions.
+### Integers
 
-## 3. Integers
+Integers include negative whole numbers, zero, and positive whole numbers:
 
-Integers include positive whole numbers, zero, and negative whole numbers:
+$$\mathbb Z=\{\ldots,-3,-2,-1,0,1,2,3,\ldots\}.$$
 
-$$\mathbb{Z}=\{\ldots,-3,-2,-1,0,1,2,3,\ldots\}.$$
+## 2. Rational numbers
 
-They are useful for quantities that can move in two directions, such as temperature, gains and losses, and movement on a number line.
+A rational number can be written as a ratio of two integers with a non-zero denominator:
 
-## 4. Rational numbers
-
-A rational number can be written as
-
-$$\frac{a}{b},\qquad a,b\in\mathbb{Z},\quad b\ne0.$$
-
-Examples include $\frac34$, $-\frac72$, $5=\frac51$, and $0.25=\frac14$.
-
-Every integer is rational because it can be written over 1. Terminating and repeating decimals are also rational.
-
-For example,
-
-$$0.333\ldots=\frac13.$$
-
-## 5. Irrational numbers
-
-An irrational number cannot be written as a ratio of two integers. Its decimal expansion neither terminates nor repeats periodically.
+$$\mathbb Q=\left\{\frac ab:a,b\in\mathbb Z,\ b\ne0\right\}.$$
 
 Examples include
 
+$$\frac34,\quad-\frac72,\quad5=\frac51,\quad0.25=\frac14.$$
+
+Every integer is rational because $n=n/1$.
+
+### Decimal form
+
+A rational decimal either terminates or eventually repeats:
+
+$$\frac14=0.25,\qquad\frac13=0.333\ldots.$$
+
+A non-terminating, non-recurring decimal is irrational.
+
+## 3. Irrational numbers
+
+An irrational number cannot be written as a ratio of two integers. Examples include
+
 $$\sqrt2,\quad\sqrt3,\quad\pi.$$
 
-Not every square root is irrational. For example,
+Not every square root is irrational:
 
-$$\sqrt{25}=5,$$
+$$\sqrt{25}=5.$$
 
-which is rational.
+For a positive integer, its square root is rational when the integer is a perfect square; otherwise the square root is irrational.
 
-## 6. Real numbers
+## 4. Real numbers
 
-The real numbers contain all rational and irrational numbers. They can be represented by points on a continuous number line:
+The real numbers contain all rational and irrational numbers:
 
-$$\mathbb{R}=\mathbb{Q}\cup\{\text{irrational numbers}\}.$$
+$$\mathbb R=\mathbb Q\cup\{\text{irrational numbers}\}.$$
 
-## 7. Complex numbers
+Every real number corresponds to a point on the real number line.
 
-Complex numbers extend the real-number system. They have the form
+## 5. Complex numbers
+
+Complex numbers extend the real-number system. A complex number has the form
 
 $$a+bi,$$
 
-where $a$ and $b$ are real numbers and
+where $a,b\in\mathbb R$ and
 
 $$i^2=-1.$$
 
-For example, $3+2i$ is complex but not real. A real number is also a complex number with an imaginary coefficient of zero.
+Every real number is complex because $a=a+0i$. A number such as $3+2i$ is complex but not real.
 
-## 8. Relationships between the sets
+## 6. The hierarchy of number systems
 
 The main nesting relationship is
 
-$$\mathbb{N}\subseteq\mathbb{W}\subseteq\mathbb{Z}\subseteq\mathbb{Q}\subseteq\mathbb{R}\subseteq\mathbb{C}.$$
+$$\mathbb N\subseteq\mathbb W\subseteq\mathbb Z\subseteq\mathbb Q\subseteq\mathbb R\subseteq\mathbb C.$$
 
-Irrational numbers are inside $\mathbb{R}$ but outside $\mathbb{Q}$.
+Irrational numbers lie inside $\mathbb R$ but outside $\mathbb Q$.
 
-A number may therefore belong to several sets at the same time.
+A number can belong to several sets simultaneously. For example,
 
-## 9. Worked examples
+$$7\in\mathbb N,\mathbb W,\mathbb Z,\mathbb Q,\mathbb R,\mathbb C.$$
 
-### Example 1: Classify $-8$
+## 7. Classifying numbers
 
-$-8$ is an integer. It is also rational because $-8=\frac{-8}{1}$, and therefore it is real and complex.
+Use this procedure:
 
-So:
+1. Simplify the number if possible.
+2. Check whether it is natural, whole, or integer.
+3. Check whether it can be written as a ratio of integers.
+4. If it is real but not rational, it is irrational.
+5. If it contains a non-zero imaginary part, it is complex but not real.
+6. List every applicable set.
 
-$$-8\in\mathbb{Z},\mathbb{Q},\mathbb{R},\mathbb{C}.$$
+### Examples
 
-### Example 2: Classify $0.75$
+**$-8$**
 
-$$0.75=\frac{75}{100}=\frac34.$$
+$$-8=\frac{-8}{1},$$
 
-Therefore it is rational, real, and complex.
+so
 
-### Example 3: Classify $\sqrt{36}$
+$$-8\in\mathbb Z,\mathbb Q,\mathbb R,\mathbb C.$$
 
-$$\sqrt{36}=6.$$
+**$0.75$**
 
-Therefore it is natural, whole, integer, rational, real, and complex.
+$$0.75=\frac34,$$
 
-### Example 4: Classify $\sqrt7$
+so it is rational, real, and complex.
 
-7 is not a perfect square, so $\sqrt7$ is irrational. Therefore it is real but not rational.
+**$\sqrt{36}$**
 
-## 10. Number lines and comparison
+$$\sqrt{36}=6,$$
 
-Real numbers can be ordered on a number line. Numbers farther to the right are greater:
+so it is natural, whole, integer, rational, real, and complex.
+
+**$\sqrt7$**
+
+7 is not a perfect square, so $\sqrt7$ is irrational and therefore real but not rational.
+
+## 8. Number line and ordering
+
+Real numbers can be ordered on a continuous number line. Numbers farther to the right are greater:
 
 $$-3<-1<0<2<4.$$
 
-Be especially careful with negative numbers: $-2>-5$ because $-2$ lies farther to the right.
+Remember that
 
-Fractions and decimals can be converted to a common form when comparing them. For example,
+$$-2>-5$$
+
+because $-2$ lies farther to the right.
+
+Fractions and decimals can be converted to a common form before comparison:
 
 $$\frac34=0.75>0.7.$$
 
+### Density
+
+Between any two distinct real numbers there are infinitely many other real numbers. For example, between 2 and 3 lie $2.5$, $2.25$, $2.75$, and infinitely many more.
+
+## 9. Absolute value and distance
+
+The absolute value $|x|$ is the distance of $x$ from zero:
+
+$$|5|=5,\qquad|-5|=5,\qquad|0|=0.$$
+
+Absolute value is never negative.
+
+The distance between two real numbers $a$ and $b$ is
+
+$$|a-b|.$$
+
+For example, the distance between $-3$ and $4$ is
+
+$$|4-(-3)|=7.$$
+
+## 10. Properties of number systems
+
+### Closure
+
+A set is closed under an operation when the result remains in the set. Integers are closed under addition, subtraction, and multiplication, but not division:
+
+$$1\div2=\frac12\notin\mathbb Z.$$
+
+### Commutative property
+
+For real numbers,
+
+$$a+b=b+a,\qquad ab=ba.$$
+
+Subtraction and division are not commutative.
+
+### Associative property
+
+$$ (a+b)+c=a+(b+c) $$
+
+and
+
+$$ (ab)c=a(bc). $$
+
+### Identity elements
+
+The additive identity is $0$:
+
+$$a+0=a.$$
+
+The multiplicative identity is $1$:
+
+$$a\times1=a.$$
+
+### Inverses
+
+The additive inverse of $a$ is $-a$:
+
+$$a+(-a)=0.$$
+
+For $a\ne0$, the multiplicative inverse is $1/a$:
+
+$$a\times\frac1a=1.$$
+
+### Distributive property
+
+$$a(b+c)=ab+ac.$$
+
+For example,
+
+$$3(4+5)=12+15=27.$$
+
+## 11. Prime numbers and perfect squares
+
+A prime number is a positive integer greater than 1 with exactly two positive factors: 1 and itself.
+
+Examples:
+
+$$2,3,5,7,11,13.$$
+
+Prime factorisation is useful for HCF, LCM, fractions, and later algebra.
+
+A perfect square is an integer of the form $n^2$:
+
+$$1,4,9,16,25,36,49,\ldots$$
+
+Perfect squares are important when deciding whether a square root is rational.
+
+## 12. Real versus complex numbers
+
+Every real number is complex, but some complex numbers are not real.
+
+$$5=5+0i$$
+
+is real, while
+
+$$5+2i$$
+
+is not real.
+
+The complex system also allows equations such as
+
+$$x^2+1=0$$
+
+to have solutions:
+
+$$x=\pm i.$$
+
+## Worked examples
+
+### Example 1: classify $12$
+
+$$12\in\mathbb N,\mathbb W,\mathbb Z,\mathbb Q,\mathbb R,\mathbb C.$$
+
+### Example 2: classify $-\frac35$
+
+$$-\frac35\in\mathbb Q,\mathbb R,\mathbb C.$$
+
+### Example 3: classify $0.272727\ldots$
+
+It is recurring, so it is rational, real, and complex.
+
+### Example 4: classify $\sqrt{81}$
+
+$$\sqrt{81}=9,$$
+
+so it belongs to all six nested sets from $\mathbb N$ through $\mathbb C$.
+
+### Example 5: classify $2+3i$
+
+$$2+3i\in\mathbb C\setminus\mathbb R.$$
+
 ## Common mistakes
 
-**Mistake 1:** Thinking every decimal is irrational. Terminating and repeating decimals are rational.
-
-**Mistake 2:** Thinking every square root is irrational. Perfect-square roots are rational.
-
-**Mistake 3:** Saying an integer is only an integer. Every integer is also rational and real.
-
-**Mistake 4:** Assuming every textbook defines natural numbers in exactly the same way. Check the convention being used.
+- Not every decimal is irrational; terminating and recurring decimals are rational.
+- Not every square root is irrational; perfect-square roots are rational.
+- An integer is also rational, real, and complex.
+- Negative numbers must be compared by position on the number line.
+- Natural-number conventions differ on whether $0$ is included.
+- Division by zero is undefined.
+- Not every complex number is non-real; the real numbers are a subset of the complex numbers.
 
 ## Quick review
 
-- Natural numbers are counting numbers under the convention used here.
-- Whole numbers include zero and positive counting numbers.
-- Integers include negative numbers, zero, and positive whole numbers.
-- Rational numbers can be expressed as a ratio of integers.
-- Irrational numbers cannot be expressed as such a ratio.
-- Real numbers contain rational and irrational numbers.
-- Complex numbers extend the real-number system.
+- Natural → whole → integer → rational → real → complex.
+- Irrational numbers are real but not rational.
+- Terminating and recurring decimals are rational.
+- Absolute value represents distance from zero.
+- The real number line is continuous and ordered.
+- The real numbers obey important algebraic properties.
 
 ## Practice
 
-1. Classify $12$ using all applicable number sets.
-2. Classify $-\frac35$ using all applicable number sets.
-3. Is $0.125$ rational or irrational? Explain.
-4. Is $0.272727\ldots$ rational or irrational? Explain.
-5. Is $\sqrt{81}$ irrational? Explain.
-6. Is $\sqrt{10}$ rational or irrational? Explain.
-7. Arrange from least to greatest: $-2,\frac12,-3,0,2.5$.
-8. State the relationship among $\mathbb{Z}$, $\mathbb{Q}$, and $\mathbb{R}$.
-9. Give one complex number that is not real.
-10. Explain why every natural number is rational.
+1. Classify $18$ using all applicable number sets.
+2. Classify $-12$ using all applicable number sets.
+3. Classify $\frac79$.
+4. Is $0.125$ rational or irrational? Explain.
+5. Is $0.272727\ldots$ rational or irrational? Explain.
+6. Is $\sqrt{81}$ irrational? Explain.
+7. Is $\sqrt{10}$ rational or irrational? Explain.
+8. Arrange from least to greatest: $-2,\frac12,-3,0,2.5$.
+9. Find the distance between $-7$ and $5$.
+10. State the relationship among $\mathbb Z$, $\mathbb Q$, and $\mathbb R$.
+11. Give a complex number that is not real.
+12. Explain why every natural number is rational.
+13. Give an example showing that integers are not closed under division.
+14. State the additive and multiplicative identities.
+15. Explain why $\sqrt2$ is irrational.
 
 <details><summary>Show answers</summary>
 
-1. $12\in\mathbb{N},\mathbb{W},\mathbb{Z},\mathbb{Q},\mathbb{R},\mathbb{C}$.
-2. $-\frac35\in\mathbb{Q},\mathbb{R},\mathbb{C}$.
-3. Rational, because $0.125=\frac18$.
-4. Rational, because it is a repeating decimal.
-5. No. $\sqrt{81}=9$, which is rational.
-6. Irrational; 10 is not a perfect square.
-7. $-3<-2<0<\frac12<2.5$.
-8. $\mathbb{Z}\subseteq\mathbb{Q}\subseteq\mathbb{R}$.
-9. Example: $2+3i$.
-10. Any natural number $n$ can be written as $\frac n1$.
+1. $18\in\mathbb N,\mathbb W,\mathbb Z,\mathbb Q,\mathbb R,\mathbb C$.
+2. $-12\in\mathbb Z,\mathbb Q,\mathbb R,\mathbb C$.
+3. $\frac79\in\mathbb Q,\mathbb R,\mathbb C$.
+4. Rational: $0.125=\frac18$.
+5. Rational: it is recurring.
+6. No: $\sqrt{81}=9$.
+7. Irrational: 10 is not a perfect square.
+8. $-3<-2<0<\frac12<2.5$.
+9. $|5-(-7)|=12$.
+10. $\mathbb Z\subseteq\mathbb Q\subseteq\mathbb R$.
+11. Example: $2+3i$.
+12. $n=n/1$ for every natural number $n$.
+13. $1/2\notin\mathbb Z$.
+14. Additive identity: $0$; multiplicative identity: $1$.
+15. A standard proof assumes $\sqrt2=a/b$ in lowest terms, obtains that both $a$ and $b$ must be even, contradicting lowest terms.
 
 </details>
 
 ## Challenge
 
-Explain why $\sqrt2$ is irrational without relying only on its decimal approximation. This is a classic proof that can later be developed using contradiction and prime factorisation.
+Prove that $\sqrt2$ is irrational using contradiction and prime factorisation. Then investigate whether the same reasoning works for the square root of every positive integer that is not a perfect square.
 
 ## Next lesson
 
