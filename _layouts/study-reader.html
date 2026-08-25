@@ -5,10 +5,10 @@ layout: app-shell
   <div class="study-reader-progress" aria-hidden="true"><div id="study-progress-bar"></div></div>
   <nav class="breadcrumb-trail" aria-label="Study breadcrumb">
     <a href="{{ '/high-school/subject/?department=mathematics' | relative_url }}">Mathematics</a><span class="crumb-sep">/</span>
-    <a href="{{ '/high-school/subject/?department=mathematics&subject=algebra' | relative_url }}">Algebra</a><span class="crumb-sep">/</span><span class="crumb-current">{{ page.title }}</span>
+    <a href="{{ '/high-school/subject/?department=mathematics&topic=' | append: page.high_school_topic | relative_url }}">{{ page.high_school_topic | replace: '-', ' ' | capitalize }}</a><span class="crumb-sep">/</span><span class="crumb-current">{{ page.title }}</span>
   </nav>
   <header class="study-reader-header">
-    <span class="eyebrow">High School · Mathematics · Algebra</span><h1>{{ page.title }}</h1>
+    <span class="eyebrow">High School · Mathematics · {{ page.high_school_topic | replace: '-', ' ' | capitalize }}</span><h1>{{ page.title }}</h1>
     {% if page.study_description %}<p>{{ page.study_description }}</p>{% endif %}
     <div class="study-reader-actions"><button type="button" class="action-btn" id="study-bookmark">Bookmark</button><button type="button" class="action-btn" id="study-text-size">Text size</button>{% if page.high_school_subject and page.high_school_topic %}<a class="action-btn" href="{{ '/quiz/high-school/' | append: page.high_school_subject | append: '/' | append: page.high_school_topic | append: '/' | relative_url }}">Practice Quiz</a>{% endif %}</div>
   </header>
@@ -17,8 +17,8 @@ layout: app-shell
     <article class="study-reader-content" id="study-content">{{ content }}</article>
   </div>
   <nav class="study-reader-footer" aria-label="Study navigation">
-    {% if page.prev_study %}<a href="{{ page.prev_study | relative_url }}">← <small>Previous</small><strong>{{ page.prev_study_title }}</strong></a>{% else %}<span></span>{% endif %}
-    <a href="{{ '/high-school/subject/?department=mathematics&subject=algebra' | relative_url }}">Algebra</a>
+    {% if page.previous_study %}<a href="{{ page.previous_study | relative_url }}">← <small>Previous</small><strong>{{ page.previous_study_title }}</strong></a>{% else %}<span></span>{% endif %}
+    <a href="{{ '/high-school/subject/?department=mathematics&topic=' | append: page.high_school_topic | relative_url }}">{{ page.high_school_topic | replace: '-', ' ' | capitalize }}</a>
     {% if page.next_study %}<a href="{{ page.next_study | relative_url }}"><small>Next</small><strong>{{ page.next_study_title }}</strong> →</a>{% else %}<span></span>{% endif %}
   </nav>
 </div>
