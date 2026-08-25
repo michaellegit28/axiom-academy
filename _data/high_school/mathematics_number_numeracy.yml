@@ -1,0 +1,44 @@
+title: Number & Numeracy
+department: Mathematics
+description: Foundations of numerical reasoning for high-school mathematics.
+subtopics:
+  - id: number-systems
+    title: Number Systems
+  - id: integers
+    title: Integers
+  - id: fractions
+    title: Fractions
+  - id: decimals
+    title: Decimals
+  - id: percentages
+    title: Percentages
+  - id: ratios
+    title: Ratios
+  - id: proportions
+    title: Proportions
+  - id: rates-and-unit-rates
+    title: Rates and Unit Rates
+  - id: factors-and-multiples
+    title: Factors and Multiples
+  - id: prime-numbers
+    title: Prime Numbers
+  - id: hcf-and-lcm
+    title: HCF and LCM
+  - id: powers-and-exponents
+    title: Powers and Exponents
+  - id: roots-and-radicals
+    title: Roots and Radicals
+  - id: standard-form
+    title: Standard Form / Scientific Notation
+  - id: approximation-and-estimation
+    title: Approximation and Estimation
+  - id: significant-figures
+    title: Significant Figures
+  - id: decimal-places
+    title: Decimal Places
+  - id: bounds-and-accuracy
+    title: Bounds and Limits of Accuracy
+  - id: surds
+    title: Surds
+  - id: recurring-decimals
+    title: Recurring Decimals
