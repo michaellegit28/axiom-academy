@@ -2,18 +2,43 @@
 # Stable IDs are referenced by content front matter and UI; display names may change.
 # Exam mappings are intentionally separate from Study taxonomy.
 
-version: 1
+version: 2
 
 domain: high-school
 
 departments:
   - id: mathematics
     name: Mathematics
-    description: Algebra, geometry, trigonometry, statistics, probability and introductory calculus.
+    description: A comprehensive global-core high school mathematics curriculum.
     subjects:
+      - id: number-and-numeracy
+        name: Number & Numeracy
+        description: Number systems, arithmetic, ratios, powers, roots, approximation and accuracy.
+        topics:
+          - id: number-systems
+            name: Number Systems
+            subtopics: [Natural Numbers, Integers, Rational Numbers, Irrational Numbers, Real Numbers, Number Lines]
+          - id: fractions-decimals-and-percentages
+            name: Fractions, Decimals & Percentages
+            subtopics: [Fractions, Decimal Operations, Percentages, Percentage Change, Recurring Decimals]
+          - id: ratio-proportion-and-rates
+            name: Ratio, Proportion & Rates
+            subtopics: [Ratios, Direct Proportion, Inverse Proportion, Rates, Unit Rates, Scale]
+          - id: factors-multiples-and-primes
+            name: Factors, Multiples & Primes
+            subtopics: [Factors, Multiples, Prime Numbers, HCF, LCM, Prime Factorisation]
+          - id: powers-roots-and-surds
+            name: Powers, Roots & Surds
+            subtopics: [Indices, Laws of Indices, Square Roots, Cube Roots, Fractional Indices, Surds]
+          - id: approximation-and-accuracy
+            name: Approximation & Accuracy
+            subtopics: [Estimation, Decimal Places, Significant Figures, Bounds, Limits of Accuracy]
+          - id: standard-form
+            name: Standard Form
+            subtopics: [Scientific Notation, Converting Standard Form, Calculations in Standard Form]
       - id: algebra
         name: Algebra
-        description: Variables, expressions, equations, inequalities and algebraic relationships.
+        description: Variables, expressions, equations, inequalities, sequences and algebraic relationships.
         topics:
           - id: introduction-to-algebra
             name: Introduction to Algebra
@@ -23,30 +48,407 @@ departments:
             name: Algebraic Expressions
           - id: simplifying-expressions
             name: Simplifying Expressions
+          - id: substitution
+            name: Substitution
+          - id: expanding-brackets
+            name: Expanding Brackets
+          - id: factorisation
+            name: Factorisation
+          - id: algebraic-fractions
+            name: Algebraic Fractions
           - id: linear-equations
             name: Linear Equations
+          - id: simultaneous-equations
+            name: Simultaneous Equations
           - id: inequalities
             name: Inequalities
+          - id: quadratic-expressions
+            name: Quadratic Expressions
+          - id: quadratic-equations
+            name: Quadratic Equations
+          - id: completing-the-square
+            name: Completing the Square
+          - id: algebraic-manipulation
+            name: Algebraic Manipulation
+          - id: sequences
+            name: Sequences
+          - id: arithmetic-sequences
+            name: Arithmetic Sequences
+          - id: geometric-sequences
+            name: Geometric Sequences
+          - id: variation
+            name: Variation
+          - id: mathematical-modelling
+            name: Mathematical Modelling
+      - id: functions-and-graphs
+        name: Functions & Graphs
+        description: Functions, graphs, transformations, inverse functions and graphical solutions.
+        topics:
+          - id: introduction-to-functions
+            name: Introduction to Functions
+            subtopics: [Function Language, Inputs and Outputs, Function Machines]
+          - id: function-notation
+            name: Function Notation
+            subtopics: [Notation, Evaluating Functions, Composite Notation]
+          - id: domain-and-range
+            name: Domain & Range
+            subtopics: [Domain, Range, Restrictions]
+          - id: linear-functions
+            name: Linear Functions
+            subtopics: [Linear Graphs, Gradient, Intercepts, Applications]
+          - id: quadratic-functions
+            name: Quadratic Functions
+            subtopics: [Parabolas, Roots, Turning Points, Graph Interpretation]
+          - id: polynomial-functions
+            name: Polynomial Functions
+            subtopics: [Polynomial Form, Degree, Roots, Graphs]
+          - id: reciprocal-functions
+            name: Reciprocal Functions
+            subtopics: [Reciprocal Graphs, Asymptotes, Transformations]
+          - id: exponential-functions
+            name: Exponential Functions
+            subtopics: [Growth, Decay, Exponential Graphs, Applications]
+          - id: graph-transformations
+            name: Graph Transformations
+            subtopics: [Translations, Reflections, Stretches, Combined Transformations]
+          - id: composite-and-inverse-functions
+            name: Composite & Inverse Functions
+            subtopics: [Composite Functions, Inverse Functions, Graphical Relationships]
+          - id: graphical-solutions
+            name: Graphical Solutions
+            subtopics: [Intersections, Approximate Solutions, Graphical Inequalities]
+      - id: coordinate-geometry
+        name: Coordinate Geometry
+        description: Coordinates, straight lines, distance, midpoint, gradient and coordinate proofs.
+        topics:
+          - id: cartesian-coordinates
+            name: Cartesian Coordinates
+            subtopics: [Coordinate Plane, Plotting Points, Quadrants]
+          - id: distance-and-midpoint
+            name: Distance & Midpoint
+            subtopics: [Distance Formula, Midpoint Formula, Applications]
+          - id: gradient
+            name: Gradient
+            subtopics: [Gradient Calculation, Positive and Negative Gradient, Rate of Change]
+          - id: equations-of-lines
+            name: Equations of Straight Lines
+            subtopics: [Slope-Intercept Form, Point-Slope Form, Intercepts]
+          - id: parallel-and-perpendicular-lines
+            name: Parallel & Perpendicular Lines
+            subtopics: [Parallel Lines, Perpendicular Gradients, Applications]
+          - id: intersections-and-proofs
+            name: Intersections & Coordinate Proofs
+            subtopics: [Line Intersections, Geometric Proofs, Collinearity]
+          - id: circles-in-coordinate-geometry
+            name: Circles in Coordinate Geometry
+            subtopics: [Circle Equations, Centre and Radius, Tangents]
       - id: geometry
         name: Geometry
-        description: Shapes, angles, measurement, coordinate geometry and geometric relationships.
-        topics: []
+        description: Angles, triangles, polygons, circles, constructions, loci and geometric proof.
+        topics:
+          - id: geometric-language
+            name: Geometric Language
+            subtopics: [Points, Lines, Rays, Segments, Planes]
+          - id: angles-and-parallel-lines
+            name: Angles & Parallel Lines
+            subtopics: [Angle Types, Angle Rules, Parallel Lines, Transversals]
+          - id: triangles
+            name: Triangles
+            subtopics: [Triangle Properties, Congruence, Similarity, Triangle Proof]
+          - id: polygons-and-quadrilaterals
+            name: Polygons & Quadrilaterals
+            subtopics: [Polygon Properties, Interior Angles, Quadrilaterals, Regular Polygons]
+          - id: circles
+            name: Circles
+            subtopics: [Circle Parts, Chords, Arcs, Tangents]
+          - id: circle-theorems
+            name: Circle Theorems
+            subtopics: [Angles in a Circle, Cyclic Quadrilaterals, Tangent Theorems]
+          - id: constructions
+            name: Geometric Constructions
+            subtopics: [Perpendicular Bisectors, Angle Bisectors, Triangle Construction]
+          - id: loci
+            name: Loci
+            subtopics: [Distance Loci, Combined Loci, Construction of Loci]
+          - id: symmetry
+            name: Symmetry
+            subtopics: [Line Symmetry, Rotational Symmetry, Symmetry in Shapes]
+          - id: geometric-proof
+            name: Geometric Proof
+            subtopics: [Statements and Reasons, Congruence Proofs, Similarity Proofs]
+      - id: mensuration
+        name: Mensuration
+        description: Measurement, perimeter, area, surface area, volume and composite solids.
+        topics:
+          - id: units-and-measurement
+            name: Units & Measurement
+            subtopics: [Metric Units, Unit Conversion, Measurement Accuracy]
+          - id: perimeter-and-area
+            name: Perimeter & Area
+            subtopics: [Perimeter, Rectangle Area, Triangle Area, Circle Area]
+          - id: compound-areas
+            name: Compound Areas
+            subtopics: [Composite Shapes, Missing Dimensions, Real-World Areas]
+          - id: surface-area
+            name: Surface Area
+            subtopics: [Prisms, Cylinders, Pyramids, Cones, Spheres]
+          - id: volume
+            name: Volume
+            subtopics: [Prisms, Cylinders, Pyramids, Cones, Spheres]
+          - id: composite-solids
+            name: Composite Solids
+            subtopics: [Decomposing Solids, Combined Volumes, Combined Surface Areas]
+          - id: scale-and-similarity
+            name: Scale & Similarity
+            subtopics: [Scale Drawings, Similar Figures, Scale Factors]
       - id: trigonometry
         name: Trigonometry
-        description: Right-triangle relationships, trigonometric ratios, identities and applications.
-        topics: []
+        description: Triangle relationships, trigonometric ratios, identities and applications.
+        topics:
+          - id: right-triangle-trigonometry
+            name: Right-Triangle Trigonometry
+            subtopics: [Pythagoras' Theorem, Sine, Cosine, Tangent]
+          - id: trigonometric-ratios
+            name: Trigonometric Ratios
+            subtopics: [SOHCAHTOA, Finding Sides, Finding Angles]
+          - id: bearings-and-applications
+            name: Bearings & Applications
+            subtopics: [Three-Figure Bearings, Navigation, Elevation and Depression]
+          - id: sine-rule
+            name: Sine Rule
+            subtopics: [Sine Rule, Ambiguous Case, Applications]
+          - id: cosine-rule
+            name: Cosine Rule
+            subtopics: [Cosine Rule, Finding Sides, Finding Angles]
+          - id: area-of-a-triangle
+            name: Area of a Triangle
+            subtopics: [Half-ab Sin-C, Triangle Area Applications]
+          - id: trigonometric-graphs
+            name: Trigonometric Graphs
+            subtopics: [Sine Graph, Cosine Graph, Tangent Graph, Transformations]
+          - id: trigonometric-identities
+            name: Trigonometric Identities
+            subtopics: [Basic Identities, Simplification, Identity Proofs]
+          - id: trigonometric-equations
+            name: Trigonometric Equations
+            subtopics: [Solving Basic Equations, General Solutions, Applications]
+      - id: vectors-and-transformations
+        name: Vectors & Transformations
+        description: Vectors, transformations and their geometric applications.
+        topics:
+          - id: vector-notation
+            name: Vector Notation
+            subtopics: [Vector Symbols, Column Vectors, Magnitude]
+          - id: vector-operations
+            name: Vector Operations
+            subtopics: [Addition, Subtraction, Scalar Multiplication]
+          - id: position-vectors
+            name: Position Vectors
+            subtopics: [Position Vectors, Displacement, Vector Geometry]
+          - id: vector-geometry
+            name: Vector Geometry
+            subtopics: [Parallel Vectors, Collinearity, Geometric Proofs]
+          - id: transformations
+            name: Transformations
+            subtopics: [Translation, Reflection, Rotation, Enlargement]
+          - id: combined-transformations
+            name: Combined Transformations
+            subtopics: [Multiple Transformations, Transformation Descriptions]
+          - id: matrix-transformations
+            name: Matrix Transformations
+            subtopics: [Transformation Matrices, Matrix Mapping, Applications]
       - id: statistics
         name: Statistics
-        description: Data collection, presentation, averages, spread and interpretation.
-        topics: []
+        description: Data collection, presentation, averages, spread, correlation and interpretation.
+        topics:
+          - id: data-and-variables
+            name: Data & Variables
+            subtopics: [Qualitative Data, Quantitative Data, Discrete Data, Continuous Data]
+          - id: sampling
+            name: Sampling
+            subtopics: [Population, Sample, Random Sampling, Stratified Sampling]
+          - id: frequency-tables
+            name: Frequency Tables
+            subtopics: [Frequency Tables, Grouped Data, Cumulative Frequency]
+          - id: statistical-diagrams
+            name: Statistical Diagrams
+            subtopics: [Bar Charts, Histograms, Pie Charts, Stem-and-Leaf, Box Plots]
+          - id: averages
+            name: Averages
+            subtopics: [Mean, Median, Mode, Weighted Mean]
+          - id: measures-of-spread
+            name: Measures of Spread
+            subtopics: [Range, Quartiles, Interquartile Range, Variance, Standard Deviation]
+          - id: cumulative-frequency
+            name: Cumulative Frequency
+            subtopics: [Cumulative Frequency Curves, Median, Quartiles, Percentiles]
+          - id: correlation
+            name: Correlation
+            subtopics: [Scatter Diagrams, Correlation, Line of Best Fit, Interpretation]
+          - id: regression
+            name: Regression
+            subtopics: [Regression Lines, Prediction, Limitations]
+          - id: data-interpretation
+            name: Data Interpretation
+            subtopics: [Comparing Data Sets, Misleading Graphs, Conclusions]
       - id: probability
         name: Probability
-        description: Events, outcomes, probability rules and basic probability models.
-        topics: []
-      - id: calculus-basics
-        name: Calculus Basics
-        description: Introductory limits, differentiation and applications.
-        topics: []
+        description: Events, outcomes, probability rules, conditional probability and distributions.
+        topics:
+          - id: basic-probability
+            name: Basic Probability
+            subtopics: [Probability Scale, Outcomes, Events]
+          - id: sample-spaces
+            name: Sample Spaces
+            subtopics: [Listing Outcomes, Sample-Space Diagrams, Counting Outcomes]
+          - id: experimental-probability
+            name: Experimental Probability
+            subtopics: [Relative Frequency, Trials, Comparing Experimental and Theoretical Results]
+          - id: probability-rules
+            name: Probability Rules
+            subtopics: [Complementary Events, Addition Rule, Multiplication Rule]
+          - id: mutually-exclusive-events
+            name: Mutually Exclusive Events
+            subtopics: [Exclusive Events, Combined Probabilities]
+          - id: independent-and-dependent-events
+            name: Independent & Dependent Events
+            subtopics: [Independence, Dependence, Multiplication of Probabilities]
+          - id: tree-diagrams
+            name: Tree Diagrams
+            subtopics: [Probability Trees, Multi-Stage Events, Conditional Paths]
+          - id: venn-diagrams
+            name: Venn Diagrams
+            subtopics: [Sets and Events, Intersections, Unions, Complements]
+          - id: conditional-probability
+            name: Conditional Probability
+            subtopics: [Conditional Events, Two-Way Tables, Applications]
+          - id: probability-distributions
+            name: Probability Distributions
+            subtopics: [Discrete Distributions, Expected Value, Simple Models]
+      - id: financial-and-commercial-mathematics
+        name: Financial & Commercial Mathematics
+        description: Practical mathematics for money, commerce, finance and decision-making.
+        topics:
+          - id: money-and-currency
+            name: Money & Currency
+            subtopics: [Currency, Conversion, Exchange Rates]
+          - id: profit-loss-and-discount
+            name: Profit, Loss & Discount
+            subtopics: [Cost Price, Selling Price, Profit, Loss, Discounts]
+          - id: commission-and-markup
+            name: Commission & Markup
+            subtopics: [Markup, Commission, Sales Calculations]
+          - id: simple-interest
+            name: Simple Interest
+            subtopics: [Interest, Principal, Rate, Time, Applications]
+          - id: compound-interest
+            name: Compound Interest
+            subtopics: [Compound Growth, Compound Interest, Applications]
+          - id: depreciation-and-appreciation
+            name: Depreciation & Appreciation
+            subtopics: [Percentage Change, Depreciation Models, Appreciation Models]
+          - id: tax-and-income
+            name: Tax & Income
+            subtopics: [Wages, Salaries, Tax, Deductions]
+          - id: loans-and-hire-purchase
+            name: Loans & Hire Purchase
+            subtopics: [Loan Interest, Repayment, Hire Purchase, Total Cost]
+          - id: budgeting-and-investment
+            name: Budgeting & Investment
+            subtopics: [Budgets, Savings, Investments, Financial Decisions]
+      - id: mathematical-reasoning-and-problem-solving
+        name: Mathematical Reasoning & Problem Solving
+        description: Reasoning, proof, modelling and strategies for solving unfamiliar problems.
+        topics:
+          - id: mathematical-language
+            name: Mathematical Language
+            subtopics: [Symbols, Definitions, Statements, Mathematical Vocabulary]
+          - id: patterns
+            name: Patterns
+            subtopics: [Number Patterns, Visual Patterns, Generalising Patterns]
+          - id: problem-solving-strategies
+            name: Problem-Solving Strategies
+            subtopics: [Draw a Diagram, Make a Table, Work Backwards, Simplify the Problem]
+          - id: multi-step-problems
+            name: Multi-Step Problems
+            subtopics: [Planning Solutions, Combining Skills, Checking Results]
+          - id: estimation-and-reasoning
+            name: Estimation & Reasoning
+            subtopics: [Estimation, Reasonableness, Bounds, Mental Strategies]
+          - id: proof-and-justification
+            name: Proof & Justification
+            subtopics: [Mathematical Arguments, Direct Proof, Counterexamples]
+          - id: deductive-and-inductive-reasoning
+            name: Deductive & Inductive Reasoning
+            subtopics: [Deduction, Induction, Conjectures, Generalisation]
+          - id: mathematical-modelling
+            name: Mathematical Modelling
+            subtopics: [Assumptions, Models, Interpreting Results, Limitations]
+          - id: real-world-problem-solving
+            name: Real-World Problem Solving
+            subtopics: [Rates, Measurement, Finance, Data, Applied Problems]
+      - id: calculus-and-introductory-advanced-mathematics
+        name: Calculus & Introductory Advanced Mathematics
+        description: Introductory calculus, sequences, series, binomial expansion and advanced functions.
+        topics:
+          - id: limits
+            name: Limits
+            subtopics: [Idea of a Limit, Numerical Limits, Graphical Limits]
+          - id: differentiation
+            name: Differentiation
+            subtopics: [Derivative, Basic Rules, Power Rule, Chain Rule]
+          - id: applications-of-differentiation
+            name: Applications of Differentiation
+            subtopics: [Gradient Functions, Stationary Points, Optimization, Curve Sketching]
+          - id: integration
+            name: Integration
+            subtopics: [Antiderivatives, Basic Integration, Definite Integrals]
+          - id: applications-of-integration
+            name: Applications of Integration
+            subtopics: [Area Under Curves, Areas Between Curves, Applications]
+          - id: differential-equations
+            name: Introductory Differential Equations
+            subtopics: [First-Order Equations, Separation Idea, Applications]
+          - id: sequences-and-series
+            name: Sequences & Series
+            subtopics: [Sequences, Arithmetic Series, Geometric Series, Sigma Notation]
+          - id: binomial-expansion
+            name: Binomial Expansion
+            subtopics: [Binomial Theorem, Coefficients, Applications]
+          - id: advanced-functions
+            name: Introductory Advanced Functions
+            subtopics: [Composite Functions, Inverse Functions, Exponential and Logarithmic Functions]
+      - id: discrete-mathematics-sets-and-logic
+        name: Discrete Mathematics, Sets & Logic
+        description: Sets, logic, counting, algorithms, networks and introductory discrete mathematics.
+        topics:
+          - id: sets
+            name: Sets
+            subtopics: [Set Notation, Subsets, Universal Sets, Set Operations]
+          - id: venn-diagrams-and-sets
+            name: Venn Diagrams & Set Applications
+            subtopics: [Unions, Intersections, Complements, Counting with Sets]
+          - id: logic
+            name: Logic
+            subtopics: [Propositions, Logical Operators, Negation, Implication]
+          - id: truth-tables
+            name: Truth Tables
+            subtopics: [Constructing Truth Tables, Logical Equivalence, Applications]
+          - id: proof-by-contradiction
+            name: Proof by Contradiction
+            subtopics: [Contradiction, Assumptions, Simple Proofs]
+          - id: counting-principles
+            name: Counting Principles
+            subtopics: [Multiplication Principle, Addition Principle, Counting Strategies]
+          - id: permutations-and-combinations
+            name: Permutations & Combinations
+            subtopics: [Factorials, Permutations, Combinations, Applications]
+          - id: graph-theory
+            name: Introductory Graph Theory
+            subtopics: [Vertices, Edges, Paths, Networks]
+          - id: algorithms-and-networks
+            name: Algorithms & Networks
+            subtopics: [Algorithms, Shortest Paths, Network Problems, Optimisation]
 
   - id: sciences
     name: Sciences
