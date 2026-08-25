@@ -11,9 +11,8 @@ layout: app-shell
     <span class="eyebrow">High School · Mathematics · {{ page.high_school_topic | replace: '-', ' ' | capitalize }}</span>
     <h1>{{ page.title }}</h1>
     {% if page.study_description %}<p>{{ page.study_description }}</p>{% endif %}
-    {% assign textbook = site.data.mathematics_number_numeracy_textbooks[page.high_school_subtopic] %}
     {% assign chapter = site.data.mathematics_number_numeracy_chapters[page.high_school_subtopic] %}
-    {% if textbook %}<p class="study-reader-unit"><strong>Textbook Unit {{ textbook.unit }}/20</strong> · Structured study notes, examples and practice.</p>{% endif %}
+    {% if chapter %}<p class="study-reader-unit"><strong>Complete Textbook Chapter</strong> · Structured study notes, examples and practice.</p>{% endif %}
     <div class="study-reader-actions"><button type="button" class="action-btn" id="study-bookmark">Bookmark</button><button type="button" class="action-btn" id="study-text-size">Text size</button>{% if page.high_school_subtopic %}<a class="action-btn" href="{{ '/quiz/high-school/mathematics/number-and-numeracy/?subtopic=' | append: page.high_school_subtopic | relative_url }}">Practice This Lesson</a>{% elsif page.high_school_subject and page.high_school_topic %}<a class="action-btn" href="{{ '/quiz/high-school/' | append: page.high_school_subject | append: '/' | append: page.high_school_topic | append: '/' | relative_url }}">Practice Quiz</a>{% endif %}</div>
   </header>
   <div class="study-reader-layout">
@@ -22,18 +21,15 @@ layout: app-shell
       {{ content }}
       {% if chapter %}
       <section class="study-textbook study-textbook-complete" aria-labelledby="textbook-chapter">
-        <header class="study-textbook-header"><span class="eyebrow">Complete Textbook Chapter</span><h2 id="textbook-chapter">{{ page.title }} — Complete Study Chapter</h2><p>{{ textbook.overview }}</p></header>
+        <header class="study-textbook-header"><span class="eyebrow">Complete Textbook Chapter</span><h2 id="textbook-chapter">{{ page.title }} — Complete Study Chapter</h2><p>{{ page.study_description }}</p></header>
         <section class="study-textbook-section study-learning-objectives"><h2>Learning Objectives</h2><p>{{ chapter.objectives }}</p></section>
         <section class="study-textbook-section"><h2>Key Terms</h2><p>{{ chapter.key_terms }}</p></section>
         <section class="study-textbook-section"><h2>Core Lesson</h2>{{ chapter.lesson | markdownify }}</section>
         <section class="study-textbook-section"><h2>Worked Examples</h2>{{ chapter.worked | markdownify }}</section>
         <section class="study-textbook-section study-textbook-practice"><h2>Checkpoint Practice</h2><p>{{ chapter.checkpoint }}</p><p><a class="action-btn" href="{{ '/quiz/high-school/mathematics/number-and-numeracy/?subtopic=' | append: page.high_school_subtopic | relative_url }}">Turn this checkpoint into a quiz</a></p></section>
         <section class="study-textbook-section"><h2>Answers & Self-Check</h2><details><summary>Reveal answers</summary><p>{{ chapter.answers }}</p></details></section>
-        <section class="study-textbook-section"><h2>Common Mistakes</h2><p>{{ textbook.mistakes }}</p></section>
-        <aside class="study-textbook-revision"><strong>Revision checklist</strong><p>Can you define the key terms, explain the main rule without notes, reproduce a worked example, solve the checkpoint, identify a common mistake, and apply the idea to a new problem?</p></aside>
+        <aside class="study-textbook-revision"><strong>Revision checklist</strong><p>Can you define the key terms, explain the main rule without notes, reproduce a worked example, solve the checkpoint, and apply the idea to a new problem?</p></aside>
       </section>
-      {% elsif textbook %}
-      <section class="study-textbook" aria-labelledby="textbook-notes"><header class="study-textbook-header"><span class="eyebrow">Textbook Notes</span><h2 id="textbook-notes">{{ page.title }} — Core Study Chapter</h2><p>{{ textbook.overview }}</p></header><div class="study-textbook-section">{{ textbook.concepts | markdownify }}</div><div class="study-textbook-section"><h2>Worked Examples & Challenges</h2>{{ textbook.examples | markdownify }}</div><div class="study-textbook-section"><h2>Common Mistakes</h2><p>{{ textbook.mistakes }}</p></div><div class="study-textbook-section study-textbook-practice"><h2>Textbook Practice</h2>{{ textbook.practice | markdownify }}</div><aside class="study-textbook-revision"><strong>Revision checklist</strong><p>Can you define the key terms, explain the main rule without notes, solve a worked example, identify a common error, and apply the idea to an unfamiliar problem?</p></aside></section>
       {% endif %}
     </article>
   </div>
