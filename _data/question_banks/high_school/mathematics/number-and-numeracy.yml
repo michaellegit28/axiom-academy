@@ -1,0 +1,682 @@
+# Canonical Axiom question bank — High School / Mathematics / Number & Numeracy
+# Three questions per textbook subtopic. Used by the Number & Numeracy quiz and filtered by subtopic.
+
+- id: hs-math-numsys-001
+  exam: axiom
+  subject: Mathematics
+  topic: number-systems
+  difficulty: easy
+  type: multiple_choice
+  question: "Which set contains -3, 0 and 5/2?"
+  options: ["Natural numbers", "Integers", "Rational numbers", "Irrational numbers"]
+  answer: C
+  answer_index: 2
+  explanation: "All three numbers can be written as a ratio of integers, so they are rational numbers."
+- id: hs-math-numsys-002
+  exam: axiom
+  subject: Mathematics
+  topic: number-systems
+  difficulty: medium
+  type: multiple_choice
+  question: "Which statement about √2 is correct?"
+  options: ["It is an integer", "It is rational", "It is irrational and real", "It is non-real"]
+  answer: C
+  answer_index: 2
+  explanation: "√2 cannot be written as a ratio of integers, so it is irrational; it is still a real number."
+- id: hs-math-numsys-003
+  exam: axiom
+  subject: Mathematics
+  topic: number-systems
+  difficulty: medium
+  type: multiple_choice
+  question: "Which is the smallest standard number set containing -7?"
+  options: ["Natural", "Whole", "Integer", "Irrational"]
+  answer: C
+  answer_index: 2
+  explanation: "-7 is an integer, and integers include negative whole-number values."
+
+- id: hs-math-integers-001
+  exam: axiom
+  subject: Mathematics
+  topic: integers
+  difficulty: easy
+  type: multiple_choice
+  question: "Calculate: -18 + 25."
+  options: ["-43", "-7", "7", "43"]
+  answer: C
+  answer_index: 2
+  explanation: "Starting at -18 and moving 25 units right gives 7."
+- id: hs-math-integers-002
+  exam: axiom
+  subject: Mathematics
+  topic: integers
+  difficulty: medium
+  type: multiple_choice
+  question: "Calculate: 9 - (-7)."
+  options: ["2", "-2", "16", "-16"]
+  answer: C
+  answer_index: 2
+  explanation: "Subtracting a negative is addition: 9 + 7 = 16."
+- id: hs-math-integers-003
+  exam: axiom
+  subject: Mathematics
+  topic: integers
+  difficulty: medium
+  type: multiple_choice
+  question: "What is |-31|?"
+  options: ["-31", "0", "31", "1"]
+  answer: C
+  answer_index: 2
+  explanation: "Absolute value is distance from zero, so |-31| = 31."
+
+- id: hs-math-fractions-001
+  exam: axiom
+  subject: Mathematics
+  topic: fractions
+  difficulty: easy
+  type: multiple_choice
+  question: "Simplify 42/56."
+  options: ["2/3", "3/4", "4/7", "6/8"]
+  answer: B
+  answer_index: 1
+  explanation: "Divide numerator and denominator by 14 to obtain 3/4."
+- id: hs-math-fractions-002
+  exam: axiom
+  subject: Mathematics
+  topic: fractions
+  difficulty: medium
+  type: multiple_choice
+  question: "Calculate 5/8 + 1/6."
+  options: ["11/14", "19/24", "7/14", "13/24"]
+  answer: B
+  answer_index: 1
+  explanation: "Use denominator 24: 15/24 + 4/24 = 19/24."
+- id: hs-math-fractions-003
+  exam: axiom
+  subject: Mathematics
+  topic: fractions
+  difficulty: medium
+  type: multiple_choice
+  question: "Calculate 3/4 ÷ 2/5."
+  options: ["3/10", "5/6", "15/8", "8/15"]
+  answer: C
+  answer_index: 2
+  explanation: "Multiply by the reciprocal: 3/4 × 5/2 = 15/8."
+
+- id: hs-math-decimals-001
+  exam: axiom
+  subject: Mathematics
+  topic: decimals
+  difficulty: easy
+  type: multiple_choice
+  question: "Convert 0.375 to a fraction in simplest form."
+  options: ["3/8", "5/12", "15/40", "37/100"]
+  answer: A
+  answer_index: 0
+  explanation: "0.375 = 375/1000 = 3/8 after simplification."
+- id: hs-math-decimals-002
+  exam: axiom
+  subject: Mathematics
+  topic: decimals
+  difficulty: easy
+  type: multiple_choice
+  question: "Calculate 8.4 ÷ 0.7."
+  options: ["1.2", "12", "120", "0.12"]
+  answer: B
+  answer_index: 1
+  explanation: "8.4 ÷ 0.7 = 84 ÷ 7 = 12."
+- id: hs-math-decimals-003
+  exam: axiom
+  subject: Mathematics
+  topic: decimals
+  difficulty: easy
+  type: multiple_choice
+  question: "Which ordering is correct?"
+  options: ["0.56 < 0.506 < 0.65", "0.506 < 0.56 < 0.65", "0.65 < 0.56 < 0.506", "0.56 < 0.65 < 0.506"]
+  answer: B
+  answer_index: 1
+  explanation: "Writing 0.56 as 0.560 makes the order clear: 0.506 < 0.560 < 0.650."
+
+- id: hs-math-percentages-001
+  exam: axiom
+  subject: Mathematics
+  topic: percentages
+  difficulty: easy
+  type: multiple_choice
+  question: "What is 18% of 250?"
+  options: ["18", "36", "45", "54"]
+  answer: C
+  answer_index: 2
+  explanation: "0.18 × 250 = 45."
+- id: hs-math-percentages-002
+  exam: axiom
+  subject: Mathematics
+  topic: percentages
+  difficulty: medium
+  type: multiple_choice
+  question: "42 is what percentage of 60?"
+  options: ["60%", "65%", "70%", "72%"]
+  answer: C
+  answer_index: 2
+  explanation: "42/60 × 100% = 70%."
+- id: hs-math-percentages-003
+  exam: axiom
+  subject: Mathematics
+  topic: percentages
+  difficulty: medium
+  type: multiple_choice
+  question: "A value of 900 is decreased by 15%. What is the new value?"
+  options: ["765", "785", "815", "885"]
+  answer: A
+  answer_index: 0
+  explanation: "900 × 0.85 = 765."
+
+- id: hs-math-ratios-001
+  exam: axiom
+  subject: Mathematics
+  topic: ratios
+  difficulty: easy
+  type: multiple_choice
+  question: "Simplify 18:24."
+  options: ["2:3", "3:4", "4:3", "6:8"]
+  answer: B
+  answer_index: 1
+  explanation: "Divide both terms by 6 to get 3:4."
+- id: hs-math-ratios-002
+  exam: axiom
+  subject: Mathematics
+  topic: ratios
+  difficulty: medium
+  type: multiple_choice
+  question: "Divide 360 in the ratio 2:3. What is the larger share?"
+  options: ["120", "144", "216", "240"]
+  answer: C
+  answer_index: 2
+  explanation: "There are 5 parts; each is 72, so the larger share is 3 × 72 = 216."
+- id: hs-math-ratios-003
+  exam: axiom
+  subject: Mathematics
+  topic: ratios
+  difficulty: medium
+  type: multiple_choice
+  question: "Simplify the ratio 2 m : 50 cm."
+  options: ["1:25", "2:50", "4:1", "40:1"]
+  answer: C
+  answer_index: 2
+  explanation: "2 m = 200 cm, so 200:50 = 4:1."
+
+- id: hs-math-proportion-001
+  exam: axiom
+  subject: Mathematics
+  topic: proportions
+  difficulty: medium
+  type: multiple_choice
+  question: "If x/12 = 5/8, what is x?"
+  options: ["6", "7.5", "8", "9.6"]
+  answer: B
+  answer_index: 1
+  explanation: "8x = 60, so x = 7.5."
+- id: hs-math-proportion-002
+  exam: axiom
+  subject: Mathematics
+  topic: proportions
+  difficulty: medium
+  type: multiple_choice
+  question: "If y is directly proportional to x and y = 24 when x = 8, find y when x = 15."
+  options: ["30", "40", "45", "48"]
+  answer: C
+  answer_index: 2
+  explanation: "k = 24/8 = 3, so y = 3 × 15 = 45."
+- id: hs-math-proportion-003
+  exam: axiom
+  subject: Mathematics
+  topic: proportions
+  difficulty: medium
+  type: multiple_choice
+  question: "Which equation represents inverse proportion between y and x?"
+  options: ["y = kx", "y/x = k", "xy = k", "y = x + k"]
+  answer: C
+  answer_index: 2
+  explanation: "For inverse proportion, the product xy remains constant."
+
+- id: hs-math-rates-001
+  exam: axiom
+  subject: Mathematics
+  topic: rates-and-unit-rates
+  difficulty: easy
+  type: multiple_choice
+  question: "A cyclist travels 42 km in 2.5 hours. What is the average speed?"
+  options: ["14.8 km/h", "16.8 km/h", "18.2 km/h", "20.5 km/h"]
+  answer: B
+  answer_index: 1
+  explanation: "Speed = distance/time = 42/2.5 = 16.8 km/h."
+- id: hs-math-rates-002
+  exam: axiom
+  subject: Mathematics
+  topic: rates-and-unit-rates
+  difficulty: easy
+  type: multiple_choice
+  question: "A tap delivers 18 L in 3 minutes. What is the rate?"
+  options: ["3 L/min", "6 L/min", "9 L/min", "54 L/min"]
+  answer: B
+  answer_index: 1
+  explanation: "18 ÷ 3 = 6 L/min."
+- id: hs-math-rates-003
+  exam: axiom
+  subject: Mathematics
+  topic: rates-and-unit-rates
+  difficulty: medium
+  type: multiple_choice
+  question: "A journey covers 60 km in 1 h and another 40 km in 2 h. What is the average speed for the whole journey?"
+  options: ["30 km/h", "33.3 km/h", "35 km/h", "50 km/h"]
+  answer: B
+  answer_index: 1
+  explanation: "Total distance is 100 km and total time is 3 h, so average speed is 100/3 ≈ 33.3 km/h."
+
+- id: hs-math-factors-001
+  exam: axiom
+  subject: Mathematics
+  topic: factors-and-multiples
+  difficulty: easy
+  type: multiple_choice
+  question: "Which is the complete set of positive factors of 30?"
+  options: ["1,2,3,5,6,10,15,30", "1,2,3,6,10,30", "2,3,5,15", "1,3,6,9,30"]
+  answer: A
+  answer_index: 0
+  explanation: "These are all positive divisors of 30."
+- id: hs-math-factors-002
+  exam: axiom
+  subject: Mathematics
+  topic: factors-and-multiples
+  difficulty: easy
+  type: multiple_choice
+  question: "Is 725 divisible by 5?"
+  options: ["Yes", "No", "Only by 25", "Cannot be determined"]
+  answer: A
+  answer_index: 0
+  explanation: "A number ending in 0 or 5 is divisible by 5."
+- id: hs-math-factors-003
+  exam: axiom
+  subject: Mathematics
+  topic: factors-and-multiples
+  difficulty: medium
+  type: multiple_choice
+  question: "Which number is a multiple of both 6 and 8?"
+  options: ["18", "24", "30", "40"]
+  answer: B
+  answer_index: 1
+  explanation: "24 is divisible by both 6 and 8."
+
+- id: hs-math-primes-001
+  exam: axiom
+  subject: Mathematics
+  topic: prime-numbers
+  difficulty: easy
+  type: multiple_choice
+  question: "Which statement about 1 is correct?"
+  options: ["It is prime", "It is composite", "It is neither prime nor composite", "It is irrational"]
+  answer: C
+  answer_index: 2
+  explanation: "A prime has exactly two positive factors; 1 has only one."
+- id: hs-math-primes-002
+  exam: axiom
+  subject: Mathematics
+  topic: prime-numbers
+  difficulty: medium
+  type: multiple_choice
+  question: "What is the prime factorisation of 60?"
+  options: ["2×3×10", "2²×3×5", "2×3²×5", "4×15"]
+  answer: B
+  answer_index: 1
+  explanation: "60 = 2×2×3×5 = 2²×3×5."
+- id: hs-math-primes-003
+  exam: axiom
+  subject: Mathematics
+  topic: prime-numbers
+  difficulty: medium
+  type: multiple_choice
+  question: "Is 91 prime?"
+  options: ["Yes", "No, because 91 = 7×13", "No, because 91 = 9×10 + 1", "Yes, because it is odd"]
+  answer: B
+  answer_index: 1
+  explanation: "91 has factors 7 and 13, so it is composite."
+
+- id: hs-math-hcf-lcm-001
+  exam: axiom
+  subject: Mathematics
+  topic: hcf-and-lcm
+  difficulty: medium
+  type: multiple_choice
+  question: "What is the HCF of 48 and 72?"
+  options: ["12", "18", "24", "36"]
+  answer: C
+  answer_index: 2
+  explanation: "24 is the greatest number dividing both 48 and 72."
+- id: hs-math-hcf-lcm-002
+  exam: axiom
+  subject: Mathematics
+  topic: hcf-and-lcm
+  difficulty: medium
+  type: multiple_choice
+  question: "What is the LCM of 48 and 72?"
+  options: ["96", "120", "144", "288"]
+  answer: C
+  answer_index: 2
+  explanation: "The least common multiple of 48 and 72 is 144."
+- id: hs-math-hcf-lcm-003
+  exam: axiom
+  subject: Mathematics
+  topic: hcf-and-lcm
+  difficulty: medium
+  type: multiple_choice
+  question: "Two bells ring every 12 s and 18 s. If they ring together now, when will they next ring together?"
+  options: ["24 s", "30 s", "36 s", "54 s"]
+  answer: C
+  answer_index: 2
+  explanation: "Their next simultaneous ring occurs after LCM(12,18) = 36 seconds."
+
+- id: hs-math-powers-001
+  exam: axiom
+  subject: Mathematics
+  topic: powers-and-exponents
+  difficulty: easy
+  type: multiple_choice
+  question: "Simplify 7⁵ ÷ 7²."
+  options: ["7²", "7³", "7⁷", "3⁷"]
+  answer: B
+  answer_index: 1
+  explanation: "For the same base, subtract exponents: 7^(5-2) = 7³."
+- id: hs-math-powers-002
+  exam: axiom
+  subject: Mathematics
+  topic: powers-and-exponents
+  difficulty: easy
+  type: multiple_choice
+  question: "What is 2⁰?"
+  options: ["0", "1", "2", "Undefined"]
+  answer: B
+  answer_index: 1
+  explanation: "Every non-zero number raised to the zero power equals 1."
+- id: hs-math-powers-003
+  exam: axiom
+  subject: Mathematics
+  topic: powers-and-exponents
+  difficulty: medium
+  type: multiple_choice
+  question: "What is 16^(3/4)?"
+  options: ["4", "6", "8", "12"]
+  answer: C
+  answer_index: 2
+  explanation: "16^(1/4)=2, so 16^(3/4)=2³=8."
+
+- id: hs-math-roots-001
+  exam: axiom
+  subject: Mathematics
+  topic: roots-and-radicals
+  difficulty: easy
+  type: multiple_choice
+  question: "What is √144?"
+  options: ["-12", "12", "24", "72"]
+  answer: B
+  answer_index: 1
+  explanation: "The principal square root is the non-negative root, so √144 = 12."
+- id: hs-math-roots-002
+  exam: axiom
+  subject: Mathematics
+  topic: roots-and-radicals
+  difficulty: medium
+  type: multiple_choice
+  question: "Simplify √72."
+  options: ["6√2", "8√2", "9√2", "12√2"]
+  answer: A
+  answer_index: 0
+  explanation: "√72 = √(36×2) = 6√2."
+- id: hs-math-roots-003
+  exam: axiom
+  subject: Mathematics
+  topic: roots-and-radicals
+  difficulty: medium
+  type: multiple_choice
+  question: "Which are the solutions of x² = 25?"
+  options: ["x=5 only", "x=-5 only", "x=±5", "x=25"]
+  answer: C
+  answer_index: 2
+  explanation: "Both 5² and (-5)² equal 25."
+
+- id: hs-math-standard-form-001
+  exam: axiom
+  subject: Mathematics
+  topic: standard-form
+  difficulty: easy
+  type: multiple_choice
+  question: "Write 4,500,000 in standard form."
+  options: ["45×10⁵", "4.5×10⁶", "0.45×10⁷", "4.5×10⁵"]
+  answer: B
+  answer_index: 1
+  explanation: "The coefficient must be at least 1 and less than 10: 4.5×10⁶."
+- id: hs-math-standard-form-002
+  exam: axiom
+  subject: Mathematics
+  topic: standard-form
+  difficulty: easy
+  type: multiple_choice
+  question: "Write 0.00072 in standard form."
+  options: ["7.2×10⁻⁴", "7.2×10⁴", "0.72×10⁻³", "72×10⁻⁴"]
+  answer: A
+  answer_index: 0
+  explanation: "Move the decimal four places right: 7.2×10⁻⁴."
+- id: hs-math-standard-form-003
+  exam: axiom
+  subject: Mathematics
+  topic: standard-form
+  difficulty: medium
+  type: multiple_choice
+  question: "Calculate (3×10⁴)(2×10³)."
+  options: ["6×10⁷", "6×10¹²", "5×10⁷", "6×10¹"]
+  answer: A
+  answer_index: 0
+  explanation: "Multiply coefficients and add exponents: 3×2=6 and 4+3=7."
+
+- id: hs-math-approximation-001
+  exam: axiom
+  subject: Mathematics
+  topic: approximation-and-estimation
+  difficulty: easy
+  type: multiple_choice
+  question: "Round 47.6 to the nearest whole number."
+  options: ["47", "48", "47.5", "50"]
+  answer: B
+  answer_index: 1
+  explanation: "The tenths digit is 6, so round 47 up to 48."
+- id: hs-math-approximation-002
+  exam: axiom
+  subject: Mathematics
+  topic: approximation-and-estimation
+  difficulty: medium
+  type: multiple_choice
+  question: "Estimate 19.8 × 3.1 by rounding each factor to the nearest whole number."
+  options: ["40", "50", "60", "70"]
+  answer: C
+  answer_index: 2
+  explanation: "19.8≈20 and 3.1≈3, so the estimate is 20×3=60."
+- id: hs-math-approximation-003
+  exam: axiom
+  subject: Mathematics
+  topic: approximation-and-estimation
+  difficulty: medium
+  type: multiple_choice
+  question: "Which is the best reason for estimating before calculating?"
+  options: ["It always gives the exact answer", "It provides a quick reasonableness check", "It removes units", "It avoids all rounding"]
+  answer: B
+  answer_index: 1
+  explanation: "An estimate helps detect answers that are implausibly large or small."
+
+- id: hs-math-sigfig-001
+  exam: axiom
+  subject: Mathematics
+  topic: significant-figures
+  difficulty: easy
+  type: multiple_choice
+  question: "How many significant figures are in 0.00450?"
+  options: ["2", "3", "4", "5"]
+  answer: B
+  answer_index: 1
+  explanation: "Leading zeros are not significant; 4, 5 and the trailing zero are significant."
+- id: hs-math-sigfig-002
+  exam: axiom
+  subject: Mathematics
+  topic: significant-figures
+  difficulty: easy
+  type: multiple_choice
+  question: "Round 6,284 to 3 significant figures."
+  options: ["6,280", "6,300", "6,284", "6,200"]
+  answer: A
+  answer_index: 0
+  explanation: "The first three significant digits are 6,2,8 and the next digit is 4, so 6,280."
+- id: hs-math-sigfig-003
+  exam: axiom
+  subject: Mathematics
+  topic: significant-figures
+  difficulty: medium
+  type: multiple_choice
+  question: "Which value is written to exactly 2 significant figures?"
+  options: ["0.040", "4.0", "40.00", "400"]
+  answer: B
+  answer_index: 1
+  explanation: "4.0 explicitly contains two significant figures."
+
+- id: hs-math-decimal-places-001
+  exam: axiom
+  subject: Mathematics
+  topic: decimal-places
+  difficulty: easy
+  type: multiple_choice
+  question: "Round 8.746 to 2 decimal places."
+  options: ["8.74", "8.75", "8.70", "8.76"]
+  answer: B
+  answer_index: 1
+  explanation: "The third decimal digit is 6, so 8.74 rounds up to 8.75."
+- id: hs-math-decimal-places-002
+  exam: axiom
+  subject: Mathematics
+  topic: decimal-places
+  difficulty: easy
+  type: multiple_choice
+  question: "How many decimal places does 14.030 have?"
+  options: ["1", "2", "3", "4"]
+  answer: C
+  answer_index: 2
+  explanation: "There are three digits after the decimal point."
+- id: hs-math-decimal-places-003
+  exam: axiom
+  subject: Mathematics
+  topic: decimal-places
+  difficulty: medium
+  type: multiple_choice
+  question: "Which is 0.009 correct to 2 decimal places?"
+  options: ["0.00", "0.01", "0.009", "0.90"]
+  answer: B
+  answer_index: 1
+  explanation: "0.009 rounds to 0.01 at two decimal places."
+
+- id: hs-math-bounds-001
+  exam: axiom
+  subject: Mathematics
+  topic: bounds-and-limits-of-accuracy
+  difficulty: medium
+  type: multiple_choice
+  question: "A length is recorded as 8.4 cm to the nearest 0.1 cm. What is its lower bound?"
+  options: ["8.3", "8.35", "8.39", "8.4"]
+  answer: B
+  answer_index: 1
+  explanation: "The true value is at least 8.35 cm and less than 8.45 cm."
+- id: hs-math-bounds-002
+  exam: axiom
+  subject: Mathematics
+  topic: bounds-and-limits-of-accuracy
+  difficulty: medium
+  type: multiple_choice
+  question: "A mass is 5.2 kg correct to the nearest 0.1 kg. What is the upper bound?"
+  options: ["5.15", "5.20", "5.25", "5.30"]
+  answer: C
+  answer_index: 2
+  explanation: "The upper boundary is halfway to the next tenth: 5.25 kg, not included."
+- id: hs-math-bounds-003
+  exam: axiom
+  subject: Mathematics
+  topic: bounds-and-limits-of-accuracy
+  difficulty: hard
+  type: multiple_choice
+  question: "A value rounded to the nearest whole number is 17. Which interval contains all possible true values?"
+  options: ["16 ≤ x ≤ 18", "16.5 ≤ x < 17.5", "17 ≤ x < 18", "16 < x ≤ 17"]
+  answer: B
+  answer_index: 1
+  explanation: "Rounding to the nearest integer 17 means 16.5 ≤ x < 17.5."
+
+- id: hs-math-surds-001
+  exam: axiom
+  subject: Mathematics
+  topic: surds
+  difficulty: medium
+  type: multiple_choice
+  question: "Simplify √50."
+  options: ["5√2", "2√5", "10√5", "25√2"]
+  answer: A
+  answer_index: 0
+  explanation: "√50 = √(25×2) = 5√2."
+- id: hs-math-surds-002
+  exam: axiom
+  subject: Mathematics
+  topic: surds
+  difficulty: medium
+  type: multiple_choice
+  question: "Simplify 3√5 + 2√5."
+  options: ["5√5", "6√10", "5√10", "√25"]
+  answer: A
+  answer_index: 0
+  explanation: "Like surds combine like like terms: 3√5 + 2√5 = 5√5."
+- id: hs-math-surds-003
+  exam: axiom
+  subject: Mathematics
+  topic: surds
+  difficulty: hard
+  type: multiple_choice
+  question: "Which expression is equivalent to 1/√3 after rationalising the denominator?"
+  options: ["√3", "√3/3", "3√3", "1/3"]
+  answer: B
+  answer_index: 1
+  explanation: "Multiply numerator and denominator by √3: √3/3."
+
+- id: hs-math-recurring-001
+  exam: axiom
+  subject: Mathematics
+  topic: recurring-decimals
+  difficulty: medium
+  type: multiple_choice
+  question: "Which fraction equals 0.333...?"
+  options: ["1/2", "1/3", "2/3", "3/10"]
+  answer: B
+  answer_index: 1
+  explanation: "0.333... is the recurring decimal representation of 1/3."
+- id: hs-math-recurring-002
+  exam: axiom
+  subject: Mathematics
+  topic: recurring-decimals
+  difficulty: medium
+  type: multiple_choice
+  question: "Convert 0.666... to a fraction."
+  options: ["1/3", "2/3", "3/5", "6/10"]
+  answer: B
+  answer_index: 1
+  explanation: "0.666... = 2/3."
+- id: hs-math-recurring-003
+  exam: axiom
+  subject: Mathematics
+  topic: recurring-decimals
+  difficulty: hard
+  type: multiple_choice
+  question: "What is the first algebraic step when converting x = 0.2727... into a fraction?"
+  options: ["Multiply by 2", "Multiply by 10", "Multiply by 100", "Add 27"]
+  answer: C
+  answer_index: 2
+  explanation: "The recurring block has two digits, so multiply by 100 before subtracting the original equation."
