@@ -8,9 +8,11 @@ layout: app-shell
     <a href="{{ '/high-school/subject/?department=mathematics&topic=' | append: page.high_school_topic | relative_url }}">{{ page.high_school_topic | replace: '-', ' ' | capitalize }}</a><span class="crumb-sep">/</span><span class="crumb-current">{{ page.title }}</span>
   </nav>
   <header class="study-reader-header">
-    <span class="eyebrow">High School · Mathematics · {{ page.high_school_topic | replace: '-', ' ' | capitalize }}</span><h1>{{ page.title }}</h1>
+    <span class="eyebrow">High School · Mathematics · {{ page.high_school_topic | replace: '-', ' ' | capitalize }}</span>
+    <h1>{{ page.title }}</h1>
     {% if page.study_description %}<p>{{ page.study_description }}</p>{% endif %}
     {% assign textbook = site.data.mathematics_number_numeracy_textbooks[page.high_school_subtopic] %}
+    {% assign chapter = site.data.mathematics_number_numeracy_chapters[page.high_school_subtopic] %}
     {% if textbook %}<p class="study-reader-unit"><strong>Textbook Unit {{ textbook.unit }}/20</strong> · Structured study notes, examples and practice.</p>{% endif %}
     <div class="study-reader-actions"><button type="button" class="action-btn" id="study-bookmark">Bookmark</button><button type="button" class="action-btn" id="study-text-size">Text size</button>{% if page.high_school_subject and page.high_school_topic %}<a class="action-btn" href="{{ '/quiz/high-school/' | append: page.high_school_subject | append: '/' | append: page.high_school_topic | append: '/' | relative_url }}">Practice Quiz</a>{% endif %}</div>
   </header>
@@ -18,32 +20,54 @@ layout: app-shell
     <aside class="study-reader-toc" aria-label="On this page"><strong>On this page</strong><div id="study-toc"></div></aside>
     <article class="study-reader-content" id="study-content">
       {{ content }}
-      {% if textbook %}
-      <section class="study-textbook" aria-labelledby="textbook-notes">
+      {% if chapter %}
+      <section class="study-textbook study-textbook-complete" aria-labelledby="textbook-chapter">
         <header class="study-textbook-header">
-          <span class="eyebrow">Textbook Notes</span>
-          <h2 id="textbook-notes">{{ page.title }} — Core Study Chapter</h2>
+          <span class="eyebrow">Textbook Chapter {{ chapter.objectives | default: '' }}</span>
+          <h2 id="textbook-chapter">{{ page.title }} — Complete Study Chapter</h2>
           <p>{{ textbook.overview }}</p>
         </header>
-        <div class="study-textbook-section">
-          {{ textbook.concepts | markdownify }}
-        </div>
-        <div class="study-textbook-section">
-          <h2>Worked Examples & Challenges</h2>
-          {{ textbook.examples | markdownify }}
-        </div>
-        <div class="study-textbook-section">
+        <section class="study-textbook-section study-learning-objectives">
+          <h2>Learning Objectives</h2>
+          <p>{{ chapter.objectives }}</p>
+        </section>
+        <section class="study-textbook-section">
+          <h2>Key Terms</h2>
+          <p>{{ chapter.key_terms }}</p>
+        </section>
+        <section class="study-textbook-section">
+          <h2>Core Lesson</h2>
+          {{ chapter.lesson | markdownify }}
+        </section>
+        <section class="study-textbook-section">
+          <h2>Worked Examples</h2>
+          {{ chapter.worked | markdownify }}
+        </section>
+        <section class="study-textbook-section study-textbook-practice">
+          <h2>Checkpoint Practice</h2>
+          <p>{{ chapter.checkpoint }}</p>
+        </section>
+        <section class="study-textbook-section">
+          <h2>Answers & Self-Check</h2>
+          <details><summary>Reveal answers</summary><p>{{ chapter.answers }}</p></details>
+        </section>
+        <section class="study-textbook-section">
           <h2>Common Mistakes</h2>
           <p>{{ textbook.mistakes }}</p>
-        </div>
-        <div class="study-textbook-section study-textbook-practice">
-          <h2>Textbook Practice</h2>
-          {{ textbook.practice | markdownify }}
-        </div>
+        </section>
         <aside class="study-textbook-revision">
           <strong>Revision checklist</strong>
-          <p>Can you define the key terms, explain the main rule without notes, solve a worked example, identify a common error, and apply the idea to an unfamiliar problem?</p>
+          <p>Can you define the key terms, explain the main rule without notes, reproduce a worked example, solve the checkpoint, identify a common mistake, and apply the idea to a new problem?</p>
         </aside>
+      </section>
+      {% elsif textbook %}
+      <section class="study-textbook" aria-labelledby="textbook-notes">
+        <header class="study-textbook-header"><span class="eyebrow">Textbook Notes</span><h2 id="textbook-notes">{{ page.title }} — Core Study Chapter</h2><p>{{ textbook.overview }}</p></header>
+        <div class="study-textbook-section">{{ textbook.concepts | markdownify }}</div>
+        <div class="study-textbook-section"><h2>Worked Examples & Challenges</h2>{{ textbook.examples | markdownify }}</div>
+        <div class="study-textbook-section"><h2>Common Mistakes</h2><p>{{ textbook.mistakes }}</p></div>
+        <div class="study-textbook-section study-textbook-practice"><h2>Textbook Practice</h2>{{ textbook.practice | markdownify }}</div>
+        <aside class="study-textbook-revision"><strong>Revision checklist</strong><p>Can you define the key terms, explain the main rule without notes, solve a worked example, identify a common error, and apply the idea to an unfamiliar problem?</p></aside>
       </section>
       {% endif %}
     </article>
@@ -59,9 +83,9 @@ layout: app-shell
   const content=document.getElementById('study-content'),bar=document.getElementById('study-progress-bar'),toc=document.getElementById('study-toc'); if(!content)return;
   [...content.querySelectorAll('h2,h3')].forEach((h,i)=>{h.id=h.id||'study-section-'+(i+1);const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;toc&&toc.appendChild(a);});
   function progress(){const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const pct=Math.max(0,Math.min(100,scrollY/max*100));if(bar)bar.style.width=pct+'%';localStorage.setItem('axiom-study-progress:'+location.pathname,Math.round(pct));} addEventListener('scroll',progress,{passive:true});progress();
-  const bookmark=document.getElementById('study-bookmark'),key='axiom-study-bookmark:'+location.pathname;if(localStorage.getItem(key)==='1'){bookmark.textContent='Saved';bookmark.classList.add('active');}bookmark&&bookmark.addEventListener('click',()=>{const on=localStorage.getItem(key)!=='1';localStorage.setItem(key,on?'1':'0');bookmark.textContent=on?'Saved':'Bookmark';bookmark.classList.toggle('active',on);});
+  const bookmark=document.getElementById('study-bookmark'),key='axiom-study-bookmark:'+location.pathname;if(bookmark&&localStorage.getItem(key)==='1'){bookmark.textContent='Saved';bookmark.classList.add('active');}bookmark&&bookmark.addEventListener('click',()=>{const on=localStorage.getItem(key)!=='1';localStorage.setItem(key,on?'1':'0');bookmark.textContent=on?'Saved':'Bookmark';bookmark.classList.toggle('active',on);});
   const size=document.getElementById('study-text-size');let level=0;const sizes=['1rem','1.08rem','1.16rem'];size&&size.addEventListener('click',()=>{level=(level+1)%sizes.length;content.style.fontSize=sizes[level];});
 })();
 </script>
-<script>window.MathJax={tex:{inlineMath:[["$","$"] ,["\\(","\\)"]]},svg:{fontCache:'global'}};</script>
+<script>window.MathJax={tex:{inlineMath:[["$","$"]],["\\(","\\)"]]},svg:{fontCache:'global'}};</script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
