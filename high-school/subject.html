@@ -9,7 +9,7 @@ permalink: /high-school/subject/
     <div>
       <span class="eyebrow" id="department-label">High School · Study</span>
       <h1 id="subject-title">Choose a subject</h1>
-      <p id="subject-description">Select a department, then choose a subject to explore its curriculum.</p>
+      <p id="subject-description">Select a department, then choose a topic to explore its curriculum.</p>
     </div>
     <span class="section-note">Department → Topic → Subtopic</span>
   </div>
@@ -30,7 +30,7 @@ const label = document.getElementById('department-label');
 const description = document.getElementById('subject-description');
 const subjectUrl = "{{ '/high-school/subject/' | relative_url }}";
 const studyUrl = "{{ '/high-school/' | relative_url }}";
-const algebraStudyUrl = "{{ '/high-school/study/mathematics/algebra/' | relative_url }}";
+const studyRoot = "{{ '/high-school/study/' | relative_url }}";
 function pretty(value) { return String(value || '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); }
 function findCurriculumDepartment(id) { return (curriculumDepartments || []).find(item => item.id === id) || null; }
 function findCurriculumSubject(id) {
@@ -59,16 +59,17 @@ if (!department) {
   if (selectedMathTopic) {
     title.textContent=selectedMathTopic.name;
     description.textContent='Choose a subtopic to begin the study lesson.';
-    (selectedMathTopic.topics || []).forEach(subtopic => {
-      const href = `${algebraStudyUrl}${subtopic.id}/`;
-      list.appendChild(card(subtopic.name, 'Study the concept, worked examples, and check-your-understanding questions.', href, '📘', 'Study available'));
+    (selectedMathTopic.subtopics || []).forEach(subtopic => {
+      const href = `${studyRoot}mathematics/${selectedMathTopic.id}/${subtopic.id}/`;
+      const available = selectedMathTopic.id === 'algebra' && ['introduction-to-algebra','variables-and-constants','algebraic-expressions','simplifying-expressions','linear-equations','inequalities'].includes(subtopic.id);
+      list.appendChild(card(subtopic.name, available ? 'Study the concept, worked examples, practice, and review.' : 'Curriculum subtopic prepared for the next study-content build.', href, '📘', available ? 'Study available' : 'Coming in study build'));
     });
     const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=`${subjectUrl}?department=mathematics`; back.textContent='Back to Mathematics'; list.appendChild(back);
   } else {
     title.textContent='Mathematics';
     description.textContent='Choose a topic to begin studying.';
     mathTopics.forEach(topic => {
-      list.appendChild(card(topic.name, topic.description || 'Open this topic to study its subtopics.', `${subjectUrl}?department=mathematics&topic=${encodeURIComponent(topic.id)}`, '📚', `${topic.topics?.length || 0} subtopics`));
+      list.appendChild(card(topic.name, topic.description || 'Open this topic to study its subtopics.', `${subjectUrl}?department=mathematics&topic=${encodeURIComponent(topic.id)}`, '📚', `${topic.subtopics?.length || 0} subtopics`));
     });
     const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=studyUrl; back.textContent='Back to High School Study'; list.appendChild(back);
   }
@@ -78,7 +79,7 @@ if (!department) {
   const selectedTopic=topics.find(item => item.id === topicId);
   if (selectedTopic) {
     title.textContent=selectedTopic.name; description.textContent='Choose a subtopic to begin the study lesson.';
-    (selectedTopic.subtopics || []).forEach(subtopic => list.appendChild(card(subtopic.name, 'Study the concept, worked examples, and check-your-understanding questions.', '#', '📘', 'Coming next')));
+    (selectedTopic.subtopics || []).forEach(subtopic => list.appendChild(card(subtopic.name, 'Study content will be added in the subject build.', '#', '📘', 'Coming next')));
     const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=`${subjectUrl}?department=${encodeURIComponent(department.id)}&subject=${encodeURIComponent(subjectId)}`; back.textContent=`Back to ${curriculumSubject.name || pretty(subjectId)}`; list.appendChild(back);
   } else {
     description.textContent=topics.length ? 'Choose a curriculum topic to begin studying.' : 'This subject is connected to the curriculum. Topic content is being populated next.';
