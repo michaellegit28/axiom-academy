@@ -1,0 +1,60 @@
+- id: number-systems
+  title: Number Systems
+  path: /high-school/mathematics/number-and-numeracy/number-systems/
+- id: integers
+  title: Integers
+  path: /high-school/mathematics/number-and-numeracy/integers/
+- id: fractions
+  title: Fractions
+  path: /high-school/mathematics/number-and-numeracy/fractions/
+- id: decimals
+  title: Decimals
+  path: /high-school/mathematics/number-and-numeracy/decimals/
+- id: percentages
+  title: Percentages
+  path: /high-school/mathematics/number-and-numeracy/percentages/
+- id: ratios
+  title: Ratios
+  path: /high-school/mathematics/number-and-numeracy/ratios/
+- id: proportions
+  title: Proportions
+  path: /high-school/mathematics/number-and-numeracy/proportions/
+- id: rates-and-unit-rates
+  title: Rates and Unit Rates
+  path: /high-school/mathematics/number-and-numeracy/rates-and-unit-rates/
+- id: factors-and-multiples
+  title: Factors and Multiples
+  path: /high-school/mathematics/number-and-numeracy/factors-and-multiples/
+- id: prime-numbers
+  title: Prime Numbers
+  path: /high-school/mathematics/number-and-numeracy/prime-numbers/
+- id: hcf-and-lcm
+  title: HCF and LCM
+  path: /high-school/mathematics/number-and-numeracy/hcf-and-lcm/
+- id: powers-and-exponents
+  title: Powers and Exponents
+  path: /high-school/mathematics/number-and-numeracy/powers-and-exponents/
+- id: roots-and-radicals
+  title: Roots and Radicals
+  path: /high-school/mathematics/number-and-numeracy/roots-and-radicals/
+- id: standard-form
+  title: Standard Form / Scientific Notation
+  path: /high-school/mathematics/number-and-numeracy/standard-form/
+- id: approximation-and-estimation
+  title: Approximation and Estimation
+  path: /high-school/mathematics/number-and-numeracy/approximation-and-estimation/
+- id: significant-figures
+  title: Significant Figures
+  path: /high-school/mathematics/number-and-numeracy/significant-figures/
+- id: decimal-places
+  title: Decimal Places
+  path: /high-school/mathematics/number-and-numeracy/decimal-places/
+- id: bounds-and-accuracy
+  title: Bounds and Limits of Accuracy
+  path: /high-school/mathematics/number-and-numeracy/bounds-and-accuracy/
+- id: surds
+  title: Surds
+  path: /high-school/mathematics/number-and-numeracy/surds/
+- id: recurring-decimals
+  title: Recurring Decimals
+  path: /high-school/mathematics/number-and-numeracy/recurring-decimals/
