@@ -28,6 +28,6 @@ high_school_topic: algebra
     <a class="track-card" href="{{ '/high-school/mathematics/algebra/algebraic-expressions/' | relative_url }}"><h3>3. Algebraic Expressions</h3><p>Terms, like terms and translating words into expressions.</p></a>
     <a class="track-card" href="{{ '/high-school/mathematics/algebra/simplifying-expressions/' | relative_url }}"><h3>4. Simplifying Expressions</h3><p>Combining like terms and using the distributive property.</p></a>
     <a class="track-card" href="{{ '/high-school/mathematics/algebra/linear-equations/' | relative_url }}"><h3>5. Linear Equations</h3><p>Solving, checking and working with brackets.</p></a>
-    <article class="track-card"><h3>6. Inequalities</h3><p>Compare quantities using &lt;, &gt;, ≤ and ≥ and represent solution sets on a number line.</p><h4>Core ideas</h4><ul><li>Adding or subtracting the same value preserves the inequality direction.</li><li>Multiplying or dividing by a positive number preserves the direction.</li><li>Multiplying or dividing by a negative number reverses the direction.</li></ul><h4>Worked example</h4><p>Solve 2x + 3 &gt; 9. Subtract 3: 2x &gt; 6. Divide by 2: <strong>x &gt; 3</strong>.</p><h4>Check</h4><p>Test x = 4: 2(4) + 3 = 11, and 11 &gt; 9, so the solution is consistent.</p></article>
+    <a class="track-card" href="{{ '/high-school/mathematics/algebra/inequalities/' | relative_url }}"><h3>6. Inequalities</h3><p>Compare quantities using &lt;, &gt;, ≤ and ≥ and represent solution sets on a number line.</p></a>
   </div>
 </section>

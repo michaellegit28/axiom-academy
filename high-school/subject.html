@@ -31,6 +31,7 @@ const description = document.getElementById('subject-description');
 const subjectUrl = "{{ '/high-school/subject/' | relative_url }}";
 const studyUrl = "{{ '/high-school/' | relative_url }}";
 const studyRoot = "{{ '/high-school/study/' | relative_url }}";
+const mathematicsRoot = "{{ '/high-school/mathematics/' | relative_url }}";
 function pretty(value) { return String(value || '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); }
 function findCurriculumDepartment(id) { return (curriculumDepartments || []).find(item => item.id === id) || null; }
 function findCurriculumSubject(id) {
@@ -65,7 +66,7 @@ if (!department) {
     description.textContent='Choose a subtopic to begin the study lesson.';
     const published = publishedSubtopics[selectedMathTopic.id] || new Set();
     (selectedMathTopic.subtopics || []).forEach(subtopic => {
-      const href = `${studyRoot}mathematics/${selectedMathTopic.id}/${subtopic.id}/`;
+      const href = `${mathematicsRoot}${selectedMathTopic.id}/${subtopic.id}/`;
       const available = published.has(subtopic.id);
       list.appendChild(card(subtopic.name, available ? 'Study the concept, worked examples, practice, and review.' : 'Curriculum subtopic prepared for the next study-content build.', href, '📘', available ? 'Study available' : 'Coming in study build'));
     });
