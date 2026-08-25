@@ -23,42 +23,18 @@ layout: app-shell
       {% if chapter %}
       <section class="study-textbook study-textbook-complete" aria-labelledby="textbook-chapter">
         <header class="study-textbook-header">
-          <span class="eyebrow">Textbook Chapter {{ chapter.objectives | default: '' }}</span>
+          <span class="eyebrow">Complete Textbook Chapter</span>
           <h2 id="textbook-chapter">{{ page.title }} — Complete Study Chapter</h2>
           <p>{{ textbook.overview }}</p>
         </header>
-        <section class="study-textbook-section study-learning-objectives">
-          <h2>Learning Objectives</h2>
-          <p>{{ chapter.objectives }}</p>
-        </section>
-        <section class="study-textbook-section">
-          <h2>Key Terms</h2>
-          <p>{{ chapter.key_terms }}</p>
-        </section>
-        <section class="study-textbook-section">
-          <h2>Core Lesson</h2>
-          {{ chapter.lesson | markdownify }}
-        </section>
-        <section class="study-textbook-section">
-          <h2>Worked Examples</h2>
-          {{ chapter.worked | markdownify }}
-        </section>
-        <section class="study-textbook-section study-textbook-practice">
-          <h2>Checkpoint Practice</h2>
-          <p>{{ chapter.checkpoint }}</p>
-        </section>
-        <section class="study-textbook-section">
-          <h2>Answers & Self-Check</h2>
-          <details><summary>Reveal answers</summary><p>{{ chapter.answers }}</p></details>
-        </section>
-        <section class="study-textbook-section">
-          <h2>Common Mistakes</h2>
-          <p>{{ textbook.mistakes }}</p>
-        </section>
-        <aside class="study-textbook-revision">
-          <strong>Revision checklist</strong>
-          <p>Can you define the key terms, explain the main rule without notes, reproduce a worked example, solve the checkpoint, identify a common mistake, and apply the idea to a new problem?</p>
-        </aside>
+        <section class="study-textbook-section study-learning-objectives"><h2>Learning Objectives</h2><p>{{ chapter.objectives }}</p></section>
+        <section class="study-textbook-section"><h2>Key Terms</h2><p>{{ chapter.key_terms }}</p></section>
+        <section class="study-textbook-section"><h2>Core Lesson</h2>{{ chapter.lesson | markdownify }}</section>
+        <section class="study-textbook-section"><h2>Worked Examples</h2>{{ chapter.worked | markdownify }}</section>
+        <section class="study-textbook-section study-textbook-practice"><h2>Checkpoint Practice</h2><p>{{ chapter.checkpoint }}</p></section>
+        <section class="study-textbook-section"><h2>Answers & Self-Check</h2><details><summary>Reveal answers</summary><p>{{ chapter.answers }}</p></details></section>
+        <section class="study-textbook-section"><h2>Common Mistakes</h2><p>{{ textbook.mistakes }}</p></section>
+        <aside class="study-textbook-revision"><strong>Revision checklist</strong><p>Can you define the key terms, explain the main rule without notes, reproduce a worked example, solve the checkpoint, identify a common mistake, and apply the idea to a new problem?</p></aside>
       </section>
       {% elsif textbook %}
       <section class="study-textbook" aria-labelledby="textbook-notes">
