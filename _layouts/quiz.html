@@ -7,7 +7,7 @@ layout: app
   <nav class="breadcrumb-trail" aria-label="Breadcrumb">
     <a href="{{ '/high-school/' | relative_url }}">High School</a>
     <span class="crumb-sep">/</span>
-    <a href="{{ '/quiz/' | append: page.exam | append: '/' | relative_url }}">{{ page.exam | upcase }}</a>
+    {% if page.exam == 'high-school' %}<a href="{{ '/high-school/' | relative_url }}">{{ page.subject | capitalize }}</a>{% else %}<a href="{{ '/quiz/' | append: page.exam | append: '/' | relative_url }}">{{ page.exam | upcase }}</a>{% endif %}
     <span class="crumb-sep">/</span>
     <span class="crumb-current">{{ page.topic | replace: '_', ' ' | capitalize }}</span>
   </nav>

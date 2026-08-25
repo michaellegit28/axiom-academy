@@ -1,19 +1,23 @@
+---
+permalink: /assets/data/quizzes/high-school/mathematics/algebra.json
+---
+{%- assign bank = site.data.question_banks.high_school.mathematics.algebra -%}
 {
   "exam": "high-school",
   "subject": "mathematics",
   "topic": "algebra",
   "questions": [
+{%- for q in bank %}
     {
-      "id": 1,
-      "question": "Solve: x + 5 = 12",
-      "options": ["5", "7", "12", "17"],
-      "answer": "7"
-    },
-    {
-      "id": 2,
-      "question": "What is the value of 3x when x = 4?",
-      "options": ["7", "12", "16", "34"],
-      "answer": "12"
-    }
+      "id": {{ q.id | jsonify }},
+      "type": "objective",
+      "question": {{ q.question | jsonify }},
+      "options": {{ q.options | jsonify }},
+      "correct": {{ q.answer_index }},
+      "explanation": {{ q.explanation | jsonify }},
+      "topic": {{ q.topic | jsonify }},
+      "difficulty": {{ q.difficulty | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
   ]
 }

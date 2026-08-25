@@ -10,7 +10,7 @@ layout: app-shell
   <header class="study-reader-header">
     <span class="eyebrow">High School · Mathematics · Algebra</span><h1>{{ page.title }}</h1>
     {% if page.study_description %}<p>{{ page.study_description }}</p>{% endif %}
-    <div class="study-reader-actions"><button type="button" class="action-btn" id="study-bookmark">Bookmark</button><button type="button" class="action-btn" id="study-text-size">Text size</button></div>
+    <div class="study-reader-actions"><button type="button" class="action-btn" id="study-bookmark">Bookmark</button><button type="button" class="action-btn" id="study-text-size">Text size</button>{% if page.high_school_subject and page.high_school_topic %}<a class="action-btn" href="{{ '/quiz/high-school/' | append: page.high_school_subject | append: '/' | append: page.high_school_topic | append: '/' | relative_url }}">Practice Quiz</a>{% endif %}</div>
   </header>
   <div class="study-reader-layout">
     <aside class="study-reader-toc" aria-label="On this page"><strong>On this page</strong><div id="study-toc"></div></aside>

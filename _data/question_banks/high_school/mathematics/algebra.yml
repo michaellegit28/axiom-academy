@@ -1,1 +1,195 @@
-PLACEHOLDER
+# Canonical Axiom question bank — High School / Mathematics / Algebra
+# Consumed by assets/data/quizzes/high-school/mathematics/algebra.json (generated via Liquid)
+# Schema: see _data/question_bank_schema.yml
+
+- id: hs-math-algebra-intro-001
+  exam: axiom
+  subject: Mathematics
+  topic: introduction-to-algebra
+  difficulty: easy
+  type: multiple_choice
+  question: "A single letter used to represent an unknown or changing quantity in algebra is called a:"
+  options:
+    - "Constant"
+    - "Variable"
+    - "Coefficient"
+    - "Operator"
+  answer: B
+  answer_index: 1
+  explanation: "A variable is a symbol, usually a letter, that stands in for a quantity that is unknown or can change."
+
+- id: hs-math-algebra-intro-002
+  exam: axiom
+  subject: Mathematics
+  topic: introduction-to-algebra
+  difficulty: easy
+  type: multiple_choice
+  question: "Which of the following is an algebraic expression, not an equation?"
+  options:
+    - "3x + 2"
+    - "3x + 2 = 8"
+    - "x = 5"
+    - "2 = 2"
+  answer: A
+  answer_index: 0
+  explanation: "An expression combines numbers, variables and operations with no equals sign. The others all state that two things are equal."
+
+- id: hs-math-algebra-vc-001
+  exam: axiom
+  subject: Mathematics
+  topic: variables-and-constants
+  difficulty: easy
+  type: multiple_choice
+  question: "In the expression 7y - 4, which part is the constant?"
+  options:
+    - "7"
+    - "y"
+    - "-4"
+    - "7y"
+  answer: C
+  answer_index: 2
+  explanation: "A constant has a fixed value. Here -4 never changes, while y is the variable and 7 is its coefficient."
+
+- id: hs-math-algebra-vc-002
+  exam: axiom
+  subject: Mathematics
+  topic: variables-and-constants
+  difficulty: medium
+  type: multiple_choice
+  question: "Which of these is always a constant, never a variable?"
+  options:
+    - "x"
+    - "n"
+    - "pi (the ratio of a circle's circumference to its diameter)"
+    - "t"
+  answer: C
+  answer_index: 2
+  explanation: "Pi has a fixed numerical value (~3.14159...). Letters like x, n and t are typically used as variables."
+
+- id: hs-math-algebra-expr-001
+  exam: axiom
+  subject: Mathematics
+  topic: algebraic-expressions
+  difficulty: medium
+  type: multiple_choice
+  question: "Write 'five more than twice a number x' as an algebraic expression."
+  options:
+    - "5x + 2"
+    - "2x + 5"
+    - "2(x + 5)"
+    - "x + 10"
+  answer: B
+  answer_index: 1
+  explanation: "'Twice a number x' is 2x, and 'five more than' that is 2x + 5."
+
+- id: hs-math-algebra-expr-002
+  exam: axiom
+  subject: Mathematics
+  topic: algebraic-expressions
+  difficulty: easy
+  type: multiple_choice
+  question: "How many terms are in the expression 4x^2 - 3x + 7?"
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  answer: C
+  answer_index: 2
+  explanation: "Terms are separated by + or - signs: 4x^2, -3x and +7 — three terms in total."
+
+- id: hs-math-algebra-simplify-001
+  exam: axiom
+  subject: Mathematics
+  topic: simplifying-expressions
+  difficulty: easy
+  type: multiple_choice
+  question: "Simplify: 5x + 3x - 2x"
+  options:
+    - "6x"
+    - "10x"
+    - "0x"
+    - "8x"
+  answer: A
+  answer_index: 0
+  explanation: "Combine like terms: 5 + 3 - 2 = 6, so the result is 6x."
+
+- id: hs-math-algebra-simplify-002
+  exam: axiom
+  subject: Mathematics
+  topic: simplifying-expressions
+  difficulty: medium
+  type: multiple_choice
+  question: "Simplify: 3(x + 4) - 2x"
+  options:
+    - "x + 12"
+    - "5x + 4"
+    - "x + 4"
+    - "3x + 12"
+  answer: A
+  answer_index: 0
+  explanation: "Expand first: 3x + 12 - 2x. Then combine like terms: (3x - 2x) + 12 = x + 12."
+
+- id: hs-math-algebra-linear-001
+  exam: axiom
+  subject: Mathematics
+  topic: linear-equations
+  difficulty: medium
+  type: multiple_choice
+  question: "Solve for x: 2x + 6 = 14"
+  options:
+    - "2"
+    - "4"
+    - "6"
+    - "8"
+  answer: B
+  answer_index: 1
+  explanation: "Subtract 6 from both sides: 2x = 8. Divide by 2: x = 4."
+
+- id: hs-math-algebra-linear-002
+  exam: axiom
+  subject: Mathematics
+  topic: linear-equations
+  difficulty: medium
+  type: multiple_choice
+  question: "Solve for x: 3(x - 2) = 15"
+  options:
+    - "5"
+    - "7"
+    - "9"
+    - "11"
+  answer: B
+  answer_index: 1
+  explanation: "Expand: 3x - 6 = 15. Add 6: 3x = 21. Divide by 3: x = 7."
+
+- id: hs-math-algebra-ineq-001
+  exam: axiom
+  subject: Mathematics
+  topic: inequalities
+  difficulty: medium
+  type: multiple_choice
+  question: "Solve the inequality: x - 4 > 6"
+  options:
+    - "x > 2"
+    - "x > 10"
+    - "x < 10"
+    - "x > -2"
+  answer: B
+  answer_index: 1
+  explanation: "Add 4 to both sides of the inequality: x > 10."
+
+- id: hs-math-algebra-ineq-002
+  exam: axiom
+  subject: Mathematics
+  topic: inequalities
+  difficulty: hard
+  type: multiple_choice
+  question: "When multiplying or dividing both sides of an inequality by a negative number, you must:"
+  options:
+    - "Leave the inequality sign unchanged"
+    - "Reverse the inequality sign"
+    - "Change it to an equation"
+    - "Ignore the sign"
+  answer: B
+  answer_index: 1
+  explanation: "Multiplying or dividing by a negative number flips the direction of the inequality, e.g. -x < 3 becomes x > -3."
