@@ -1,7 +1,7 @@
 {
-  "name": "Axiom Academy",
-  "short_name": "Axiom",
-  "description": "A free, university-standard self-study library \u2014 Medicine, Physics, Science, Deep Learning.",
+  "name": "GNOSTIRI",
+  "short_name": "GNOSTIRI",
+  "description": "Global Learning & Intelligence — free-first learning spanning school, examinations, university, medicine, science, technology, research, and lifelong learning.",
   "start_url": "/axiom-academy/",
   "scope": "/axiom-academy/",
   "display": "standalone",
