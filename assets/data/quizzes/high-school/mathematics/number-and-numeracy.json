@@ -1,0 +1,23 @@
+---
+permalink: /assets/data/quizzes/high-school/mathematics/number-and-numeracy.json
+---
+{%- assign bank = site.data.question_banks.high_school.mathematics.number-and-numeracy -%}
+{
+  "exam": "high-school",
+  "subject": "mathematics",
+  "topic": "number-and-numeracy",
+  "questions": [
+{%- for q in bank %}
+    {
+      "id": {{ q.id | jsonify }},
+      "type": "objective",
+      "question": {{ q.question | jsonify }},
+      "options": {{ q.options | jsonify }},
+      "correct": {{ q.answer_index }},
+      "explanation": {{ q.explanation | jsonify }},
+      "topic": {{ q.topic | jsonify }},
+      "difficulty": {{ q.difficulty | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+  ]
+}
