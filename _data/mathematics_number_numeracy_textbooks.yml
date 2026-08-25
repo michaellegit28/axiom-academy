@@ -1,0 +1,301 @@
+number-systems:
+  unit: "01"
+  overview: "A number system is a way of classifying numbers according to the properties they have. The main hierarchy is natural ⊂ whole ⊂ integers ⊂ rational ⊂ real, while irrational numbers are real but not rational. Complex numbers extend the real numbers using i, where i² = −1."
+  concepts: |
+    ### Number families
+    Natural numbers are the positive counting numbers. Whole numbers add zero. Integers include positive and negative whole numbers. Rational numbers can be written as p/q with integers p and q and q ≠ 0. Irrational numbers cannot be written as such a fraction; √2 and π are familiar examples. Real numbers contain both rational and irrational numbers.
+
+    ### Decimal forms
+    Rational numbers have terminating or recurring decimal representations. Irrational numbers have non-terminating, non-recurring decimals.
+
+    ### Properties
+    Review closure, commutativity, associativity, identity, inverse and distributivity. These properties explain why arithmetic operations can be rearranged or simplified.
+  examples: |
+    **Example:** Classify −7, 0, 3/5, √2 and π. −7 is an integer and therefore rational and real; 0 is whole, integer, rational and real; 3/5 is rational and real; √2 and π are irrational and real.
+
+    **Challenge:** Explain why √9 is rational but √10 is irrational.
+  mistakes: "Do not confuse irrational with imaginary; irrational numbers are real. Remember that 0 is an integer and rational number, while 1 is the first positive natural number under the convention used in Axiom."
+  practice: "1. Classify −12. 2. Classify 0. 3. Is 7/11 rational? 4. Is √5 rational? 5. Name two irrational numbers. 6. Which number set contains both rational and irrational numbers?"
+
+integers:
+  unit: "02"
+  overview: "Integers are positive and negative whole numbers together with zero. They model direction, change, temperature, elevation, debt and other quantities where values can lie on either side of a reference point."
+  concepts: |
+    ### Number line
+    Positive integers lie to the right of zero and negative integers to the left. A number farther right is greater. The opposite of a is −a, and |a| gives its distance from zero.
+
+    ### Operations
+    For addition, combine signed quantities. For subtraction, add the opposite. Multiplication and division use the sign rules: like signs give positive results; unlike signs give negative results.
+
+    ### Order of operations
+    Evaluate brackets first, then powers, then multiplication/division, then addition/subtraction.
+  examples: |
+    **Example:** −8 + 13 = 5. Also, 6 − (−4) = 10 because subtracting a negative means adding its opposite.
+
+    **Application:** A diver at −18 m rises 7 m, giving −11 m relative to sea level.
+  mistakes: "Do not treat a negative sign as automatically meaning subtraction. Keep the sign attached to the number, especially when brackets are involved."
+  practice: "1. −9 + 14. 2. 7 − (−5). 3. −6 × 8. 4. −48 ÷ −6. 5. Find |−23|. 6. Order −3, 5, −8, 0 from least to greatest."
+
+fractions:
+  unit: "03"
+  overview: "Fractions represent exact quantities, ratios, quotients and parts of a whole. Fluency with equivalent fractions and the four operations is essential for algebra, percentages and probability."
+  concepts: |
+    ### Equivalent and simplest form
+    Multiply or divide numerator and denominator by the same non-zero number. Simplify using common factors.
+
+    ### Operations
+    Add and subtract using a common denominator. Multiply numerators and denominators directly, cancelling common factors first when useful. Divide by multiplying by the reciprocal.
+
+    ### Mixed numbers
+    Convert mixed numbers to improper fractions before performing complicated operations, then convert back when appropriate.
+  examples: |
+    **Example:** 5/6 − 1/4 = 10/12 − 3/12 = 7/12.
+
+    **Example:** (3/5) ÷ (9/10) = (3/5)(10/9) = 2/3.
+  mistakes: "Never add denominators when adding fractions. Do not cancel across addition or subtraction, and do not forget to invert the divisor when dividing."
+  practice: "1. Simplify 42/56. 2. Convert 3 2/5 to an improper fraction. 3. Calculate 5/8 + 1/6. 4. Calculate 7/9 − 1/3. 5. Calculate 4/7 × 21/8. 6. Find 3/4 of 64."
+
+decimals:
+  unit: "04"
+  overview: "Decimals express place value in base ten and provide a convenient representation of fractions, measurements and money."
+  concepts: |
+    ### Place value
+    Digits to the right of the decimal point represent tenths, hundredths, thousandths and so on. Moving a digit one place left multiplies its value by ten; moving right divides it by ten.
+
+    ### Operations
+    Align decimal points when adding or subtracting. For multiplication, multiply as integers then place the decimal using the total number of decimal places. For division, make the divisor a whole number by shifting both numbers equally.
+
+    ### Conversion
+    Terminating decimals can be written as fractions with denominators built from factors 2 and 5 after simplification.
+  examples: "0.375 = 375/1000 = 3/8. Also, 4.6 × 0.3 = 1.38."
+  mistakes: "Do not compare decimals by the number of digits. Compare place values: 0.8 = 0.80, so 0.8 is greater than 0.75."
+  practice: "1. Write 0.625 as a fraction. 2. Calculate 7.35 + 2.8. 3. Calculate 4.2 × 0.6. 4. Calculate 8.4 ÷ 0.7. 5. Order 0.56, 0.506 and 0.65."
+
+percentages:
+  unit: "05"
+  overview: "A percentage is a number expressed per hundred. Percentages connect fractions, decimals, proportional reasoning, financial mathematics and data interpretation."
+  concepts: |
+    ### Conversions
+    Percent to decimal: divide by 100. Decimal to percent: multiply by 100. Percent to fraction: write over 100 and simplify.
+
+    ### Finding a percentage
+    p% of N = (p/100)N. To find what percentage A is of B, calculate A/B × 100%.
+
+    ### Change
+    Percentage increase = increase/original × 100%. Percentage decrease uses decrease/original × 100%. A multiplier of 1 + r gives an increase of r; 1 − r gives a decrease of r.
+  examples: "15% of 240 = 0.15 × 240 = 36. A price of ₦8,000 increased by 12% becomes ₦8,000 × 1.12 = ₦8,960."
+  mistakes: "A percentage change is measured relative to the original value, not the final value."
+  practice: "1. Convert 0.375 to a percentage. 2. Find 18% of 250. 3. 42 is what percentage of 60? 4. Increase 500 by 8%. 5. Decrease 900 by 15%."
+
+ratios:
+  unit: "06"
+  overview: "A ratio compares quantities of the same kind. Ratios are simplified like fractions and are used to describe mixtures, scales, sharing and proportional relationships."
+  concepts: |
+    ### Simplifying
+    Divide every term by the greatest common factor. A:B is equivalent to kA:kB for any positive k.
+
+    ### Sharing
+    If a total is divided in the ratio a:b, there are a+b total parts. One part is total/(a+b).
+
+    ### Scale
+    Keep corresponding units consistent before comparing quantities.
+  examples: "Share ₦840 in the ratio 3:4. There are 7 parts, so one part is ₦120; the shares are ₦360 and ₦480."
+  mistakes: "Do not add quantities from different units without converting them first. A ratio 2:3 is not the same as a difference of 1."
+  practice: "1. Simplify 18:24. 2. Divide 360 in the ratio 2:3. 3. If boys:girls = 4:5 and there are 36 boys, find girls. 4. Express 2 m:50 cm as a simplified ratio."
+
+proportions:
+  unit: "07"
+  overview: "A proportion states that two ratios are equal. Proportional reasoning lets us scale quantities while preserving relationships."
+  concepts: |
+    ### Direct proportion
+    If y is directly proportional to x, y = kx and y/x is constant.
+
+    ### Solving proportions
+    For a/b = c/d, cross multiplication gives ad = bc. Always identify corresponding quantities before forming the equation.
+
+    ### Inverse proportion
+    If y is inversely proportional to x, y = k/x and xy is constant.
+  examples: "If 5 notebooks cost ₦2,000, 8 notebooks cost 2,000 × 8/5 = ₦3,200 when the unit price is constant."
+  mistakes: "Direct proportion does not mean simply adding the same amount. The multiplicative scale factor must remain constant."
+  practice: "1. Solve x/12 = 5/8. 2. If 7 kg costs ₦4,900, find the cost of 11 kg. 3. If y ∝ x and y=18 when x=6, find y when x=10. 4. Explain inverse proportion."
+
+rates-and-unit-rates:
+  unit: "08"
+  overview: "A rate compares quantities with different units, such as kilometres per hour, litres per minute or naira per kilogram. A unit rate gives the amount for one unit."
+  concepts: |
+    ### Rate
+    Rate = quantity of one kind / quantity of another kind. Keep units attached to prevent mistakes.
+
+    ### Unit rate
+    Divide by the number of units in the denominator. Unit rates make comparisons easier.
+
+    ### Speed
+    Speed = distance/time, distance = speed × time, and time = distance/speed.
+  examples: "A car travels 180 km in 3 h, so its average speed is 60 km/h. A 2.5 kg bag costing ₦6,000 has a unit price of ₦2,400/kg."
+  mistakes: "Check that time units match. Convert minutes to hours when the required speed unit is km/h."
+  practice: "1. Find the unit price of 6 items costing ₦4,500. 2. A cyclist travels 42 km in 2.5 h; find average speed. 3. Convert 90 minutes to hours. 4. A tap delivers 18 L in 3 min; find the rate."
+
+factors-and-multiples:
+  unit: "09"
+  overview: "A factor divides a number exactly. A multiple is obtained by multiplying a number by an integer. Factors and multiples underpin divisibility, primes, HCF and LCM."
+  concepts: |
+    ### Factors
+    Factors occur in pairs. For 24: 1×24, 2×12, 3×8 and 4×6.
+
+    ### Multiples
+    Multiples of 7 are 7, 14, 21, 28, …
+
+    ### Divisibility
+    Useful tests include 2 for even numbers, 3 when digit sum is divisible by 3, 5 when the final digit is 0 or 5, and 10 when the final digit is 0.
+  examples: "The factors of 36 are 1,2,3,4,6,9,12,18,36. The first three positive multiples of 12 are 12,24,36."
+  mistakes: "A factor is never larger than the positive number it divides, while a multiple can be arbitrarily large."
+  practice: "1. List factors of 30. 2. Give five multiples of 9. 3. Is 348 divisible by 3? 4. Is 725 divisible by 5? 5. Explain the difference between a factor and a multiple."
+
+prime-numbers:
+  unit: "10"
+  overview: "A prime number is a whole number greater than 1 with exactly two positive factors: 1 and itself. Prime numbers are the building blocks of whole-number factorisation."
+  concepts: |
+    ### Testing primality
+    To test whether n is prime, it is enough to test prime divisors up to √n. This avoids unnecessary division.
+
+    ### Prime factorisation
+    Express a composite number as a product of primes. The result is unique apart from order.
+  examples: "84 = 2² × 3 × 7. To test 97, check divisibility by primes up to √97 ≈ 9.85: 2, 3, 5 and 7; none divide it, so 97 is prime."
+  mistakes: "1 is not prime because it has only one positive factor. 2 is the only even prime."
+  practice: "1. Is 91 prime? 2. Factorise 60 into primes. 3. Find the prime factors of 126. 4. Explain why 1 is not prime."
+
+hcf-and-lcm:
+  unit: "11"
+  overview: "The highest common factor is the greatest positive integer dividing two or more numbers. The lowest common multiple is the smallest positive number that is a multiple of each number."
+  concepts: |
+    ### Listing and prime factors
+    HCF can be found from common prime factors using the smallest exponents. LCM uses every prime factor with the greatest exponent.
+
+    ### Applications
+    HCF is useful for equal grouping or simplifying. LCM is useful for repeating cycles and finding common denominators.
+  examples: "72 = 2³×3² and 90 = 2×3²×5. Therefore HCF = 2×3² = 18 and LCM = 2³×3²×5 = 360."
+  mistakes: "Do not confuse greatest common factor with greatest common multiple; every positive multiple has infinitely many larger multiples."
+  practice: "1. Find HCF(24,36). 2. Find LCM(12,18). 3. Find HCF and LCM of 48 and 72. 4. Two lights flash every 12 s and 18 s; when will they next flash together?"
+
+powers-and-exponents:
+  unit: "12"
+  overview: "An exponent records repeated multiplication. Laws of indices allow powers to be combined, simplified and interpreted efficiently."
+  concepts: |
+    ### Laws
+    a^m a^n = a^(m+n); a^m/a^n = a^(m−n) for a≠0; (a^m)^n = a^(mn); a^0=1 for a≠0; a^(−n)=1/a^n.
+
+    ### Fractional indices
+    a^(1/n) is the nth root of a, and a^(m/n) is the nth root of a^m where defined.
+  examples: "2³×2⁴ = 2⁷ = 128. Also, 5⁻² = 1/25 and 16^(1/2)=4."
+  mistakes: "When multiplying powers with the same base, add exponents; do not multiply them. Parentheses matter for negative bases."
+  practice: "1. Simplify 3⁴×3². 2. Simplify 7⁵/7². 3. Evaluate 2⁰. 4. Write 4⁻³ as a fraction. 5. Evaluate 81^(1/2)."
+
+roots-and-radicals:
+  unit: "13"
+  overview: "A root reverses a power. Square roots and cube roots are especially important for solving equations, geometry and exact calculations."
+  concepts: |
+    ### Principal roots
+    √a denotes the non-negative square root of a when a≥0. The equation x²=25 has solutions x=±5, but √25=5.
+
+    ### Simplifying
+    Factor perfect squares: √72 = √(36×2)=6√2. Similar ideas apply to cube roots.
+  examples: "√144 = 12. √50 = 5√2. Since 27 = 3³, ∛27 = 3."
+  mistakes: "Do not write √(a+b)=√a+√b; radicals generally do not distribute over addition."
+  practice: "1. Evaluate √169. 2. Simplify √48. 3. Simplify √75. 4. Evaluate ∛64. 5. Solve x²=49."
+
+standard-form:
+  unit: "14"
+  overview: "Standard form, also called scientific notation, writes a number as a × 10^n where 1 ≤ |a| < 10. It is useful for very large and very small quantities."
+  concepts: |
+    ### Converting
+    Move the decimal point until one non-zero digit remains before it. Moving left gives a positive exponent; moving right gives a negative exponent.
+
+    ### Operations
+    Multiply coefficients and add exponents. Divide coefficients and subtract exponents, then normalise the coefficient if necessary.
+  examples: "5,600,000 = 5.6×10⁶. 0.00042 = 4.2×10⁻⁴. Also (3×10⁵)(2×10³)=6×10⁸."
+  mistakes: "The coefficient must satisfy 1 ≤ |a| < 10. Do not leave 56×10⁵ as final standard form."
+  practice: "1. Write 72,000 in standard form. 2. Write 0.0000081 in standard form. 3. Calculate (4×10⁶)(3×10²). 4. Calculate (8×10⁷)/(2×10³)."
+
+approximation-and-estimation:
+  unit: "15"
+  overview: "Approximation replaces an exact value with a nearby, simpler value. Estimation uses sensible approximations to predict the size of an answer and detect unreasonable calculations."
+  concepts: |
+    ### Rounding
+    Inspect the next digit: 5 or more rounds up; 4 or less leaves the retained digit unchanged.
+
+    ### Estimation
+    Round awkward numbers to convenient values before calculating. Estimate first when checking a calculator result.
+
+    ### Error awareness
+    Every approximation introduces some difference from the exact value. The context determines whether that difference is acceptable.
+  examples: "Estimate 49.7×19.8 as 50×20=1,000. The exact product is close to the estimate, so a calculator answer near 1,000 is plausible."
+  mistakes: "Do not round too early when exact intermediate values are required. In estimation, state clearly what values were approximated."
+  practice: "1. Round 7,846 to the nearest hundred. 2. Estimate 198×51. 3. Estimate 602/19.8. 4. Explain why estimation is useful before using a calculator."
+
+significant-figures:
+  unit: "16"
+  overview: "Significant figures communicate the precision of a measured or calculated value. They begin at the first non-zero digit and include meaningful following digits."
+  concepts: |
+    ### Counting
+    Leading zeros are not significant. Zeros between non-zero digits are significant. Trailing zeros after a decimal point are significant.
+
+    ### Rounding
+    Keep the required number of significant digits and inspect the next digit. Scientific notation makes precision especially clear.
+  examples: "0.004507 has four significant figures. 8,300 can be ambiguous unless notation shows the intended precision; 8.30×10³ clearly has three significant figures."
+  mistakes: "Do not count every displayed zero automatically. Distinguish place value from significant figures."
+  practice: "1. Give 0.006204 to 3 s.f. 2. Give 58,490 to 2 s.f. 3. How many s.f. are in 7.030? 4. Write 4500 to 2 s.f. using standard form."
+
+decimal-places:
+  unit: "17"
+  overview: "Decimal places specify how many digits are retained to the right of the decimal point. This is a place-value instruction, not a statement about significant figures."
+  concepts: |
+    ### Rounding
+    Identify the required decimal place, inspect the following digit, and round accordingly. Add zeros when necessary to show the requested number of places.
+
+    ### Comparison
+    4.5 and 4.50 have the same numerical value, but 4.50 is expressed to two decimal places.
+  examples: "7.846 rounded to 2 decimal places is 7.85. 3.2 written to 3 decimal places is 3.200."
+  mistakes: "Do not confuse decimal places with significant figures. 0.0045 has four decimal places but two significant figures."
+  practice: "1. Round 12.376 to 1 d.p. 2. Round 0.04996 to 3 d.p. 3. Write 7.4 to 4 d.p. 4. Explain the difference between 2 d.p. and 2 s.f."
+
+bounds-and-accuracy:
+  unit: "18"
+  overview: "A rounded measurement represents a range of possible exact values. Bounds describe that range and are essential when calculating with measured or rounded quantities."
+  concepts: |
+    ### Basic bounds
+    If 7.3 is correct to the nearest 0.1, the lower bound is 7.25 inclusive and the upper bound is 7.35 exclusive: 7.25 ≤ x < 7.35.
+
+    ### Calculations
+    For positive quantities, use appropriate lower and upper bounds when finding the minimum or maximum possible value of a calculated quantity. For products and quotients, consider the signs and positivity of all quantities.
+  examples: "A length of 12 cm correct to the nearest centimetre has bounds 11.5 ≤ L < 12.5 cm."
+  mistakes: "The upper bound is not included for ordinary rounding intervals because that value would round to the next stated value."
+  practice: "1. Find the bounds of 4.8 cm to the nearest 0.1 cm. 2. Find bounds for 360 to the nearest 10. 3. A rectangle has sides 8.0 m and 5.0 m, each nearest 0.1 m; find the lower and upper possible area."
+
+surds:
+  unit: "19"
+  overview: "A surd is an exact irrational expression involving a root that cannot be simplified to a rational number. Surds preserve exactness where decimal approximations would lose information."
+  concepts: |
+    ### Simplifying
+    Factor the radicand to expose perfect powers: √180 = √(36×5)=6√5.
+
+    ### Operations
+    Like surds can be added or subtracted after simplification. Products and quotients can often be simplified using √a√b=√(ab).
+
+    ### Rationalising
+    A denominator containing a surd can often be removed by multiplying by a suitable surd or conjugate.
+  examples: "3√2 + 5√2 = 8√2. Also √3/√2 = √6/2 after multiplying numerator and denominator by √2."
+  mistakes: "Only like surds combine by addition. √2 + √3 cannot be simplified to √5."
+  practice: "1. Simplify √72. 2. Simplify 2√8. 3. Simplify 4√3−√3. 4. Rationalise 1/√5. 5. Explain why √2 is irrational."
+
+recurring-decimals:
+  unit: "20"
+  overview: "A recurring decimal has a digit or block of digits that repeats indefinitely. Every recurring decimal is rational and can be converted exactly into a fraction."
+  concepts: |
+    ### Notation
+    A recurring block may be marked with dots or an overline, for example 0.333… = 0.\overline{3}.
+
+    ### Conversion
+    Let x equal the recurring decimal. Multiply by a power of ten that shifts one complete recurring block. Subtract the original equation to eliminate the repeating part, then solve for x.
+  examples: "Let x=0.\overline{3}. Then 10x=3.\overline{3}; subtracting gives 9x=3, so x=1/3. For x=0.\overline{27}, 100x=27.\overline{27}; hence 99x=27 and x=3/11."
+  mistakes: "A recurring decimal is not irrational. Do not round it before converting it to an exact fraction."
+  practice: "1. Convert 0.\overline{6} to a fraction. 2. Convert 0.\overline{45} to a fraction. 3. Write 1/3 as a recurring decimal. 4. Explain why recurring decimals are rational."
