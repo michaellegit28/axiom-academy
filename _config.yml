@@ -44,6 +44,7 @@ defaults:
       layout: flash
 permalink: /:path/
 exclude:
+  - docs
   - README.md
   - README-Phase2.md
   - README-Phase4.md

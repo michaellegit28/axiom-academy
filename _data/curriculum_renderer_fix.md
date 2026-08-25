@@ -1,1 +1,0 @@
-Temporary implementation marker: curriculum renderer is being wired to the canonical learning taxonomy and high-school curriculum metadata.
