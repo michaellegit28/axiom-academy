@@ -1,0 +1,305 @@
+number-systems:
+  objectives: "Classify common number sets; explain rational and irrational numbers; use the number-system hierarchy; distinguish irrational from non-real numbers."
+  key_terms: "natural numbers, whole numbers, integers, rational, irrational, real, complex, number line"
+  lesson: |
+    A number system organizes numbers by shared properties. In the hierarchy used in Axiom, natural ⊂ whole ⊂ integers ⊂ rational ⊂ real. Irrational numbers are real numbers that cannot be written as a ratio of integers. Complex numbers extend the real system using i, where i² = −1.
+
+    A rational number has the form p/q, with integers p and q and q ≠ 0. Its decimal expansion either terminates or eventually repeats. An irrational decimal neither terminates nor repeats. Every integer is rational because n = n/1.
+
+    When classifying a number, identify its smallest useful set first and then remember the larger sets that contain it. For example, −4 is an integer, rational and real.
+  worked: |
+    **Example 1.** Classify −3, 0, 5/8 and √7. −3 is an integer, rational and real. 0 is whole, integer, rational and real. 5/8 is rational and real. √7 is irrational and real.
+
+    **Example 2.** Why is √25 rational? √25 = 5, and 5 = 5/1.
+
+    **Challenge.** Explain why √2 cannot be an integer or rational number.
+  checkpoint: "Classify 12, −5/2, √16 and π. Then explain the difference between irrational and non-real."
+  answers: "12: natural, whole, integer, rational, real. −5/2: rational, real. √16=4: natural, whole, integer, rational, real. π: irrational, real. Irrational numbers are still real; non-real numbers include complex numbers with a non-zero imaginary part."
+
+integers:
+  objectives: "Represent integers on a number line; compare signed values; add, subtract, multiply and divide integers; use absolute value and opposites."
+  key_terms: "integer, positive, negative, zero, opposite, absolute value, number line"
+  lesson: |
+    Integers include ..., −3, −2, −1, 0, 1, 2, 3, ... . On a number line, values increase as you move right. Thus −2 > −7 even though 7 is larger than 2 in magnitude.
+
+    Addition combines directed quantities. Subtracting a number is equivalent to adding its opposite: a − b = a + (−b). For multiplication and division, like signs produce positive results and unlike signs produce negative results.
+
+    Absolute value |a| is the distance from zero, so |−9| = 9. It is never negative.
+  worked: |
+    **Example.** −14 + 9 = −5. Start at −14 and move 9 units right.
+
+    **Example.** 7 − (−6) = 13 because subtracting −6 means adding 6.
+
+    **Application.** A temperature rises from −4°C by 11°C: −4 + 11 = 7°C.
+  checkpoint: "Calculate −18+25, 9−(−7), −8×6, −72÷(−9), and |−31|."
+  answers: "7; 16; −48; 8; 31."
+
+fractions:
+  objectives: "Simplify fractions; convert between mixed and improper forms; add, subtract, multiply and divide fractions; solve fraction-of-quantity problems."
+  key_terms: "numerator, denominator, equivalent fraction, proper fraction, improper fraction, mixed number, reciprocal"
+  lesson: |
+    A fraction represents a quotient and can also represent part of a whole. Equivalent fractions have the same value because numerator and denominator have been multiplied or divided by the same non-zero number.
+
+    For addition and subtraction, use a common denominator. For multiplication, multiply numerators and denominators; cancel common factors before multiplying when possible. For division, multiply by the reciprocal of the divisor.
+
+    A mixed number such as 3 2/5 equals (3×5+2)/5 = 17/5. Keep exact fractions until rounding is explicitly required.
+  worked: |
+    **Example.** 5/6−1/4 = 10/12−3/12 = 7/12.
+
+    **Example.** (3/5)÷(9/10) = (3/5)(10/9) = 2/3.
+
+    **Application.** 3/4 of 64 = 64÷4×3 = 48.
+  checkpoint: "Simplify 42/56; calculate 5/8+1/6; calculate 7/9−1/3; calculate 4/7×21/8; calculate 3/4÷2/5."
+  answers: "3/4; 19/24; 4/9; 3/2; 15/8."
+
+decimals:
+  objectives: "Use decimal place value; compare and order decimals; perform the four operations; convert terminating decimals to fractions."
+  key_terms: "place value, tenths, hundredths, thousandths, terminating decimal"
+  lesson: |
+    Decimal notation is based on powers of ten. The first three places after the decimal are tenths, hundredths and thousandths. Zeros can be appended without changing value: 0.8 = 0.80 = 0.800.
+
+    Align decimal points for addition and subtraction. For multiplication, multiply as whole numbers and restore the total number of decimal places. For division, shift the decimal point equally in dividend and divisor until the divisor is a whole number.
+
+    A terminating decimal can always be converted to a fraction with a denominator of 10, 100, 1000 and so on, followed by simplification.
+  worked: |
+    **Example.** 7.35+2.8 = 7.35+2.80 = 10.15.
+
+    **Example.** 0.625 = 625/1000 = 5/8.
+
+    **Example.** 4.2×0.6 = 2.52.
+  checkpoint: "Calculate 8.4÷0.7; convert 0.375 to a fraction; order 0.56, 0.506 and 0.65."
+  answers: "12; 3/8; 0.506 < 0.56 < 0.65."
+
+percentages:
+  objectives: "Convert among fractions, decimals and percentages; find percentages of quantities; calculate percentage change; use percentage multipliers."
+  key_terms: "percentage, percent change, increase, decrease, multiplier, original value"
+  lesson: |
+    Percent means per hundred. To convert a percentage to a decimal divide by 100; to convert a decimal to a percentage multiply by 100. To find p% of N, calculate p/100 × N.
+
+    Percentage change is measured against the original value: change/original × 100%. A percentage increase of r is multiplication by 1+r, while a decrease of r is multiplication by 1−r, with r written as a decimal.
+
+    Successive percentage changes should be applied one after another; they do not generally cancel when the percentages are equal.
+  worked: |
+    **Example.** 18% of 250 = 0.18×250 = 45.
+
+    **Example.** ₦8,000 increased by 12% becomes 8,000×1.12 = ₦8,960.
+
+    **Example.** A value falls from 500 to 425. The decrease is 75/500×100% = 15%.
+  checkpoint: "Convert 0.375 to a percentage; find 42 as a percentage of 60; increase 500 by 8%; decrease 900 by 15%."
+  answers: "37.5%; 70%; 540; 765."
+
+ratios:
+  objectives: "Simplify ratios; divide quantities in a given ratio; scale ratios; solve mixture and sharing problems."
+  key_terms: "ratio, equivalent ratio, part, sharing, scale, mixture"
+  lesson: |
+    A ratio compares quantities measured in compatible units. In A:B, there are A parts of the first quantity for every B parts of the second. Simplify by dividing every term by the same positive common factor.
+
+    To divide a total T in ratio a:b, calculate the number of parts a+b, find T/(a+b), then multiply by each ratio term. For three-part ratios use a+b+c.
+
+    Units matter. Convert before forming the ratio: 2 m:50 cm becomes 200:50 = 4:1.
+  worked: |
+    **Example.** Divide ₦840 in ratio 3:4. There are 7 parts; one part is ₦120, so the shares are ₦360 and ₦480.
+
+    **Application.** A paint mixture uses red:blue = 2:3. If 10 L of red is used, blue is 15 L.
+  checkpoint: "Simplify 18:24; divide 360 in ratio 2:3; simplify 2 m:50 cm."
+  answers: "3:4; 144 and 216; 4:1."
+
+proportions:
+  objectives: "Recognize direct and inverse proportion; solve proportional equations; find constants of proportionality; apply scaling to real situations."
+  key_terms: "proportion, constant of proportionality, direct proportion, inverse proportion, scale factor"
+  lesson: |
+    A proportion states that two ratios are equal. If y is directly proportional to x, y=kx and y/x remains constant. If y is inversely proportional to x, y=k/x and xy remains constant.
+
+    Cross multiplication is useful for equations such as a/b=c/d, but first make sure the quantities correspond correctly. Direct proportion is multiplicative: doubling x doubles y. Inverse proportion is reciprocal: doubling x halves y.
+  worked: |
+    **Example.** x/12=5/8 gives 8x=60, so x=7.5.
+
+    **Example.** If y=18 when x=6 and y∝x, k=3; when x=10, y=30.
+  checkpoint: "If 7 kg costs ₦4,900, find the cost of 11 kg. If y∝x and y=24 when x=8, find y when x=15."
+  answers: "₦7,700; 45."
+
+rates-and-unit-rates:
+  objectives: "Interpret rates; calculate unit rates; solve speed-distance-time problems; compare prices and efficiencies."
+  key_terms: "rate, unit rate, speed, distance, time, average speed"
+  lesson: |
+    A rate compares different units, such as km/h or ₦/kg. A unit rate gives the amount corresponding to one unit of the denominator and is useful for fair comparisons.
+
+    For constant speed, speed=distance/time, distance=speed×time, and time=distance/speed. Keep units consistent before calculating. Average speed is total distance divided by total time, not automatically the average of two speeds.
+  worked: |
+    **Example.** 180 km in 3 h gives 60 km/h.
+
+    **Example.** 2.5 kg costs ₦6,000, so the unit price is ₦2,400/kg.
+
+    **Challenge.** A journey covers 60 km in 1 h and 40 km in 2 h. Average speed is 100/3 ≈ 33.3 km/h, not 35 km/h.
+  checkpoint: "A cyclist travels 42 km in 2.5 h. Find average speed. A tap delivers 18 L in 3 min. Find L/min."
+  answers: "16.8 km/h; 6 L/min."
+
+factors-and-multiples:
+  objectives: "Identify factors and multiples; use divisibility tests; generate factor pairs; prepare numbers for prime factorisation."
+  key_terms: "factor, multiple, divisor, divisibility, factor pair"
+  lesson: |
+    A factor divides a number exactly with no remainder. A multiple is the result of multiplying a number by an integer. Every positive integer has finitely many positive factors but infinitely many positive multiples.
+
+    Useful divisibility tests: 2 for even final digit; 3 when digit sum is divisible by 3; 5 when the final digit is 0 or 5; 9 when digit sum is divisible by 9; 10 when final digit is 0. Factor pairs help list all factors efficiently.
+  worked: |
+    **Example.** Factors of 36 are 1,2,3,4,6,9,12,18,36.
+
+    **Example.** 348 is divisible by 3 because 3+4+8=15, which is divisible by 3.
+  checkpoint: "List the positive factors of 30. Decide whether 725 is divisible by 5 and 9."
+  answers: "1,2,3,5,6,10,15,30. Divisible by 5; not divisible by 9 because 7+2+5=14."
+
+prime-numbers:
+  objectives: "Define prime and composite numbers; test primality efficiently; write prime factorisations; use the fundamental theorem of arithmetic."
+  key_terms: "prime, composite, factorisation, divisor, prime factor"
+  lesson: |
+    A prime number greater than 1 has exactly two positive factors: 1 and itself. A composite number greater than 1 has more than two. The number 1 is neither prime nor composite.
+
+    To test n for primality, it is enough to test prime divisors up to √n. Prime factorisation expresses a composite number as a product of primes and is unique apart from order.
+  worked: |
+    **Example.** 84 = 2×42 = 2²×21 = 2²×3×7.
+
+    **Example.** For 97, √97≈9.85. Test 2,3,5,7; none divide 97, so 97 is prime.
+  checkpoint: "Factorise 60 and 126 into primes. Decide whether 91 is prime."
+  answers: "60=2²×3×5; 126=2×3²×7; 91 is not prime because 91=7×13."
+
+hcf-and-lcm:
+  objectives: "Find HCF and LCM by listing and prime factorisation; choose the correct one for grouping or repeating-cycle problems."
+  key_terms: "HCF, LCM, common factor, common multiple, prime factorisation"
+  lesson: |
+    HCF is the greatest number that divides every given number. LCM is the smallest positive number that is a multiple of every given number.
+
+    Using prime factors, HCF takes the smallest exponent of each common prime; LCM takes the greatest exponent appearing in any factorisation. HCF is often used for equal grouping, while LCM is useful for synchronized events and common denominators.
+  worked: |
+    **Example.** 72=2³×3² and 90=2×3²×5. HCF=2×3²=18; LCM=2³×3²×5=360.
+
+    **Application.** Bells ring every 12 s and 18 s. They coincide every LCM(12,18)=36 s.
+  checkpoint: "Find HCF and LCM of 48 and 72."
+  answers: "HCF=24; LCM=144."
+
+powers-and-exponents:
+  objectives: "Use index laws; simplify integer, zero, negative and fractional powers; evaluate powers accurately."
+  key_terms: "base, exponent, index, zero power, negative power, fractional index"
+  lesson: |
+    An exponent records repeated multiplication. For a non-zero base: a^m×a^n=a^(m+n); a^m/a^n=a^(m−n); (a^m)^n=a^(mn); a^0=1; a^(−n)=1/a^n. Fractional powers connect indices to roots: a^(1/n)=n√a.
+
+    Index laws apply only when the algebraic structure matches. For example, a^m+b^m cannot be simplified by adding exponents.
+  worked: |
+    **Example.** 3⁴×3²=3⁶=729.
+
+    **Example.** 4⁻³=1/4³=1/64.
+
+    **Example.** 81^(1/2)=√81=9.
+  checkpoint: "Simplify 7⁵/7², evaluate 2⁰, and write 16^(3/4) in radical form."
+  answers: "7³=343; 1; (fourth root of 16)³=8."
+
+roots-and-radicals:
+  objectives: "Evaluate roots; distinguish principal square roots from equation solutions; simplify radicals; solve basic root equations."
+  key_terms: "square root, cube root, radical, principal root, perfect square"
+  lesson: |
+    A square root reverses squaring. The symbol √a denotes the principal non-negative root. Thus √25=5, although x²=25 has two solutions, x=±5.
+
+    Simplify radicals by extracting perfect-power factors: √72=√(36×2)=6√2. Radical expressions are exact forms and should not be rounded unless requested.
+  worked: |
+    **Example.** √48=√(16×3)=4√3.
+
+    **Example.** Solve x²=49: x=7 or x=−7.
+  checkpoint: "Simplify √75 and solve x²=121. Evaluate ∛64."
+  answers: "5√3; x=±11; 4."
+
+standard-form:
+  objectives: "Write numbers in scientific notation; convert back; multiply and divide powers of ten; compare magnitudes."
+  key_terms: "standard form, scientific notation, coefficient, power of ten, order of magnitude"
+  lesson: |
+    Standard form is a×10^n where 1≤|a|<10. Moving the decimal left gives a positive exponent; moving it right gives a negative exponent.
+
+    For multiplication, multiply coefficients and add exponents. For division, divide coefficients and subtract exponents, then normalize the coefficient if necessary.
+  worked: |
+    **Example.** 4,500,000=4.5×10⁶; 0.00032=3.2×10⁻⁴.
+
+    **Example.** (3×10⁵)(2×10⁻³)=6×10²=600.
+  checkpoint: "Write 72,000,000 and 0.0000064 in standard form. Calculate (8×10⁷)/(2×10³)."
+  answers: "7.2×10⁷; 6.4×10⁻⁶; 4×10⁴."
+
+approximation-and-estimation:
+  objectives: "Round appropriately; estimate calculations; use sensible values to check answers; distinguish exact from approximate results."
+  key_terms: "approximation, estimate, rounding, sensible value, error"
+  lesson: |
+    Approximation replaces an exact value with a nearby convenient value. Estimation uses approximations to predict a reasonable answer and detect calculator or arithmetic errors.
+
+    Choose a rounding level appropriate to the situation. Keep enough significant information to make the estimate useful. In multi-step calculations, avoid premature rounding when an exact result is easy to retain.
+  worked: |
+    **Example.** Estimate 49.8×19.7 as 50×20=1,000.
+
+    **Check.** If an exact calculation gives 98,500, the estimate signals that the result is in the right order of magnitude; a result of 985 would be suspicious.
+  checkpoint: "Estimate 398×21.9 and 9,876÷49.8. Explain why estimation is useful even when a calculator is available."
+  answers: "About 8,000 and about 200. Estimation provides a quick reasonableness check."
+
+significant-figures:
+  objectives: "Identify significant figures; round numbers to a specified number of significant figures; avoid losing meaningful zeroes."
+  key_terms: "significant figure, leading zero, trailing zero, precision"
+  lesson: |
+    Significant figures measure the meaningful digits in a number. Non-zero digits are significant. Zeros between non-zero digits are significant. Leading zeros are placeholders and are not significant. Trailing zeros after a decimal point are significant.
+
+    To round to n significant figures, find the nth significant digit and inspect the next digit. If it is 5 or greater, increase the retained digit by one.
+  worked: |
+    **Example.** 0.004582 to 2 significant figures is 0.0046.
+
+    **Example.** 3,746 to 3 significant figures is 3,750, or 3.75×10³ in standard form.
+  checkpoint: "Round 58,492 to 3 significant figures; round 0.006384 to 2 significant figures."
+  answers: "58,500; 0.0064."
+
+decimal-places:
+  objectives: "Round numbers to a specified number of decimal places; compare decimal-place and significant-figure requirements; avoid rounding too early."
+  key_terms: "decimal place, tenths, hundredths, thousandths, rounding"
+  lesson: |
+    Decimal places count positions after the decimal point. To round to a specified number of decimal places, inspect the digit immediately after the last retained place.
+
+    Decimal places and significant figures answer different questions. 0.00456 to 2 decimal places is 0.00, while to 2 significant figures it is 0.0046. Choose the requested convention carefully.
+  worked: |
+    **Example.** 7.846 to 2 decimal places = 7.85.
+
+    **Example.** 3.14159 to 3 decimal places = 3.142.
+  checkpoint: "Round 19.995 to 2 decimal places and 0.8754 to 3 decimal places."
+  answers: "20.00; 0.875."
+
+bounds-and-limits-of-accuracy:
+  objectives: "Interpret rounded measurements; construct lower and upper bounds; use bounds in calculations; understand maximum possible error."
+  key_terms: "bound, lower bound, upper bound, accuracy, rounding interval, maximum error"
+  lesson: |
+    If a measurement is rounded to the nearest unit u, the true value lies from value−u/2 up to but not including value+u/2. For 7.4 cm correct to the nearest 0.1 cm, the interval is 7.35≤x<7.45.
+
+    Bounds matter because calculations using rounded inputs have a range of possible results. For multiplication of positive quantities, lower bounds multiply with lower bounds and upper bounds with upper bounds. More complicated expressions require careful monotonic reasoning.
+  worked: |
+    **Example.** A length is 12.0 cm to the nearest 0.1 cm. Then 11.95≤L<12.05.
+
+    **Application.** If a rectangle has rounded length and width, use the appropriate combinations of bounds to find possible area limits.
+  checkpoint: "A mass is 4.6 kg correct to the nearest 0.1 kg. State its lower and upper bounds."
+  answers: "4.55≤m<4.65 kg."
+
+surds:
+  objectives: "Recognize surds; simplify surds; add and multiply compatible surds; rationalize simple denominators."
+  key_terms: "surd, irrational, simplified surd, rationalize, conjugate"
+  lesson: |
+    A surd is an irrational root left in exact radical form, such as √2 or 3√5. Surds are useful because they preserve exact values that would otherwise be approximated.
+
+    Simplify by extracting perfect-square factors. Like surds can be added or subtracted: 3√2+5√2=8√2. Multiplication uses √a√b=√(ab) for non-negative a,b. Rationalizing a denominator removes a radical from the denominator.
+  worked: |
+    **Example.** √50=5√2, so 2√50=10√2.
+
+    **Example.** 1/√3 = √3/3 after multiplying numerator and denominator by √3.
+  checkpoint: "Simplify √98; simplify 3√5+2√5; rationalize 2/√7."
+  answers: "7√2; 5√5; 2√7/7."
+
+recurring-decimals:
+  objectives: "Identify recurring decimals; convert recurring decimals to exact fractions; distinguish terminating, recurring and non-recurring decimals."
+  key_terms: "recurring decimal, repeating block, terminating decimal, rational number"
+  lesson: |
+    A recurring decimal repeats a digit or block forever, such as 0.333... or 0.272727.... Every recurring decimal is rational, even though its decimal expansion does not terminate.
+
+    To convert a recurring decimal to a fraction, let x equal the decimal, multiply by a power of 10 that shifts one full repeating block, and subtract. The repeating digits cancel.
+  worked: |
+    **Example.** Let x=0.333.... Then 10x=3.333.... Subtract x: 9x=3, so x=1/3.
+
+    **Example.** Let x=0.272727.... Then 100x=27.272727.... Subtract x: 99x=27, so x=27/99=3/11.
+  checkpoint: "Convert 0.666... and 0.454545... to fractions. Explain why 0.125 is rational."
+  answers: "2/3; 5/11; 0.125=125/1000=1/8."
