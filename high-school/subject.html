@@ -50,6 +50,10 @@ const isMathematics = departmentId === 'mathematics';
 const mathTopics = curriculumDepartment?.subjects || [];
 const selectedMathTopic = isMathematics && topicId ? mathTopics.find(item => item.id === topicId) : null;
 const curriculumSubject = subjectId ? findCurriculumSubject(subjectId) : null;
+const publishedSubtopics = {
+  'number-and-numeracy': new Set(['number-systems','integers','fractions','decimals','percentages','ratios','proportions','rates-and-unit-rates','factors-and-multiples','prime-numbers','hcf-and-lcm','powers-and-exponents','roots-and-radicals','standard-form','approximation-and-estimation','significant-figures','decimal-places','bounds-and-accuracy','surds','recurring-decimals']),
+  'algebra': new Set(['introduction-to-algebra','variables-and-constants','algebraic-expressions','simplifying-expressions','linear-equations','inequalities'])
+};
 
 if (!department) {
   label.textContent='High School · Study'; title.textContent='Choose a department'; description.textContent='Return to High School Study and choose a department to continue.';
@@ -59,18 +63,17 @@ if (!department) {
   if (selectedMathTopic) {
     title.textContent=selectedMathTopic.name;
     description.textContent='Choose a subtopic to begin the study lesson.';
+    const published = publishedSubtopics[selectedMathTopic.id] || new Set();
     (selectedMathTopic.subtopics || []).forEach(subtopic => {
       const href = `${studyRoot}mathematics/${selectedMathTopic.id}/${subtopic.id}/`;
-      const available = selectedMathTopic.id === 'algebra' && ['introduction-to-algebra','variables-and-constants','algebraic-expressions','simplifying-expressions','linear-equations','inequalities'].includes(subtopic.id);
+      const available = published.has(subtopic.id);
       list.appendChild(card(subtopic.name, available ? 'Study the concept, worked examples, practice, and review.' : 'Curriculum subtopic prepared for the next study-content build.', href, '📘', available ? 'Study available' : 'Coming in study build'));
     });
     const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=`${subjectUrl}?department=mathematics`; back.textContent='Back to Mathematics'; list.appendChild(back);
   } else {
     title.textContent='Mathematics';
     description.textContent='Choose a topic to begin studying.';
-    mathTopics.forEach(topic => {
-      list.appendChild(card(topic.name, topic.description || 'Open this topic to study its subtopics.', `${subjectUrl}?department=mathematics&topic=${encodeURIComponent(topic.id)}`, '📚', `${topic.subtopics?.length || 0} subtopics`));
-    });
+    mathTopics.forEach(topic => list.appendChild(card(topic.name, topic.description || 'Open this topic to study its subtopics.', `${subjectUrl}?department=mathematics&topic=${encodeURIComponent(topic.id)}`, '📚', `${topic.subtopics?.length || 0} subtopics`)));
     const back=document.createElement('a'); back.className='btn btn-secondary'; back.href=studyUrl; back.textContent='Back to High School Study'; list.appendChild(back);
   }
 } else if (subjectId && curriculumSubject) {
