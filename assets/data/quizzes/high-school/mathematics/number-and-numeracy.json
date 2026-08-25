@@ -1,7 +1,7 @@
 ---
 permalink: /assets/data/quizzes/high-school/mathematics/number-and-numeracy.json
 ---
-{%- assign bank = site.data.question_banks.high_school.mathematics.number-and-numeracy -%}
+{%- assign bank = site.data.question_banks.high_school.mathematics['number-and-numeracy'] -%}
 {
   "exam": "high-school",
   "subject": "mathematics",
