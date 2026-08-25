@@ -2,7 +2,7 @@
 # Stable IDs are referenced by content front matter and UI; display names may change.
 # Exam mappings are intentionally separate from Study taxonomy.
 
-version: 3
+version: 4
 domain: high-school
 
 departments:
@@ -16,18 +16,44 @@ departments:
         subtopics:
           - id: number-systems
             name: Number Systems
-          - id: fractions-decimals-and-percentages
-            name: Fractions, Decimals & Percentages
-          - id: ratio-proportion-and-rates
-            name: Ratio, Proportion & Rates
-          - id: factors-multiples-and-primes
-            name: Factors, Multiples & Primes
-          - id: powers-roots-and-surds
-            name: Powers, Roots & Surds
-          - id: approximation-and-accuracy
-            name: Approximation & Accuracy
+          - id: integers
+            name: Integers
+          - id: fractions
+            name: Fractions
+          - id: decimals
+            name: Decimals
+          - id: percentages
+            name: Percentages
+          - id: ratios
+            name: Ratios
+          - id: proportions
+            name: Proportions
+          - id: rates-and-unit-rates
+            name: Rates and Unit Rates
+          - id: factors-and-multiples
+            name: Factors and Multiples
+          - id: prime-numbers
+            name: Prime Numbers
+          - id: hcf-and-lcm
+            name: HCF and LCM
+          - id: powers-and-exponents
+            name: Powers and Exponents
+          - id: roots-and-radicals
+            name: Roots and Radicals
           - id: standard-form
-            name: Standard Form
+            name: Standard Form / Scientific Notation
+          - id: approximation-and-estimation
+            name: Approximation and Estimation
+          - id: significant-figures
+            name: Significant Figures
+          - id: decimal-places
+            name: Decimal Places
+          - id: bounds-and-accuracy
+            name: Bounds and Limits of Accuracy
+          - id: surds
+            name: Surds
+          - id: recurring-decimals
+            name: Recurring Decimals
       - id: algebra
         name: Algebra
         description: Variables, expressions, equations, inequalities, sequences and algebraic relationships.
@@ -75,265 +101,51 @@ departments:
       - id: functions-and-graphs
         name: Functions & Graphs
         description: Functions, graphs, transformations, inverse functions and graphical solutions.
-        subtopics:
-          - id: introduction-to-functions
-            name: Introduction to Functions
-          - id: function-notation
-            name: Function Notation
-          - id: domain-and-range
-            name: Domain & Range
-          - id: linear-functions
-            name: Linear Functions
-          - id: quadratic-functions
-            name: Quadratic Functions
-          - id: polynomial-functions
-            name: Polynomial Functions
-          - id: reciprocal-functions
-            name: Reciprocal Functions
-          - id: exponential-functions
-            name: Exponential Functions
-          - id: graph-transformations
-            name: Graph Transformations
-          - id: composite-and-inverse-functions
-            name: Composite & Inverse Functions
-          - id: graphical-solutions
-            name: Graphical Solutions
+        subtopics: []
       - id: coordinate-geometry
         name: Coordinate Geometry
         description: Coordinates, straight lines, distance, midpoint, gradient and coordinate proofs.
-        subtopics:
-          - id: cartesian-coordinates
-            name: Cartesian Coordinates
-          - id: distance-and-midpoint
-            name: Distance & Midpoint
-          - id: gradient
-            name: Gradient
-          - id: equations-of-lines
-            name: Equations of Straight Lines
-          - id: parallel-and-perpendicular-lines
-            name: Parallel & Perpendicular Lines
-          - id: intersections-and-proofs
-            name: Intersections & Coordinate Proofs
-          - id: circles-in-coordinate-geometry
-            name: Circles in Coordinate Geometry
+        subtopics: []
       - id: geometry
         name: Geometry
         description: Angles, triangles, polygons, circles, constructions, loci and geometric proof.
-        subtopics:
-          - id: geometric-language
-            name: Geometric Language
-          - id: angles-and-parallel-lines
-            name: Angles & Parallel Lines
-          - id: triangles
-            name: Triangles
-          - id: polygons-and-quadrilaterals
-            name: Polygons & Quadrilaterals
-          - id: circles
-            name: Circles
-          - id: circle-theorems
-            name: Circle Theorems
-          - id: constructions
-            name: Geometric Constructions
-          - id: loci
-            name: Loci
-          - id: symmetry
-            name: Symmetry
-          - id: geometric-proof
-            name: Geometric Proof
+        subtopics: []
       - id: mensuration
         name: Mensuration
         description: Measurement, perimeter, area, surface area, volume and composite solids.
-        subtopics:
-          - id: units-and-measurement
-            name: Units & Measurement
-          - id: perimeter-and-area
-            name: Perimeter & Area
-          - id: compound-areas
-            name: Compound Areas
-          - id: surface-area
-            name: Surface Area
-          - id: volume
-            name: Volume
-          - id: composite-solids
-            name: Composite Solids
-          - id: scale-and-similarity
-            name: Scale & Similarity
+        subtopics: []
       - id: trigonometry
         name: Trigonometry
         description: Triangle relationships, trigonometric ratios, identities and applications.
-        subtopics:
-          - id: right-triangle-trigonometry
-            name: Right-Triangle Trigonometry
-          - id: trigonometric-ratios
-            name: Trigonometric Ratios
-          - id: bearings-and-applications
-            name: Bearings & Applications
-          - id: sine-rule
-            name: Sine Rule
-          - id: cosine-rule
-            name: Cosine Rule
-          - id: area-of-a-triangle
-            name: Area of a Triangle
-          - id: trigonometric-graphs
-            name: Trigonometric Graphs
-          - id: trigonometric-identities
-            name: Trigonometric Identities
-          - id: trigonometric-equations
-            name: Trigonometric Equations
+        subtopics: []
       - id: vectors-and-transformations
         name: Vectors & Transformations
         description: Vectors, transformations and their geometric applications.
-        subtopics:
-          - id: vector-notation
-            name: Vector Notation
-          - id: vector-operations
-            name: Vector Operations
-          - id: position-vectors
-            name: Position Vectors
-          - id: vector-geometry
-            name: Vector Geometry
-          - id: transformations
-            name: Transformations
-          - id: combined-transformations
-            name: Combined Transformations
-          - id: matrix-transformations
-            name: Matrix Transformations
+        subtopics: []
       - id: statistics
         name: Statistics
         description: Data collection, presentation, averages, spread, correlation and interpretation.
-        subtopics:
-          - id: data-and-variables
-            name: Data & Variables
-          - id: sampling
-            name: Sampling
-          - id: frequency-tables
-            name: Frequency Tables
-          - id: statistical-diagrams
-            name: Statistical Diagrams
-          - id: averages
-            name: Averages
-          - id: measures-of-spread
-            name: Measures of Spread
-          - id: cumulative-frequency
-            name: Cumulative Frequency
-          - id: correlation
-            name: Correlation
-          - id: regression
-            name: Regression
-          - id: data-interpretation
-            name: Data Interpretation
+        subtopics: []
       - id: probability
         name: Probability
         description: Events, outcomes, probability rules, conditional probability and distributions.
-        subtopics:
-          - id: basic-probability
-            name: Basic Probability
-          - id: sample-spaces
-            name: Sample Spaces
-          - id: experimental-probability
-            name: Experimental Probability
-          - id: probability-rules
-            name: Probability Rules
-          - id: mutually-exclusive-events
-            name: Mutually Exclusive Events
-          - id: independent-and-dependent-events
-            name: Independent & Dependent Events
-          - id: tree-diagrams
-            name: Tree Diagrams
-          - id: venn-diagrams
-            name: Venn Diagrams
-          - id: conditional-probability
-            name: Conditional Probability
-          - id: probability-distributions
-            name: Probability Distributions
+        subtopics: []
       - id: financial-and-commercial-mathematics
         name: Financial & Commercial Mathematics
         description: Practical mathematics for money, commerce, finance and decision-making.
-        subtopics:
-          - id: money-and-currency
-            name: Money & Currency
-          - id: profit-loss-and-discount
-            name: Profit, Loss & Discount
-          - id: commission-and-markup
-            name: Commission & Markup
-          - id: simple-interest
-            name: Simple Interest
-          - id: compound-interest
-            name: Compound Interest
-          - id: depreciation-and-appreciation
-            name: Depreciation & Appreciation
-          - id: tax-and-income
-            name: Tax & Income
-          - id: loans-and-hire-purchase
-            name: Loans & Hire Purchase
-          - id: budgeting-and-investment
-            name: Budgeting & Investment
+        subtopics: []
       - id: mathematical-reasoning-and-problem-solving
         name: Mathematical Reasoning & Problem Solving
         description: Reasoning, proof, modelling and strategies for solving unfamiliar problems.
-        subtopics:
-          - id: mathematical-language
-            name: Mathematical Language
-          - id: patterns
-            name: Patterns
-          - id: problem-solving-strategies
-            name: Problem-Solving Strategies
-          - id: multi-step-problems
-            name: Multi-Step Problems
-          - id: estimation-and-reasoning
-            name: Estimation & Reasoning
-          - id: proof-and-justification
-            name: Proof & Justification
-          - id: deductive-and-inductive-reasoning
-            name: Deductive & Inductive Reasoning
-          - id: mathematical-modelling
-            name: Mathematical Modelling
-          - id: real-world-problem-solving
-            name: Real-World Problem Solving
+        subtopics: []
       - id: calculus-and-introductory-advanced-mathematics
         name: Calculus & Introductory Advanced Mathematics
         description: Introductory calculus, sequences, series, binomial expansion and advanced functions.
-        subtopics:
-          - id: limits
-            name: Limits
-          - id: differentiation
-            name: Differentiation
-          - id: applications-of-differentiation
-            name: Applications of Differentiation
-          - id: integration
-            name: Integration
-          - id: applications-of-integration
-            name: Applications of Integration
-          - id: differential-equations
-            name: Introductory Differential Equations
-          - id: sequences-and-series
-            name: Sequences & Series
-          - id: binomial-expansion
-            name: Binomial Expansion
-          - id: advanced-functions
-            name: Introductory Advanced Functions
+        subtopics: []
       - id: discrete-mathematics-sets-and-logic
         name: Discrete Mathematics, Sets & Logic
         description: Sets, logic, counting, algorithms, networks and introductory discrete mathematics.
-        subtopics:
-          - id: sets
-            name: Sets
-          - id: venn-diagrams-and-sets
-            name: Venn Diagrams & Set Applications
-          - id: logic
-            name: Logic
-          - id: truth-tables
-            name: Truth Tables
-          - id: proof-by-contradiction
-            name: Proof by Contradiction
-          - id: counting-principles
-            name: Counting Principles
-          - id: permutations-and-combinations
-            name: Permutations & Combinations
-          - id: graph-theory
-            name: Introductory Graph Theory
-          - id: algorithms-and-networks
-            name: Algorithms & Networks
+        subtopics: []
 
   - id: sciences
     name: Sciences
@@ -342,41 +154,7 @@ departments:
       - id: physics
         name: Physics
         description: Mechanics, waves, electricity, fields and modern physics.
-        topics:
-          - id: mechanics
-            name: Mechanics
-            description: Motion, forces, energy, momentum and related principles.
-            subtopics:
-              - id: measurements-and-units
-                name: Measurements & Units
-              - id: motion-in-one-dimension
-                name: Motion in One Dimension
-              - id: forces-and-newtons-laws
-                name: Forces & Newton's Laws
-              - id: work-energy-and-power
-                name: Work, Energy & Power
-              - id: momentum-and-collisions
-                name: Momentum & Collisions
-          - id: waves
-            name: Waves
-            description: Wave motion, sound, light and wave phenomena.
-            subtopics:
-              - id: wave-motion
-                name: Wave Motion
-              - id: sound
-                name: Sound
-              - id: light
-                name: Light
-          - id: electricity
-            name: Electricity
-            description: Current electricity, circuits and electromagnetic effects.
-            subtopics:
-              - id: current-electricity
-                name: Current Electricity
-              - id: electric-circuits
-                name: Electric Circuits
-              - id: electromagnetism
-                name: Electromagnetism
+        topics: []
 
   - id: commercial
     name: Commercial
