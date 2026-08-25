@@ -55,6 +55,19 @@ jobs:
           grep -q 'curriculumDepartments' _site/high-school/subject/index.html
           grep -q 'Mathematics' _site/high-school/subject/index.html
           grep -q 'Algebra' _site/high-school/subject/index.html
+          grep -q 'number-and-numeracy' _site/high-school/subject/index.html
+
+      - name: Verify all Number & Numeracy study pages
+        run: |
+          for slug in \
+            number-systems integers fractions decimals percentages ratios proportions \
+            rates-and-unit-rates factors-and-multiples prime-numbers hcf-and-lcm \
+            powers-and-exponents roots-and-radicals standard-form approximation-and-estimation \
+            significant-figures decimal-places bounds-and-accuracy surds recurring-decimals
+          do
+            test -f "_site/high-school/study/mathematics/number-and-numeracy/${slug}/index.html" || \
+            test -f "_site/high-school/mathematics/number-and-numeracy/${slug}/index.html"
+          done
 
       - name: Verify Algebra study pages
         run: |
