@@ -1,9 +1,9 @@
 /**
- * Axiom Academy — Service Worker
+ * GNOSTIRI — Service Worker
  * Caches chapters, quizzes, and flashcards for offline use
  */
 
-const CACHE_NAME = 'axiom-academy-v2';
+const CACHE_NAME = 'gnostiri-v1';
 const STATIC_ASSETS = [
   '/axiom-academy/',
   '/axiom-academy/high-school/',
