@@ -1,5 +1,5 @@
 /**
- * Axiom Academy — Home Dashboard
+ * GNOSTIRI — Home Dashboard
  * Phase C.5: Home behaves like a learning workspace rather than a marketing landing page.
  * Widgets remain hidden until real local activity exists.
  */
@@ -41,7 +41,7 @@ import { getState } from "./axiom-state.js";
       if(subtitle) subtitle.textContent='Continue where you left off.';
     } else {
       const label=document.getElementById('axiom-home-subtitle');
-      if(label) label.textContent='Choose a learning domain to begin. Axiom will keep your place as you learn.';
+      if(label) label.textContent='Choose a learning domain to begin. GNOSTIRI will keep your place as you learn.';
     }
 
     const continueSection=document.getElementById('continue-learning-section'),continueCards=document.getElementById('continue-cards');
