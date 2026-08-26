@@ -1,15 +1,16 @@
-<!-- Axiom AI — client-side study assistant, powered by WebLLM (runs in-browser, offline-capable, no server) -->
-<button id="ai-toggle" class="ai-toggle-btn" aria-label="Open Axiom AI">AI</button>
+<!-- GNOSTIRI AI — client-side study assistant, powered by WebLLM (runs in-browser, offline-capable, no server) -->
+<button id="ai-toggle" class="ai-toggle-btn" aria-label="Open GNOSTIRI AI">AI</button>
 
-<div id="ai-chat" class="ai-chat-widget" style="display:none;" role="region" aria-label="Axiom AI chat">
+<div id="ai-chat" class="ai-chat-widget" style="display:none;" role="region" aria-label="GNOSTIRI AI chat">
   <div class="ai-chat-header">
-    <div class="ai-chat-title">🤖 Axiom AI</div>
+    <div class="ai-chat-avatar" aria-hidden="true">G</div>
+    <div class="ai-chat-title">GNOSTIRI AI</div>
     <button id="ai-close" class="ai-chat-close" aria-label="Close">✕</button>
   </div>
 
   <div id="ai-progress" class="ai-progress" style="display:none;">
     <div class="ai-progress-bar"><div id="ai-progress-fill" class="ai-progress-fill"></div></div>
-    <div id="ai-progress-text" class="ai-progress-text">Loading Axiom AI…</div>
+    <div id="ai-progress-text" class="ai-progress-text">Loading GNOSTIRI AI…</div>
   </div>
 
   <div id="ai-body" class="ai-chat-body" aria-live="polite"></div>
@@ -18,6 +19,156 @@
     <button id="ai-send">Send</button>
   </div>
 </div>
+
+<style>
+.ai-chat-widget {
+  position: fixed;
+  right: 18px;
+  bottom: calc(var(--mobile-nav-height) + 18px);
+  width: 360px;
+  max-width: calc(100% - 36px);
+  max-height: 500px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ai-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+}
+.ai-chat-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-masterclass);
+  color: var(--text-inverse);
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ai-chat-title { font-weight: 600; font-size: 0.9rem; }
+.ai-chat-close {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+}
+.ai-chat-close:hover { color: var(--text-primary); }
+.ai-chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 340px;
+}
+.ai-chat-msg {
+  padding: 10px 12px;
+  border-radius: 10px;
+  max-width: 85%;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  animation: msg-in 0.25s ease;
+}
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.ai-chat-msg.user {
+  background: var(--bg-elevated);
+  margin-left: auto;
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+}
+.ai-chat-msg.bot {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+.ai-chat-msg.bot strong { color: var(--text-primary); }
+.ai-chat-input {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+}
+.ai-chat-input textarea {
+  flex: 1;
+  min-height: 40px;
+  max-height: 100px;
+  resize: none;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-medium);
+  background: var(--bg-primary);
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+.ai-chat-input textarea:focus { outline: none; border-color: var(--accent-masterclass); }
+.ai-chat-input button {
+  background: var(--accent-masterclass);
+  border: none;
+  color: var(--text-inverse);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.ai-typing {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 0 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.ai-toggle-btn {
+  position: fixed;
+  right: 18px;
+  bottom: calc(var(--mobile-nav-height) + 18px);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--accent-masterclass), #e0c060);
+  border: none;
+  box-shadow: 0 8px 24px rgba(201,168,76,0.25);
+  color: var(--text-inverse);
+  font-weight: 700;
+  z-index: 1099;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 769px) {
+  .ai-chat-widget, .ai-toggle-btn { bottom: 24px; }
+}
+</style>
 
 <script type="module">
   import { isWebGPUSupported, loadEngine, streamReply } from '{{ site.baseurl }}/assets/js/webllm-engine.js';
@@ -58,7 +209,7 @@
         el = document.createElement('div');
         el.id = 'ai-typing';
         el.className = 'ai-typing';
-        el.textContent = 'Axiom AI is thinking...';
+        el.textContent = 'GNOSTIRI AI is thinking...';
         body.appendChild(el);
         body.scrollTop = body.scrollHeight;
       }
@@ -75,7 +226,7 @@
   }
 
   function systemPrompt(context) {
-    return "You are Axiom AI, a friendly physics tutor inside Axiom Academy, a free study site for Nigerian JAMB/WAEC students. " +
+    return "You are GNOSTIRI AI, a friendly study tutor inside GNOSTIRI, a free learning platform for students. " +
       "The student is currently on: " + (context.title || context.page) + (context.topic ? (" (topic: " + context.topic + ")") : "") + ". " +
       "Give short, clear, encouraging answers. Prefer hints and guiding questions over full solutions unless the student explicitly asks you to explain or solve. " +
       "Use plain language before equations. Keep replies under 120 words unless asked for more detail.";
@@ -83,13 +234,13 @@
 
   function localReply(text, context) {
     const t = text.trim().toLowerCase();
-    if (!t) return "Ask me anything about physics, this chapter, or your study plan.";
+    if (!t) return "Ask me anything about your studies, this chapter, or your study plan.";
     if (t.includes('hint')) return "💡 **Hint:** Break the problem into smaller parts. What quantities are given? What are you solving for? Check your units first.";
-    if (t.includes('explain') && context.topic) return "I'd love to explain **" + context.topic + "**! The key idea is to start with the physical picture before writing equations. Would you like the intuition or the derivation?";
+    if (t.includes('explain') && context.topic) return "I'd love to explain **" + context.topic + "**! The key idea is to start with the big picture before writing equations. Would you like the intuition or the derivation?";
     if (t.includes('formula') || t.includes('equation')) return "Here are the key formulas for this topic. Remember: every symbol has a physical meaning. Don't just memorize — derive when you can.";
     if (t.includes('jamb') || t.includes('exam')) return "For JAMB, focus on speed + accuracy. Each question averages 1 minute. Master the shortcuts in dimensional analysis — they save precious seconds.";
     if (t.includes('weak') || t.includes('struggle')) return "Based on your quiz history, review the fundamentals first, then do 5 practice questions. Want a focused drill?";
-    if (t.includes('hello') || t.includes('hi')) return "Hello! I'm Axiom AI. Ask me for hints, explanations, or study advice.";
+    if (t.includes('hello') || t.includes('hi')) return "Hello! I'm GNOSTIRI AI. Ask me for hints, explanations, or study advice.";
     return "That's a great question — try rephrasing it, or ask about a specific concept from this chapter.";
   }
 
@@ -106,7 +257,7 @@
       await loadEngine((report) => {
         const pct = Math.round((report.progress || 0) * 100);
         progressFill.style.width = pct + '%';
-        progressText.textContent = (report.text || 'Loading Axiom AI…') + (pct ? ' (' + pct + '%)' : '');
+        progressText.textContent = (report.text || 'Loading GNOSTIRI AI…') + (pct ? ' (' + pct + '%)' : '');
       });
       engineReady = true;
       progress.style.display = 'none';
@@ -142,7 +293,6 @@
       return;
     }
 
-    // Model still loading (or unsupported) — don't make the student wait, use instant local tips.
     setTyping(true);
     setTimeout(() => {
       setTyping(false);
@@ -158,9 +308,8 @@
     }
   });
 
-  // Welcome message
-  if (!localStorage.getItem('axiom_ai_seen')) {
-    appendMessage('👋 Hi! I\'m <strong>Axiom AI</strong>, running fully in your browser. I can explain concepts, give hints without spoiling answers, or analyze your weak topics. What would you like to work on?', 'bot');
-    localStorage.setItem('axiom_ai_seen', '1');
+  if (!localStorage.getItem('gnostiri_ai_seen')) {
+    appendMessage('👋 Hi! I\'m <strong>GNOSTIRI AI</strong>, running fully in your browser. I can explain concepts, give hints without spoiling answers, or analyze your weak topics. What would you like to work on?', 'bot');
+    localStorage.setItem('gnostiri_ai_seen', '1');
   }
 </script>
