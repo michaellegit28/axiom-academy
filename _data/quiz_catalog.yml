@@ -1,0 +1,25 @@
+# Canonical quiz catalogue. Add a record only when a real live question bank exists.
+# High School ownership is Department → Subject → Topic → Quiz.
+
+high_school:
+  - id: high-school-mathematics-number-and-numeracy
+    department: mathematics
+    subject: mathematics
+    topic: number-and-numeracy
+    title: "Number & Numeracy"
+    path: /quiz/high-school/mathematics/number-and-numeracy/
+    question_count: 20
+    status: live
+    exam_contexts: []
+  - id: high-school-mathematics-algebra
+    department: mathematics
+    subject: mathematics
+    topic: algebra
+    title: "Algebra"
+    path: /quiz/high-school/mathematics/algebra/
+    question_count: null
+    status: live
+    exam_contexts: []
+
+university: []
+extras: []
