@@ -4,7 +4,15 @@ title: Extras Assessments
 permalink: /quiz/extras/
 ---
 
-<section class="section-block page-content-start">
-  <div class="section-heading"><div><span class="eyebrow">Extras · Assessment</span><h2>Deep-dive assessments</h2></div><span class="section-note">Collection → Volume → Topic</span></div>
-  <div class="quiz-empty" style="margin-top:1rem;">Extras assessments are kept separate from High School and University. Masterpiece volumes, research material, and future deep-dive assessments will appear here as real question banks are published.</div>
-</section>
+<div class="qdomain">
+  <section class="qhero">
+    <div class="qcrumb"><a href="{{ '/quiz/' | relative_url }}">Quiz</a> / Extras</div>
+    <h1>Extras assessments</h1>
+    <p>Extras assessments belong only to the Extras learning compound. High School and University question banks are never rendered here.</p>
+  </section>
+  <section class="qsmart">
+    <h2>Deep-dive assessment space</h2>
+    <p>Assessment ownership follows <strong>Collection → Volume → Chapter → Topic → Assessment</strong>.</p>
+    <div class="qcoming">Extras question banks will appear here as real collections and assessment sets are published.</div>
+  </section>
+</div>
