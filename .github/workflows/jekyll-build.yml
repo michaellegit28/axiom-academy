@@ -23,6 +23,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -32,9 +35,20 @@ jobs:
       - name: Build site
         run: bundle exec jekyll build --trace
 
+      - name: Verify generated site structure
+        run: |
+          test -f _site/index.html
+          test -f _site/content-index.json
+          test -d _site/high-school
+          test -d _site/university
+          test -d _site/extras
+          test -d _site/quiz
+          test -d _site/progress
+          test -d _site/tutor
+          grep -q 'GNOSTIRI' _site/index.html
+
       - name: Verify generated content index
         run: |
-          test -f _site/content-index.json
           python - <<'PY'
           import json
           from pathlib import Path
@@ -46,7 +60,9 @@ jobs:
               assert item.get('contentType'), 'indexed item missing contentType'
               assert item.get('title'), 'indexed item missing title'
               assert item.get('url'), 'indexed item missing url'
-          print(f'Validated {len(data)} indexed content items.')
+          domains = {item.get('domain') for item in data}
+          assert domains <= {'high-school', 'university', 'extras'}, f'unknown domains: {domains}'
+          print(f'Validated {len(data)} indexed content items across domains: {sorted(domains)}')
           PY
 
       - name: Verify High School curriculum renderer inputs
@@ -78,6 +94,14 @@ jobs:
           test -f _site/high-school/mathematics/algebra/simplifying-expressions/index.html
           test -f _site/high-school/mathematics/algebra/linear-equations/index.html
           test -f _site/high-school/mathematics/algebra/inequalities/index.html
+
+      - name: Verify Pages base URL in generated HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          html = Path('_site/index.html').read_text(errors='ignore')
+          assert '/axiom-academy/' in html or 'href="/axiom-academy' in html or 'src="/axiom-academy' in html, 'expected GitHub Pages base path not found in root HTML'
+          PY
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
