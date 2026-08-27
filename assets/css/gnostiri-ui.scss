@@ -1,0 +1,51 @@
+---
+---
+/* GNOSTIRI UI corrections — scoped to pages whose markup predates the unified design system. */
+
+/* HOME */
+.axiom-home-intro{padding:clamp(2.2rem,7vw,4.5rem) 0 1.25rem}
+.axiom-home-intro .axiom-kicker{margin-bottom:.45rem;color:var(--g-gold);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.axiom-home-intro h1{margin:0;max-width:760px;font:800 clamp(2.2rem,7vw,4.6rem)/1.02 var(--font-serif);letter-spacing:-.045em}
+.axiom-home-intro p{max-width:650px;margin:.9rem 0 0;color:var(--text-secondary);font-size:clamp(.98rem,2vw,1.1rem)}
+.axiom-domains{display:grid;gap:1rem;margin-top:1.25rem}
+.axiom-domains-heading{display:flex;align-items:end;justify-content:space-between;gap:1.5rem;margin-bottom:.25rem}
+.axiom-domains-heading h2{margin:.25rem 0 0;font:700 clamp(1.35rem,3vw,1.8rem)/1.15 var(--font-serif)}
+.axiom-domains-heading p{max-width:420px;margin:0;color:var(--text-secondary);font-size:.8rem;text-align:right}
+.axiom-domain-card{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;min-width:0;padding:1.25rem 1.35rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--text-primary);text-decoration:none;box-shadow:var(--shadow-sm);overflow:hidden;transition:transform var(--duration-normal) var(--ease),box-shadow var(--duration-normal) var(--ease),border-color var(--duration-normal) var(--ease)}
+.axiom-domain-card::before{content:'';position:absolute;inset:0 auto 0 0;width:4px;background:var(--g-gold)}
+.axiom-domain-card.university::before{background:var(--g-blue)}.axiom-domain-card.high-school::before{background:var(--g-teal)}.axiom-domain-card.extras::before{background:var(--g-gold)}
+.axiom-domain-card:hover{transform:translateY(-3px);border-color:var(--g-gold);box-shadow:var(--shadow-md)}
+.axiom-domain-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:12px;background:var(--bg-secondary);color:var(--text-secondary);border:1px solid var(--border-subtle)}
+.axiom-domain-icon svg{width:25px;height:25px}
+.axiom-domain-card h2{margin:0 0 .25rem;font:700 1.15rem/1.2 var(--font-sans)}
+.axiom-domain-card p{margin:0;color:var(--text-secondary);font-size:.82rem;line-height:1.45}
+.axiom-domain-meta{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.65rem}
+.axiom-domain-meta span{display:inline-flex;padding:.2rem .5rem;border-radius:999px;background:var(--bg-secondary);color:var(--text-secondary);font-size:.62rem;font-weight:700;line-height:1.2}
+.axiom-domain-arrow{color:var(--text-muted);font-size:1.15rem;transition:transform var(--duration-fast) var(--ease),color var(--duration-fast) var(--ease)}
+.axiom-domain-card:hover .axiom-domain-arrow{color:var(--g-gold);transform:translateX(3px)}
+.axiom-mission{margin-top:3.25rem;padding:2rem 0 1rem;border-top:1px solid var(--border-subtle)}
+.axiom-mission-heading h2{margin:.3rem 0 .45rem;font:700 clamp(1.55rem,3.5vw,2.2rem)/1.12 var(--font-serif)}
+.axiom-mission-heading>p{max-width:680px;margin:0;color:var(--text-secondary);font-size:.9rem}
+.axiom-mission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.25rem}
+.axiom-mission-card{padding:1.25rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+.axiom-mission-label{display:block;margin-bottom:.4rem;color:var(--g-gold);font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.axiom-mission-card h3{margin:0 0 .5rem;font:700 1.12rem/1.25 var(--font-serif)}
+.axiom-mission-card p{margin:0;color:var(--text-secondary);font-size:.82rem;line-height:1.55}
+
+/* ANALYTICS */
+.analytics-container{width:var(--content-width);margin:0 auto;padding:calc(var(--nav-height) + 1.8rem) 0 3rem}
+.analytics-back{display:inline-block;margin-bottom:1rem;color:var(--text-secondary);font-size:.82rem;text-decoration:none}.analytics-back:hover{color:var(--g-gold)}
+.analytics-header{margin-bottom:2rem}.analytics-header h1{margin:0;font:800 clamp(1.8rem,5vw,2.7rem)/1.08 var(--font-serif);letter-spacing:-.035em}.analytics-subhead{margin:.55rem 0 0;color:var(--text-secondary);font-size:.9rem}.analytics-domain-badge{display:inline-flex;margin-top:.7rem;padding:.25rem .6rem;border-radius:999px;background:var(--bg-secondary);color:var(--text-secondary);font-size:.65rem;font-weight:700}
+.mastery-section,.analytics-section{margin-top:2rem}.mastery-section h2,.analytics-section h2{margin:0 0 1rem;font:700 clamp(1.25rem,3vw,1.65rem)/1.15 var(--font-serif)}
+.mastery-ring-container{position:relative;width:min(240px,62vw);aspect-ratio:1;margin:.5rem auto 0;display:grid;place-items:center}.mastery-ring{display:block;width:100%;height:100%;transform:rotate(-90deg)}.mastery-ring .ring-bg{fill:none;stroke:var(--bg-secondary);stroke-width:9}.mastery-ring .ring-fill{fill:none;stroke:var(--g-gold);stroke-width:9;stroke-linecap:round;stroke-dasharray:314.159;stroke-dashoffset:314.159;transition:stroke-dashoffset .5s var(--ease)}.mastery-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.mastery-percent{font:800 clamp(1.7rem,5vw,2.35rem)/1 var(--font-sans)}.mastery-label{margin-top:.3rem;color:var(--text-muted);font-size:.68rem;font-weight:700}
+.chart-card{padding:1rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}.chart-card canvas{display:block;width:100%!important;max-height:240px}
+.topic-breakdown-list{display:grid;gap:.7rem;padding:1rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg)}.topic-breakdown-row{display:grid;grid-template-columns:minmax(100px,1fr) minmax(100px,2fr) auto;align-items:center;gap:.65rem}.topic-breakdown-name{font-size:.76rem;font-weight:650}.topic-breakdown-bar-track{height:7px;overflow:hidden;border-radius:999px;background:var(--bg-secondary)}.topic-breakdown-bar-fill{height:100%;border-radius:inherit;background:var(--g-gold)}.topic-breakdown-bar-fill.weak{background:var(--g-crimson)}.topic-breakdown-bar-fill.practice{background:var(--g-warning)}.topic-breakdown-bar-fill.strong{background:var(--g-success)}.topic-breakdown-pct{font-size:.7rem;font-weight:800}.topic-breakdown-pct.weak{color:var(--g-crimson)}.topic-breakdown-pct.practice{color:var(--g-warning)}.topic-breakdown-pct.strong{color:var(--g-success)}.topics-empty{margin:0;color:var(--text-muted);font-size:.8rem}
+.table-wrap{overflow-x:auto;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}.quiz-history-table{width:100%;border-collapse:collapse;min-width:520px}.quiz-history-table th,.quiz-history-table td{padding:.75rem .9rem;border-bottom:1px solid var(--border-subtle);text-align:left;font-size:.72rem}.quiz-history-table th{background:var(--bg-secondary);color:var(--text-muted);font-size:.62rem;text-transform:uppercase;letter-spacing:.08em}.quiz-history-table tr:last-child td{border-bottom:0}.table-empty{color:var(--text-muted)}
+.recommend-list{margin:0;padding-left:1.1rem}.recommend-list li{margin:.55rem 0;font-size:.82rem}.recommend-list a{color:var(--text-secondary)}.recommend-list a:hover{color:var(--g-gold)}
+
+/* Existing CTA had low-contrast text on a light surface. */
+.study-next-step .btn,.study-next-step .btn-primary{background:var(--g-gold);color:#172033;border-color:var(--g-gold);text-decoration:none}.study-next-step .btn:hover,.study-next-step .btn-primary:hover{background:var(--g-gold-dim);color:#fff}
+
+@media(max-width:768px){
+  .axiom-domains-heading{display:block}.axiom-domains-heading p{margin-top:.45rem;text-align:left}.axiom-domain-card{grid-template-columns:auto 1fr auto;padding:1rem}.axiom-domain-icon{width:42px;height:42px}.axiom-domain-card h2{font-size:1rem}.axiom-domain-card p{font-size:.76rem}.axiom-mission{margin-top:2.5rem}.axiom-mission-grid{grid-template-columns:1fr}.analytics-container{padding-top:calc(var(--nav-height) + 1.4rem)}.mastery-ring-container{width:min(190px,55vw)}.topic-breakdown-row{grid-template-columns:1fr auto}.topic-breakdown-bar-track{grid-column:1/-1;grid-row:2}.topic-breakdown-pct{grid-column:2;grid-row:1}.study-next-step{align-items:stretch;flex-direction:column}.study-next-step .btn{width:100%;text-align:center}
+}
