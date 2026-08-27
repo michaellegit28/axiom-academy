@@ -1,0 +1,26 @@
+{
+    "highSchool": {
+        "topics": [
+            "Mathematics",
+            "Science",
+            "History"
+        ],
+        "quizzes": [
+            {"id": "math_quiz", "title": "Mathematics Basics"},
+            {"id": "science_quiz", "title": "Introduction to Science"},
+            {"id": "history_quiz", "title": "World History Overview"}
+        ]
+    },
+    "university": {
+        "subjects": [
+            "Literature",
+            "Physics",
+            "Philosophy"
+        ],
+        "quizzes": [
+            {"id": "literature_quiz", "title": "Literature Foundations"},
+            {"id": "physics_quiz", "title": "Physics Principles"},
+            {"id": "philosophy_quiz", "title": "Philosophy 101"}
+        ]
+    }
+}
