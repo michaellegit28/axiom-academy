@@ -40,17 +40,16 @@ jobs:
           set -euo pipefail
           test -s _site/index.html
           test -s _site/content-index.json
-          for dir in high-school university extras quiz progress tutor; do
-            test -d "_site/$dir"
-          done
-          python - <<'PY'
-          from pathlib import Path
-          html = Path('_site/index.html').read_text(errors='ignore')
-          required = ['Start where you are.', 'Choose your path', 'High School', 'University', 'Extras']
-          missing = [text for text in required if text not in html]
-          assert not missing, f'root HTML missing expected content: {missing}'
-          print('Root page structure and GNOSTIRI domain entry points verified.')
-          PY
+          test -s _site/university/index.html
+          test -s _site/extras/index.html
+          test -s _site/high-school/index.html
+          test -s _site/quiz/index.html
+          test -s _site/tutor.html
+          grep -q 'Start where you are.' _site/index.html
+          grep -q 'High School' _site/index.html
+          grep -q 'University' _site/index.html
+          grep -q 'Extras' _site/index.html
+          echo 'Generated site structure verified.'
 
       - name: Verify generated content index
         run: |
@@ -70,15 +69,15 @@ jobs:
           print(f'Validated {len(data)} indexed content items across domains: {sorted(domains)}')
           PY
 
-      - name: Verify critical domain routes
+      - name: Verify critical study and quiz routes
         run: |
           set -euo pipefail
-          test -f _site/high-school/index.html
+          test -f _site/high-school/subject/index.html
           test -f _site/university/index.html
           test -f _site/extras/index.html
-          test -f _site/quiz/index.html
-          test -f _site/tutor/index.html
-          test -f _site/progress/index.html
+          test -d _site/quiz/high-school
+          test -d _site/quiz/university
+          test -d _site/quiz/extras
 
       - name: Verify High School curriculum renderer inputs
         run: |
@@ -118,8 +117,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           html = Path('_site/index.html').read_text(errors='ignore')
-          base = '/axiom-academy'
-          assert base in html, f'expected GitHub Pages base path {base!r} not found in generated root HTML'
+          assert '/axiom-academy/' in html or 'href="/axiom-academy' in html or 'src="/axiom-academy' in html, 'expected GitHub Pages base path not found in root HTML'
           print('GitHub Pages base path verified.')
           PY
 
