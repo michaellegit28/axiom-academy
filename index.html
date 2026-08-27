@@ -10,6 +10,29 @@ permalink: /
   <p id="axiom-home-subtitle">Choose a learning domain to begin. GNOSTIRI will keep your place as you learn.</p>
 </section>
 
+<section class="home-snapshot" id="home-snapshot" aria-labelledby="home-snapshot-title">
+  <div class="home-snapshot-head">
+    <div>
+      <div class="eyebrow">Learning snapshot</div>
+      <h2 id="home-snapshot-title">Your progress at a glance</h2>
+      <p id="home-snapshot-note">Your real study and quiz activity will appear here.</p>
+    </div>
+    <a class="btn btn-secondary btn-sm" href="{{ '/profile/analytics/' | relative_url }}">View analytics →</a>
+  </div>
+  <div class="home-snapshot-grid" id="home-snapshot-grid"></div>
+  <div class="home-snapshot-lower">
+    <div class="home-mini-panel">
+      <div class="home-mini-heading"><strong>Weekly study</strong><span id="home-week-total">0 min</span></div>
+      <div class="home-week-bars" id="home-week-bars" aria-label="Study time for the last seven days"></div>
+    </div>
+    <div class="home-mini-panel">
+      <div class="home-mini-heading"><strong>Next focus</strong></div>
+      <div id="home-next-focus" class="home-next-focus">Take your first quiz to start building your mastery profile.</div>
+      <a class="home-mini-link" href="{{ '/quiz/' | relative_url }}">Start practice →</a>
+    </div>
+  </div>
+</section>
+
 <div class="home-dashboard" id="home-dashboard" style="display:none;">
   <div class="dashboard-welcome">
     <div>
