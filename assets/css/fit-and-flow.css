@@ -16,13 +16,13 @@
 #app-content .study-answers{display:block;list-style:decimal;margin:.9rem 0 0;padding-left:1.7rem}
 #app-content .study-answer-item{display:list-item;list-style:decimal;margin:0 0 .7rem;padding:.75rem .85rem;box-sizing:border-box;max-width:100%;overflow-wrap:anywhere}
 
-/* Markdown <details> answer sections must retain their source line breaks.
-   This is the fallback that catches "Show answers" blocks before/if JS cannot
-   convert them into <ol><li> elements. */
-#app-content details.study-answer-details{display:block;max-width:100%;overflow:visible}
-#app-content details.study-answer-details>summary{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+/* Markdown <details> answer sections retain their source line breaks.
+   This catches "Show answers" blocks even when the markdown renderer leaves
+   the numbered answers as a plain text node rather than creating list items. */
+#app-content details.study-answer-details{display:block;max-width:100%;overflow:visible;white-space:pre-line}
+#app-content details.study-answer-details>summary{display:inline-flex;max-width:100%;white-space:normal;overflow-wrap:anywhere}
 #app-content details.study-answer-details>.study-answers{white-space:normal}
-#app-content details.study-answer-details:not(:has(> .study-answers))> :not(summary){display:block;white-space:pre-line;max-width:100%;overflow-wrap:anywhere;text-align:left}
+#app-content details.study-answer-details:not(:has(> .study-answers))> :not(summary){display:block;max-width:100%;overflow-wrap:anywhere;text-align:left}
 
 /* Give content blocks a stable reading boundary on narrow screens. */
 @media(max-width:600px){#app-content{overflow-x:hidden}#app-content .card,#app-content [class*="card"]{max-width:100%}#app-content h1{line-height:1.08}#app-content h2{line-height:1.15}#app-content p{line-height:1.6}}
