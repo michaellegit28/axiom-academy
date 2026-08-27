@@ -1,5 +1,6 @@
 ---
 layout: app
+title: {{ page.title }}
 ---
 
 <div class="quiz-wrapper" data-exam="{{ page.exam }}" data-subject="{{ page.subject }}" data-topic="{{ page.topic }}">
@@ -12,7 +13,6 @@ layout: app
     <span class="crumb-current">{{ page.topic | replace: '_', ' ' | capitalize }}</span>
   </nav>
 
-  <!-- Quiz Header -->
   <header class="quiz-header">
     <div class="quiz-meta">
       <span class="quiz-track-badge {{ page.exam }}">{{ page.exam | upcase }}</span>
@@ -21,62 +21,51 @@ layout: app
     <h1 class="quiz-title">{{ page.title }}</h1>
     <div class="quiz-stats">
       <span id="quiz-progress">Question 1 of {{ page.question_count }}</span>
-      {% if page.time_limit %}
-      <span id="quiz-timer" class="quiz-timer">{{ page.time_limit }}:00</span>
-      {% endif %}
+      <span id="quiz-timer" class="quiz-timer" {% unless page.time_limit and page.time_limit > 0 %}hidden{% endunless %}>{{ page.time_limit | default: 0 }}:00</span>
     </div>
+    <div class="quiz-progress-track" aria-hidden="true"><span id="quiz-progress-fill"></span></div>
   </header>
 
-  <!-- Quiz Container -->
   <div class="quiz-container" id="quiz-container">
-    <!-- Questions injected by JS -->
     <div class="quiz-loading">
       <div class="spinner"></div>
       <p>Loading questions...</p>
     </div>
   </div>
 
-  <!-- Quiz Controls -->
   <div class="quiz-controls" id="quiz-controls" style="display:none;">
     <button class="quiz-btn secondary" id="btn-prev" disabled>← Previous</button>
     <button class="quiz-btn primary" id="btn-next">Next →</button>
     <button class="quiz-btn accent" id="btn-submit" style="display:none;">Submit Quiz</button>
   </div>
 
-  <!-- Results Panel -->
   <div class="quiz-results" id="quiz-results" style="display:none;">
     <div class="results-header">
-      <h2>Quiz Complete!</h2>
+      <div><span class="eyebrow">Assessment complete</span><h2>Quiz Complete</h2></div>
       <div class="score-circle" id="score-circle">
         <span class="score-value" id="score-value">0%</span>
         <span class="score-label">Score</span>
       </div>
     </div>
 
-    <div class="results-breakdown" id="results-breakdown">
-      <!-- Breakdown injected by JS -->
-    </div>
+    <div class="results-breakdown" id="results-breakdown"></div>
 
     <div class="results-actions">
       <a href="{{ page.url | relative_url }}" class="quiz-btn secondary">Retake Quiz</a>
-      {% if page.masterclass_links %}
-      <a href="{{ page.masterclass_links[0] | relative_url }}" class="quiz-btn primary">Review Chapter</a>
-      {% endif %}
-      <a href="{{ '/quiz/jamb/' | relative_url }}" class="quiz-btn accent">More Quizzes</a>
+      {% if page.masterclass_links %}<a href="{{ page.masterclass_links[0] | relative_url }}" class="quiz-btn primary">Review Chapter</a>{% endif %}
+      <a href="{{ '/quiz/' | relative_url }}" class="quiz-btn accent">More Practice</a>
     </div>
 
-    <!-- Weak Topics Alert -->
     <div class="weak-topics-alert" id="weak-topics-alert" style="display:none;">
-      <h4>📊 Areas to Review</h4>
+      <h4>Areas to Review</h4>
       <ul id="weak-topics-list"></ul>
-      <a href="{{ '/study-track/' | relative_url }}" class="quiz-btn primary">Go to Study Track</a>
+      <a href="{{ '/high-school/' | relative_url }}" class="quiz-btn primary">Return to Study</a>
     </div>
   </div>
 
 </div>
 
 <script>
-// Quiz data path
 window.QUIZ_CONFIG = {
   exam: '{{ page.exam }}',
   subject: '{{ page.subject }}',
