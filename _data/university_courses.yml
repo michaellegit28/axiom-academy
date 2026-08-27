@@ -1,0 +1,47 @@
+# Subscription-ready University catalogue.
+# This is catalogue metadata only. A real paid gate must be enforced by authenticated backend/payment verification before launch.
+
+- id: physics-foundations
+  title: "Physics Foundations"
+  faculty: "Science"
+  department: "Physics"
+  programme: "Physics"
+  price_usd: 3
+  access: paid
+  preview: true
+  status: available
+  description: "A structured university-level foundation in mechanics, waves, fields, and the mathematical tools used to understand them."
+  modules:
+    - Mechanics
+    - Waves
+    - Fields and Energy
+
+- id: mathematics-foundations
+  title: "Mathematics Foundations"
+  faculty: "Science"
+  department: "Mathematics"
+  programme: "Mathematics"
+  price_usd: 3
+  access: paid
+  preview: true
+  status: planned
+  description: "A rigorous foundation covering the mathematical ideas needed for university science and engineering."
+  modules:
+    - Algebra and Functions
+    - Calculus
+    - Probability and Statistics
+
+- id: open-university-foundations
+  title: "University Study Foundations"
+  faculty: "Interdisciplinary"
+  department: "General Studies"
+  programme: "Open Learning"
+  price_usd: 0
+  access: free
+  preview: true
+  status: planned
+  description: "Free orientation material for learning effectively at university level."
+  modules:
+    - Academic Reading
+    - Problem Solving
+    - Study Strategy
