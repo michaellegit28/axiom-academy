@@ -30,26 +30,50 @@ import {
 
 class AxiomAuth {
   constructor() {
-    this.auth = getAuth(window.firebaseApp);
-    this.db = getFirestore(window.firebaseApp);
     this.user = null;
     this.isAnonymous = true;
     this.listeners = [];
     this._ready = false;
     this._readyCallbacks = [];
     this._userData = null;
+    this.auth = null;
+    this.db = null;
+
+    try {
+      this.auth = getAuth(window.firebaseApp);
+      this.db = getFirestore(window.firebaseApp);
+    } catch (e) {
+      console.warn("[Auth] Firebase unavailable, continuing in local-only guest mode:", e);
+    }
+
+    if (!this.auth) {
+      // No Firebase available (blocked, offline, or failed to load) — proceed in guest/local-only mode.
+      this._ready = true;
+      this._notifyReady();
+      return;
+    }
 
     onAuthStateChanged(this.auth, async (user) => {
       if (user) {
         this.user = user;
         this.isAnonymous = user.isAnonymous;
-        await this._ensureUserDoc(user);
-        this._userData = await this._fetchUserData(user.uid);
+        try {
+          await this._ensureUserDoc(user);
+          this._userData = await this._fetchUserData(user.uid);
+        } catch (e) {
+          console.warn("[Auth] Firestore user doc sync failed, continuing locally:", e);
+        }
         this._ready = true;
         this._notifyReady();
         this._notifyListeners();
       } else {
-        await signInAnonymously(this.auth);
+        try {
+          await signInAnonymously(this.auth);
+        } catch (e) {
+          console.warn("[Auth] Anonymous sign-in failed, continuing in guest mode:", e);
+          this._ready = true;
+          this._notifyReady();
+        }
       }
     });
   }
@@ -216,3 +240,4 @@ class AxiomAuth {
 
 export const axiomAuth = new AxiomAuth();
 export default axiomAuth;
+
