@@ -9,6 +9,7 @@ import { getState } from "./axiom-state.js";
   const timeAgo = ts => { if (!ts) return ''; const diff=Date.now()-ts,mins=Math.floor(diff/60000); if(mins<1)return'just now';if(mins<60)return mins+'m ago';const hrs=Math.floor(mins/60);if(hrs<24)return hrs+'h ago';return Math.floor(hrs/24)+'d ago'; };
   const chapterUrl = e => (window.AXIOM_BASEURL || '') + '/read/' + e.subject + '/vol' + e.volume + '/ch' + e.chapter + '/';
   const domainLabels = { university:'University', 'high-school':'High School', extras:'Extras' };
+  const domainQuizRoot = domain => `${window.AXIOM_BASEURL || ''}/quiz/${domain}/`;
   const titleCase = value => String(value || '').replace(/_/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
 
   function buildSnapshot(cache, domain) {
@@ -51,8 +52,8 @@ import { getState } from "./axiom-state.js";
     const focus=document.getElementById('home-next-focus');
     const focusLink=focus?.nextElementSibling;
     if(focus){
-      if(weak && weak.accuracy<75){focus.textContent=`Review ${titleCase(weak.topic)} — ${weak.accuracy}% recorded accuracy.`; if(focusLink) focusLink.href=`${window.AXIOM_BASEURL||''}/quiz/`;}
-      else if(history.length){focus.textContent='Your latest results are on track. Continue with another focused practice session.';}
+      if(weak && weak.accuracy<75){focus.textContent=`Review ${titleCase(weak.topic)} — ${weak.accuracy}% recorded accuracy.`; if(focusLink) focusLink.href=domainQuizRoot(domain);}
+      else if(history.length){focus.textContent='Your latest results are on track. Continue with another focused practice session.'; if(focusLink) focusLink.href=domainQuizRoot(domain);}
       else focus.textContent='Take your first quiz to start building your mastery profile.';
     }
   }
@@ -97,7 +98,7 @@ import { getState } from "./axiom-state.js";
     const weakTopics=cache.weak_topics?.[domain]||{}, weak=[...(weakTopics.weak||[]),...(weakTopics.needsPractice||[])], recSection=document.getElementById('recommended-section'),recCards=document.getElementById('recommended-cards');
     if(weak.length&&recCards){
       recSection.style.display='block';
-      recCards.innerHTML=weak.slice(0,4).map(topic=>{const found=Object.values(scores).find(s=>s&&s.domain===domain&&s.topic===topic),exam=found?.exam||'';return `<a href="${window.AXIOM_BASEURL||''}/quiz/${exam}/${topic}/" class="recommended-card"><span class="recommended-icon" aria-hidden="true">↗</span><div><div class="recommended-title">${titleCase(topic)}</div><div class="recommended-sub">${exam?exam.toUpperCase()+' · ':''}Needs review</div></div></a>`;}).join('');
+      recCards.innerHTML=weak.slice(0,4).map(topic=>{const found=Object.values(scores).find(s=>s&&s.domain===domain&&s.topic===topic),exam=found?.exam||'';return `<a href="${domainQuizRoot(domain)}" class="recommended-card"><span class="recommended-icon" aria-hidden="true">↗</span><div><div class="recommended-title">${titleCase(topic)}</div><div class="recommended-sub">${exam?exam.toUpperCase()+' · ':''}Needs review</div></div></a>`;}).join('');
     } else if(recSection) recSection.style.display='none';
 
     const history=domainQuizHistory.slice(-5).reverse(),recentEl=document.getElementById('recent-activity-list'),recentSection=document.getElementById('recent-activity-section');
