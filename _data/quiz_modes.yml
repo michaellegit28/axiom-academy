@@ -1,43 +1,61 @@
-# Assessment-first Quiz model.
-# Quiz is not a copy of the Study navigation tree.
-# All modes ultimately resolve to real question metadata.
+# GNOSTIRI assessment model.
+# Quiz content belongs to a learning domain and its academic owner.
+# Exam boards/tracks are mappings or filters, not replacements for the academic hierarchy.
 
-version: 1
+version: 2
 
-domain: high-school
+domains:
+  high-school:
+    ownership: department-subject-topic
+    hierarchy: Department → Subject → Topic → Quiz
+    exam_contexts:
+      - jamb
+      - waec
+      - international
+  university:
+    ownership: course-module-topic
+    hierarchy: Course → Module → Topic → Assessment
+    access: inherits-course-access
+  extras:
+    ownership: collection-volume-topic
+    hierarchy: Collection → Volume → Topic → Assessment
 
 modes:
-  - id: exam-practice
-    name: Exam Practice
-    description: Practice questions mapped to a specific exam and subject.
+  - id: topic-practice
+    name: Topic Practice
+    description: Focused practice for one or more canonical topics.
     requires:
-      - exam_id
-      - subject_id
-    optional:
+      - domain_id
+      - subject_or_course_id
       - topic_ids
+    optional:
+      - exam_id
       - difficulty
       - question_count
       - timed
     selection: filtered-question-bank
 
-  - id: topic-practice
-    name: Topic Practice
-    description: Focused practice for one or more canonical Study topics.
+  - id: exam-practice
+    name: Exam Practice
+    description: Practice a canonical topic through a specific examination context.
     requires:
-      - subject_id
-      - topic_ids
-    optional:
+      - domain_id
       - exam_id
+      - subject_id
+    optional:
+      - topic_ids
       - difficulty
       - question_count
       - timed
     selection: filtered-question-bank
+    note: Exam context never changes the canonical High School ownership path.
 
   - id: weak-areas
     name: Weak Areas
     description: Automatically selects questions from topics where the learner needs practice.
     requires:
-      - subject_id
+      - domain_id
+      - subject_or_course_id
     optional:
       - exam_id
       - question_count
@@ -46,9 +64,10 @@ modes:
 
   - id: mixed-practice
     name: Mixed Practice
-    description: Samples multiple topics within a subject instead of staying on one topic.
+    description: Samples multiple topics within an academic owner instead of staying on one topic.
     requires:
-      - subject_id
+      - domain_id
+      - subject_or_course_id
     optional:
       - exam_id
       - difficulty
@@ -60,9 +79,10 @@ modes:
     name: Timed Drill
     description: Short, time-bounded practice for exam-speed training.
     requires:
-      - exam_id
-      - subject_id
+      - domain_id
+      - subject_or_course_id
     optional:
+      - exam_id
       - topic_ids
       - question_count
       - difficulty
@@ -72,7 +92,8 @@ modes:
     name: Revision
     description: Questions drawn from recently studied or previously assessed material.
     requires:
-      - subject_id
+      - domain_id
+      - subject_or_course_id
     optional:
       - exam_id
       - topic_ids
@@ -83,8 +104,10 @@ modes:
 selection_contract:
   question_fields:
     - id
+    - domain_id
     - exam_id
     - subject_id
+    - course_id
     - topic_ids
     - difficulty
     - type
@@ -94,25 +117,19 @@ selection_contract:
 
 question_taxonomy:
   required:
-    - exam_id
-    - subject_id
+    - id
+    - domain_id
     - topic_ids
+  high_school_required:
+    - subject_id
+  university_required:
+    - course_id
   recommended:
+    - exam_id
     - skill_ids
     - difficulty
     - year
   note: A question can test multiple canonical topics and multiple skills.
-
-skill_model:
-  id_format: lowercase-hyphen-separated
-  relationship: questions-to-skills
-  purpose: Track fine-grained ability beneath topic-level mastery.
-  examples:
-    - identify-forces
-    - draw-free-body-diagram
-    - apply-newtons-second-law
-    - resolve-forces
-    - solve-multi-step-problem
 
 future_adaptive_contract:
   inputs:
