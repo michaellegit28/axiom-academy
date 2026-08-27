@@ -4,63 +4,167 @@ layout: app-shell
 
 <div class="analytics-container">
   <a href="{{ '/profile/' | relative_url }}" class="analytics-back">← Back to Profile</a>
+
   <header class="analytics-header">
-    <h1>Score Analytics</h1>
-    <p class="analytics-subhead" id="analytics-subhead">Your mastery, activity, and recommended next steps.</p>
+    <div class="eyebrow">Learning analytics</div>
+    <h1>Understand your progress.</h1>
+    <p class="analytics-subhead" id="analytics-subhead">Your mastery, activity, strengths, weak areas, and next actions.</p>
     <span class="analytics-domain-badge" id="analytics-domain-badge"></span>
   </header>
-  <section class="mastery-section"><h2>Overall Mastery</h2><div class="mastery-ring-container"><svg class="mastery-ring" viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="50"/><circle class="ring-fill" id="an-mastery-ring-fill" cx="60" cy="60" r="50"/></svg><div class="mastery-text"><span class="mastery-percent" id="an-mastery-percent">0%</span><span class="mastery-label">Avg. Accuracy</span></div></div></section>
-  <section class="analytics-section"><h2>Weekly Activity <span class="section-note">(all study time)</span></h2><div class="chart-card"><canvas id="weekly-activity-chart" height="220"></canvas></div></section>
-  <section class="analytics-section"><h2>Topic Breakdown</h2><div class="topic-breakdown-list" id="topic-breakdown-list"><p class="topics-empty">Take a few quizzes to see your topic breakdown here.</p></div></section>
-  <section class="analytics-section"><h2>Quiz History</h2><div class="table-wrap"><table class="quiz-history-table"><thead><tr><th>Date</th><th>Topic</th><th>Score</th><th>Time</th></tr></thead><tbody id="quiz-history-body"><tr><td colspan="4" class="table-empty">No quiz attempts yet.</td></tr></tbody></table></div></section>
-  <section class="analytics-section"><h2>Recommended Next Actions</h2><ul class="recommend-list" id="recommend-list"></ul></section>
+
+  <section class="analytics-overview" aria-label="Learning overview">
+    <article class="analytics-panel mastery-panel">
+      <div class="mastery-ring-container">
+        <svg class="mastery-ring" viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="ring-bg" cx="60" cy="60" r="50"/>
+          <circle class="ring-fill" id="an-mastery-ring-fill" cx="60" cy="60" r="50"/>
+        </svg>
+        <div class="mastery-text"><span class="mastery-percent" id="an-mastery-percent">0%</span><span class="mastery-label">Avg. Accuracy</span></div>
+      </div>
+      <div class="mastery-copy">
+        <div class="analytics-panel-title">Overall mastery <span id="mastery-status">Building</span></div>
+        <h2 id="mastery-headline">Start building your profile.</h2>
+        <p id="mastery-description">Complete quizzes and study sessions to turn activity into useful learning signals.</p>
+        <div class="readiness-meter">
+          <div class="readiness-row"><span>Learning readiness</span><strong id="readiness-value">0 / 100</strong></div>
+          <div class="readiness-track"><div class="readiness-fill" id="readiness-fill"></div></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="analytics-panel">
+      <div class="analytics-panel-title">Learning metrics <span>Current track</span></div>
+      <div class="metric-grid" id="analytics-metrics"></div>
+    </article>
+  </section>
+
+  <section class="analytics-section">
+    <div class="section-heading"><div><h2>Performance over time</h2><p class="section-subtitle">Accuracy across your recorded quiz attempts.</p></div></div>
+    <div class="analytics-trend" id="analytics-trend"><div class="topics-empty">Take a quiz to begin your performance trend.</div></div>
+  </section>
+
+  <section class="analytics-section">
+    <div class="section-heading"><div><h2>Weekly activity <span class="section-note">study time</span></h2></div></div>
+    <div class="weekly-card"><div class="weekly-bars" id="weekly-bars"></div></div>
+  </section>
+
+  <section class="analytics-section analytics-grid">
+    <div>
+      <h2>Subject performance</h2>
+      <div class="subject-list" id="subject-list"><p class="topics-empty">Complete quizzes to see subject performance.</p></div>
+    </div>
+    <div>
+      <h2>Topic mastery</h2>
+      <div class="topic-breakdown-list" id="topic-breakdown-list"><p class="topics-empty">Take a few quizzes to see your topic breakdown here.</p></div>
+    </div>
+  </section>
+
+  <section class="analytics-section">
+    <h2>Where you need attention</h2>
+    <div class="analytics-panel" id="attention-panel"><p class="topics-empty">Your weak areas will appear here as enough quiz data becomes available.</p></div>
+  </section>
+
+  <section class="analytics-section">
+    <h2>Quiz history</h2>
+    <div class="table-wrap"><table class="quiz-history-table"><thead><tr><th>Date</th><th>Exam</th><th>Topic</th><th>Score</th><th>Time</th></tr></thead><tbody id="quiz-history-body"><tr><td colspan="5" class="table-empty">No quiz attempts yet.</td></tr></tbody></table></div>
+  </section>
+
+  <section class="analytics-section">
+    <h2>Recommended next actions</h2>
+    <ul class="recommend-list" id="recommend-list"></ul>
+  </section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script type="module">
   import { progressTracker } from "{{ site.baseurl }}/assets/js/progress.js";
   import { getState, setActivity, subscribe } from "{{ site.baseurl }}/assets/js/axiom-state.js";
 
-  const DOMAIN_LABELS = {
-    university: 'University',
-    'high-school': 'High School',
-    extras: 'Extras'
-  };
-  const formatTopic = slug => String(slug || '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  const formatDate = ts => new Date(ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-  const formatTime = seconds => { if (!seconds) return '—'; const m=Math.floor(seconds/60),s=seconds%60; return m>0?`${m}m ${s}s`:`${s}s`; };
-  let weeklyChart = null;
+  const DOMAIN_LABELS={university:'University','high-school':'High School',extras:'Extras'};
+  const titleCase=v=>String(v||'').replace(/_/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
+  const formatDate=ts=>{const d=new Date(ts);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString(undefined,{month:'short',day:'numeric'});};
+  const formatTime=s=>{s=Number(s)||0;if(!s)return'—';const m=Math.floor(s/60),sec=s%60;return m?`${m}m ${sec}s`:`${sec}s`;};
+  const clamp=(n,min=0,max=100)=>Math.max(min,Math.min(max,n));
 
-  function renderAnalytics() {
-    const state = getState();
-    const domain = state.domain;
-    const badge = document.getElementById('analytics-domain-badge');
-    if (badge) badge.textContent = DOMAIN_LABELS[domain] || domain;
+  function records(domain){
+    const raw=JSON.parse(localStorage.getItem('axiom_progress')||'{}');
+    const scores=Object.values(raw.quiz_scores||{}).filter(s=>s&&s.domain===domain);
+    const history=(Array.isArray(raw.quiz_history)?raw.quiz_history:Object.values(raw.quiz_history||{})).filter(q=>q&&q.domain===domain);
+    const progress=Object.values(raw.progress||{}).filter(p=>p&&p.domain===domain);
+    return {raw,scores,history,progress};
+  }
 
-    const summary = progressTracker.getProfileSummary(domain);
-    const percent = summary.avgAccuracy || 0;
-    const circumference = 2 * Math.PI * 50;
-    document.getElementById('an-mastery-ring-fill').style.strokeDashoffset = circumference - (percent / 100) * circumference;
-    document.getElementById('an-mastery-percent').textContent = percent + '%';
+  function renderTrend(history){
+    const el=document.getElementById('analytics-trend');
+    if(!history.length){el.innerHTML='<div class="topics-empty">Take a quiz to begin your performance trend.</div>';return;}
+    const points=history.slice(-10).map((h,i)=>({x:i,y:clamp(Number(h.accuracy)||0)}));
+    const w=700,h=150,pad=18;
+    const coords=points.map((p,i)=>[pad+(points.length===1?0:i*(w-pad*2)/(points.length-1)),h-pad-(p.y/100)*(h-pad*2)]);
+    const line=coords.map((c,i)=>(i?'L':'M')+c[0].toFixed(1)+' '+c[1].toFixed(1)).join(' ');
+    const dots=coords.map(c=>`<circle class="trend-dot" cx="${c[0]}" cy="${c[1]}" r="3.2"/>`).join('');
+    el.innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="Quiz accuracy trend"><line class="trend-grid" x1="${pad}" y1="${h-pad}" x2="${w-pad}" y2="${h-pad}"/><line class="trend-grid" x1="${pad}" y1="${h/2}" x2="${w-pad}" y2="${h/2}"/><line class="trend-grid" x1="${pad}" y1="${pad}" x2="${w-pad}" y2="${pad}"/><path class="trend-line" d="${line}"/>${dots}</svg>`;
+  }
 
-    const weekly = progressTracker.getWeeklyActivity();
-    const ctx = document.getElementById('weekly-activity-chart').getContext('2d');
-    if (weeklyChart) weeklyChart.destroy();
-    weeklyChart = new Chart(ctx, { type:'bar', data:{labels:weekly.labels,datasets:[{label:'Minutes Studied',data:weekly.minutes,backgroundColor:'#c9a84c',borderRadius:6,maxBarThickness:36}]}, options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:'#a8a4a0'}},y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'#a8a4a0',precision:0}}}}});
+  function renderWeekly(weekly){
+    const el=document.getElementById('weekly-bars');
+    const max=Math.max(1,...weekly.minutes);
+    el.innerHTML=weekly.labels.map((label,i)=>`<div class="weekly-day"><strong>${weekly.minutes[i]}m</strong><div class="weekly-bar-track"><div class="weekly-bar" style="height:${Math.max(3,Math.round(weekly.minutes[i]/max*100))}%"></div></div><span>${label}</span></div>`).join('');
+  }
 
-    const breakdown = progressTracker.getTopicBreakdown(domain);
-    const breakdownEl = document.getElementById('topic-breakdown-list');
-    breakdownEl.innerHTML = breakdown.length ? breakdown.map(t=>{const cls=t.accuracy<50?'weak':(t.accuracy<75?'practice':'strong');return `<div class="topic-breakdown-row"><span class="topic-breakdown-name">${formatTopic(t.topic)}</span><div class="topic-breakdown-bar-track"><div class="topic-breakdown-bar-fill ${cls}" style="width:${t.accuracy}%"></div></div><span class="topic-breakdown-pct ${cls}">${t.accuracy}%</span></div>`;}).join('') : '<p class="topics-empty">Take a few quizzes to see your topic breakdown here.</p>';
+  function render(){
+    const domain=getState().domain||'high-school';
+    const {raw,scores,history,progress}=records(domain);
+    const total=scores.reduce((n,s)=>n+(Number(s.total)||0),0);
+    const correct=scores.reduce((n,s)=>n+(Number(s.score)||0),0);
+    const accuracy=total?Math.round(correct/total*100):0;
+    const analytics=raw.analytics||{};
+    const streak=raw.study_track?.streakDays||0;
+    const studyMinutes=Number(analytics.totalStudyMinutes)||0;
+    const completed=progress.filter(p=>p.completed).length;
+    const readiness=total?clamp(Math.round(accuracy*.7+Math.min(history.length/10,1)*15+Math.min(streak/14,1)*15)):0;
 
-    const history = progressTracker.getQuizHistory(20, domain);
-    const historyBody = document.getElementById('quiz-history-body');
-    historyBody.innerHTML = history.length ? history.map(h=>`<tr><td>${formatDate(h.date)}</td><td>${formatTopic(h.topic)}</td><td>${h.score}/${h.total} (${h.accuracy}%)</td><td>${formatTime(h.timeSpentSeconds)}</td></tr>`).join('') : '<tr><td colspan="4" class="table-empty">No quiz attempts yet.</td></tr>';
+    document.getElementById('analytics-domain-badge').textContent=DOMAIN_LABELS[domain]||domain;
+    document.getElementById('an-mastery-percent').textContent=accuracy+'%';
+    document.getElementById('an-mastery-ring-fill').style.strokeDashoffset=314.159-(accuracy/100)*314.159;
+    document.getElementById('readiness-value').textContent=readiness+' / 100';
+    document.getElementById('readiness-fill').style.width=readiness+'%';
+    document.getElementById('mastery-status').textContent=!total?'Building':accuracy>=85?'Strong':accuracy>=70?'Developing':'Needs attention';
+    document.getElementById('mastery-headline').textContent=!total?'Start building your profile.':accuracy>=85?'Your recorded performance is strong.':accuracy>=70?'You are building a solid foundation.':'Targeted practice will have the biggest impact now.';
+    document.getElementById('mastery-description').textContent=!total?'Complete quizzes and study sessions to turn activity into useful learning signals.':`${history.length} recorded quiz attempt${history.length===1?'':'s'} and ${completed} completed chapter${completed===1?'':'s'} in this track.`;
+    document.getElementById('analytics-subhead').textContent=total?'A live view of your recorded learning activity and the next best actions.':'Your dashboard is ready. Your first quiz will start populating these insights.';
 
-    const actions = progressTracker.getRecommendedActions(domain);
-    document.getElementById('recommend-list').innerHTML = actions.map(a=>`<li><a href="{{ site.baseurl }}${a.href}">${a.text} →</a></li>`).join('');
+    const hours=Math.floor(studyMinutes/60),mins=studyMinutes%60;
+    document.getElementById('analytics-metrics').innerHTML=[
+      ['Questions',total,total?'attempted':'to begin'],
+      ['Study time',hours?`${hours}h ${mins}m`:`${mins}m`,'recorded'],
+      ['Streak',streak+' days',streak?'current':'start today'],
+      ['Topics',new Set(scores.map(s=>s.topic)).size,'with quiz data'],
+      ['Chapters',completed,progress.length?`${progress.length} tracked`:'tracked as you study'],
+      ['Quiz attempts',history.length,'recorded']
+    ].map(([l,v,m])=>`<div class="analytics-metric"><span class="analytics-metric-label">${l}</span><strong class="analytics-metric-value">${v}</strong><span class="analytics-metric-meta">${m}</span></div>`).join('');
+
+    renderTrend(history); renderWeekly(progressTracker.getWeeklyActivity());
+
+    const subjects={}; scores.forEach(s=>{const k=titleCase(s.subject||'General');subjects[k] ||= {total:0,correct:0};subjects[k].total+=Number(s.total)||0;subjects[k].correct+=Number(s.score)||0;});
+    const subjectEl=document.getElementById('subject-list');
+    const subjectRows=Object.entries(subjects).sort((a,b)=>(b[1].correct/b[1].total)-(a[1].correct/a[1].total));
+    subjectEl.innerHTML=subjectRows.length?subjectRows.map(([name,v])=>{const a=v.total?Math.round(v.correct/v.total*100):0;return `<div class="subject-row"><div class="subject-row-head"><span>${name}</span><span>${a}%</span></div><div class="subject-row-track"><div class="subject-row-fill" style="width:${a}%"></div></div></div>`;}).join(''):'<p class="topics-empty">Complete quizzes to see subject performance.</p>';
+
+    const topics={};scores.forEach(s=>{const k=s.topic||'General';topics[k] ||= {total:0,correct:0,attempts:0};topics[k].total+=Number(s.total)||0;topics[k].correct+=Number(s.score)||0;topics[k].attempts++;});
+    const topicRows=Object.entries(topics).map(([topic,v])=>({topic,accuracy:v.total?Math.round(v.correct/v.total*100):0,attempts:v.attempts})).sort((a,b)=>a.accuracy-b.accuracy);
+    const topicEl=document.getElementById('topic-breakdown-list');
+    topicEl.innerHTML=topicRows.length?topicRows.slice(0,10).map(t=>{const cls=t.accuracy<50?'weak':t.accuracy<75?'practice':'strong';return `<div class="topic-breakdown-row"><span class="topic-breakdown-name">${titleCase(t.topic)}</span><div class="topic-breakdown-bar-track"><div class="topic-breakdown-bar-fill ${cls}" style="width:${t.accuracy}%"></div></div><span class="topic-breakdown-pct ${cls}">${t.accuracy}%</span></div>`;}).join(''):'<p class="topics-empty">Take a few quizzes to see your topic breakdown here.</p>';
+
+    const attention=topicRows.filter(t=>t.accuracy<75).slice(0,4), attentionEl=document.getElementById('attention-panel');
+    attentionEl.innerHTML=attention.length?attention.map(t=>`<div class="progress-row"><span class="progress-label">${titleCase(t.topic)}</span><div class="progress-track"><div class="progress-fill ${t.accuracy<50?'danger':'warning'}" style="width:${t.accuracy}%"></div></div><span class="progress-value">${t.accuracy}%</span></div>`).join(''):'<p class="topics-empty">No priority weak areas yet. Keep practising to improve the accuracy of your recommendations.</p>';
+
+    const body=document.getElementById('quiz-history-body');
+    body.innerHTML=history.length?history.slice(-20).reverse().map(q=>`<tr><td>${formatDate(q.date)}</td><td>${titleCase(q.exam||'Practice')}</td><td>${titleCase(q.topic)}</td><td>${q.score}/${q.total} (${q.accuracy}%)</td><td>${formatTime(q.timeSpentSeconds)}</td></tr>`).join(''):'<tr><td colspan="5" class="table-empty">No quiz attempts yet.</td></tr>';
+
+    const actions=attention.length?attention.map(t=>({text:`Practice ${titleCase(t.topic)} — ${t.accuracy}% recorded accuracy`,href:'/quiz/'})):[{text:total?'Continue with another focused quiz to keep building your mastery profile.':'Take your first quiz to start building your mastery profile.',href:'/quiz/'}];
+    document.getElementById('recommend-list').innerHTML=actions.map(a=>`<li><a href="{{ site.baseurl }}${a.href}"><span>${a.text}</span><strong>→</strong></a></li>`).join('');
   }
 
   setActivity('progress');
-  renderAnalytics();
-  subscribe(renderAnalytics);
+  try{render();}catch(e){console.error('[Analytics] render failed',e);}
+  subscribe(()=>{try{render();}catch(e){console.error('[Analytics] refresh failed',e);}});
 </script>
