@@ -44,7 +44,7 @@ jobs:
           test -s _site/extras/index.html
           test -s _site/high-school/index.html
           test -s _site/quiz/index.html
-          test -s _site/tutor.html
+          test -s _site/tutor/index.html
           grep -q 'Start where you are.' _site/index.html
           grep -q 'High School' _site/index.html
           grep -q 'University' _site/index.html
