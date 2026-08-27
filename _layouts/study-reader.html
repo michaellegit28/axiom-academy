@@ -36,10 +36,61 @@ layout: app-shell
   <nav class="study-reader-footer" aria-label="Study navigation">{% if page.previous_study %}<a href="{{ page.previous_study | relative_url }}"><small>Previous lesson</small><strong>← {{ page.previous_study_title }}</strong></a>{% else %}<span></span>{% endif %}<a href="{{ '/high-school/subject/?department=mathematics&topic=' | append: page.high_school_topic | relative_url }}"><small>Topic</small><strong>{{ page.high_school_topic | replace: '-', ' ' | capitalize }}</strong></a>{% if page.next_study %}<a href="{{ page.next_study | relative_url }}"><small>Next lesson</small><strong>{{ page.next_study_title }} →</strong></a>{% else %}<span></span>{% endif %}</nav>
 </div>
 <script>
-(function(){const content=document.getElementById('study-content'),bar=document.getElementById('study-progress-bar'),toc=document.getElementById('study-toc');if(!content)return;[...content.querySelectorAll('h2,h3')].forEach((h,i)=>{h.id=h.id||'study-section-'+(i+1);const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent.trim();toc&&toc.appendChild(a);});
-const answerSource=document.querySelector('[data-study-answer-source]'),answerList=document.querySelector('[data-study-answers]');if(answerSource&&answerList){const raw=answerSource.textContent.trim();const parts=raw.split(/\s*;\s*/).map(s=>s.trim()).filter(Boolean);(parts.length?parts:[raw]).forEach(text=>{const li=document.createElement('li');li.className='study-answer-item';li.textContent=text;answerList.appendChild(li);});answerSource.hidden=true;}
-function progress(){const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const pct=Math.max(0,Math.min(100,scrollY/max*100));if(bar)bar.style.width=pct+'%';localStorage.setItem('axiom-study-progress:'+location.pathname,Math.round(pct));}addEventListener('scroll',progress,{passive:true});progress();
-const bookmark=document.getElementById('study-bookmark'),key='axiom-study-bookmark:'+location.pathname;if(bookmark&&localStorage.getItem(key)==='1'){bookmark.textContent='Saved';bookmark.classList.add('active');}bookmark&&bookmark.addEventListener('click',()=>{const on=localStorage.getItem(key)!=='1';localStorage.setItem(key,on?'1':'0');bookmark.textContent=on?'Saved':'Bookmark';bookmark.classList.toggle('active',on);});
-const size=document.getElementById('study-text-size');let level=0;const sizes=['1rem','1.08rem','1.16rem'];size&&size.addEventListener('click',()=>{level=(level+1)%sizes.length;content.style.fontSize=sizes[level];});})();
+(function(){
+  const content=document.getElementById('study-content'),bar=document.getElementById('study-progress-bar'),toc=document.getElementById('study-toc');
+  if(!content)return;
+
+  [...content.querySelectorAll('h2,h3')].forEach((h,i)=>{
+    h.id=h.id||'study-section-'+(i+1);
+    const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent.trim();toc&&toc.appendChild(a);
+  });
+
+  /* Build every textbook "Show answers" block as a real vertical answer list.
+     This deliberately targets the rendered lesson content, not just the separate
+     chapter-data component, so markdown <details> answer sections behave the same. */
+  [...content.querySelectorAll('details')].forEach(details=>{
+    const summary=details.querySelector(':scope > summary');
+    if(!summary || !/answer/i.test(summary.textContent))return;
+    details.classList.add('study-answer-details');
+    const raw=[...details.childNodes]
+      .filter(node=>node!==summary)
+      .map(node=>node.textContent||'')
+      .join('\n')
+      .replace(/\u00a0/g,' ')
+      .trim();
+    if(!raw)return;
+    const parts=raw.split(/\n\s*(?=\d+\.\s*)/).map(s=>s.trim()).filter(Boolean);
+    if(parts.length<2)return;
+    const list=document.createElement('ol');
+    list.className='study-answers';
+    list.setAttribute('aria-label','Answers');
+    parts.forEach(part=>{
+      const li=document.createElement('li');
+      li.className='study-answer-item';
+      li.textContent=part.replace(/^\d+\.\s*/,'');
+      list.appendChild(li);
+    });
+    [...details.childNodes].filter(node=>node!==summary).forEach(node=>node.remove());
+    details.appendChild(list);
+  });
+
+  const answerSource=document.querySelector('[data-study-answer-source]'),answerList=document.querySelector('[data-study-answers]');
+  if(answerSource&&answerList){
+    const raw=answerSource.textContent.trim();
+    const parts=raw.split(/\s*;\s*/).map(s=>s.trim()).filter(Boolean);
+    (parts.length?parts:[raw]).forEach(text=>{const li=document.createElement('li');li.className='study-answer-item';li.textContent=text;answerList.appendChild(li);});
+    answerSource.hidden=true;
+  }
+
+  function progress(){const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const pct=Math.max(0,Math.min(100,scrollY/max*100));if(bar)bar.style.width=pct+'%';localStorage.setItem('axiom-study-progress:'+location.pathname,Math.round(pct));}
+  addEventListener('scroll',progress,{passive:true});progress();
+
+  const bookmark=document.getElementById('study-bookmark'),key='axiom-study-bookmark:'+location.pathname;
+  if(bookmark&&localStorage.getItem(key)==='1'){bookmark.textContent='Saved';bookmark.classList.add('active');}
+  bookmark&&bookmark.addEventListener('click',()=>{const on=localStorage.getItem(key)!=='1';localStorage.setItem(key,on?'1':'0');bookmark.textContent=on?'Saved':'Bookmark';bookmark.classList.toggle('active',on);});
+
+  const size=document.getElementById('study-text-size');let level=0;const sizes=['1rem','1.08rem','1.16rem'];
+  size&&size.addEventListener('click',()=>{level=(level+1)%sizes.length;content.style.fontSize=sizes[level];});
+})();
 </script>
 <script>window.MathJax={tex:{inlineMath:[["$","$"]],["\\(","\\)"]]},svg:{fontCache:'global'}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
