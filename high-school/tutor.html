@@ -1,0 +1,48 @@
+<!-- high-school/tutor.html -->
+<!-- 
+    GNOSTIRI Tutor Interface for High School Domain
+    This file serves the High School domain for the Tutor section, integrating quizzes and study materials.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNOSTIRI Tutor - High School</title>
+    <link rel="stylesheet" href="../assets/css/tutor.scss">
+</head>
+<body>
+    <div class="tutor-container">
+        <header>
+            <h1>GNOSTIRI Tutor</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="./index.html">High School</a>
+            </nav>
+        </header>
+        <main>
+            <section class="tutor-content">
+                <div id="topic-selector">
+                    <label for="topics">Select a Topic:</label>
+                    <select id="topics">
+                        <option value="">--Choose a Topic--</option>
+                        <option value="math">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="history">History</option>
+                    </select>
+                </div>
+                <div id="tutor-feedback">
+                    <!-- Dynamic feedback goes here -->
+                </div>
+            </section>
+            <section id="recommended-quiz">
+                <!-- Area to display recommended quizzes -->
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2023 Axiom Academy</p>
+        </footer>
+    </div>
+    <script src="../assets/js/tutor.js"></script>
+</body>
+</html>
