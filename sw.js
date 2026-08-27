@@ -3,7 +3,7 @@
  * Caches chapters, quizzes, and flashcards for offline use
  */
 
-const CACHE_NAME = 'gnostiri-v2';
+const CACHE_NAME = 'gnostiri-v3';
 const STATIC_ASSETS = [
   '/axiom-academy/',
   '/axiom-academy/high-school/',
