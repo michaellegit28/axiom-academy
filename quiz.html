@@ -9,49 +9,20 @@ permalink: /quiz/
 </style>
 
 <div class="quiz-centre" id="quiz-centre">
-  <section class="quiz-hero">
-    <div class="eyebrow">Practice centre</div>
-    <h1>Practice with purpose.</h1>
-    <p>Choose the learning domain first. GNOSTIRI keeps High School, University, and Extras assessments separate so each quiz belongs to the academic context that owns it.</p>
-  </section>
-
-  <section aria-label="Quiz domains" class="quiz-domain-grid">
-    <a class="quiz-domain-card" href="{{ '/quiz/high-school/' | relative_url }}" data-domain="high-school"><span class="icon">🧪</span><h2>High School</h2><p>Department-owned practice for Mathematics, Sciences, Languages, Social Sciences, and Arts & Humanities.</p><div class="meta"><span>Department</span><span>Subject</span><span>Topic</span></div><span class="arrow">Open High School practice →</span></a>
-    <a class="quiz-domain-card" href="{{ '/quiz/university/' | relative_url }}" data-domain="university"><span class="icon">🎓</span><h2>University</h2><p>Course-based assessments attached to university modules and topics. Course access controls assessment access.</p><div class="meta"><span>Course</span><span>Module</span><span>Topic</span></div><span class="arrow">Open University assessments →</span></a>
-    <a class="quiz-domain-card" href="{{ '/quiz/extras/' | relative_url }}" data-domain="extras"><span class="icon">✨</span><h2>Extras</h2><p>Future assessments for Masterpiece volumes, research material, and advanced deep-dive learning.</p><div class="meta"><span>Collection</span><span>Volume</span><span>Topic</span></div><span class="arrow">Open Extras assessments →</span></a>
-  </section>
-
-  <section class="quiz-section">
-    <div class="quiz-section-head"><h2>Your practice snapshot</h2><p>Derived from recorded local activity; it updates as you complete real quizzes.</p></div>
-    <div class="quiz-summary"><div class="quiz-stat"><strong id="qstat-questions">—</strong><span>Questions answered</span></div><div class="quiz-stat"><strong id="qstat-accuracy">—</strong><span>Accuracy</span></div><div class="quiz-stat"><strong id="qstat-attempts">—</strong><span>Attempts</span></div><div class="quiz-stat"><strong id="qstat-focus">Ready</strong><span>Current focus</span></div></div>
-  </section>
-
-  <section class="quiz-section">
-    <div class="quiz-section-head"><h2>Smart examination navigation</h2><p>For High School, examination context sits alongside the academic path instead of replacing it.</p></div>
-    <div class="quiz-smart"><div><div class="eyebrow">High School exam practice</div><h3>Find questions by exam when you need them.</h3><p>JAMB / UTME, WAEC, and future international examinations can map to the same canonical High School topics. This prevents duplicated subjects and keeps Progress consistent.</p></div><div class="quiz-smart-links"><a href="{{ '/quiz/high-school/' | relative_url }}?exam=jamb">JAMB / UTME <span>→</span></a><a href="{{ '/quiz/high-school/' | relative_url }}?exam=waec">WAEC <span>→</span></a><a href="{{ '/quiz/high-school/' | relative_url }}?exam=international">International <span>→</span></a><a href="{{ '/quiz/high-school/' | relative_url }}">Browse by subject <span>→</span></a></div></div>
-  </section>
-
-  <section class="quiz-section">
-    <div class="quiz-section-head"><h2>How practice feeds Progress</h2></div>
-    <div class="quiz-activity">Every completed quiz can contribute to the same activity chain: <strong>attempt → topic performance → mastery → weak-area detection → recommendation → next study action</strong>. The domain and academic IDs stay attached throughout, so High School activity cannot accidentally appear as University or Extras activity.</div>
-  </section>
+<section class="quiz-hero"><div class="eyebrow">Practice centre</div><h1>Practice with purpose.</h1><p>Choose the learning domain first. GNOSTIRI keeps High School, University, and Extras assessments separate so each quiz belongs to the academic context that owns it.</p></section>
+<section aria-label="Quiz domains" class="quiz-domain-grid">
+<a class="quiz-domain-card" href="{{ '/quiz/high-school/' | relative_url }}" data-domain="high-school"><span class="icon">🧪</span><h2>High School</h2><p>Department-owned practice for Mathematics, Sciences, Languages, Social Sciences, and Arts & Humanities.</p><div class="meta"><span>Department</span><span>Subject</span><span>Topic</span></div><span class="arrow">Open High School practice →</span></a>
+<a class="quiz-domain-card" href="{{ '/quiz/university/' | relative_url }}" data-domain="university"><span class="icon">🎓</span><h2>University</h2><p>Course-based assessments attached to university modules and topics. Course access controls assessment access.</p><div class="meta"><span>Course</span><span>Module</span><span>Topic</span></div><span class="arrow">Open University assessments →</span></a>
+<a class="quiz-domain-card" href="{{ '/quiz/extras/' | relative_url }}" data-domain="extras"><span class="icon">✨</span><h2>Extras</h2><p>Future assessments for Masterpiece volumes, research material, and advanced deep-dive learning.</p><div class="meta"><span>Collection</span><span>Volume</span><span>Topic</span></div><span class="arrow">Open Extras assessments →</span></a>
+</section>
+<section class="quiz-section"><div class="quiz-section-head"><h2>Your practice snapshot</h2><p>Only activity from the currently selected domain is shown.</p></div><div class="quiz-summary"><div class="quiz-stat"><strong id="qstat-questions">—</strong><span>Questions answered</span></div><div class="quiz-stat"><strong id="qstat-accuracy">—</strong><span>Accuracy</span></div><div class="quiz-stat"><strong id="qstat-attempts">—</strong><span>Attempts</span></div><div class="quiz-stat"><strong id="qstat-focus">Ready</strong><span>Current focus</span></div></div></section>
+<section class="quiz-section"><div class="quiz-section-head"><h2>Smart examination navigation</h2><p>Examination mappings remain inside the High School compound and never redefine the academic hierarchy.</p></div><div class="quiz-smart"><div><div class="eyebrow">High School exam practice</div><h3>Find questions by exam when you need them.</h3><p>JAMB / UTME, WAEC, and future international examinations map to canonical High School topics without exposing University or Extras assessments.</p></div><div class="quiz-smart-links"><a href="{{ '/quiz/high-school/' | relative_url }}?exam=jamb" data-domain="high-school">JAMB / UTME <span>→</span></a><a href="{{ '/quiz/high-school/' | relative_url }}?exam=waec" data-domain="high-school">WAEC <span>→</span></a><a href="{{ '/quiz/high-school/' | relative_url }}?exam=international" data-domain="high-school">International <span>→</span></a><a href="{{ '/quiz/high-school/' | relative_url }}" data-domain="high-school">Browse by subject <span>→</span></a></div></div></section>
+<section class="quiz-section"><div class="quiz-section-head"><h2>How practice feeds Progress</h2></div><div class="quiz-activity">Every completed quiz contributes to the domain-scoped activity chain: <strong>attempt → topic performance → mastery → weak-area detection → recommendation → next study action</strong>.</div></section>
 </div>
-
 <script type="module">
-import { getState, setActivity } from "{{ '/assets/js/axiom-state.js' | relative_url }}";
+import {getState,setDomain,setActivity} from "{{ '/assets/js/axiom-state.js' | relative_url }}";
 (function(){
-  function loadSummary(){
-    let raw=[];try{raw=JSON.parse(localStorage.getItem('gnostiri-quiz-history')||'[]');}catch(e){}
-    if(!Array.isArray(raw)||!raw.length)return;
-    const attempts=raw.length;
-    const answered=raw.reduce((n,r)=>n+Number(r.total||r.questionCount||0),0);
-    const correct=raw.reduce((n,r)=>n+Number(r.correct||0),0);
-    const accuracy=answered?Math.round(correct/answered*100):null;
-    document.getElementById('qstat-questions').textContent=answered||attempts;
-    document.getElementById('qstat-accuracy').textContent=accuracy===null?'—':accuracy+'%';
-    document.getElementById('qstat-attempts').textContent=attempts;
-    document.getElementById('qstat-focus').textContent=accuracy!==null?(accuracy<70?'Review':'Strong'):'Active';
-  }
-  document.addEventListener('DOMContentLoaded',()=>{setActivity('quiz');loadSummary();});
+ function loadSummary(){const d=getState().domain;let raw=[];try{raw=JSON.parse(localStorage.getItem('axiom_quiz_history_'+d)||'[]');}catch(e){}if(!Array.isArray(raw)||!raw.length)return;const attempts=raw.length,answered=raw.reduce((n,r)=>n+Number(r.totalQuestions||r.total||0),0),correct=raw.reduce((n,r)=>n+Number(r.correct||0),0),accuracy=answered?Math.round(correct/answered*100):null;document.getElementById('qstat-questions').textContent=answered||attempts;document.getElementById('qstat-accuracy').textContent=accuracy===null?'—':accuracy+'%';document.getElementById('qstat-attempts').textContent=attempts;document.getElementById('qstat-focus').textContent=accuracy!==null?(accuracy<70?'Review':'Strong'):'Active';}
+ document.addEventListener('DOMContentLoaded',()=>{setActivity('quiz');document.querySelectorAll('[data-domain]').forEach(a=>a.addEventListener('click',()=>{try{setDomain(a.dataset.domain);setActivity('quiz');}catch(e){console.warn('[GNOSTIRI Domain]',e);}}));loadSummary();});
 })();
 </script>
