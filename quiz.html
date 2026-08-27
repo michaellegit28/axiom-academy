@@ -5,88 +5,43 @@ permalink: /quiz/
 ---
 
 <style>
-.quiz-hub{padding-bottom:2rem}.quiz-hub *{min-width:0}.quiz-hub-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.25rem}.quiz-hub-hero h1{margin:.25rem 0 .35rem;font:750 clamp(1.8rem,4vw,2.7rem)/1.08 var(--font-serif);letter-spacing:-.03em}.quiz-hub-hero p{margin:0;color:var(--text-secondary);font-size:.9rem}.quiz-hub-eyebrow{color:var(--g-gold);font-size:.67rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.quiz-track-switcher{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1.25rem}.quiz-track-switcher button{border:1px solid var(--border-subtle);background:var(--bg-card);color:var(--text-secondary);border-radius:999px;padding:.45rem .75rem;font-size:.72rem;font-weight:750;cursor:pointer}.quiz-track-switcher button.active,.quiz-track-switcher button:hover{background:var(--g-gold-soft);border-color:var(--g-gold);color:var(--g-gold-dim)}.quiz-hub-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin-bottom:1.5rem}.quiz-stat{padding:.85rem 1rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-md)}.quiz-stat strong{display:block;font-size:1.15rem;line-height:1.1}.quiz-stat span{display:block;margin-top:.25rem;color:var(--text-muted);font-size:.66rem;font-weight:700}.quiz-section{margin-top:1.6rem}.quiz-section-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:.75rem}.quiz-section-head h2{margin:0;font:700 1.25rem/1.15 var(--font-serif)}.quiz-section-head p{margin:.25rem 0 0;color:var(--text-secondary);font-size:.76rem}.quiz-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}.quiz-card{display:flex;flex-direction:column;padding:1rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);text-decoration:none;color:var(--text-primary);transition:transform var(--duration-normal) var(--ease),border-color var(--duration-normal) var(--ease),box-shadow var(--duration-normal) var(--ease)}.quiz-card:hover{transform:translateY(-2px);border-color:var(--g-gold);box-shadow:var(--shadow-md)}.quiz-card-top{display:flex;align-items:center;justify-content:space-between;gap:.6rem}.quiz-card-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:11px;background:var(--bg-secondary);border:1px solid var(--border-subtle);font-size:1.1rem}.quiz-card-status{font-size:.62rem;font-weight:800;color:var(--text-muted)}.quiz-card h3{margin:.7rem 0 .3rem;font-size:1rem;line-height:1.25}.quiz-card p{margin:0;color:var(--text-secondary);font-size:.75rem;line-height:1.45}.quiz-card-meta{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.75rem}.quiz-card-meta span{padding:.2rem .5rem;border-radius:999px;background:var(--bg-secondary);color:var(--text-secondary);font-size:.6rem;font-weight:750}.quiz-card-action{margin-top:auto;padding-top:.8rem;color:var(--g-gold);font-size:.7rem;font-weight:800}.quiz-card.disabled{cursor:default;opacity:.72}.quiz-card.disabled:hover{transform:none;border-color:var(--border-subtle);box-shadow:var(--shadow-sm)}.quick-practice{display:grid;grid-template-columns:1.25fr 1fr;gap:.8rem;padding:1rem;background:linear-gradient(135deg,var(--bg-elevated),var(--bg-card));border:1px solid var(--border-subtle);border-radius:var(--radius-lg)}.quick-practice h2{margin:.2rem 0 .3rem;font:700 1.25rem/1.15 var(--font-serif)}.quick-practice p{margin:0;color:var(--text-secondary);font-size:.78rem}.quick-options{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}.quick-option{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.65rem .7rem;border:1px solid var(--border-subtle);border-radius:10px;background:var(--bg-card);text-decoration:none;color:var(--text-primary)}.quick-option b{font-size:.7rem}.quick-option span{color:var(--text-muted);font-size:.58rem}.recommendation{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.1rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-left:3px solid var(--g-gold);border-radius:var(--radius-lg)}.recommendation h3{margin:.2rem 0 .25rem;font-size:.95rem}.recommendation p{margin:0;color:var(--text-secondary);font-size:.73rem}.quiz-hub-btn{display:inline-flex;align-items:center;justify-content:center;padding:.55rem .8rem;border-radius:9px;background:var(--g-gold);color:#fff;text-decoration:none;font-size:.68rem;font-weight:800;white-space:nowrap}.quiz-empty{padding:1rem;color:var(--text-secondary);background:var(--bg-card);border:1px dashed var(--border-medium);border-radius:var(--radius-md);font-size:.75rem}@media(max-width:700px){.quiz-hub-hero{display:block}.quiz-hub-stats{grid-template-columns:repeat(2,1fr)}.quiz-card-grid{grid-template-columns:1fr}.quick-practice{grid-template-columns:1fr}.recommendation{align-items:flex-start;flex-direction:column}.quiz-hub-btn{width:100%}}@media(min-width:1100px){.quiz-card-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.quiz-centre{padding-bottom:3rem}.quiz-hero{padding:1rem 0 1.25rem}.quiz-hero .eyebrow{margin-bottom:.45rem}.quiz-hero h1{margin:0 0 .45rem;font:750 clamp(1.9rem,4vw,2.8rem)/1.08 var(--font-serif);letter-spacing:-.03em}.quiz-hero p{max-width:720px;margin:0;color:var(--text-secondary);line-height:1.55}.quiz-domain-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:1.1rem}.quiz-domain-card{display:block;padding:1rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--text-primary);text-decoration:none;box-shadow:var(--shadow-sm);transition:transform var(--duration-normal) var(--ease),border-color var(--duration-normal) var(--ease)}.quiz-domain-card:hover{transform:translateY(-2px);border-color:var(--g-gold)}.quiz-domain-card .icon{width:40px;height:40px;display:grid;place-items:center;border-radius:11px;background:var(--bg-secondary);border:1px solid var(--border-subtle);font-size:1.1rem}.quiz-domain-card h2{margin:.7rem 0 .3rem;font:700 1.05rem/1.2 var(--font-serif)}.quiz-domain-card p{margin:0;color:var(--text-secondary);font-size:.72rem;line-height:1.45}.quiz-domain-card .meta{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.7rem}.quiz-domain-card .meta span{padding:.2rem .5rem;border-radius:999px;background:var(--bg-secondary);color:var(--text-muted);font-size:.59rem;font-weight:750}.quiz-domain-card .arrow{display:block;margin-top:.8rem;color:var(--g-gold);font-size:.68rem;font-weight:850}.quiz-section{margin-top:1.6rem}.quiz-section-head{margin-bottom:.75rem}.quiz-section-head h2{margin:0 0 .25rem;font:700 1.3rem/1.15 var(--font-serif)}.quiz-section-head p{margin:0;color:var(--text-secondary);font-size:.74rem}.quiz-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem}.quiz-stat{padding:.75rem .85rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-md)}.quiz-stat strong{display:block;font-size:1rem}.quiz-stat span{display:block;margin-top:.2rem;color:var(--text-muted);font-size:.6rem;font-weight:700}.quiz-smart{display:grid;grid-template-columns:1.15fr 1fr;gap:.8rem;padding:1rem;background:linear-gradient(135deg,var(--bg-elevated),var(--bg-card));border:1px solid var(--border-subtle);border-radius:var(--radius-lg)}.quiz-smart h3{margin:.15rem 0 .3rem;font:700 1.15rem/1.2 var(--font-serif)}.quiz-smart p{margin:0;color:var(--text-secondary);font-size:.72rem;line-height:1.5}.quiz-smart-links{display:grid;grid-template-columns:repeat(2,1fr);gap:.45rem}.quiz-smart-links a{display:flex;justify-content:space-between;gap:.4rem;padding:.6rem .65rem;border:1px solid var(--border-subtle);border-radius:9px;background:var(--bg-card);text-decoration:none;color:var(--text-primary);font-size:.66rem;font-weight:750}.quiz-smart-links span{color:var(--text-muted)}.quiz-activity{padding:.9rem 1rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);color:var(--text-secondary);font-size:.72rem;line-height:1.5}@media(max-width:800px){.quiz-domain-grid{grid-template-columns:1fr}.quiz-summary{grid-template-columns:repeat(2,1fr)}.quiz-smart{grid-template-columns:1fr}}@media(max-width:420px){.quiz-summary{grid-template-columns:1fr 1fr}}
 </style>
 
-<div class="quiz-hub" id="quiz-hub">
-  <header class="quiz-hub-hero">
-    <div>
-      <div class="quiz-hub-eyebrow">Practice centre</div>
-      <h1>Practice smarter.</h1>
-      <p>Test what you know, find weak areas, and turn practice into measurable progress.</p>
-    </div>
-  </header>
+<div class="quiz-centre" id="quiz-centre">
+  <section class="quiz-hero">
+    <div class="eyebrow">Practice centre</div>
+    <h1>Practice with purpose.</h1>
+    <p>Choose the learning domain first. GNOSTIRI keeps High School, University, and Extras assessments separate so each quiz belongs to the academic context that owns it.</p>
+  </section>
 
-  <div class="quiz-track-switcher" role="tablist" aria-label="Learning track">
-    <button type="button" class="active" data-domain="high-school">High School</button>
-    <button type="button" data-domain="university">University</button>
-    <button type="button" data-domain="extras">Extras</button>
-  </div>
-
-  <section class="quiz-hub-stats" aria-label="Practice summary">
-    <div class="quiz-stat"><strong id="qstat-questions">—</strong><span>Questions answered</span></div>
-    <div class="quiz-stat"><strong id="qstat-accuracy">—</strong><span>Accuracy</span></div>
-    <div class="quiz-stat"><strong id="qstat-streak">—</strong><span>Practice streak</span></div>
-    <div class="quiz-stat"><strong id="qstat-focus">Ready</strong><span>Current focus</span></div>
+  <section aria-label="Quiz domains" class="quiz-domain-grid">
+    <a class="quiz-domain-card" href="{{ '/quiz/high-school/' | relative_url }}" data-domain="high-school"><span class="icon">🧪</span><h2>High School</h2><p>Department-owned practice for Mathematics, Sciences, Languages, Social Sciences, and Arts & Humanities.</p><div class="meta"><span>Department</span><span>Subject</span><span>Topic</span></div><span class="arrow">Open High School practice →</span></a>
+    <a class="quiz-domain-card" href="{{ '/quiz/university/' | relative_url }}" data-domain="university"><span class="icon">🎓</span><h2>University</h2><p>Course-based assessments attached to university modules and topics. Course access controls assessment access.</p><div class="meta"><span>Course</span><span>Module</span><span>Topic</span></div><span class="arrow">Open University assessments →</span></a>
+    <a class="quiz-domain-card" href="{{ '/quiz/extras/' | relative_url }}" data-domain="extras"><span class="icon">✨</span><h2>Extras</h2><p>Future assessments for Masterpiece volumes, research material, and advanced deep-dive learning.</p><div class="meta"><span>Collection</span><span>Volume</span><span>Topic</span></div><span class="arrow">Open Extras assessments →</span></a>
   </section>
 
   <section class="quiz-section">
-    <div class="quiz-section-head"><div><h2>Quick practice</h2><p>Start with an available question bank. Session controls will expand as more banks are added.</p></div></div>
-    <div class="quick-practice">
-      <div><div class="quiz-hub-eyebrow">10-minute option</div><h2>Keep the streak moving.</h2><p>Choose an available practice bank and work a focused session without leaving the Quiz centre.</p></div>
-      <div class="quick-options">
-        <a class="quick-option" href="{{ '/quiz/high-school/mathematics/number-and-numeracy/' | relative_url }}"><div><b>Number & Numeracy</b><span>20 questions</span></div><span>→</span></a>
-        <a class="quick-option" href="{{ '/quiz/high-school/mathematics/algebra/' | relative_url }}"><div><b>Algebra</b><span>Practice bank</span></div><span>→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="quiz-section" id="quiz-panel-high-school">
-    <div class="quiz-section-head"><div><h2>Examination practice</h2><p>Prepare for the examination tracks as their question banks are brought online.</p></div></div>
-    <div class="quiz-card-grid">
-      <div class="quiz-card disabled"><div class="quiz-card-top"><div class="quiz-card-icon">🧪</div><span class="quiz-card-status">COMING NEXT</span></div><h3>JAMB / UTME</h3><p>Objective questions, timed drills, and full mock examination practice.</p><div class="quiz-card-meta"><span>Objective</span><span>Timed</span><span>Mock exam</span></div><div class="quiz-card-action">Question bank coming next</div></div>
-      <div class="quiz-card disabled"><div class="quiz-card-top"><div class="quiz-card-icon">📝</div><span class="quiz-card-status">COMING NEXT</span></div><h3>WAEC</h3><p>Theory and objective practice with examination-focused review.</p><div class="quiz-card-meta"><span>Theory</span><span>Objective</span><span>Exam practice</span></div><div class="quiz-card-action">Question bank coming next</div></div>
-    </div>
+    <div class="quiz-section-head"><h2>Your practice snapshot</h2><p>Derived from recorded local activity; it updates as you complete real quizzes.</p></div>
+    <div class="quiz-summary"><div class="quiz-stat"><strong id="qstat-questions">—</strong><span>Questions answered</span></div><div class="quiz-stat"><strong id="qstat-accuracy">—</strong><span>Accuracy</span></div><div class="quiz-stat"><strong id="qstat-attempts">—</strong><span>Attempts</span></div><div class="quiz-stat"><strong id="qstat-focus">Ready</strong><span>Current focus</span></div></div>
   </section>
 
   <section class="quiz-section">
-    <div class="quiz-section-head"><div><h2>Subject practice</h2><p>Available banks you can take now.</p></div></div>
-    <div class="quiz-card-grid">
-      <a class="quiz-card" href="{{ '/quiz/high-school/mathematics/number-and-numeracy/' | relative_url }}"><div class="quiz-card-top"><div class="quiz-card-icon">🔢</div><span class="quiz-card-status">AVAILABLE</span></div><h3>Mathematics — Number & Numeracy</h3><p>Practice across the Number & Numeracy curriculum.</p><div class="quiz-card-meta"><span>20 questions</span><span>Self-paced</span></div><div class="quiz-card-action">Start practice →</div></a>
-      <a class="quiz-card" href="{{ '/quiz/high-school/mathematics/algebra/' | relative_url }}"><div class="quiz-card-top"><div class="quiz-card-icon">➗</div><span class="quiz-card-status">AVAILABLE</span></div><h3>Mathematics — Algebra</h3><p>High School algebra practice with immediate review.</p><div class="quiz-card-meta"><span>Practice bank</span><span>Self-paced</span></div><div class="quiz-card-action">Start practice →</div></a>
-    </div>
+    <div class="quiz-section-head"><h2>Smart examination navigation</h2><p>For High School, examination context sits alongside the academic path instead of replacing it.</p></div>
+    <div class="quiz-smart"><div><div class="eyebrow">High School exam practice</div><h3>Find questions by exam when you need them.</h3><p>JAMB / UTME, WAEC, and future international examinations can map to the same canonical High School topics. This prevents duplicated subjects and keeps Progress consistent.</p></div><div class="quiz-smart-links"><a href="{{ '/quiz/high-school/' | relative_url }}?exam=jamb">JAMB / UTME <span>→</span></a><a href="{{ '/quiz/high-school/' | relative_url }}?exam=waec">WAEC <span>→</span></a><a href="{{ '/quiz/high-school/' | relative_url }}?exam=international">International <span>→</span></a><a href="{{ '/quiz/high-school/' | relative_url }}">Browse by subject <span>→</span></a></div></div>
   </section>
 
   <section class="quiz-section">
-    <div class="quiz-section-head"><div><h2>Recommended next</h2><p>Recommendations will become performance-driven as quiz history accumulates.</p></div></div>
-    <div class="recommendation"><div><div class="quiz-hub-eyebrow">Start building your mastery profile</div><h3>Take a Mathematics practice quiz</h3><p>Your first attempts establish the baseline used for future weak-topic recommendations.</p></div><a class="quiz-hub-btn" href="{{ '/quiz/high-school/mathematics/number-and-numeracy/' | relative_url }}">Practice now</a></div>
-  </section>
-
-  <section class="quiz-section" id="quiz-panel-university" hidden>
-    <div class="quiz-empty">University assessment is planned for a later milestone. The Quiz architecture is ready for additional question banks.</div>
-  </section>
-  <section class="quiz-section" id="quiz-panel-extras" hidden>
-    <div class="quiz-empty">Extra practice and masterclass assessments will appear here as their banks are added.</div>
+    <div class="quiz-section-head"><h2>How practice feeds Progress</h2></div>
+    <div class="quiz-activity">Every completed quiz can contribute to the same activity chain: <strong>attempt → topic performance → mastery → weak-area detection → recommendation → next study action</strong>. The domain and academic IDs stay attached throughout, so High School activity cannot accidentally appear as University or Extras activity.</div>
   </section>
 </div>
 
 <script type="module">
-import { getState, setActivity, setDomain, subscribe } from "{{ '/assets/js/axiom-state.js' | relative_url }}";
+import { getState, setActivity } from "{{ '/assets/js/axiom-state.js' | relative_url }}";
 (function(){
-  const buttons=[...document.querySelectorAll('.quiz-track-switcher button')];
-  const panels={
-    'high-school':document.getElementById('quiz-panel-high-school'),
-    university:document.getElementById('quiz-panel-university'),
-    extras:document.getElementById('quiz-panel-extras')
-  };
-  function render(state){
-    const domain=panels[state.domain]?state.domain:'high-school';
-    buttons.forEach(b=>{const active=b.dataset.domain===domain;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
-    Object.keys(panels).forEach(k=>{if(panels[k]) panels[k].hidden=k!==domain;});
-    if(domain==='high-school'){panels['high-school'].hidden=false;}
-  }
-  function loadPracticeSummary(){
-    let raw=null;try{raw=JSON.parse(localStorage.getItem('gnostiri-quiz-history')||'null');}catch(e){}
+  function loadSummary(){
+    let raw=[];try{raw=JSON.parse(localStorage.getItem('gnostiri-quiz-history')||'[]');}catch(e){}
     if(!Array.isArray(raw)||!raw.length)return;
     const attempts=raw.length;
     const answered=raw.reduce((n,r)=>n+Number(r.total||r.questionCount||0),0);
@@ -94,8 +49,9 @@ import { getState, setActivity, setDomain, subscribe } from "{{ '/assets/js/axio
     const accuracy=answered?Math.round(correct/answered*100):null;
     document.getElementById('qstat-questions').textContent=answered||attempts;
     document.getElementById('qstat-accuracy').textContent=accuracy===null?'—':accuracy+'%';
+    document.getElementById('qstat-attempts').textContent=attempts;
     document.getElementById('qstat-focus').textContent=accuracy!==null?(accuracy<70?'Review':'Strong'):'Active';
   }
-  document.addEventListener('DOMContentLoaded',function(){setActivity('quiz');buttons.forEach(b=>b.addEventListener('click',()=>setDomain(b.dataset.domain)));render(getState());subscribe(render);loadPracticeSummary();});
+  document.addEventListener('DOMContentLoaded',()=>{setActivity('quiz');loadSummary();});
 })();
 </script>
