@@ -1,0 +1,16 @@
+/* GNOSTIRI — global text-fit and layout-flow guardrails */
+#app-content,#app-content *{min-width:0}
+#app-content h1,#app-content h2,#app-content h3,#app-content h4,#app-content h5,#app-content h6,#app-content p,#app-content a,#app-content button,#app-content label,#app-content span,#app-content strong,#app-content small,#app-content th,#app-content td{overflow-wrap:anywhere;word-break:normal}
+#app-content img,#app-content svg,#app-content canvas{max-width:100%}
+#app-content table{max-width:100%}
+#app-content pre{max-width:100%;overflow-x:auto}
+#app-content .grid,#app-content .card-grid,#app-content .dashboard-grid,#app-content .analytics-grid,#app-content .progress-grid,#app-content .stats-grid{min-width:0}
+#app-content [class*="grid"]>*{min-width:0}
+#app-content .mobile-tab,#app-content .shell-actions,#app-content .quiz-controls,#app-content .study-reader-actions{min-width:0}
+
+/* Prevent long labels, buttons and navigation items from escaping their cards. */
+#app-content button,#app-content .btn,#app-content .action-btn,#app-content a{max-width:100%;white-space:normal;text-align:center}
+#app-content input,#app-content select,#app-content textarea{max-width:100%;min-width:0}
+
+/* Give content blocks a stable reading boundary on narrow screens. */
+@media(max-width:600px){#app-content{overflow-x:hidden}#app-content .card,#app-content [class*="card"]{max-width:100%}#app-content h1{line-height:1.08}#app-content h2{line-height:1.15}#app-content p{line-height:1.6}}
