@@ -1,9 +1,87 @@
-<!-- _includes/nav.html -->
-<nav>
-    <ul>
-        <li><a href="/high-school/personal-study-plan">Personal Study Plan - High School</a></li>
-        <li><a href="/university/personal-study-plan">Personal Study Plan - University</a></li>
-        <li><a href="/extras/personal-study-plan">Personal Study Plan - Extras</a></li>
-        <!-- Other navigation links -->
-    </ul>
+<!--
+  GNOSTIRI Global Navigation Include
+  Domains served: Global shell for High School, University, and Extras.
+  Architectural decision: All internal links use Jekyll's relative_url filter so
+  GitHub Pages baseurl deployments such as /axiom-academy/ do not break routing.
+-->
+
+<nav class="gnostiri-nav" aria-label="Primary navigation">
+  <a class="gnostiri-nav__brand" href="{{ '/' | relative_url }}" aria-label="GNOSTIRI home">
+    <span class="gnostiri-nav__mark" aria-hidden="true">G</span>
+    <span class="gnostiri-nav__name">GNOSTIRI</span>
+  </a>
+
+  <button
+    class="gnostiri-nav__toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="gnostiri-primary-menu"
+    data-nav-toggle>
+    <span class="sr-only">Toggle navigation</span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
+
+  <ul class="gnostiri-nav__menu" id="gnostiri-primary-menu" data-nav-menu>
+    <li>
+      <a href="{{ '/' | relative_url }}">Home</a>
+    </li>
+    <li>
+      <a href="{{ '/high-school/' | relative_url }}">High School</a>
+    </li>
+    <li>
+      <a href="{{ '/university/' | relative_url }}">University</a>
+    </li>
+    <li>
+      <a href="{{ '/extras/' | relative_url }}">Extras</a>
+    </li>
+    <li>
+      <a href="{{ '/study/' | relative_url }}">Study</a>
+    </li>
+    <li>
+      <a href="{{ '/quiz/' | relative_url }}">Quiz</a>
+    </li>
+    <li>
+      <a href="{{ '/tutor/' | relative_url }}">Tutor</a>
+    </li>
+    <li>
+      <a href="{{ '/profile/' | relative_url }}">Profile</a>
+    </li>
+  </ul>
 </nav>
+
+<script>
+  /*
+    GNOSTIRI mobile navigation controller.
+    Kept inline because this include is shared by Jekyll layouts and must work
+    without a bundler. It only controls the local menu state and does not share
+    domain data.
+  */
+  document.addEventListener('DOMContentLoaded', function () {
+    var toggle = document.querySelector('[data-nav-toggle]');
+    var menu = document.querySelector('[data-nav-menu]');
+
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', function () {
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('is-open', !expanded);
+    });
+
+    menu.addEventListener('click', function (event) {
+      if (event.target && event.target.tagName === 'A') {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('is-open');
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('is-open');
+      }
+    });
+  });
+</script>

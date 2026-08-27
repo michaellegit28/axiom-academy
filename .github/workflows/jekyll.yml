@@ -1,67 +1,59 @@
-name: Build and deploy Jekyll site to GitHub Pages
+# GNOSTIRI Jekyll Build Verification Workflow
+# Domains served: Global static site for High School, University, and Extras.
+# Architectural decision: Runs the same Jekyll build and route checks used by
+# deployment, without publishing, so pull requests catch Phase 1 regressions.
+
+name: Verify GNOSTIRI Jekyll Build
 
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    branches:
+      - main
+      - master
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  pages: read
 
 concurrency:
-  group: pages
+  group: gnostiri-jekyll-verification-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  verify:
+    name: Build and verify routes
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout GNOSTIRI repository
         uses: actions/checkout@v4
 
-      - name: Setup Pages
+      - name: Configure GitHub Pages base path
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Setup Ruby
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: '3.1'
           bundler-cache: true
 
-      - name: Build with Jekyll
+      - name: Build GNOSTIRI with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
 
-      - name: Verify generated site
+      - name: Verify GNOSTIRI route contract
         run: |
-          set -e
           test -s _site/index.html
           test -s _site/high-school/index.html
           test -s _site/university/index.html
           test -s _site/extras/index.html
+          test -s _site/study/index.html
           test -s _site/quiz/index.html
           test -s _site/tutor/index.html
+          test -s _site/profile/index.html
           test -d _site/quiz/high-school
           test -d _site/quiz/university
           test -d _site/quiz/extras
-          echo "Generated site structure verified."
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
