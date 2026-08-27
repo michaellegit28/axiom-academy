@@ -1,10 +1,11 @@
-# Axiom Academy learning taxonomy
-# Study and assessment intentionally use different hierarchies.
+# GNOSTIRI learning taxonomy
+# Study and assessment share the same canonical academic path inside each domain.
+# Exams are assessment contexts mapped onto High School topics; they are not a replacement for the academic hierarchy.
 
 high_school:
   study:
     label: "High School Study"
-    hierarchy: "Department → Topic → Subtopic"
+    hierarchy: "Department → Subject → Topic → Subtopic"
     departments:
       - id: sciences
         name: "Sciences"
@@ -22,8 +23,9 @@ high_school:
         name: "Arts & Humanities"
         subjects: [literature, history, religious-studies]
   quiz:
-    label: "High School Exams"
-    hierarchy: "Exam → Subject → Topic → Subtopic"
+    label: "High School Practice"
+    hierarchy: "Department → Subject → Topic → Quiz"
+    ownership: "department-subject-topic"
     exams:
       - id: jamb
         name: "JAMB / UTME"
@@ -35,15 +37,22 @@ high_school:
         name: "International"
         status: roadmap
         exams: [igcse, other]
+    navigation:
+      primary: department-subject-topic
+      secondary: exam-subject-topic
+      note: "A High School quiz belongs to its academic subject/topic first and can be filtered or mapped to one or more examinations."
 
 university:
   study:
     label: "University Study"
     hierarchy: "Faculty → Department → Programme → Course → Module → Topic"
+    access_model: "free-preview-or-paid-course"
+    default_course_price_usd: 3
   quiz:
     label: "University Assessment"
-    hierarchy: "Course → Module → Topic"
+    hierarchy: "Course → Module → Topic → Assessment"
     status: roadmap
+    access_model: "inherits-course-access"
 
 extras:
   study:
@@ -51,4 +60,5 @@ extras:
     hierarchy: "Collection → Volume → Chapter → Topic"
   quiz:
     label: "Extras Assessment"
-    hierarchy: "Collection → Volume → Topic"
+    hierarchy: "Collection → Volume → Topic → Assessment"
+    status: roadmap
