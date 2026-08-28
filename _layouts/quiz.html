@@ -1,40 +1,45 @@
 ---
-layout: app
-title: {{ page.title }}
+layout: app-shell
 ---
-{% assign quiz_domain = page.domain | default: page.exam %}
-{% unless quiz_domain == 'high-school' or quiz_domain == 'university' or quiz_domain == 'extras' %}
-  {% if page.url contains '/university/' %}{% assign quiz_domain = 'university' %}{% endif %}
-  {% if page.url contains '/extras/' %}{% assign quiz_domain = 'extras' %}{% endif %}
-{% endunless %}
-{% assign quiz_domain = quiz_domain | default: 'high-school' %}
-{% assign domain_label = 'High School' %}
-{% assign domain_home = '/high-school/' %}
-{% assign domain_quiz = '/quiz/high-school/' %}
-{% if quiz_domain == 'university' %}{% assign domain_label = 'University' %}{% assign domain_home = '/university/' %}{% assign domain_quiz = '/quiz/university/' %}{% endif %}
-{% if quiz_domain == 'extras' %}{% assign domain_label = 'Extras' %}{% assign domain_home = '/extras/' %}{% assign domain_quiz = '/quiz/extras/' %}{% endif %}
-<div class="quiz-wrapper" data-domain="{{ quiz_domain }}" data-exam="{{ page.exam }}" data-subject="{{ page.subject }}" data-topic="{{ page.topic }}">
-  <nav class="breadcrumb-trail" aria-label="Breadcrumb">
-    <a href="{{ domain_home | relative_url }}">{{ domain_label }}</a>
-    <span class="crumb-sep">/</span>
-    {% if page.subject %}<span>{{ page.subject | replace: '_', ' ' | capitalize }}</span><span class="crumb-sep">/</span>{% endif %}
-    <span class="crumb-current">{{ page.topic | default: page.title | replace: '_', ' ' | capitalize }}</span>
-  </nav>
-  <header class="quiz-header">
-    <div class="quiz-meta"><span class="quiz-track-badge {{ quiz_domain }}">{{ domain_label }}</span>{% if page.exam and page.exam != quiz_domain %}<span class="quiz-topic">{{ page.exam | upcase }}</span>{% endif %}<span class="quiz-topic">{{ page.topic | replace: '_', ' ' | capitalize }}</span></div>
-    <h1 class="quiz-title">{{ page.title }}</h1>
-    <div class="quiz-stats"><span id="quiz-progress">Question 1 of {{ page.question_count }}</span><span id="quiz-timer" class="quiz-timer" {% unless page.time_limit and page.time_limit > 0 %}hidden{% endunless %}>{{ page.time_limit | default: 0 }}:00</span></div>
-    <div class="quiz-progress-track" aria-hidden="true"><span id="quiz-progress-fill"></span></div>
+
+<section class="quiz-wrapper">
+  <header class="animate-on-scroll">
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}
+      <p>{{ page.description }}</p>
+    {% endif %}
   </header>
-  <div class="quiz-container" id="quiz-container"><div class="quiz-loading"><div class="spinner"></div><p>Loading questions...</p></div></div>
-  <div class="quiz-controls" id="quiz-controls" style="display:none;"><button class="quiz-btn secondary" id="btn-prev" disabled>← Previous</button><button class="quiz-btn primary" id="btn-next">Next →</button><button class="quiz-btn accent" id="btn-submit" style="display:none;">Submit Quiz</button></div>
-  <div class="quiz-results" id="quiz-results" style="display:none;">
-    <div class="results-header"><div><span class="eyebrow">Assessment complete</span><h2>Quiz Complete</h2></div><div class="score-circle" id="score-circle"><span class="score-value" id="score-value">0%</span><span class="score-label">Score</span></div></div>
-    <div class="results-breakdown" id="results-breakdown"></div>
-    <div class="results-actions"><a href="{{ page.url | relative_url }}" class="quiz-btn secondary">Retake Quiz</a>{% if page.masterclass_links %}<a href="{{ page.masterclass_links[0] | relative_url }}" class="quiz-btn primary">Review Lesson</a>{% endif %}<a href="{{ domain_quiz | relative_url }}" class="quiz-btn accent">More {{ domain_label }} Practice</a></div>
-    <div class="weak-topics-alert" id="weak-topics-alert" style="display:none;"><h4>Areas to Review</h4><ul id="weak-topics-list"></ul><a href="{{ domain_home | relative_url }}" class="quiz-btn primary">Return to {{ domain_label }}</a></div>
+
+  <div class="quiz-card card animate-on-scroll">
+    {{ content }}
   </div>
-</div>
-<script>
-window.QUIZ_CONFIG={domain:'{{ quiz_domain }}',exam:'{{ page.exam }}',subject:'{{ page.subject }}',topic:'{{ page.topic }}',topicSlug:'{{ page.topic_slug }}',timeLimit:{{ page.time_limit | default: 0 }},questionCount:{{ page.question_count | default: 20 }},dataUrl:'{{ "/assets/data/quizzes/" | append: quiz_domain | append: "/" | append: page.subject | append: "/" | append: page.topic_slug | append: ".json" | relative_url }}'};
-</script>
+
+  <section class="results-header animate-on-scroll" aria-labelledby="quiz-results-title">
+    <div>
+      <h2 id="quiz-results-title">Your result</h2>
+      <p>Review your latest performance and prepare the next focused revision step.</p>
+    </div>
+
+    <div class="score-circle">
+      <strong data-count-to="87" data-count-suffix="%">0%</strong>
+    </div>
+  </section>
+
+  <div class="stagger-list">
+    <div class="breakdown-item">
+      <span>✓</span>
+      <div>
+        <strong data-count-to="18">0</strong>
+        <p>Correct answers</p>
+      </div>
+    </div>
+
+    <div class="breakdown-item">
+      <span>↺</span>
+      <div>
+        <strong data-count-to="7">0</strong>
+        <p>Topics to revisit</p>
+      </div>
+    </div>
+  </div>
+</section>

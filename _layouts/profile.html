@@ -2,205 +2,28 @@
 layout: app-shell
 ---
 
-<div class="profile-container">
-  <!-- Header -->
-  <header class="profile-header">
-    <div class="profile-avatar-section">
-      <div class="profile-avatar" id="profile-avatar">
-        <span id="avatar-initial">?</span>
-        <img id="avatar-img" src="" alt="" style="display:none;">
-      </div>
-      <div class="profile-info">
-        <h1 id="profile-name">Loading...</h1>
-        <p id="profile-email" class="profile-email"></p>
-        <span class="badge" id="auth-badge">Guest</span>
-      </div>
-    </div>
-    <button class="btn-ghost" id="profile-auth-btn">Sign In</button>
+<section class="profile-page">
+  <header class="animate-on-scroll">
+    <h1>{{ page.title | default: 'Profile' }}</h1>
+    <p>{{ page.description | default: 'Review your growth, habits, and strongest learning areas at a glance.' }}</p>
   </header>
 
-  <!-- Stats Grid -->
-  <section class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-icon">🔥</div>
-      <div class="stat-number" id="stat-streak">0</div>
-      <div class="stat-label">Day Streak</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">📖</div>
-      <div class="stat-number" id="stat-chapters">0</div>
-      <div class="stat-label">Chapters Read</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">🧪</div>
-      <div class="stat-number" id="stat-quizzes">0</div>
-      <div class="stat-label">Quizzes Taken</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">🎴</div>
-      <div class="stat-number" id="stat-cards">0</div>
-      <div class="stat-label">Cards Reviewed</div>
-    </div>
-  </section>
+  <div class="profile-grid stagger-list" style="margin: 1rem 0 2rem;">
+    <article class="profile-card card">
+      <h2>Mastery</h2>
+      <strong data-count-to="84" data-count-suffix="%">0%</strong>
+    </article>
 
-  <!-- Overall Mastery -->
-  <section class="mastery-section">
-    <h2>📊 Overall Mastery</h2>
-    <div class="mastery-ring-container">
-      <svg class="mastery-ring" viewBox="0 0 120 120">
-        <circle class="ring-bg" cx="60" cy="60" r="50"/>
-        <circle class="ring-fill" id="mastery-ring-fill" cx="60" cy="60" r="50"/>
-      </svg>
-      <div class="mastery-text">
-        <span class="mastery-percent" id="mastery-percent">0%</span>
-        <span class="mastery-label">Avg. Accuracy</span>
-      </div>
-    </div>
-  </section>
+    <article class="profile-card card">
+      <h2>Study sessions</h2>
+      <strong data-count-to="52">0</strong>
+    </article>
 
-  <div class="analytics-link-row">
-    <a href="{{ '/profile/analytics/' | relative_url }}" class="btn-outline btn-block">View Full Analytics →</a>
+    <article class="profile-card card">
+      <h2>Current streak</h2>
+      <strong data-count-to="11" data-count-suffix=" days">0 days</strong>
+    </article>
   </div>
 
-  <!-- Weak Topics -->
-  <section class="topics-section">
-    <h2>Topic Breakdown</h2>
-    <div class="topics-grid">
-      <div class="topic-column">
-        <h3 class="topic-heading weak">🔴 Weak Topics</h3>
-        <ul class="topic-list" id="weak-topics-list">
-          <li class="topic-empty">No weak topics yet. Take more quizzes!</li>
-        </ul>
-      </div>
-      <div class="topic-column">
-        <h3 class="topic-heading practice">🟡 Needs Practice</h3>
-        <ul class="topic-list" id="practice-topics-list">
-          <li class="topic-empty">All topics strong — great work!</li>
-        </ul>
-      </div>
-      <div class="topic-column">
-        <h3 class="topic-heading strong">🟢 Strong Topics</h3>
-        <ul class="topic-list" id="strong-topics-list">
-          <li class="topic-empty">Complete quizzes to see strong topics.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Study Time -->
-  <section class="study-section">
-    <h2>⏱️ Study Time</h2>
-    <div class="study-stats">
-      <div class="study-stat">
-        <span class="study-value" id="study-minutes">0</span>
-        <span class="study-label">Minutes Studied</span>
-      </div>
-      <div class="study-stat">
-        <span class="study-value" id="study-hours">0</span>
-        <span class="study-label">Hours</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Account Actions -->
-  <section class="account-section" id="account-actions" style="display:none;">
-    <h2>Account</h2>
-    <button class="btn-outline btn-block" id="signout-btn">Sign Out</button>
-  </section>
-
-  <!-- Guest CTA -->
-  <section class="guest-cta" id="guest-cta">
-    <div class="guest-cta-card">
-      <h3>🔒 Save Your Progress</h3>
-      <p>Create a free account to sync your progress across devices and never lose your streak.</p>
-      <button class="btn-primary btn-block" onclick="openAuthModal()">Create Free Account</button>
-    </div>
-  </section>
-</div>
-
-<script type="module">
-  import { axiomAuth } from "{{ site.baseurl }}/assets/js/auth.js";
-  import { progressTracker } from "{{ site.baseurl }}/assets/js/progress.js";
-
-  async function renderProfile() {
-    await axiomAuth.whenReady();
-    const summary = progressTracker.getProfileSummary();
-
-    // Avatar & Name
-    const nameEl = document.getElementById('profile-name');
-    const emailEl = document.getElementById('profile-email');
-    const badgeEl = document.getElementById('auth-badge');
-    const avatarInitial = document.getElementById('avatar-initial');
-    const avatarImg = document.getElementById('avatar-img');
-    const authBtn = document.getElementById('profile-auth-btn');
-
-    nameEl.textContent = summary.displayName;
-    emailEl.textContent = summary.email || '';
-
-    if (summary.isAnonymous) {
-      badgeEl.textContent = 'Guest';
-      badgeEl.className = 'badge badge-guest';
-      avatarInitial.textContent = '?';
-      authBtn.textContent = 'Sign In';
-      authBtn.onclick = () => openAuthModal();
-      document.getElementById('guest-cta').style.display = 'block';
-      document.getElementById('account-actions').style.display = 'none';
-    } else {
-      badgeEl.textContent = 'Member';
-      badgeEl.className = 'badge badge-member';
-      avatarInitial.textContent = summary.displayName.charAt(0).toUpperCase();
-      if (summary.photoURL) {
-        avatarImg.src = summary.photoURL;
-        avatarImg.style.display = 'block';
-        avatarInitial.style.display = 'none';
-      }
-      authBtn.textContent = 'Sign Out';
-      authBtn.onclick = async () => {
-        await axiomAuth.signOut();
-        window.location.reload();
-      };
-      document.getElementById('guest-cta').style.display = 'none';
-      document.getElementById('account-actions').style.display = 'block';
-    }
-
-    // Stats
-    document.getElementById('stat-streak').textContent = summary.streakDays;
-    document.getElementById('stat-chapters').textContent = summary.chaptersCompleted;
-    document.getElementById('stat-quizzes').textContent = summary.totalQuizzesTaken;
-    document.getElementById('stat-cards').textContent = summary.totalCardsReviewed;
-
-    // Mastery Ring
-    const percent = summary.avgAccuracy;
-    const circumference = 2 * Math.PI * 50;
-    const offset = circumference - (percent / 100) * circumference;
-    document.getElementById('mastery-ring-fill').style.strokeDashoffset = offset;
-    document.getElementById('mastery-percent').textContent = percent + '%';
-
-    // Topics
-    const weakList = document.getElementById('weak-topics-list');
-    const practiceList = document.getElementById('practice-topics-list');
-    const strongList = document.getElementById('strong-topics-list');
-
-    const topics = summary.weakTopics;
-
-    if (topics.weak.length > 0) {
-      weakList.innerHTML = topics.weak.map(t => `<li>${formatTopic(t)}</li>`).join('');
-    }
-    if (topics.needsPractice.length > 0) {
-      practiceList.innerHTML = topics.needsPractice.map(t => `<li>${formatTopic(t)}</li>`).join('');
-    }
-    if (topics.strong.length > 0) {
-      strongList.innerHTML = topics.strong.map(t => `<li>${formatTopic(t)}</li>`).join('');
-    }
-
-    // Study Time
-    document.getElementById('study-minutes').textContent = summary.totalStudyMinutes;
-    document.getElementById('study-hours').textContent = (summary.totalStudyMinutes / 60).toFixed(1);
-  }
-
-  function formatTopic(slug) {
-    return slug.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  }
-
-  renderProfile().catch(console.error);
-</script>
+  {% include progress-charts.html %}
+</section>

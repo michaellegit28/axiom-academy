@@ -1,85 +1,37 @@
 ---
 layout: app-shell
 ---
-{% assign study_domain = page.domain | default: page.study_domain %}
-{% unless study_domain %}
-  {% if page.url contains '/university/' %}{% assign study_domain = 'university' %}{% endif %}
-  {% if page.url contains '/extras/' %}{% assign study_domain = 'extras' %}{% endif %}
-{% endunless %}
-{% assign study_domain = study_domain | default: 'high-school' %}
-{% assign domain_label = 'High School' %}
-{% assign domain_home = '/high-school/' %}
-{% assign domain_quiz = '/quiz/high-school/' %}
-{% if study_domain == 'university' %}{% assign domain_label = 'University' %}{% assign domain_home = '/university/' %}{% assign domain_quiz = '/quiz/university/' %}{% endif %}
-{% if study_domain == 'extras' %}{% assign domain_label = 'Extras' %}{% assign domain_home = '/extras/' %}{% assign domain_quiz = '/quiz/extras/' %}{% endif %}
-<div class="study-reader" data-study-reader data-domain="{{ study_domain }}">
-  <div class="study-reader-progress" aria-hidden="true"><div id="study-progress-bar"></div></div>
-  <nav class="breadcrumb-trail" aria-label="Study breadcrumb">
-    <a href="{{ domain_home | relative_url }}">{{ domain_label }}</a>
-    {% if study_domain == 'high-school' and page.high_school_subject %}<span class="crumb-sep">/</span><a href="{{ '/high-school/subject/?department=' | append: page.high_school_subject | relative_url }}">{{ page.high_school_subject | replace: '-', ' ' | capitalize }}</a>{% endif %}
-    {% if study_domain == 'high-school' and page.high_school_topic %}<span class="crumb-sep">/</span><a href="{{ '/high-school/subject/?department=' | append: page.high_school_subject | append: '&topic=' | append: page.high_school_topic | relative_url }}">{{ page.high_school_topic | replace: '-', ' ' | capitalize }}</a>{% endif %}
-    <span class="crumb-sep">/</span><span class="crumb-current">{{ page.title }}</span>
-  </nav>
-  <header class="study-reader-header">
-    <span class="eyebrow">{{ domain_label }}{% if study_domain == 'high-school' and page.high_school_subject %} · {{ page.high_school_subject | replace: '-', ' ' | capitalize }}{% endif %}{% if page.high_school_topic %} · {{ page.high_school_topic | replace: '-', ' ' | capitalize }}{% endif %}</span>
-    <h1>{{ page.title }}</h1>
-    {% if page.study_description %}<p>{{ page.study_description }}</p>{% endif %}
-    {% assign chapter = site.data.mathematics_number_numeracy_chapters[page.high_school_subtopic] %}
-    {% if chapter %}<p class="study-reader-unit"><strong>Complete Textbook Chapter</strong> · Structured study notes, examples and practice.</p>{% endif %}
-    <div class="study-reader-actions">
-      <button type="button" class="action-btn" id="study-bookmark">Bookmark</button><button type="button" class="action-btn" id="study-text-size">Text size</button>
-      {% if study_domain == 'high-school' and page.high_school_subtopic %}<a class="action-btn" href="{{ '/quiz/high-school/mathematics/number-and-numeracy/?subtopic=' | append: page.high_school_subtopic | relative_url }}">Practice This Lesson</a>
-      {% elsif page.subject and page.topic %}<a class="action-btn" href="{{ domain_quiz | append: page.subject | append: '/' | append: page.topic | append: '/' | relative_url }}">Practice This Lesson</a>
-      {% elsif study_domain == 'high-school' and page.high_school_subject and page.high_school_topic %}<a class="action-btn" href="{{ domain_quiz | append: page.high_school_subject | append: '/' | append: page.high_school_topic | append: '/' | relative_url }}">Practice Quiz</a>
+
+<section class="study-reader">
+  <aside class="study-reader-toc animate-on-scroll">
+    {% if page.toc %}
+      <nav aria-label="Table of contents">
+        {{ page.toc }}
+      </nav>
+    {% endif %}
+  </aside>
+
+  <div class="study-reader-main">
+    <header class="study-reader-header animate-on-scroll">
+      {% if page.breadcrumb %}
+        <p class="animate-on-scroll">{{ page.breadcrumb }}</p>
       {% endif %}
-    </div>
-  </header>
-  <div class="study-reader-layout">
-    <aside class="study-reader-toc" aria-label="On this page"><strong>On this page</strong><div id="study-toc"></div></aside>
-    <article class="study-reader-content" id="study-content">
-      {{ content }}
-      {% if chapter %}
-      <section class="study-textbook study-textbook-complete" aria-labelledby="textbook-chapter">
-        <header class="study-textbook-header"><span class="eyebrow">Complete Textbook Chapter</span><h2 id="textbook-chapter">{{ page.title }} — Complete Study Chapter</h2><p>{{ page.study_description }}</p></header>
-        <section class="study-textbook-section study-learning-objectives"><h2>Learning Objectives</h2><p>{{ chapter.objectives }}</p></section>
-        <section class="study-textbook-section"><h2>Key Terms</h2><p>{{ chapter.key_terms }}</p></section>
-        <section class="study-textbook-section"><h2>Core Lesson</h2>{{ chapter.lesson | markdownify }}</section>
-        <section class="study-textbook-section"><h2>Worked Examples</h2>{{ chapter.worked | markdownify }}</section>
-        <section class="study-textbook-section study-textbook-practice"><h2>Checkpoint Practice</h2><p>{{ chapter.checkpoint }}</p><p><a class="action-btn" href="{{ '/quiz/high-school/mathematics/number-and-numeracy/?subtopic=' | append: page.high_school_subtopic | relative_url }}">Turn this checkpoint into a quiz</a></p></section>
-        <section class="study-textbook-section"><h2>Answers & Self-Check</h2><details><summary>Reveal answers</summary><div class="study-answer-source" data-study-answer-source>{{ chapter.answers | escape }}</div><ol class="study-answers" data-study-answers aria-label="Answers"></ol></details></section>
-        <aside class="study-textbook-revision"><strong>Revision checklist</strong><p>Can you define the key terms, explain the main rule without notes, reproduce a worked example, solve the checkpoint, and apply the idea to a new problem?</p></aside>
-      </section>
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}
+        <p>{{ page.description }}</p>
       {% endif %}
+    </header>
+
+    <article class="study-reader-section animate-on-scroll">
+      <div class="table-scroll">
+        {{ content }}
+      </div>
     </article>
+
+    <footer class="study-reader-footer animate-on-scroll">
+      <a class="study-action btn" href="{{ page.prev_url | default: '#' | relative_url }}">Previous</a>
+      <a class="study-action btn" href="{{ '/' | relative_url }}">Back to dashboard</a>
+      <a class="study-action btn" href="{{ page.next_url | default: '#' | relative_url }}">Next</a>
+    </footer>
   </div>
-  <nav class="study-reader-footer" aria-label="Study navigation">
-    {% if page.previous_study %}<a href="{{ page.previous_study | relative_url }}"><small>Previous lesson</small><strong>← {{ page.previous_study_title }}</strong></a>{% else %}<span></span>{% endif %}
-    <a href="{{ domain_home | relative_url }}"><small>Domain</small><strong>{{ domain_label }}</strong></a>
-    {% if page.next_study %}<a href="{{ page.next_study | relative_url }}"><small>Next lesson</small><strong>{{ page.next_study_title }} →</strong></a>{% else %}<span></span>{% endif %}
-  </nav>
-</div>
-<script>
-(function(){
-  const content=document.getElementById('study-content'),bar=document.getElementById('study-progress-bar'),toc=document.getElementById('study-toc');
-  if(!content)return;
-  [...content.querySelectorAll('h2,h3')].forEach((h,i)=>{h.id=h.id||'study-section-'+(i+1);const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent.trim();toc&&toc.appendChild(a);});
-  [...content.querySelectorAll('details')].forEach(details=>{
-    const summary=details.querySelector(':scope > summary');
-    if(!summary || !/answer/i.test(summary.textContent))return;
-    details.classList.add('study-answer-details');
-    const raw=[...details.childNodes].filter(node=>node!==summary).map(node=>node.textContent||'').join('\n').replace(/\u00a0/g,' ').trim();
-    if(!raw)return;
-    const parts=raw.split(/\n\s*(?=\d+\.\s*)/).map(s=>s.trim()).filter(Boolean);
-    if(parts.length<2)return;
-    const list=document.createElement('ol');list.className='study-answers';list.setAttribute('aria-label','Answers');
-    parts.forEach(part=>{const li=document.createElement('li');li.className='study-answer-item';li.textContent=part.replace(/^\d+\.\s*/,'');list.appendChild(li);});
-    [...details.childNodes].filter(node=>node!==summary).forEach(node=>node.remove());details.appendChild(list);
-  });
-  const answerSource=document.querySelector('[data-study-answer-source]'),answerList=document.querySelector('[data-study-answers]');
-  if(answerSource&&answerList){const raw=answerSource.textContent.trim(),parts=raw.split(/\s*;\s*/).map(s=>s.trim()).filter(Boolean);(parts.length?parts:[raw]).forEach(text=>{const li=document.createElement('li');li.className='study-answer-item';li.textContent=text;answerList.appendChild(li);});answerSource.hidden=true;}
-  function progress(){const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const pct=Math.max(0,Math.min(100,scrollY/max*100));if(bar)bar.style.width=pct+'%';localStorage.setItem('axiom-study-progress:'+location.pathname,Math.round(pct));} addEventListener('scroll',progress,{passive:true});progress();
-  const bookmark=document.getElementById('study-bookmark'),key='axiom-study-bookmark:'+location.pathname;if(bookmark&&localStorage.getItem(key)==='1'){bookmark.textContent='Saved';bookmark.classList.add('active');}bookmark&&bookmark.addEventListener('click',()=>{const on=localStorage.getItem(key)!=='1';localStorage.setItem(key,on?'1':'0');bookmark.textContent=on?'Saved':'Bookmark';bookmark.classList.toggle('active',on);});
-  const size=document.getElementById('study-text-size');let level=0;const sizes=['1rem','1.08rem','1.16rem'];size&&size.addEventListener('click',()=>{level=(level+1)%sizes.length;content.style.fontSize=sizes[level];});
-})();
-</script>
-<script>window.MathJax={tex:{inlineMath:[["$","$"]],["\\(","\\)"]]},svg:{fontCache:'global'}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</section>

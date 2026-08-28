@@ -1,0 +1,59 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+
+<section class="progress-visuals animate-on-scroll" aria-labelledby="progress-visuals-heading">
+  <div class="progress-visual-card">
+    <h2 id="progress-visuals-heading">Learning progress visualisations</h2>
+    <p>Track subject growth, overall completion, quiz performance, study consistency, and topic mastery in one view.</p>
+  </div>
+
+  <div class="analytics-grid stagger-list" style="margin-top: 1rem;">
+    <article class="progress-visual-card" aria-labelledby="subject-progress-title">
+      <h3 id="subject-progress-title">Subject progress</h3>
+      <p>Compare current progress across your active subjects.</p>
+      <div style="position: relative; min-height: 280px;">
+        <canvas id="subject-progress-chart" aria-label="Horizontal bar chart of subject progress" role="img"></canvas>
+      </div>
+      <div class="progress-bars" data-progress-bars aria-label="Animated subject progress bars" style="margin-top: 1rem;"></div>
+    </article>
+
+    <article class="progress-visual-card" aria-labelledby="completion-ring-title">
+      <h3 id="completion-ring-title">Overall completion</h3>
+      <p>Your current study completion percentage across tracked learning goals.</p>
+      <div class="progress-ring-wrap">
+        <svg
+          class="progress-ring"
+          data-progress-ring
+          viewBox="0 0 140 140"
+          aria-label="Overall completion ring"
+          role="img">
+          <circle class="progress-ring__bg" cx="70" cy="70" r="56"></circle>
+          <circle class="progress-ring__meter" cx="70" cy="70" r="56"></circle>
+        </svg>
+        <strong class="progress-ring-value" data-progress-ring-value>0%</strong>
+        <span>Completion updated from your saved progress records.</span>
+      </div>
+    </article>
+
+    <article class="progress-visual-card" aria-labelledby="score-history-title">
+      <h3 id="score-history-title">Quiz score history</h3>
+      <p>See how your recent quiz results are trending over time.</p>
+      <div style="position: relative; min-height: 280px;">
+        <canvas id="score-history-chart" aria-label="Line chart of quiz score history" role="img"></canvas>
+      </div>
+    </article>
+
+    <article class="progress-visual-card" aria-labelledby="streak-grid-title">
+      <h3 id="streak-grid-title">Study streak tracker</h3>
+      <p>Your last 35 study days in a compact weekly grid.</p>
+      <div class="streak-grid" data-streak-grid aria-label="Thirty five day study streak grid"></div>
+    </article>
+
+    <article class="progress-visual-card" aria-labelledby="topic-mastery-title">
+      <h3 id="topic-mastery-title">Topic mastery</h3>
+      <p>Review relative strength across your most important active topics.</p>
+      <div style="position: relative; min-height: 320px;">
+        <canvas id="topic-mastery-radar" aria-label="Radar chart of topic mastery" role="img"></canvas>
+      </div>
+    </article>
+  </div>
+</section>

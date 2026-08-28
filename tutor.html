@@ -1,22 +1,102 @@
 ---
-layout: app
-title: GNOSTIRI Tutor
-description: Your personal adaptive study tutor and planner.
-permalink: /tutor/
+layout: app-shell
+title: Tutor
 ---
 
-<div id="gnostiri-tutor" class="gnostiri-tutor-page"></div>
-
 <style>
-.gnostiri-tutor-page{max-width:1080px;margin:0 auto;padding:1.25rem 1rem 4rem}
-.tutor-hero{position:relative;overflow:hidden;display:flex;justify-content:space-between;gap:1.5rem;align-items:flex-end;padding:1.8rem;border:1px solid var(--border-subtle);border-radius:24px;background:linear-gradient(135deg,var(--bg-card),var(--bg-secondary));box-shadow:var(--shadow-sm);margin-bottom:1rem}
-.tutor-hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-70px;top:-90px;border:1px solid var(--border-subtle);pointer-events:none}
-.tutor-hero>div{position:relative;z-index:1}.tutor-kicker,.tutor-card small{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)}
-.tutor-hero h1{margin:.35rem 0 .45rem;font:700 clamp(1.8rem,5vw,3rem) var(--font-serif);color:var(--text-primary);letter-spacing:-.025em}.tutor-lead{max-width:650px;color:var(--text-secondary);margin:0;line-height:1.6}.tutor-domain{padding:.55rem .85rem;border:1px solid var(--border-medium);border-radius:999px;background:var(--bg-card);font-size:.75rem;font-weight:800;white-space:nowrap}
-.tutor-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:1rem}.tutor-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:18px;padding:1.2rem;box-shadow:var(--shadow-sm);margin-bottom:1rem}.tutor-card h2{margin:.3rem 0;color:var(--text-primary);font-size:1.18rem}.tutor-card h3{margin:1rem 0 .55rem;font-size:.9rem;color:var(--text-primary)}.tutor-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}.tutor-card-head>strong,.tutor-countdown{font-size:.7rem;padding:.4rem .65rem;border-radius:999px;background:var(--bg-secondary);white-space:nowrap}.tutor-today ul{list-style:none;padding:0;margin:1rem 0}.tutor-today li,.tutor-plan .tutor-day{display:flex;justify-content:space-between;gap:.75rem;align-items:center;padding:.8rem 0;border-top:1px solid var(--border-subtle)}.tutor-today li span{min-width:0;line-height:1.4}.tutor-today li b{font-size:.72rem;white-space:nowrap;color:var(--text-muted)}.tutor-primary{border:0;border-radius:11px;background:var(--accent-masterclass);color:var(--text-inverse);font-weight:800;padding:.72rem 1rem;cursor:pointer;transition:transform .15s ease,opacity .15s ease}.tutor-primary:hover{transform:translateY(-1px)}.tutor-primary:disabled{opacity:.55;cursor:default;transform:none}
-.tutor-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0}.tutor-stats div{padding:.8rem .5rem;border:1px solid var(--border-subtle);border-radius:12px;text-align:center;background:var(--bg-primary)}.tutor-stats b{display:block;font-size:1.25rem;color:var(--text-primary)}.tutor-stats span{display:block;font-size:.65rem;color:var(--text-muted);margin-top:.15rem}.tutor-chips{display:flex;flex-wrap:wrap;gap:.4rem}.tutor-chips span{padding:.38rem .58rem;border-radius:999px;background:var(--bg-secondary);font-size:.7rem;color:var(--text-secondary)}
-.tutor-progress{margin:1rem 0 .5rem}.tutor-progress>div:first-child{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text-muted);margin-bottom:.35rem}.tutor-progress b{color:var(--text-primary)}.tutor-progress-track{height:7px!important;border-radius:999px;background:var(--bg-secondary);overflow:hidden}.tutor-progress-track i{display:block;height:100%;border-radius:inherit;background:var(--accent-masterclass);transition:width .35s ease}.tutor-plan{margin-top:.5rem}.tutor-day>div{display:flex;flex-direction:column;min-width:72px}.tutor-day small{letter-spacing:normal;text-transform:none;font-weight:500;margin-top:.15rem}.tutor-day>span{flex:1;text-transform:capitalize;color:var(--text-secondary);line-height:1.35}.tutor-day strong{width:25px;text-align:center}.tutor-day.is-done{opacity:.55}.tutor-note{font-size:.72rem;color:var(--text-muted);margin:.7rem 0 0}
-.tutor-form{display:grid;grid-template-columns:1.5fr 1fr .7fr auto;gap:.7rem;align-items:end;margin-top:.8rem}.tutor-form label{display:flex;flex-direction:column;gap:.35rem;font-size:.7rem;font-weight:700;color:var(--text-secondary)}.tutor-form input{width:100%;padding:.72rem;border:1px solid var(--border-medium);border-radius:10px;background:var(--bg-primary);color:var(--text-primary);font:inherit;font-size:.85rem}.tutor-form input:focus{outline:2px solid var(--accent-masterclass);outline-offset:1px}
-@media(max-width:760px){.gnostiri-tutor-page{padding:.8rem .7rem 4rem}.tutor-hero{align-items:flex-start;flex-direction:column;padding:1.3rem}.tutor-grid{grid-template-columns:1fr}.tutor-form{grid-template-columns:1fr}.tutor-form .tutor-primary{width:100%}.tutor-card{padding:1rem}.tutor-day{align-items:flex-start!important}.tutor-day>span{font-size:.82rem}.tutor-domain{align-self:flex-start}}
+  .tutor-hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tutor-hero:after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    right: -80px;
+    top: -70px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,215,0,.35) 0%, rgba(255,215,0,0) 70%);
+    pointer-events: none;
+  }
+
+  .tutor-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .75rem;
+    margin: 1rem 0;
+  }
+
+  .tutor-day > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 56px;
+  }
+
+  .tutor-domain {
+    white-space: normal;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  @media (min-width: 480px) {
+    .tutor-stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .tutor-hero:after {
+      width: 180px;
+      height: 180px;
+      right: -70px;
+      top: -90px;
+    }
+
+    .tutor-stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .tutor-day > div {
+      min-width: 72px;
+    }
+
+    .tutor-domain {
+      white-space: nowrap;
+    }
+  }
 </style>
-<script type="module" src="{{ site.baseurl }}/assets/js/gnostiri-tutor.js"></script>
+
+<section class="tutor-hero animate-on-scroll">
+  <h1 data-typewriter data-typewriter-speed="40">Your adaptive tutor turns progress into a clear daily study plan.</h1>
+  <p class="animate-on-scroll">Build a smarter rhythm with guided recommendations based on mastery, weak topics, and recent activity.</p>
+</section>
+
+<section class="tutor-stats stagger-list">
+  <article class="tutor-card card">
+    <h2>Today's focus</h2>
+    <strong data-count-to="3">0</strong>
+    <p>priority topics</p>
+  </article>
+
+  <article class="tutor-card card">
+    <h2>Suggested time</h2>
+    <strong data-count-to="45" data-count-suffix=" min">0 min</strong>
+    <p>for your next session</p>
+  </article>
+
+  <article class="tutor-card card">
+    <h2>Momentum score</h2>
+    <strong data-count-to="88" data-count-suffix="%">0%</strong>
+    <p>based on current habits</p>
+  </article>
+</section>
+
+<section class="animate-on-scroll">
+  <article class="tutor-card card">
+    <h2>Recommended path</h2>
+    <p class="tutor-domain">Start with Mathematics revision, then move to Physics problem-solving, followed by a short English comprehension drill.</p>
+    <a href="{{ '/analytics/' | relative_url }}" class="btn ripple-target">View full learning analytics</a>
+  </article>
+</section>
