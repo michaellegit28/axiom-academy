@@ -30,7 +30,7 @@ layout: app
       <div class="chapter-row-info">
         <div class="chapter-row-title">{{ ch.title }}</div>
         <div class="chapter-row-meta">
-          <span>{{ ch.read_time }} min</span>
+          {% if ch.read_time %}<span>{{ ch.read_time }} min</span>{% endif %}
           {% if ch.topics %}
           <span>· {{ ch.topics | join: ', ' }}</span>
           {% endif %}

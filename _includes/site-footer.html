@@ -1,0 +1,22 @@
+<!-- GNOSTIRI site footer. Domain links stay visible so learners never get stuck. -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-brand">
+      <span class="gnostiri-nav__mark" aria-hidden="true">G</span>
+      <div>
+        <strong>GNOSTIRI</strong>
+        <span>Global Learning &amp; Intelligence</span>
+      </div>
+    </div>
+    <nav class="site-footer-nav" aria-label="Footer navigation">
+      <a href="{{ '/high-school/' | relative_url }}">High School</a>
+      <a href="{{ '/university/' | relative_url }}">University</a>
+      <a href="{{ '/extras/' | relative_url }}">Extras</a>
+      <a href="{{ '/study/' | relative_url }}">Study</a>
+      <a href="{{ '/quiz/' | relative_url }}">Quiz</a>
+      <a href="{{ '/search/' | relative_url }}">Search</a>
+      <a href="{{ '/profile/' | relative_url }}">Profile</a>
+    </nav>
+    <p class="site-footer-note">© {{ site.time | date: '%Y' }} GNOSTIRI · Free-first learning for every stage.</p>
+  </div>
+</footer>

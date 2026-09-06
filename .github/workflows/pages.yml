@@ -1,12 +1,19 @@
-# GNOSTIRI GitHub Pages Deployment Workflow
+# GNOSTIRI GitHub Pages pipeline (single workflow).
+# Architectural decision: one workflow builds the Jekyll 4.2 site, verifies the
+# route/content contract, and deploys. Pull requests run build + verification
+# only; pushes to main also deploy. This replaces the previous three
+# overlapping workflows that caused double deployments on every push.
+#
 # Domains served: Global static site for High School, University, and Extras.
-# Architectural decision: Builds the Jekyll 4.2 site with the GitHub Pages
-# base path, then verifies the Phase 1 route contract before deployment.
 
-name: Deploy GNOSTIRI to GitHub Pages
+name: Build, verify, and deploy GNOSTIRI
 
 on:
   push:
+    branches:
+      - main
+      - master
+  pull_request:
     branches:
       - main
       - master
@@ -18,12 +25,12 @@ permissions:
   id-token: write
 
 concurrency:
-  group: gnostiri-pages
+  group: pages
   cancel-in-progress: false
 
 jobs:
   build:
-    name: Build Jekyll site
+    name: Build and verify Jekyll site
     runs-on: ubuntu-latest
 
     steps:
@@ -41,23 +48,111 @@ jobs:
           bundler-cache: true
 
       - name: Build GNOSTIRI with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}" --trace
         env:
           JEKYLL_ENV: production
 
-      - name: Verify GNOSTIRI route contract
+      - name: Verify generated site structure
         run: |
+          set -euo pipefail
           test -s _site/index.html
-          test -s _site/high-school/index.html
+          test -s _site/content-index.json
           test -s _site/university/index.html
           test -s _site/extras/index.html
-          test -s _site/study/index.html
+          test -s _site/high-school/index.html
           test -s _site/quiz/index.html
           test -s _site/tutor/index.html
+          test -s _site/study/index.html
+          test -s _site/search/index.html
           test -s _site/profile/index.html
+          grep -q 'GNOSTIRI' _site/index.html
+          grep -q 'WAEC' _site/index.html
+          grep -q 'JAMB' _site/index.html
+          grep -q 'University' _site/index.html
+          echo 'Generated site structure verified.'
+
+      - name: Verify generated content index
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('_site/content-index.json').read_text())
+          assert isinstance(data, list), 'content-index.json must be a JSON array'
+          assert len(data) > 0, 'content-index.json must index real content'
+          allowed = {'high-school', 'university', 'extras'}
+          for item in data:
+              assert item.get('contentId'), 'indexed item missing contentId'
+              assert item.get('domain') in allowed, f"invalid domain: {item.get('domain')}"
+              assert item.get('contentType'), 'indexed item missing contentType'
+              assert item.get('title'), 'indexed item missing title'
+              assert item.get('url'), 'indexed item missing url'
+              assert item['url'].startswith('/axiom-academy/'), f"index URL missing base path: {item['url']}"
+          domains = {item['domain'] for item in data}
+          print(f'Validated {len(data)} indexed content items across domains: {sorted(domains)}')
+          PY
+
+      - name: Verify critical study and quiz routes
+        run: |
+          set -euo pipefail
+          test -f _site/high-school/subject/index.html
+          test -f _site/university/index.html
+          test -f _site/extras/index.html
           test -d _site/quiz/high-school
           test -d _site/quiz/university
           test -d _site/quiz/extras
+
+      - name: Verify High School curriculum renderer inputs
+        run: |
+          set -euo pipefail
+          test -f _site/high-school/subject/index.html
+          grep -q 'curriculumDepartments' _site/high-school/subject/index.html
+          grep -q 'Mathematics' _site/high-school/subject/index.html
+          grep -q 'Algebra' _site/high-school/subject/index.html
+          grep -q 'number-and-numeracy' _site/high-school/subject/index.html
+
+      - name: Verify all Number & Numeracy study pages
+        run: |
+          set -euo pipefail
+          for slug in \
+            number-systems integers fractions decimals percentages ratios proportions \
+            rates-and-unit-rates factors-and-multiples prime-numbers hcf-and-lcm \
+            powers-and-exponents roots-and-radicals standard-form approximation-and-estimation \
+            significant-figures decimal-places bounds-and-accuracy surds recurring-decimals
+          do
+            test -f "_site/high-school/study/mathematics/number-and-numeracy/${slug}/index.html" || \
+            test -f "_site/high-school/mathematics/number-and-numeracy/${slug}/index.html"
+          done
+
+      - name: Verify Algebra study pages
+        run: |
+          set -euo pipefail
+          test -f _site/high-school/mathematics/algebra/index.html
+          test -f _site/high-school/mathematics/algebra/introduction-to-algebra/index.html
+          test -f _site/high-school/mathematics/algebra/variables-and-constants/index.html
+          test -f _site/high-school/mathematics/algebra/algebraic-expressions/index.html
+          test -f _site/high-school/mathematics/algebra/simplifying-expressions/index.html
+          test -f _site/high-school/mathematics/algebra/linear-equations/index.html
+          test -f _site/high-school/mathematics/algebra/inequalities/index.html
+
+      - name: Verify live quiz sessions render the engine mount
+        run: |
+          set -euo pipefail
+          for quiz in algebra number-and-numeracy; do
+            page="_site/quiz/high-school/mathematics/${quiz}/index.html"
+            test -f "$page"
+            grep -q 'id="quiz-container"' "$page"
+            grep -q 'QUIZ_CONFIG' "$page"
+            grep -q 'quiz-engine.js' "$page"
+          done
+
+      - name: Verify Pages base URL in generated HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          html = Path('_site/index.html').read_text(errors='ignore')
+          assert '/axiom-academy/' in html or 'href="/axiom-academy' in html or 'src="/axiom-academy' in html, 'expected GitHub Pages base path not found in root HTML'
+          print('GitHub Pages base path verified.')
+          PY
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -66,6 +161,7 @@ jobs:
 
   deploy:
     name: Deploy to GitHub Pages
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:

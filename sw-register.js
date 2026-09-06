@@ -1,4 +1,8 @@
-// Service Worker Registration
+---
+# Jekyll front matter so the Liquid asset path below resolves at build time.
+# This file is still served from the site root (/sw-register.js).
+---
+/* Service Worker Registration (processed by Jekyll for the Liquid path). */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('{{ "/sw.js" | relative_url }}')

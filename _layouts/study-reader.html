@@ -2,36 +2,62 @@
 layout: app-shell
 ---
 
+<!--
+  GNOSTIRI study reader layout.
+  Consumes study front matter: high_school_subject, high_school_topic,
+  high_school_subtopic, study_description, previous_study (+_title),
+  next_study (+_title). Reading progress, table of contents, and bookmarks
+  are wired through assets/js/study-reader.js data hooks.
+-->
+
 <section class="study-reader">
+  <div class="reading-progress-track" aria-hidden="true"><span data-reading-progress></span></div>
+
   <aside class="study-reader-toc animate-on-scroll">
-    {% if page.toc %}
-      <nav aria-label="Table of contents">
-        {{ page.toc }}
-      </nav>
-    {% endif %}
+    <strong>On this page</strong>
+    <nav data-study-toc aria-label="Table of contents"></nav>
+    <button type="button" data-study-bookmark aria-pressed="false">☆ Bookmark</button>
   </aside>
 
   <div class="study-reader-main">
     <header class="study-reader-header animate-on-scroll">
-      {% if page.breadcrumb %}
-        <p class="animate-on-scroll">{{ page.breadcrumb }}</p>
-      {% endif %}
+      <p class="eyebrow">
+        High School
+        {% if page.high_school_subject %} · {{ page.high_school_subject | replace: '-', ' ' | capitalize }}{% endif %}
+        {% if page.high_school_topic %} · {{ page.high_school_topic | replace: '-', ' ' | capitalize }}{% endif %}
+      </p>
       <h1>{{ page.title }}</h1>
-      {% if page.description %}
+      {% if page.study_description %}
+        <p>{{ page.study_description }}</p>
+      {% elsif page.description %}
         <p>{{ page.description }}</p>
       {% endif %}
     </header>
 
-    <article class="study-reader-section animate-on-scroll">
-      <div class="table-scroll">
-        {{ content }}
-      </div>
+    <article class="study-reader-section study-content content-card animate-on-scroll">
+      {{ content }}
     </article>
 
     <footer class="study-reader-footer animate-on-scroll">
-      <a class="study-action btn" href="{{ page.prev_url | default: '#' | relative_url }}">Previous</a>
-      <a class="study-action btn" href="{{ '/' | relative_url }}">Back to dashboard</a>
-      <a class="study-action btn" href="{{ page.next_url | default: '#' | relative_url }}">Next</a>
+      {% assign prev_url = page.previous_study | default: page.prev_url %}
+      {% assign next_url = page.next_study | default: page.next_url %}
+      {% if prev_url %}
+        <a class="study-action btn" href="{{ prev_url | relative_url }}">← {{ page.previous_study_title | default: 'Previous' }}</a>
+      {% else %}
+        <span></span>
+      {% endif %}
+      {% if page.high_school_subject == 'mathematics' and page.high_school_topic %}
+        <a class="study-action btn" href="{{ '/high-school/subject/' | relative_url }}?department=mathematics&topic={{ page.high_school_topic }}">All {{ page.high_school_topic | replace: '-', ' ' | capitalize }}</a>
+      {% else %}
+        <a class="study-action btn" href="{{ '/high-school/' | relative_url }}">High School Study</a>
+      {% endif %}
+      {% if next_url %}
+        <a class="study-action btn" href="{{ next_url | relative_url }}">{{ page.next_study_title | default: 'Next' }} →</a>
+      {% else %}
+        <span></span>
+      {% endif %}
     </footer>
   </div>
 </section>
+
+<script src="{{ '/assets/js/study-reader.js' | relative_url }}" defer></script>

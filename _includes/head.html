@@ -1,0 +1,24 @@
+<!--
+  GNOSTIRI document head.
+  Single place where global stylesheets, PWA metadata, SEO tags, and MathJax load.
+  Every layout that inherits from app-shell gets this automatically.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% seo %}
+{% include pwa-meta.html %}
+<meta name="theme-color" content="#001f3f">
+<meta name="color-scheme" content="light">
+{% feed_meta %}
+<link rel="stylesheet" href="{{ '/assets/css/app.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/gnostiri-ui.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/quiz.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/textbook.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/fit-and-flow.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/personal-study-plan.css' | relative_url }}">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" defer></script>
