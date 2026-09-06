@@ -5,10 +5,22 @@
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  /* Pre-paint theme application: avoids a flash of the wrong theme.
+     Dark is the default; a stored preference of "light" opts out. */
+  (function () {
+    try {
+      var stored = localStorage.getItem('gnostiri-theme');
+      document.documentElement.setAttribute('data-theme', stored === 'light' ? 'light' : 'dark');
+    } catch (error) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 {% seo %}
 {% include pwa-meta.html %}
-<meta name="theme-color" content="#001f3f">
-<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#10131a">
+<meta name="color-scheme" content="dark light">
 {% feed_meta %}
 <link rel="stylesheet" href="{{ '/assets/css/app.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/gnostiri-ui.css' | relative_url }}">
