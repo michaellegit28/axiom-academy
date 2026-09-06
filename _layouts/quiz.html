@@ -2,44 +2,64 @@
 layout: app-shell
 ---
 
+<!--
+  GNOSTIRI quiz session layout.
+  Mounts the domain-isolated quiz engine (assets/js/quiz-engine.js) on real
+  question-bank JSON. If a bank is missing or empty, the engine renders an
+  honest empty state instead of fabricated scores.
+  Required page front matter: exam (domain), subject, topic,
+  question_count, time_limit (minutes, 0 = untimed).
+-->
+
 <section class="quiz-wrapper">
-  <header class="animate-on-scroll">
+  <header>
+    <p class="eyebrow">{{ page.exam | replace: '-', ' ' | capitalize }} · {{ page.subject | capitalize }}</p>
     <h1>{{ page.title }}</h1>
     {% if page.description %}
       <p>{{ page.description }}</p>
     {% endif %}
   </header>
 
-  <div class="quiz-card card animate-on-scroll">
-    {{ content }}
+  {{ content }}
+
+  <div class="quiz-status-row">
+    <span id="quiz-progress" aria-live="polite"></span>
+    <span id="quiz-timer" hidden></span>
+  </div>
+  <div class="quiz-progress-bar" aria-hidden="true"><div id="quiz-progress-fill"></div></div>
+
+  <div id="quiz-container" class="quiz-card card">
+    <div class="quiz-loading"><p>Loading questions…</p></div>
   </div>
 
-  <section class="results-header animate-on-scroll" aria-labelledby="quiz-results-title">
-    <div>
-      <h2 id="quiz-results-title">Your result</h2>
-      <p>Review your latest performance and prepare the next focused revision step.</p>
-    </div>
+  <div id="quiz-controls" class="quiz-controls" style="display:none;">
+    <button type="button" id="btn-prev">← Previous</button>
+    <button type="button" id="btn-next">Next →</button>
+    <button type="button" id="btn-submit" style="display:none;">Submit quiz</button>
+  </div>
 
-    <div class="score-circle">
-      <strong data-count-to="87" data-count-suffix="%">0%</strong>
+  <section id="quiz-results" class="quiz-results" style="display:none;" aria-labelledby="quiz-results-title">
+    <h2 id="quiz-results-title">Your result</h2>
+    <div id="score-circle" class="score-circle" role="img" aria-label="Quiz score">
+      <strong id="score-value">0%</strong>
     </div>
+    <div id="weak-topics-alert" class="weak-topics-alert" style="display:none;">
+      <h3>Topics to revisit</h3>
+      <ul id="weak-topics-list"></ul>
+    </div>
+    <div id="results-breakdown" class="results-breakdown"></div>
   </section>
-
-  <div class="stagger-list">
-    <div class="breakdown-item">
-      <span>✓</span>
-      <div>
-        <strong data-count-to="18">0</strong>
-        <p>Correct answers</p>
-      </div>
-    </div>
-
-    <div class="breakdown-item">
-      <span>↺</span>
-      <div>
-        <strong data-count-to="7">0</strong>
-        <p>Topics to revisit</p>
-      </div>
-    </div>
-  </div>
 </section>
+
+<script>
+  window.QUIZ_CONFIG = {
+    dataUrl: "{{ '/assets/data/quizzes/' | append: page.exam | append: '/' | append: page.subject | append: '/' | append: page.topic | append: '.json' | relative_url }}",
+    questionCount: {{ page.question_count | default: 20 }},
+    timeLimit: {{ page.time_limit | default: 0 }},
+    exam: {{ page.exam | jsonify }},
+    subject: {{ page.subject | jsonify }},
+    topic: {{ page.topic | jsonify }}
+  };
+</script>
+<script src="{{ '/assets/js/quiz-engine.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/quiz-tutor-bridge.js' | relative_url }}" defer></script>

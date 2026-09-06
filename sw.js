@@ -1,26 +1,67 @@
+---
+# Jekyll front matter so {{ site.baseurl }} resolves at build time.
+# This file is still served from the site root (/sw.js) as required for
+# service-worker scope.
+---
 /**
  * GNOSTIRI — Service Worker
- * Caches chapters, quizzes, and flashcards for offline use
+ * Caches shell routes, styles, scripts, and question banks for offline use.
+ * Every URL is prefixed with the Jekyll baseurl so the worker works both on
+ * GitHub Pages (/axiom-academy/) and on local builds.
  */
 
-const CACHE_NAME = 'gnostiri-v3';
+const BASE = '{{ site.baseurl }}';
+const CACHE_NAME = 'gnostiri-v4';
+const OFFLINE_FALLBACK = BASE + '/';
+
 const STATIC_ASSETS = [
-  '/axiom-academy/',
-  '/axiom-academy/high-school/',
-  '/axiom-academy/high-school/study/',
-  '/axiom-academy/high-school/subject/',
-  '/axiom-academy/assets/css/app.css?v=gnostiri-v4',
-  '/axiom-academy/assets/css/gnostiri-ui.css?v=gnostiri-v1',
-  '/axiom-academy/assets/js/app.js',
-  '/axiom-academy/assets/js/learning-taxonomy.js',
-  '/axiom-academy/assets/js/quiz-engine.js',
-  '/axiom-academy/assets/js/flashcards.js',
-  '/axiom-academy/assets/js/study-track.js'
+  BASE + '/',
+  BASE + '/high-school/',
+  BASE + '/high-school/study/',
+  BASE + '/high-school/subject/',
+  BASE + '/high-school/mathematics/algebra/',
+  BASE + '/study/',
+  BASE + '/quiz/',
+  BASE + '/quiz/high-school/',
+  BASE + '/search/',
+  BASE + '/profile/',
+  BASE + '/tutor/',
+  BASE + '/assets/css/app.css',
+  BASE + '/assets/css/gnostiri-ui.css',
+  BASE + '/assets/css/quiz.css',
+  BASE + '/assets/css/textbook.css',
+  BASE + '/assets/css/fit-and-flow.css',
+  BASE + '/assets/css/personal-study-plan.css',
+  BASE + '/assets/js/axiom-state.js',
+  BASE + '/assets/js/app-shell.js',
+  BASE + '/assets/js/animations.js',
+  BASE + '/assets/js/progress-charts.js',
+  BASE + '/assets/js/quiz-engine.js',
+  BASE + '/assets/js/flashcards.js',
+  BASE + '/assets/js/study-track.js',
+  BASE + '/assets/js/study-reader.js',
+  BASE + '/assets/js/learning-taxonomy.js',
+  BASE + '/assets/data/quizzes/high-school/mathematics/algebra.json',
+  BASE + '/assets/data/quizzes/high-school/mathematics/number-and-numeracy.json',
+  BASE + '/manifest.json',
+  BASE + '/assets/images/icon-192.png',
+  BASE + '/assets/images/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS)));
-  self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) =>
+        // Cache each asset independently so one missing file can never
+        // fail the whole install (cache.addAll would reject everything).
+        Promise.all(
+          STATIC_ASSETS.map((url) =>
+            cache.add(url).catch((error) => console.warn('[SW] Skipped:', url, error))
+          )
+        )
+      )
+      .then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener('activate', (event) => {
@@ -51,7 +92,7 @@ self.addEventListener('fetch', (event) => {
         caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
       }
       return response;
-    }).catch(() => caches.match(request).then((cached) => cached || caches.match('/axiom-academy/'))));
+    }).catch(() => caches.match(request).then((cached) => cached || caches.match(OFFLINE_FALLBACK))));
     return;
   }
 
