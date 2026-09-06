@@ -14,20 +14,32 @@
 ------------------------------------------------------------ */
 
 :root {
+  /* Dark is the default theme. [data-theme="light"] below restores the
+     original light palette exactly as it was before this file changed. */
   --gnostiri-navy: #001f3f;
   --gnostiri-navy-soft: #0a1d37;
   --gnostiri-gold: #ffd700;
   --gnostiri-gold-deep: #b8862d;
   --gnostiri-teal: #008080;
-  --gnostiri-cream: #fafaf7;
   --gnostiri-white: #ffffff;
-  --gnostiri-ink: #172033;
-  --gnostiri-muted: #5b6475;
-  --gnostiri-border: rgba(0, 31, 63, 0.12);
-  --gnostiri-shadow: 0 18px 40px rgba(0, 31, 63, 0.12);
+  --gnostiri-cream: #10131a;
+  --gnostiri-ink: #f2f1ec;
+  --gnostiri-muted: #b7bdc9;
+  --gnostiri-heading: var(--gnostiri-gold);
+  --gnostiri-border: rgba(255, 255, 255, 0.12);
+  --gnostiri-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
   --gnostiri-radius: 8px;
   --gnostiri-radius-lg: 18px;
   --gnostiri-focus: 0 0 0 3px rgba(255, 215, 0, 0.38);
+}
+
+[data-theme="light"] {
+  --gnostiri-cream: #fafaf7;
+  --gnostiri-ink: #172033;
+  --gnostiri-muted: #5b6475;
+  --gnostiri-heading: var(--gnostiri-navy);
+  --gnostiri-border: rgba(0, 31, 63, 0.12);
+  --gnostiri-shadow: 0 18px 40px rgba(0, 31, 63, 0.12);
 }
 
 /* ------------------------------------------------------------
@@ -175,6 +187,31 @@
   border-radius: 999px;
 }
 
+.gnostiri-nav__theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgba(255, 215, 0, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--gnostiri-white);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.gnostiri-nav__theme-toggle:hover,
+.gnostiri-nav__theme-toggle:focus-visible {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
 /* ------------------------------------------------------------
    Study Hub
    Phase 1 route contract: provides /study/ as a stable root route.
@@ -211,7 +248,7 @@
 .study-hub h1 {
   max-width: 760px;
   margin: 0 0 1rem;
-  color: var(--gnostiri-navy);
+  color: var(--gnostiri-heading);
   font-size: clamp(2rem, 6vw, 4.2rem);
   line-height: 1.04;
   letter-spacing: -0.045em;
@@ -241,8 +278,7 @@
   padding: clamp(1.15rem, 3vw, 1.6rem);
   border: 1px solid var(--gnostiri-border);
   border-radius: var(--gnostiri-radius-lg);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 250, 247, 0.96));
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-secondary));
   box-shadow: var(--gnostiri-shadow);
 }
 
@@ -253,7 +289,7 @@
   padding: 0.28rem 0.65rem;
   border-radius: 999px;
   background: rgba(255, 215, 0, 0.18);
-  color: var(--gnostiri-navy);
+  color: var(--gnostiri-heading);
   font-size: 0.76rem;
   font-weight: 900;
   line-height: 1.2;
@@ -263,7 +299,7 @@
 
 .domain-card h2 {
   margin: 0 0 0.75rem;
-  color: var(--gnostiri-navy);
+  color: var(--gnostiri-heading);
   font-size: clamp(1.2rem, 3vw, 1.55rem);
   line-height: 1.22;
   overflow-wrap: anywhere;
@@ -377,26 +413,36 @@
   --font-sans: 'Segoe UI', system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-serif: Georgia, 'Times New Roman', Times, serif;
   --bg-primary: var(--gnostiri-cream);
-  --bg-card: #ffffff;
-  --bg-secondary: #eef1f6;
-  --bg-elevated: #ffffff;
+  --bg-card: #171b24;
+  --bg-secondary: #1d2230;
+  --bg-elevated: #232838;
   --text-primary: var(--gnostiri-ink);
-  --text-secondary: #3c4457;
+  --text-secondary: #cdd2dc;
   --text-muted: var(--gnostiri-muted);
   --text-inverse: #ffffff;
   --border-subtle: var(--gnostiri-border);
-  --border-medium: rgba(0, 31, 63, 0.22);
+  --border-medium: rgba(255, 255, 255, 0.22);
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: var(--gnostiri-radius-lg);
-  --shadow-sm: 0 2px 10px rgba(0, 31, 63, 0.08);
-  --shadow-lg: 0 24px 60px rgba(0, 31, 63, 0.18);
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
   --g-gold: var(--gnostiri-gold-deep);
   --accent-masterclass: var(--gnostiri-gold-deep);
   --duration-normal: 0.25s;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --nav-height: 72px;
   --mobile-nav-height: 0px;
+}
+
+[data-theme="light"] {
+  --bg-card: #ffffff;
+  --bg-secondary: #eef1f6;
+  --bg-elevated: #ffffff;
+  --text-secondary: #3c4457;
+  --border-medium: rgba(0, 31, 63, 0.22);
+  --shadow-sm: 0 2px 10px rgba(0, 31, 63, 0.08);
+  --shadow-lg: 0 24px 60px rgba(0, 31, 63, 0.18);
 }
 
 /* ------------------------------------------------------------
@@ -1928,4 +1974,3 @@ main .study-reader {
 .tutor-domain {
   overflow-wrap: anywhere;
 }
-
