@@ -1,9 +1,9 @@
 /* assets/css/personal-study-plan.css */
 .personal-study-plan {
-    background-color: #FFFDD0; /* Cream */
+    background-color: var(--bg-card);
     padding: 20px;
     border-radius: 8px; /* Consistent border radius */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for cards */
+    box-shadow: var(--shadow-sm);
     max-width: 800px;
     margin: auto;
 }
@@ -12,22 +12,24 @@
     margin-bottom: 20px; /* Consistent spacing */
 }
 
-h2, h3 {
-    color: #001F3F; /* Deep Navy */
+.personal-study-plan h2, .personal-study-plan h3 {
+    color: var(--gnostiri-heading);
     font-family: 'Arial', sans-serif; /* Readable typography */
 }
 
-input[type="text"] {
+.personal-study-plan input[type="text"] {
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid #008080; /* Teal */
+    border: 1px solid var(--gnostiri-teal);
+    background: var(--bg-card);
+    color: var(--text-primary);
     width: calc(100% - 22px); /* Responsive full width */
     margin-bottom: 10px;
 }
 
-button {
-    background-color: #FFD700; /* Gold */
-    color: white;
+.personal-study-plan button {
+    background-color: var(--gnostiri-gold);
+    color: var(--gnostiri-navy);
     border: none;
     border-radius: 4px;
     padding: 10px 15px;
@@ -35,16 +37,16 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+.personal-study-plan button:hover {
     background-color: #FFC107; /* Lighter Gold on hover */
 }
 
-.progress-item {
+.personal-study-plan .progress-item {
     margin: 5px 0;
-    color: #001F3F; /* Deep Navy */
+    color: var(--text-primary);
 }
 
-#pathway-list {
+.personal-study-plan #pathway-list {
     list-style: none; /* Removing list bullets */
     padding: 0; /* Reset padding */
 }
