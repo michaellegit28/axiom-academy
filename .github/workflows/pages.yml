@@ -23,6 +23,9 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # TEMPORARY DEBUG: lets a failing build post its log to the PR so the error
+  # is visible without log-download access. Remove after the build is green.
+  pull-requests: write
 
 concurrency:
   group: pages
