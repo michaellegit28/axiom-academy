@@ -51,9 +51,24 @@ jobs:
           bundler-cache: true
 
       - name: Build GNOSTIRI with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}" --trace
+        run: |
+          set -o pipefail
+          bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}" --trace 2>&1 | tee /tmp/jekyll-build.log
         env:
           JEKYLL_ENV: production
+
+      # TEMPORARY DEBUG: remove after the build is green.
+      - name: Report build failure to PR
+        if: failure() && github.event_name == 'pull_request'
+        run: |
+          {
+            printf '### Jekyll build failure (temporary debug output)\n\n```\n'
+            tail -c 48000 /tmp/jekyll-build.log
+            printf '\n```\n'
+          } > /tmp/build-failure-comment.md
+          gh pr comment "${{ github.event.pull_request.number }}" --body-file /tmp/build-failure-comment.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Verify generated site structure
         run: |
