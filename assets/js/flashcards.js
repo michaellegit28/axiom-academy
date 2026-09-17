@@ -1,16 +1,8 @@
 /**
  * Axiom Academy — Flashcard Engine with SM-2 Spaced Repetition
- * Offline-first (IndexedDB + localStorage), syncs to Firestore when authenticated.
+ * Offline-first and local-only (IndexedDB + localStorage).
+ * No accounts — progress is stored in the browser on this device.
  */
-
-import { axiomAuth } from "./auth.js";
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // ---- IndexedDB Helper (inline, no dependencies) ----
 const DB_NAME = "AxiomFlashDB";
@@ -112,9 +104,6 @@ export class FlashcardDeck {
         if (raw) this.progress = JSON.parse(raw);
       } catch (e) { /* ignore */ }
     }
-
-    // If authenticated, try to merge cloud data
-    await this._loadFromCloud();
   }
 
   async ready() {
@@ -155,7 +144,6 @@ export class FlashcardDeck {
     this.cards[cardIndex]._progress = updated;
 
     this._saveLocal();
-    this._syncToCloud(cardIndex, updated);
 
     return updated;
   }
@@ -167,52 +155,6 @@ export class FlashcardDeck {
     try {
       localStorage.setItem(`axiom_flash_${this.deckId}`, JSON.stringify(this.progress));
     } catch (e) { /* quota exceeded */ }
-  }
-
-  async _syncToCloud(cardIndex, progress) {
-    const user = axiomAuth.user;
-    if (!user || axiomAuth.isAnonymous) return;
-
-    try {
-      const db = getFirestore(window.firebaseApp);
-      const ref = doc(db, "users", user.uid, "flashcard_progress", this.deckId);
-      await setDoc(ref, {
-        [`card_${cardIndex}`]: progress,
-        lastSync: serverTimestamp()
-      }, { merge: true });
-    } catch (e) {
-      console.warn("[Flashcards] Cloud sync failed:", e);
-    }
-  }
-
-  async _loadFromCloud() {
-    const user = axiomAuth.user;
-    if (!user || axiomAuth.isAnonymous) return;
-
-    try {
-      const db = getFirestore(window.firebaseApp);
-      const ref = doc(db, "users", user.uid, "flashcard_progress", this.deckId);
-      const snap = await getDoc(ref);
-      if (snap.exists()) {
-        const data = snap.data();
-        let merged = false;
-        Object.keys(data).forEach(key => {
-          if (key.startsWith("card_")) {
-            const idx = parseInt(key.replace("card_", ""), 10);
-            const cloud = data[key];
-            const local = this.progress[idx];
-            // Keep whichever was reviewed more recently
-            if (!local || (cloud.lastReviewed || 0) > (local.lastReviewed || 0)) {
-              this.progress[idx] = cloud;
-              merged = true;
-            }
-          }
-        });
-        if (merged) await this._saveLocal();
-      }
-    } catch (e) {
-      console.warn("[Flashcards] Cloud load failed:", e);
-    }
   }
 
   // Reset a card (for "hard reset" feature)

@@ -52,8 +52,8 @@ permalink: /study/
       <span class="domain-card__eyebrow">Extras</span>
       <h2>Masterclasses and lifelong learning</h2>
       <p>
-        Access advanced explorations, premium masterclass tracks, and enrichment
-        resources without mixing them into school or university progress.
+        Access advanced explorations, in-depth masterclass tracks, and enrichment
+        resources — all free — without mixing them into school or university progress.
       </p>
       <a class="button primary" href="{{ '/extras/' | relative_url }}">
         Open Extras

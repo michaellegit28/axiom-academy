@@ -46,13 +46,12 @@ university:
   study:
     label: "University Study"
     hierarchy: "Faculty → Department → Programme → Course → Module → Topic"
-    access_model: "free-preview-or-paid-course"
-    default_course_price_usd: 3
+    access_model: "fully-free"
   quiz:
     label: "University Assessment"
     hierarchy: "Course → Module → Topic → Assessment"
     status: roadmap
-    access_model: "inherits-course-access"
+    access_model: "free"
 
 extras:
   study:

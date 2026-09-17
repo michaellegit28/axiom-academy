@@ -2,13 +2,11 @@
  * GNOSTIRI — application shell wiring.
  *
  * Vanilla ES module (no bundler, no framework). Runs on every page that uses
- * the app-shell layout and does three small jobs:
- *   1. Injects the Sign in / account button into the canonical nav menu.
- *   2. Marks the current page in the nav with aria-current="page".
- *   3. Reflects auth state on the button via the shared axiomAuth module.
+ * the app-shell layout and marks the current page in the nav with
+ * aria-current="page".
  *
- * Auth behavior itself lives in assets/js/auth.js; this file only consumes
- * its public contract (onAuthChange / signOut / displayName / isAnonymous).
+ * The site is 100% free with no accounts: all learning, progress, and
+ * analytics features run locally in the browser (localStorage / IndexedDB).
  */
 
 function markActiveNav() {
@@ -30,65 +28,6 @@ function markActiveNav() {
   });
 }
 
-function injectAuthButton() {
-  const menu = document.querySelector('[data-nav-menu]');
-  if (!menu || document.getElementById('site-auth-button')) return null;
-  const item = document.createElement('li');
-  item.className = 'gnostiri-nav__auth';
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.id = 'site-auth-button';
-  button.className = 'gnostiri-nav__auth-btn';
-  button.textContent = 'Sign in';
-  item.appendChild(button);
-  menu.appendChild(item);
-  return button;
-}
-
-async function wireAuthButton(button) {
-  let axiomAuth = null;
-  try {
-    ({ axiomAuth } = await import('./auth.js'));
-  } catch (error) {
-    // Auth SDK unreachable (offline / blocked CDN). Hide the button rather
-    // than showing a control that cannot work.
-    console.warn('[GNOSTIRI Shell] Auth unavailable, hiding sign-in button:', error);
-    button.hidden = true;
-    return;
-  }
-
-  const render = (user, isAnonymous) => {
-    if (user && !isAnonymous) {
-      const name = (axiomAuth.displayName || 'Account').split(' ')[0];
-      button.textContent = name;
-      button.title = 'Signed in — click to sign out';
-      button.dataset.signedIn = 'true';
-    } else {
-      button.textContent = 'Sign in';
-      button.title = 'Sign in or create a free account';
-      delete button.dataset.signedIn;
-    }
-  };
-
-  button.addEventListener('click', async () => {
-    if (button.dataset.signedIn) {
-      try {
-        await axiomAuth.signOut();
-      } catch (error) {
-        console.warn('[GNOSTIRI Shell] Sign out failed:', error);
-      }
-      return;
-    }
-    if (typeof window.openAuthModal === 'function') {
-      window.openAuthModal();
-    }
-  });
-
-  axiomAuth.onAuthChange(render);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   markActiveNav();
-  const button = injectAuthButton();
-  if (button) wireAuthButton(button);
 });
