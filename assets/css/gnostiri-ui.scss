@@ -526,22 +526,6 @@ summary {
   color: #fff;
 }
 
-.gnostiri-nav__auth {
-  list-style: none;
-}
-
-.gnostiri-nav__auth-btn {
-  min-height: 2.4rem;
-  padding: 0.45rem 1rem;
-  border: 1px solid rgba(255, 215, 0, 0.55);
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--gnostiri-gold), var(--gnostiri-gold-deep));
-  color: var(--gnostiri-navy);
-  font-weight: 800;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
-
 .site-footer {
   border-top: 1px solid rgba(255, 215, 0, 0.28);
   background: linear-gradient(135deg, #001f3f, #0a1d37);
@@ -1816,97 +1800,6 @@ main .study-reader {
   font-size: 1.4rem;
   cursor: pointer;
   color: var(--text-muted);
-}
-
-.auth-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-}
-
-.auth-tab {
-  padding: 0.6rem;
-  border-radius: 9px;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-secondary);
-  font-weight: 800;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.auth-tab.active {
-  background: var(--gnostiri-navy);
-  color: #fff;
-  border-color: var(--gnostiri-navy);
-}
-
-.auth-form {
-  display: grid;
-  gap: 0.7rem;
-}
-
-.form-group {
-  display: grid;
-  gap: 0.3rem;
-}
-
-.form-group label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-}
-
-.form-group input {
-  padding: 0.65rem 0.8rem;
-  border-radius: 9px;
-  border: 1px solid var(--border-medium);
-  background: var(--bg-card);
-  font-size: 0.9rem;
-  color: var(--text-primary);
-}
-
-.forgot-link {
-  font-size: 0.78rem;
-  text-align: center;
-}
-
-.auth-divider {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin: 1rem 0;
-  color: var(--text-muted);
-  font-size: 0.75rem;
-}
-
-.auth-divider::before,
-.auth-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border-subtle);
-}
-
-.auth-guest {
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.auth-message {
-  margin-top: 0.8rem;
-  min-height: 1.2em;
-  font-size: 0.8rem;
-  text-align: center;
-}
-
-.auth-message.error {
-  color: #b3352b;
-}
-
-.auth-message.success {
-  color: var(--gnostiri-teal);
 }
 
 /* ------------------------------------------------------------

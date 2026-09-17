@@ -26,17 +26,14 @@ This lets one canonical topic serve multiple examinations without duplicating cu
 
 ## 3. University courses
 
-University courses are original GNOSTIRI learning products. The catalogue supports:
+University courses are original GNOSTIRI learning products. The site is **100% free** — there are no paid tiers, subscriptions, or purchase gates. The catalogue supports:
 
-- free previews;
-- paid full courses;
-- an initial target price of **$3 per course**;
-- course-level entitlement;
+- full free access to every course;
 - course-linked assessments;
 - module/topic progress;
 - mastery and recommendations.
 
-The current GitHub Pages implementation is **catalogue-ready**, not a secure payment system. A real commercial launch requires authenticated entitlement verification backed by a payment provider and server-side rules. A client-side flag must never be treated as proof of payment.
+There is no commerce layer. If monetization is ever revisited, it must be introduced deliberately with authenticated entitlement verification backed by a payment provider and server-side rules — a client-side flag must never be treated as proof of payment.
 
 ## 4. Content and copyright boundary
 
@@ -44,6 +41,6 @@ GNOSTIRI should publish original explanations, examples, diagrams, questions, an
 
 ## 5. Access flow
 
-`Preview → Purchase/Subscribe → Verified entitlement → Unlock course → Study → Assess → Progress`
+`Pick course → Study → Assess → Progress`
 
-The access decision belongs to the course/content entitlement layer, not to the navigation hierarchy.
+Everything is free and open; there is no entitlement, purchase, or sign-up step anywhere in the flow.

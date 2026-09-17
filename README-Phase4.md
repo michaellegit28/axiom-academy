@@ -1,5 +1,10 @@
 # Axiom Academy — Phase 4: Auth & User Data
 
+> **Status: auth removed.** GNOSTIRI is now 100% free with no accounts. The
+> sign in / sign up modal, Firebase auth, and cloud sync were removed; all
+> progress and analytics features run locally in the browser (localStorage /
+> IndexedDB). This README is kept as historical documentation of Phase 4.
+
 This package adds **user authentication**, **progress tracking**, and the **profile dashboard** to your Jekyll site.
 
 ## What's Included

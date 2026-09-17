@@ -3,7 +3,6 @@
  * Generates personalized daily tasks based on weak topics, streak, and progress.
  */
 
-import { axiomAuth } from "./auth.js";
 import { progressTracker } from "./progress.js";
 
 export class DailyMission {

@@ -13,16 +13,16 @@ permalink: /university/
     <div class="eyebrow">University · Study</div>
     <h1>University learning, built as courses.</h1>
     <p>University is intentionally separate from High School. Courses follow Faculty → Department → Programme → Course → Module → Topic, with assessment attached to the course rather than mixed into the High School exam system.</p>
-    <div class="uni-note"><strong>Access model:</strong> every course can expose a useful free preview while full original GNOSTIRI course material can be offered as a paid course. The initial catalogue price is <strong>$3 per course</strong>.</div>
+    <div class="uni-note"><strong>Access model:</strong> every course is <strong>100% free</strong>. No accounts, no subscriptions, no paywalls — open a course and start learning.</div>
   </section>
 
   <section class="uni-section" aria-labelledby="uni-courses-heading">
     <h2 id="uni-courses-heading">Courses</h2>
-    <p>Subscription-ready catalogue. Full payment and entitlement enforcement will be connected to authenticated billing before commercial launch.</p>
+    <p>Every course is free to study in full, with assessments, progress, and mastery included.</p>
     <div class="uni-grid">
       {% for course in site.data.university_courses %}
       <article class="uni-card">
-        <div class="uni-card-top"><span class="uni-badge">{{ course.status | capitalize }}</span><span class="uni-price">{% if course.price_usd == 0 %}Free{% else %}${{ course.price_usd }}{% endif %}</span></div>
+        <div class="uni-card-top"><span class="uni-badge">{{ course.status | capitalize }}</span><span class="uni-price">Free</span></div>
         <h3>{{ course.title }}</h3>
         <p>{{ course.description }}</p>
         <div class="uni-meta"><span>{{ course.faculty }}</span><span>{{ course.department }}</span><span>{{ course.programme }}</span>{% for module in course.modules limit:3 %}<span>{{ module }}</span>{% endfor %}</div>
@@ -38,17 +38,17 @@ permalink: /university/
     <h2 id="uni-assessment-heading">University assessment</h2>
     <p>University quizzes will inherit course access and stay independent from High School JAMB/WAEC practice.</p>
     <div class="uni-grid">
-      <article class="uni-card"><div class="uni-card-top"><span class="uni-badge">Course → Module → Topic</span><span class="uni-price">Planned</span></div><h3>Course assessments</h3><p>Module checks, topic practice, worked problems, and end-of-course assessments tied directly to enrolled courses.</p></article>
+      <article class="uni-card"><div class="uni-card-top"><span class="uni-badge">Course → Module → Topic</span><span class="uni-price">Free</span></div><h3>Course assessments</h3><p>Module checks, topic practice, worked problems, and end-of-course assessments tied directly to each course.</p></article>
       <article class="uni-card"><div class="uni-card-top"><span class="uni-badge">Progress</span><span class="uni-price">Included</span></div><h3>Course mastery</h3><p>Reading activity, assessment results, module completion, and recommendations feed the same GNOSTIRI activity system.</p></article>
     </div>
   </section>
 
   <section class="uni-section" aria-labelledby="uni-roadmap-heading">
-    <h2 id="uni-roadmap-heading">How access will work</h2>
+    <h2 id="uni-roadmap-heading">How it works</h2>
     <div class="uni-roadmap">
-      <div class="uni-step"><strong>1. Preview</strong><span>Read selected lessons and understand the course before paying.</span></div>
-      <div class="uni-step"><strong>2. Subscribe</strong><span>Purchase access to the original full course through the future billing layer.</span></div>
-      <div class="uni-step"><strong>3. Learn + assess</strong><span>Unlocked modules, quizzes, progress, mastery, and recommendations stay connected.</span></div>
+      <div class="uni-step"><strong>1. Pick a course</strong><span>Browse the free catalogue and open the course that fits your goals.</span></div>
+      <div class="uni-step"><strong>2. Learn</strong><span>Study every module and topic at your own pace — no accounts, no payment.</span></div>
+      <div class="uni-step"><strong>3. Assess + track</strong><span>Quizzes, progress, mastery, and recommendations stay connected as you go.</span></div>
     </div>
   </section>
 </div>
